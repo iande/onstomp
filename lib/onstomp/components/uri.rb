@@ -4,16 +4,12 @@
 module OnStomp::Components::URI
   class STOMP < ::URI::Generic
     DEFAULT_PORT = 61613
-    class << self
-      def stomper_socket_method; :tcp; end
-    end
+    def onstomp_socket_type; :tcp; end
   end
 
   class STOMP_SSL < STOMP
     DEFAULT_PORT = 61612
-    class << self
-      def stomper_socket_method; :ssl; end
-    end
+    def onstomp_socket_type; :ssl; end
   end
 end
 

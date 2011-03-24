@@ -1,21 +1,6 @@
 # -*- encoding: utf-8 -*-
 
 module OnStomp::Connections
-end
-
-require 'onstomp/connections/serializers'
-require 'onstomp/connections/base'
-require 'onstomp/connections/stomp_1'
-require 'onstomp/connections/heartbeating'
-require 'onstomp/connections/stomp_1_0'
-require 'onstomp/connections/stomp_1_1'
-
-module OnStomp::Connections
-  PROTOCOL_VERSIONS = {
-    '1.0' => OnStomp::Connections::Stomp_1_0,
-    '1.1' => OnStomp::Connections::Stomp_1_1
-  }
-  
   DEFAULT_SSL_OPTIONS = {
     :verify_mode => OpenSSL::SSL::VERIFY_PEER |
       OpenSSL::SSL::VERIFY_FAIL_IF_NO_PEER_CERT,
@@ -37,8 +22,8 @@ module OnStomp::Connections
   
   def self.create_for client
     meth = client.ssl ? :ssl :
-      client.uri.class.respond_to?(:stomper_socket_method) ? 
-        client.uri.class.stomper_socket_method : :tcp
+      client.uri.respond_to?(:onstomp_socket_type) ?
+        client.uri.onstomp_socket_type : :tcp
     create_connection '1.0', __send__(:"create_socket_#{meth}", client), client
   end
   
@@ -81,4 +66,18 @@ module OnStomp::Connections
     socket.post_connection_check(post_check_host) if post_check_host
     socket
   end
+end
+
+require 'onstomp/connections/serializers'
+require 'onstomp/connections/base'
+require 'onstomp/connections/stomp_1'
+require 'onstomp/connections/heartbeating'
+require 'onstomp/connections/stomp_1_0'
+require 'onstomp/connections/stomp_1_1'
+
+module OnStomp::Connections
+  PROTOCOL_VERSIONS = {
+    '1.0' => OnStomp::Connections::Stomp_1_0,
+    '1.1' => OnStomp::Connections::Stomp_1_1
+  }
 end

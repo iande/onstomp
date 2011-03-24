@@ -9,16 +9,7 @@ class OnStomp::Components::Frame
   # $3 => charset ('ISO-8859-1')
   CONTENT_TYPE_REG = /^([a-z0-9!\#$&.+\-^_]+)\/([a-z0-9!\#$&.+\-^_]+)(?:.*;\s*charset=\"?([a-z0-9!\#$&.+\-^_]+)\"?)?/i
   
-  # The command name of this frame (CONNECTED, SEND, RECEIPT, etc.)
-  # @return [String]
-  attr_accessor :command
-  
-  # The body of this frame
-  # @return [String] if a body has been set
-  attr_accessor :body
-  
-  # The headers associated with this frame
-  # @return [OnStomp::Headers]
+  attr_accessor :command, :body
   attr_reader :headers
   
   # Creates a new frame. The frame will be initialized with the optional
