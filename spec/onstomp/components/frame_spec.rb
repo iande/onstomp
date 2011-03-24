@@ -131,7 +131,7 @@ module OnStomp::Components
     describe ".force_content_length" do
       it "should not assign a content-length header if there is no body" do
         frame.force_content_length
-        frame.headers.has?(:'content-length').should be_false
+        frame.headers.set?(:'content-length').should be_false
       end
       
       it "should set a content-length header to the byte-size of the body" do

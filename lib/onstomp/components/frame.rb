@@ -52,11 +52,11 @@ class OnStomp::Components::Frame
   end
   
   def header? name
-    !(@headers[name].nil? || @headers[name].empty?)
+    @headers.present? name
   end
   
   def all_headers? *names
-    names.inject(true) { |all, name| all && header?(name) }
+    names.inject(true) { |all, name| all && @headers.present?(name) }
   end
   alias :headers? :all_headers?
   

@@ -34,22 +34,32 @@ class OnStomp::Components::FrameHeaders
   # @param [Hash] hash
   def reverse_merge!(hash)
     hash.each { |k, v|
-      self[k]= v unless has?(k)
+      self[k]= v unless set?(k)
     }
   end
   
   # Returns true if a header value has been set for the supplied header name.
-  # @param [Object] name the header name to test (will be converted using +to_sym+)
-  # @return [Boolean] true if the specified header name has been set, otherwise false.
+  # @param [#to_sym] name the header name to test
+  # @return [Boolean]
   # @example
-  #   header.has? 'content-type' #=> true
-  #   header.key? 'unset header' #=> false
-  #   header.include? 'content-length' #=> true
-  def has?(name)
+  #   header.set? 'content-type' #=> true
+  def set?(name)
     @values.key?(name.to_sym)
   end
-  alias :key? :has?
-  alias :include? :has?
+  
+  # Returns true if a header value has been set for the supplied header, and
+  # the value is neither +nil+ nor an empty string.
+  # @param [#to_sym] name the header name to test
+  # @return [Boolean]
+  # @example
+  #   header[:test1] = 'set'
+  #   header[:test2] = ''
+  #   header.present? :test1 #=> true
+  #   header.present? :test2 #=> false
+  def present?(name)
+    val = self[name]
+    !(val.nil? || val.empty?)
+  end
   
   # Retrieves all header values associated with the supplied header name.
   # In general, this will be an array containing only the principle header
@@ -58,24 +68,23 @@ class OnStomp::Components::FrameHeaders
   # element of the array will be the principle value of the supplied
   # header name.
   #
-  # @param [Object] name the header name associated with the desired values (will be converted using +to_sym+)
+  # @param [#to_sym] name the header name associated with the desired values (will be converted using +to_sym+)
   # @return [Array] the array of values associated with the header name.
   # @example
   #   headers.all_values('content-type') #=> [ 'text/plain' ]
-  #   headers.all(:repeated_header) #=> [ 'principle value', '13', 'other value']
-  #   headers['name'] == headers.all(:name).first #=> true
+  #   headers.all_values(:repeated_header) #=> [ 'principle value', '13', 'other value']
+  #   headers['name'] == headers.all_values(:name).first #=> true
   def all_values(name)
     @values[name.to_sym] || []
   end
-  alias :all :all_values
   
   # Appends a header value to the specified header name.  If the specified
   # header name is not known, the supplied value will also become the
   # principle value.  This method is used internally when constructing
   # frames sent by the broker to capture repeated header names.
   #
-  # @param [Object] name the header name to associate with the supplied value (will be converted using +to_s+)
-  # @param [Object] val the header value to associate with the supplied name (will be converted using +to_s+)
+  # @param [#to_sym] name the header name to associate with the supplied value (will be converted using +to_s+)
+  # @param [#to_s] val the header value to associate with the supplied name (will be converted using +to_s+)
   # @return [String] the supplied value as a string.
   # @example
   #   headers.append(:'new header', 'first value') #=> 'first value'
@@ -98,7 +107,7 @@ class OnStomp::Components::FrameHeaders
   # removes the header name itself.  This is analogous to the +delete+
   # method found in Hash objects.
   #
-  # @param [Object] name the header name to remove from this collection (will be converted using +to_sym+)
+  # @param [#to_sym] name the header name to remove from this collection (will be converted using +to_sym+)
   # @return [Array] the array of values associated with the deleted header, or +nil+ if the header name did not exist
   # @example
   #   headers.delete(:'content-type') #=> [ 'text/html' ]
@@ -116,7 +125,7 @@ class OnStomp::Components::FrameHeaders
   # Stomp 1.1 protocol specifies that in the event of a repeated header name,
   # the first value encountered serves as the principle value.
   #
-  # @param [Object] name the header name paired with the desired value (will be converted using +to_sym+)
+  # @param [#to_sym] name the header name paired with the desired value (will be converted using +to_sym+)
   # @return [String] the value associated with the requested header name
   # @return [nil] if no value has been set for the associated header name
   # @example
@@ -131,8 +140,8 @@ class OnStomp::Components::FrameHeaders
   # the value will be converted to a String so must respond to +to_s+.
   # Setting a header value in this fashion will overwrite any repeated header values.
   #
-  # @param [Object] name the header name to associate with the supplied value (will be converted using +to_sym+)
-  # @param [Object] val the value to pair with the supplied name (will be converted using +to_s+)
+  # @param [#to_sym] name the header name to associate with the supplied value (will be converted using +to_sym+)
+  # @param [#to_s] val the value to pair with the supplied name (will be converted using +to_s+)
   # @return [String] the supplied value as a string.
   # @example
   #   headers['content-type'] = 'image/png' #=> 'image/png'

@@ -19,7 +19,6 @@ class OnStomp::Connections::Base
   
   def configure connected, client
     @version = connected.header?(:version) ? connected[:version] : '1.0'
-    install_bindings_from_client client.pending_connection_events
   end
   
   def connected?

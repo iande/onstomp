@@ -23,7 +23,10 @@ module OnStomp::Interfaces::ClientConfigurable
     end
     
     def attr_configurable_processor nm
-      attr_configurable_class(nm, :default => OnStomp::Components::ThreadedProcessor)
+      attr_configurable_class(nm,
+        :default => OnStomp::Components::ThreadedProcessor) do |pr|
+        pr || OnStomp::Components::NilProcessor
+      end
     end
   end
 end

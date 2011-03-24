@@ -50,21 +50,20 @@ class OnStomp::Client
   end
   
   def connect(headers={})
-    @connection = OnStomp::Connections.create_for(self)
     begin
-      @connection = connection.connect(self, headers, connect_headers)
+      @connection = OnStomp::Connections.connect(self, headers, connect_headers)
+      @connection.install_bindings_from_client pending_connection_events
     rescue
       disconnect
       raise
     end
-    #trigger_connection_event :established
-    start_processor
+    processor_inst.start
   end
   alias :open :connect
   
   def disconnect_with_flush(headers={})
     disconnect_without_flush(headers).tap do
-      join_processor
+      processor_inst.join
     end
   end
   alias :disconnect_without_flush :disconnect
@@ -76,15 +75,13 @@ class OnStomp::Client
   
   def close
     connection && connection.close
-    #trigger_connection_event(:terminated) unless @disconnected
-    #trigger_connection_event :closed
     clear_subscriptions
     clear_receipts
   end
   
   def close!
     close
-    stop_processor
+    processor_inst.stop
   end
   
   def transmit(frame, cbs={})
@@ -109,23 +106,9 @@ class OnStomp::Client
     cbs[:subscribe] && add_subscription(f, cbs[:subscribe])
     cbs[:receipt] && add_receipt(f, cbs[:receipt])
   end
-
-  def start_processor
-    if processor
-      @processor_inst = processor.new self
-      @processor_inst.start
-    end
-  end
   
-  def stop_processor
-    if @processor_inst
-      @processor_inst.stop
-      @processor_inst = nil
-    end
-  end
-  
-  def join_processor
-    @processor_inst && @processor_inst.join
+  def processor_inst
+    @processor_inst ||= processor.new(self)
   end
   
   def connect_headers

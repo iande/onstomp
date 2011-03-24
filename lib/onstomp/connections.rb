@@ -20,11 +20,12 @@ module OnStomp::Connections
     supported.select { |v| vers.include? v }
   end
   
-  def self.create_for client
+  def self.connect client, u_head, c_head
     meth = client.ssl ? :ssl :
       client.uri.respond_to?(:onstomp_socket_type) ?
         client.uri.onstomp_socket_type : :tcp
-    create_connection '1.0', __send__(:"create_socket_#{meth}", client), client
+    create_connection('1.0', __send__(:"create_socket_#{meth}", client), client).
+      connect(client, u_head, c_head)
   end
   
   def self.negotiate_connection vers, con, frame, client
