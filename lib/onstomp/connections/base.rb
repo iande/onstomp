@@ -25,15 +25,13 @@ class OnStomp::Connections::Base
   def connected?
     !socket.closed?
   end
-  alias :alive? :connected?
   
-  def closed?
-    socket.closed?
-  end
-  alias :dead? :closed?
-  
-  def close
+  def close(blocking=false)
     @write_mutex.synchronize { @closing = true }
+    if blocking
+      single_io_write until @write_buffer.empty?
+      socket.close
+    end
   end
   
   def connect client, *headers
@@ -58,6 +56,11 @@ class OnStomp::Connections::Base
     else
       super
     end
+  end
+  
+  def single_io_cycle(&cb)
+    single_io_write(&cb)
+    single_io_read(&cb)
   end
   
   def write_frame_nonblock frame
@@ -109,7 +112,7 @@ class OnStomp::Connections::Base
       end
     end
     if @write_buffer.empty? && @closing
-      complete_close
+      socket.close
     end
   end
   
@@ -133,15 +136,5 @@ class OnStomp::Connections::Base
         raise
       end
     end
-  end
-  
-  def single_io_cycle(&cb)
-    single_io_write(&cb)
-    single_io_read(&cb)
-  end
-  
-  private
-  def complete_close
-    socket.close
   end
 end

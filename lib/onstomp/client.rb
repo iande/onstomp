@@ -50,13 +50,10 @@ class OnStomp::Client
   end
   
   def connect(headers={})
-    begin
-      @connection = OnStomp::Connections.connect(self, headers, connect_headers)
-    rescue
-      # SOME RATHER BIG PROBLEMS HERE!
-      disconnect
-      raise
-    end
+    @connection = OnStomp::Connections.connect self, headers,
+      { :'accept-version' => @versions.join(','), :host => @host,
+        :'heart-beat' => @heartbeats.join(','), :login => @login,
+        :passcode => @passcode }, pending_connection_events
     processor_inst.start
   end
   alias :open :connect
@@ -69,14 +66,8 @@ class OnStomp::Client
   alias :disconnect_without_flush :disconnect
   alias :disconnect :disconnect_with_flush
   
-  def alive?
-    connection && connection.alive?
-  end
-  
-  def close
-    connection && connection.close
-    clear_subscriptions
-    clear_receipts
+  def connected?
+    connection && connection.connected?
   end
   
   def close!
@@ -111,9 +102,9 @@ class OnStomp::Client
     @processor_inst ||= processor.new(self)
   end
   
-  def connect_headers
-    { :'accept-version' => @versions.join(','), :host => @host,
-      :'heart-beat' => @heartbeats.join(','), :login => @login,
-      :passcode => @passcode }
+  def close
+    connection && connection.close
+    clear_subscriptions
+    clear_receipts
   end
 end

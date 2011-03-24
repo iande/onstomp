@@ -23,8 +23,14 @@ module OnStomp::Connections
   def self.connect client, u_head, c_head, con_cbs
     init_con = create_connection('1.0', nil, client)
     ver, connected = init_con.connect client, u_head, c_head
-    negotiate_connection(ver, init_con, client).tap do |final_con|
-      final_con.configure connected, con_cbs
+    begin
+      negotiate_connection(ver, init_con, client).tap do |final_con|
+        final_con.configure connected, con_cbs
+      end
+    rescue OnStomp::OnStompError
+      # Perform a blocking close.
+      init_con.close true
+      raise
     end
   end
   

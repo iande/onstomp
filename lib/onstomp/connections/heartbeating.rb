@@ -10,12 +10,8 @@ module OnStomp::Connections::Heartbeating
       (c_y == 0||s_x == 0 ? 0 : [c_y,s_x].max) ]
   end
   
-  def alive?
-    connected? && client_alive? && broker_alive?
-  end
-  
-  def dead?
-    !alive?
+  def connected?
+    super && client_pulse? && broker_pulse?
   end
   
   def heartbeat_client_limit
@@ -40,11 +36,11 @@ module OnStomp::Connections::Heartbeating
     last_received_at && ((Time.now - last_received_at)*1000).to_i
   end
 
-  def client_alive?
+  def client_pulse?
     heartbeat_client_limit == 0 || duration_since_transmitted <= heartbeat_client_limit
   end
 
-  def broker_alive?
+  def broker_pulse?
     heartbeat_broker_limit == 0 || duration_since_received <= heartbeat_broker_limit
   end
 end
