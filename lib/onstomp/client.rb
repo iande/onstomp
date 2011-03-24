@@ -5,7 +5,7 @@
 class OnStomp::Client
   include OnStomp::Interfaces::ClientConfigurable
   include OnStomp::Interfaces::FrameMethods
-  include OnStomp::Interfaces::EventManager
+  include OnStomp::Interfaces::ClientEvents
   include OnStomp::Interfaces::ReceiptManager
   include OnStomp::Interfaces::SubscriptionManager
   
@@ -33,10 +33,10 @@ class OnStomp::Client
   # @return [String]
   attr_configurable_str :passcode, :default => '', :uri_attr => :password
   
-  # The class to use when instantiating a new receiver for the connection.
-  # Defaults to {OnStomp::Components::ThreadedReceiver}
+  # The class to use when instantiating a new IO processor for the connection.
+  # Defaults to {OnStomp::Components::ThreadedProcessor}
   # @return [Class]
-  attr_configurable_receiver :receiver
+  attr_configurable_processor :processor
   
   def initialize(uri, options={})
     @uri = uri.is_a?(::URI) ? uri : ::URI.parse(uri)
@@ -44,32 +44,27 @@ class OnStomp::Client
     configure_configurable options
     configure_subscription_management
     configure_receipt_management
-    @disconnected = false
     on_disconnect do |f, con|
-      @disconnected = true
       close unless f[:receipt]
     end
-    @trans_queue = []
-    @trans_mutex = Mutex.new
   end
   
   def connect(headers={})
     @connection = OnStomp::Connections.create_for(self)
-    @disconnected = false
     begin
       @connection = connection.connect(self, headers, connect_headers)
     rescue
       disconnect
       raise
     end
-    trigger_connection_event :established
-    start_receiver
+    #trigger_connection_event :established
+    start_processor
   end
   alias :open :connect
   
   def disconnect_with_flush(headers={})
     disconnect_without_flush(headers).tap do
-      join_receiver
+      join_processor
     end
   end
   alias :disconnect_without_flush :disconnect
@@ -81,16 +76,15 @@ class OnStomp::Client
   
   def close
     connection && connection.close
-    trigger_connection_event(:terminated) unless @disconnected
-    trigger_connection_event :closed
+    #trigger_connection_event(:terminated) unless @disconnected
+    #trigger_connection_event :closed
     clear_subscriptions
     clear_receipts
-    @connecting = @disconnected = false
   end
   
   def close!
     close
-    stop_receiver
+    stop_processor
   end
   
   def transmit(frame, cbs={})
@@ -116,22 +110,22 @@ class OnStomp::Client
     cbs[:receipt] && add_receipt(f, cbs[:receipt])
   end
 
-  def start_receiver
-    if receiver
-      @receiver_inst = receiver.new self
-      @receiver_inst.start
+  def start_processor
+    if processor
+      @processor_inst = processor.new self
+      @processor_inst.start
     end
   end
   
-  def stop_receiver
-    if @receiver_inst
-      @receiver_inst.stop
-      @receiver_inst = nil
+  def stop_processor
+    if @processor_inst
+      @processor_inst.stop
+      @processor_inst = nil
     end
   end
   
-  def join_receiver
-    @receiver_inst && @receiver_inst.join
+  def join_processor
+    @processor_inst && @processor_inst.join
   end
   
   def connect_headers

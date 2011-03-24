@@ -22,8 +22,8 @@ module OnStomp::Interfaces::ClientConfigurable
       end
     end
     
-    def attr_configurable_receiver nm
-      attr_configurable_class(nm, :default => OnStomp::Components::ThreadedReceiver)
+    def attr_configurable_processor nm
+      attr_configurable_class(nm, :default => OnStomp::Components::ThreadedProcessor)
     end
   end
 end

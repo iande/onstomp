@@ -1,23 +1,25 @@
 # -*- encoding: utf-8 -*-
 
 class OnStomp::Connections::Base
-  attr_reader :version, :socket, :dispatcher
+  include OnStomp::Interfaces::ConnectionEvents
+  attr_reader :version, :socket, :client
   attr_reader :last_transmitted_at, :last_received_at
   
   MAX_BYTES_PER_WRITE = 1024 * 8
   MAX_BYTES_PER_READ = 1024 * 4
   
-  def initialize io, disp
+  def initialize io, client
     @socket = io
     @write_mutex = Mutex.new
     @closing = false
     @write_buffer = []
     @read_buffer = []
-    @dispatcher = disp
+    @client = client
   end
   
   def configure connected, client
     @version = connected.header?(:version) ? connected[:version] : '1.0'
+    install_bindings_from_client client.pending_connection_events
   end
   
   def connected?
@@ -32,10 +34,6 @@ class OnStomp::Connections::Base
   
   def close
     @write_mutex.synchronize { @closing = true }
-  end
-  
-  def close_for_realz
-    socket.close
   end
   
   def connect client, *headers
@@ -98,7 +96,7 @@ class OnStomp::Connections::Base
             unshift_write_buffer data[w..-1], frame
           else
             yield frame if block_given?
-            dispatcher.dispatch_transmitted frame
+            client.dispatch_transmitted frame
           end
         rescue Errno::EINTR, Errno::EAGAIN, Errno::EWOULDBLOCK
           # writing will either block, or cannot otherwise be completed,
@@ -115,7 +113,7 @@ class OnStomp::Connections::Base
       end
     end
     if @write_buffer.empty? && @closing
-      close_for_realz
+      complete_close
     end
   end
   
@@ -127,7 +125,7 @@ class OnStomp::Connections::Base
         @last_received_at = Time.now
         serializer.bytes_to_frame(@read_buffer) do |frame|
           yield frame if block_given?
-          dispatcher.dispatch_received frame
+          client.dispatch_received frame
         end
       rescue Errno::EINTR, Errno::EAGAIN, Errno::EWOULDBLOCK
         # do not
@@ -144,5 +142,10 @@ class OnStomp::Connections::Base
   def single_io_cycle(&cb)
     single_io_write(&cb)
     single_io_read(&cb)
+  end
+  
+  private
+  def complete_close
+    socket.close
   end
 end

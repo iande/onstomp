@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 
-class OnStomp::Components::ThreadedReceiver  
+class OnStomp::Components::ThreadedProcessor
   def initialize client
     @client = client
     @run_mutex = Mutex.new
