@@ -4,7 +4,7 @@ class OnStomp::Connections::Stomp_1_0 < OnStomp::Connections::Base
   include OnStomp::Connections::Stomp_1
   attr_reader :serializer
 
-  def initialize io, disp
+  def initialize io, client
     super
     @serializer = OnStomp::Connections::Serializers::Stomp_1_0.new
   end

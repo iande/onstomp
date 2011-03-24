@@ -52,8 +52,8 @@ class OnStomp::Client
   def connect(headers={})
     begin
       @connection = OnStomp::Connections.connect(self, headers, connect_headers)
-      @connection.install_bindings_from_client pending_connection_events
     rescue
+      # SOME RATHER BIG PROBLEMS HERE!
       disconnect
       raise
     end
@@ -112,13 +112,8 @@ class OnStomp::Client
   end
   
   def connect_headers
-    {
-      :'accept-version' => @versions.join(','),
-      :host => @host,
-      :'heart-beat' => @heartbeats.join(','),
-      :login => @login,
-      :passcode => @passcode
-    }
+    { :'accept-version' => @versions.join(','), :host => @host,
+      :'heart-beat' => @heartbeats.join(','), :login => @login,
+      :passcode => @passcode }
   end
 end
-

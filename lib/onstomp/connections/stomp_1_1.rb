@@ -5,12 +5,12 @@ class OnStomp::Connections::Stomp_1_1 < OnStomp::Connections::Base
   include OnStomp::Connections::Heartbeating
   attr_reader :serializer
   
-  def initialize io, disp
+  def initialize io, client
     super
     @serializer = OnStomp::Connections::Serializers::Stomp_1_1.new
   end
   
-  def configure connected, client
+  def configure connected, con_cbs
     super
     configure_heartbeating client.heartbeats, connected.heart_beat
   end

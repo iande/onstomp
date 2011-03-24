@@ -20,29 +20,32 @@ module OnStomp::Connections
     supported.select { |v| vers.include? v }
   end
   
-  def self.connect client, u_head, c_head
-    meth = client.ssl ? :ssl :
-      client.uri.respond_to?(:onstomp_socket_type) ?
-        client.uri.onstomp_socket_type : :tcp
-    create_connection('1.0', __send__(:"create_socket_#{meth}", client), client).
-      connect(client, u_head, c_head)
-  end
-  
-  def self.negotiate_connection vers, con, frame, client
-    if supports_protocol? vers, con
-      con
-    else
-      create_connection vers, con.socket, client
-    end.tap { |ncon| ncon.configure frame, client }
+  def self.connect client, u_head, c_head, con_cbs
+    init_con = create_connection('1.0', nil, client)
+    ver, connected = init_con.connect client, u_head, c_head
+    negotiate_connection(ver, init_con, client).tap do |final_con|
+      final_con.configure connected, con_cbs
+    end
   end
   
   private
+  def self.negotiate_connection vers, con, client
+    supports_protocol?(vers,con) ? con :
+      create_connection(vers, con.socket, client)
+  end
+  
   def self.supports_protocol? ver, con
     con.is_a? PROTOCOL_VERSIONS[ver]
   end
   
-  def self.create_connection ver, sock, disp
-    PROTOCOL_VERSIONS[ver].new sock, disp
+  def self.create_connection ver, sock, client
+    unless sock
+      meth = client.ssl ? :ssl :
+        client.uri.respond_to?(:onstomp_socket_type) ?
+          client.uri.onstomp_socket_type : :tcp
+      sock = __send__(:"create_socket_#{meth}", client)
+    end
+    PROTOCOL_VERSIONS[ver].new sock, client
   end
   
   def self.create_socket_tcp client

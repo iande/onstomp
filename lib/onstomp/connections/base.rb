@@ -17,8 +17,9 @@ class OnStomp::Connections::Base
     @client = client
   end
   
-  def configure connected, client
+  def configure connected, con_cbs
     @version = connected.header?(:version) ? connected[:version] : '1.0'
+    install_bindings_from_client con_cbs
   end
   
   def connected?
@@ -39,20 +40,16 @@ class OnStomp::Connections::Base
     write_frame_nonblock connect_frame(*headers)
     client_con = nil
     until client_con
-      single_io_write do |f|
-        client_con ||= f
-      end
+      single_io_write { |f| client_con ||= f }
     end
     broker_con = nil
     until broker_con
-      single_io_read do |f|
-        broker_con ||= f
-      end
+      single_io_read { |f| broker_con ||= f }
     end
     raise OnStomp::ConnectFailedError if broker_con.command != 'CONNECTED'
     vers = broker_con.header?(:version) ? broker_con[:version] : '1.0'
     raise OnStomp::UnsupportedProtocolVersionError, vers unless client.versions.include?(vers)
-    OnStomp::Connections.negotiate_connection vers, self, broker_con, client
+    [ broker_con[:version], broker_con ]
   end
   
   def method_missing(meth, *args, &block)
