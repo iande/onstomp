@@ -14,7 +14,7 @@ class OnStomp::Components::ThreadedProcessor
     @run_thread = Thread.new do
       begin
         while @client.alive?
-          @client.connection.single_io_cycle
+          @client.connection.io_process
         end
       rescue OnStomp::StopReceiver
       rescue Exception

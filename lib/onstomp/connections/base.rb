@@ -26,10 +26,10 @@ class OnStomp::Connections::Base
     !socket.closed?
   end
   
-  def close(blocking=false)
+  def close blocking=false
     @write_mutex.synchronize { @closing = true }
     if blocking
-      single_io_write until @write_buffer.empty?
+      io_process_write until @write_buffer.empty?
       socket.close
     end
   end
@@ -38,11 +38,11 @@ class OnStomp::Connections::Base
     write_frame_nonblock connect_frame(*headers)
     client_con = nil
     until client_con
-      single_io_write { |f| client_con ||= f }
+      io_process_write { |f| client_con ||= f }
     end
     broker_con = nil
     until broker_con
-      single_io_read { |f| broker_con ||= f }
+      io_process_read { |f| broker_con ||= f }
     end
     raise OnStomp::ConnectFailedError if broker_con.command != 'CONNECTED'
     vers = broker_con.header?(:version) ? broker_con[:version] : '1.0'
@@ -50,7 +50,7 @@ class OnStomp::Connections::Base
     [ broker_con[:version], broker_con ]
   end
   
-  def method_missing(meth, *args, &block)
+  def method_missing meth, *args, &block
     if meth.to_s =~ /^(.*)_frame$/
       raise OnStomp::UnsupportedCommandError, $1.upcase
     else
@@ -58,13 +58,13 @@ class OnStomp::Connections::Base
     end
   end
   
-  def single_io_cycle(&cb)
-    single_io_write(&cb)
-    single_io_read(&cb)
+  def io_process &cb
+    io_process_write &cb
+    io_process_read &cb
   end
   
   def write_frame_nonblock frame
-    ser = serializer.frame_to_bytes(frame)
+    ser = serializer.frame_to_bytes frame
     push_write_buffer ser, frame
   end
   
@@ -80,7 +80,7 @@ class OnStomp::Connections::Base
     @write_mutex.synchronize { @write_buffer.unshift [data, frame] }
   end
   
-  def single_io_write(&cb)
+  def io_process_write
     if @write_buffer.length > 0 && IO.select(nil, [socket], nil, 0.1)
       to_shift = @write_buffer.length / 3
       written = 0
@@ -103,7 +103,7 @@ class OnStomp::Connections::Base
           unshift_write_buffer data, frame
           break
         rescue EOFError, SystemCallError, IOError
-          #socket.close
+          socket.close
           raise
         rescue Exception
           # Give some thought to how this will get handled.
@@ -116,7 +116,7 @@ class OnStomp::Connections::Base
     end
   end
   
-  def single_io_read
+  def io_process_read
     if alive? && IO.select([socket], nil, nil, 0.1)
       begin
         data = socket.read_nonblock(MAX_BYTES_PER_READ)
@@ -128,8 +128,10 @@ class OnStomp::Connections::Base
         end
       rescue Errno::EINTR, Errno::EAGAIN, Errno::EWOULDBLOCK
         # do not
-      rescue EOFError, SystemCallError, IOError
-        #socket.close
+      rescue EOFError
+        socket.close
+      rescue SystemCallError, IOError
+        socket.close
         raise
       rescue Exception
         # Give some thought to how this will get handled.

@@ -10,7 +10,7 @@ module OnStomp::Components
       mock("client", :connection => connection, :alive? => false)
     }
     let(:connection) {
-      mock("connection", :single_io_cycle => nil)
+      mock("connection", :io_process => nil)
     }
     
     describe ".start / .stop" do
@@ -29,7 +29,7 @@ module OnStomp::Components
         client.stub(:alive? => true)
         spun_up = false
         processor.start
-        connection.stub(:single_io_cycle) do
+        connection.stub(:io_process) do
           spun_up = true
           raise IOError
         end
@@ -40,7 +40,7 @@ module OnStomp::Components
         client.stub(:alive? => true)
         spun_up = false
         processor.start
-        connection.stub(:single_io_cycle) do
+        connection.stub(:io_process) do
           spun_up = true
           raise SystemCallError.new('blather', 13)
         end
@@ -51,7 +51,7 @@ module OnStomp::Components
         client.stub(:alive? => true)
         spun_up = false
         processor.start
-        connection.stub(:single_io_cycle) do
+        connection.stub(:io_process) do
           spun_up = true
           raise IOError
         end
@@ -63,7 +63,7 @@ module OnStomp::Components
         client.stub(:alive? => true)
         spun_up = false
         processor.start
-        connection.stub(:single_io_cycle) do
+        connection.stub(:io_process) do
           spun_up = true
           raise SystemCallError.new('blather', 13)
         end
