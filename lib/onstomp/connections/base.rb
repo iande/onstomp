@@ -47,7 +47,7 @@ class OnStomp::Connections::Base
     raise OnStomp::ConnectFailedError if broker_con.command != 'CONNECTED'
     vers = broker_con.header?(:version) ? broker_con[:version] : '1.0'
     raise OnStomp::UnsupportedProtocolVersionError, vers unless client.versions.include?(vers)
-    [ broker_con[:version], broker_con ]
+    [ vers, broker_con ]
   end
   
   def method_missing meth, *args, &block

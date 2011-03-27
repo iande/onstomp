@@ -259,8 +259,72 @@ module OnStomp::Connections
     end
     
     describe ".connect" do
-      it "should establish the STOMP connection" do
-        
+      let(:headers) { [] }
+      let(:connect_frame) {
+        mock('connect frame')
+      }
+      let(:connected_frame) {
+        mock('connected frame')
+      }
+      
+      it "should raise an error if the first frame read is not CONNECTED" do
+        connection.should_receive(:connect_frame).and_return(connect_frame)
+        connection.should_receive(:write_frame_nonblock).with(connect_frame)
+        connection.should_receive(:io_process_write).and_yield(connect_frame)
+        connection.should_receive(:io_process_read).and_yield(connected_frame)
+        connected_frame.stub(:command => 'NOT CONNECTED')
+        lambda { connection.connect(client, *headers) }.should raise_error(OnStomp::ConnectFailedError)
+      end
+      it "should raise an error if the CONNECTED frame specifies an unsolicited version" do
+        connection.should_receive(:connect_frame).and_return(connect_frame)
+        connection.should_receive(:write_frame_nonblock).with(connect_frame)
+        connection.should_receive(:io_process_write).and_yield(connect_frame)
+        connection.should_receive(:io_process_read).and_yield(connected_frame)
+        connected_frame.stub(:command => 'CONNECTED')
+        connected_frame.stub(:header?).with(:version).and_return true
+        connected_frame.stub(:[]).with(:version).and_return '1.9'
+        client.stub(:versions => [ '1.0', '1.1' ])
+        lambda { connection.connect(client, *headers) }.should raise_error(OnStomp::UnsupportedProtocolVersionError)
+      end
+      it "should assume version 1.0 if no version header is set" do
+        connection.should_receive(:connect_frame).and_return(connect_frame)
+        connection.should_receive(:write_frame_nonblock).with(connect_frame)
+        connection.should_receive(:io_process_write).and_yield(connect_frame)
+        connection.should_receive(:io_process_read).and_yield(connected_frame)
+        connected_frame.stub(:command => 'CONNECTED')
+        connected_frame.stub(:header?).with(:version).and_return(false)
+        client.stub(:versions => [ '1.0', '1.1' ])
+        connection.connect(client, *headers).should == ['1.0', connected_frame]
+      end
+      it "should return the CONNECTED version header if it's included" do
+        connection.should_receive(:connect_frame).and_return(connect_frame)
+        connection.should_receive(:write_frame_nonblock).with(connect_frame)
+        connection.should_receive(:io_process_write).and_yield(connect_frame)
+        connection.should_receive(:io_process_read).and_yield(connected_frame)
+        connected_frame.stub(:command => 'CONNECTED')
+        connected_frame.stub(:header?).with(:version).and_return(true)
+        connected_frame.stub(:[]).with(:version).and_return('2.3')
+        client.stub(:versions => [ '1.0', '2.3' ])
+        connection.connect(client, *headers).should == ['2.3', connected_frame]
+      end
+    end
+    
+    describe ".configure" do
+      let(:client_bindings) {
+        { :died => nil, :established => nil }
+      }
+      it "should set its version parameter based on the supplied CONNECTED frame" do
+        frame.stub(:header?).with(:version).and_return(true)
+        frame.stub(:[]).with(:version).and_return('9.x')
+        connection.should_receive(:install_bindings_from_client).with(client_bindings)
+        connection.configure frame, client_bindings
+        connection.version.should == '9.x'
+      end
+      it "should set its version parameter to 1.0 if the header is not present" do
+        frame.stub(:header?).with(:version).and_return(false)
+        connection.should_receive(:install_bindings_from_client).with(client_bindings)
+        connection.configure frame, client_bindings
+        connection.version.should == '1.0'
       end
     end
   end
