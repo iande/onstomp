@@ -85,35 +85,32 @@ module OnStomp::Connections::Serializers::Stomp_1
   end
   
   def parse_body data, buffer
-    frame_completed = false
+    done = false
+    body_upto = nil
     if @body_length
       if @body_length < data.length
+        body_upto = @body_length
         if data[@body_length, 1] != "\000"
           raise OnStomp::MalformedFrameError, 'missing terminator'
         end
-        cdata = data[0...@body_length]
-        buffer_unshift_unless_empty buffer, data, @body_length
-        frame_completed = true
-      else
-        @body_length -= data.length
-        cdata = data
       end
     else
-      term = data.index("\000")
-      if term
-        cdata = data[0...term]
-        buffer_unshift_unless_empty buffer, data, term
-        frame_completed = true
-      else
-        cdata = data
-      end
+      body_upto = data.index("\000")
+    end
+    if body_upto
+      cdata = data[0...body_upto]
+      buffer_unshift_unless_empty buffer, data, body_upto
+      done = true
+    else
+      @body_length &&= (@body_length - data.length)
+      cdata = data
     end
     if @cur_body
       @cur_body << cdata
     else
       @cur_body = cdata
     end
-    frame_completed
+    done
   end
   
   def bytes_to_frame buffer
