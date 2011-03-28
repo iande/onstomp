@@ -34,99 +34,113 @@ module OnStomp::Connections::Serializers::Stomp_1
     end
   end
   
+  def buffer_unshift_unless_empty buffer, data, idx
+    remain = data[(idx+1)..-1]
+    buffer.unshift(remain) unless remain.empty?
+  end
+  
+  def parse_command data, buffer
+    eol = data.index("\n")
+    if eol
+      cdata = data[0...eol]
+      buffer_unshift_unless_empty buffer, data, eol
+    else
+      cdata = data
+    end
+    if @cur_command
+      @cur_command << cdata
+    else
+      @cur_command = cdata
+    end
+    !!eol
+  end
+  
+  def parse_headers data, buffer
+    done = false
+    eol = data.index("\n")
+    if eol
+      cdata = data[0...eol]
+      buffer_unshift_unless_empty buffer, data, eol
+    else
+      cdata = data
+    end
+    if @cur_header
+      @cur_header << cdata
+    else
+      @cur_header = cdata
+    end
+    if eol
+      if @cur_header.empty?
+        done = true
+      else
+        k,v = split_header(@cur_header)
+        if k == 'content-length'
+          @body_length = v.to_i
+        end
+        @cur_headers << [k, v]
+        @cur_header = nil
+      end
+    end
+    done
+  end
+  
+  def parse_body data, buffer
+    frame_completed = false
+    if @body_length
+      if @body_length < data.length
+        if data[@body_length, 1] != "\000"
+          raise OnStomp::MalformedFrameError, 'missing terminator'
+        end
+        cdata = data[0...@body_length]
+        buffer_unshift_unless_empty buffer, data, @body_length
+        frame_completed = true
+      else
+        @body_length -= data.length
+        cdata = data
+      end
+    else
+      term = data.index("\000")
+      if term
+        cdata = data[0...term]
+        buffer_unshift_unless_empty buffer, data, term
+        frame_completed = true
+      else
+        cdata = data
+      end
+    end
+    if @cur_body
+      @cur_body << cdata
+    else
+      @cur_body = cdata
+    end
+    frame_completed
+  end
+  
   def bytes_to_frame buffer
     until buffer.first.nil?
       data = buffer.shift
       case @parse_state
       when :command
-        eol = data.index("\n")
-        if eol
-          com_data = data[0...eol]
-          remain = data[(eol+1)..-1]
-          buffer.unshift(remain) unless remain.empty?
-          @body_length = nil
-          @cur_header = nil
-          @parse_state = :header
-        else
-          com_data = data
-        end
-        if @cur_command
-          @cur_command << com_data
-        else
-          @cur_command = com_data
-        end
-        if eol && (@cur_command.nil? || @cur_command.empty?)
-          yield OnStomp::Components::Frame.new
-          reset_parser
+        if parse_command data, buffer
+          if @cur_command.empty?
+            yield OnStomp::Components::Frame.new
+            reset_parser
+          else
+            @parse_state = :header
+          end
         end
       when :header
-        eol = data.index("\n")
-        if eol
-          head_data = data[0...eol]
-          remain = data[(eol+1)..-1]
-          buffer.unshift(remain) unless remain.empty?
-        else
-          head_data = data
-        end
-        if @cur_header
-          @cur_header << head_data
-        else
-          @cur_header = head_data
-        end
-        if eol
-          if @cur_header.empty?
-            @cur_body = nil
-            @parse_state = :body
-          else
-            k,v = split_header(@cur_header)
-            if k == 'content-length'
-              @body_length = v.to_i
-            end
-            @cur_headers << [k, v]
-            @cur_header = nil
-          end
+        if parse_headers data, buffer
+          @parse_state = :body
         end
       when :body
-        frame_completed = false
-        if @body_length
-          if @body_length < data.length
-            if data[@body_length, 1] != "\000"
-              raise OnStomp::MalformedFrameError, "missing terminator"
-            end
-            body_data = data[0...@body_length]
-            remain = data[(@body_length+1)..-1]
-            buffer.unshift(remain) unless remain.empty?
-            @body_length = nil
-            frame_completed = true
-          else
-            @body_length -= data.length
-            body_data = data
-          end
-        else
-          term = data.index("\000")
-          if term
-            body_data = data[0...term]
-            remain = data[(term+1)..-1]
-            buffer.unshift(remain) unless remain.empty?
-            frame_completed = true
-          else
-            body_data = data
-          end
-        end
-        if @cur_body
-          @cur_body << body_data
-        else
-          @cur_body = body_data
-        end
-        if frame_completed
+        if parse_body data, buffer
           frame = OnStomp::Components::Frame.new
-          unless @cur_command.empty?
-            frame.command = @cur_command
-            @cur_headers.each do |(k,v)|
-              frame.headers.append(k, v)
-            end
-            frame.body = @cur_body
+          frame.command = @cur_command
+          @cur_headers.each do |(k,v)|
+            frame.headers.append(k, v)
           end
+          frame.body = @cur_body
           reset_parser
           prepare_parsed_frame frame
           yield frame

@@ -79,12 +79,8 @@ module OnStomp::Connections::Serializers
           str.split(':')
         end
         serializer.should_receive(:prepare_parsed_frame).exactly(5).times
-        yielded1 = []
-        yielded2 = []
-        yielded3 = []
-        yielded4 = []
-        yielded5 = []
-        yielded6 = []
+        yielded1 = []; yielded2 = []; yielded3 = []; yielded4 = []
+        yielded5 = []; yielded6 = []
         serializer.reset_parser
         serializer.bytes_to_frame(buffer1) { |f| yielded1 << f }
         serializer.bytes_to_frame(buffer2) { |f| yielded2 << f }
@@ -98,6 +94,26 @@ module OnStomp::Connections::Serializers
         yielded4.size.should == 0
         yielded5.size.should == 0
         yielded6.size.should == 1
+        yielded1[0].should be_an_onstomp_frame('COMMAND1', {
+          :'header 1' => 'Test value 1', :'Header 2' => 'Test value 2',
+          :'content-length' => '16'
+        }, 'testing this guy')
+        yielded1[1].should be_an_onstomp_frame(nil, {}, nil)
+        yielded1[2].should be_an_onstomp_frame(nil, {}, nil)
+        yielded1[3].should be_an_onstomp_frame('COMMAND4', {
+          :'Next Header' => ' some value ', :'More headers' => 'another value',
+        }, 'body of the frame without content-length')
+        yielded1[4].should be_an_onstomp_frame(nil, {}, nil)
+        # Is this what you really want?
+        yielded2[0].should be_an_onstomp_frame('COMMAND5', {
+          :header => 'and its value' }, '')
+        yielded3[0].should be_an_onstomp_frame('COMMAND6', {
+          :'header for command 6' => 'another value' }, 'yet another body')
+        yielded3[1].should be_an_onstomp_frame(nil, {}, nil)
+        yielded3[2].should be_an_onstomp_frame(nil, {}, nil)
+        yielded6[0].should be_an_onstomp_frame('COMMAND9', {
+          :'last Header' => 'last Header ValuE!'
+        }, 'this is another body for yet another frame')
       end
       it "should raise a malformed frame error if the content-length is a lie" do
         serializer.stub(:split_header).and_return do |str|
