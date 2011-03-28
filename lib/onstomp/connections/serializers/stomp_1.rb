@@ -6,10 +6,9 @@
 # common tasks of serializing a frame for Stomp 1.0 and Stomp 1.1.
 module OnStomp::Connections::Serializers::Stomp_1
   def reset_parser
-    @parser_accumulator = ''
+    @parse_accum = ''
     @cur_frame = nil
     @parse_state = :command
-    @body_length = nil
   end
   
   def frame_to_string_base frame
@@ -32,12 +31,9 @@ module OnStomp::Connections::Serializers::Stomp_1
     data = buffer.shift
     eol = data.index("\n")
     if eol
-      @parser_accumulator << data[0...eol]
-      buffer_unshift_unless_empty buffer, data, eol
-      yield @parser_accumulator
-      @parser_accumulator = ''
+      parser_flush(buffer, data, eol, :finish_command)
     else
-      @parser_accumulator << data
+      @parse_accum << data
     end
   end
   
@@ -45,45 +41,36 @@ module OnStomp::Connections::Serializers::Stomp_1
     data = buffer.shift
     eol = data.index("\n")
     if eol
-      @parser_accumulator << data[0...eol]
-      buffer_unshift_unless_empty buffer, data, eol
-      yield @parser_accumulator
-      @parser_accumulator = ''
+      parser_flush(buffer, data, eol, :finish_header_line)
     else
-      @parser_accumulator << data
+      @parse_accum << data
     end
   end
   
   def parse_body buffer
     data = buffer.shift
-    body_upto = nil
-    if @body_length
-      if @body_length < data.length
-        body_upto = @body_length
-        if data[@body_length, 1] != "\000"
-          raise OnStomp::MalformedFrameError, 'missing terminator'
-        end
-      end
-    else
-      body_upto = data.index("\000")
+    if rlen = @cur_frame.content_length
+      rlen -= @parse_accum.length
     end
+    body_upto = rlen ? (rlen < data.length && rlen) : data.index("\000")
     if body_upto
-      buffer_unshift_unless_empty buffer, data, body_upto
-      @parser_accumulator << data[0...body_upto]
-      yield @parser_accumulator
-      @parser_accumulator = ''
+      if data[body_upto, 1] != "\000"
+        raise OnStomp::MalformedFrameError, 'missing terminator'
+      end
+      parser_flush(buffer, data, body_upto, :finish_body)
     else
-      @body_length &&= (@body_length - data.length)
-      @parser_accumulator << data
+      @parse_accum << data
     end
   end
   
-  def buffer_unshift_unless_empty buffer, data, idx
+  def parser_flush buffer, data, idx, meth
     remain = data[(idx+1)..-1]
     buffer.unshift(remain) unless remain.empty?
+    __send__ meth, (@parse_accum + data[0...idx])
+    @parse_accum.clear
   end
   
-  def parser_transition_out_command command
+  def finish_command command
     @cur_frame = OnStomp::Components::Frame.new
     if command.empty?
       @parse_state = :completed
@@ -92,18 +79,15 @@ module OnStomp::Connections::Serializers::Stomp_1
       @parse_state = :header_line
     end
   end
-  def parser_transition_out_header_line header_line
-    if header_line.empty?
+  def finish_header_line headline
+    if headline.empty?
       @parse_state = :body
     else
-      k,v = split_header(header_line)
-      if k == 'content-length'
-        @body_length = v.to_i
-      end
+      k,v = split_header(headline)
       @cur_frame.headers.append(k, v)
     end
   end
-  def parser_transition_out_body body
+  def finish_body body
     @cur_frame.body = body
     prepare_parsed_frame @cur_frame
     @parse_state = :completed
@@ -115,9 +99,7 @@ module OnStomp::Connections::Serializers::Stomp_1
         yield @cur_frame
         reset_parser
       else
-        __send__(:"parse_#{@parse_state}", buffer) do |data|
-          __send__(:"parser_transition_out_#{@parse_state}", data)
-        end
+        __send__(:"parse_#{@parse_state}", buffer)
       end
     end
   end

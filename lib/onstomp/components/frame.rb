@@ -44,7 +44,7 @@ class OnStomp::Components::Frame
   def []=(name, val); @headers[name] = val; end
   
   def content_length
-    @headers[:'content-length'] && @headers[:'content-length'].to_i || 0
+    header?(:'content-length') ? @headers[:'content-length'].to_i : nil
   end
   
   def content_type

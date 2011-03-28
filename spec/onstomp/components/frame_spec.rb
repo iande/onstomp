@@ -40,11 +40,11 @@ module OnStomp::Components
     end
     
     describe ".content_length" do
-      it "should convert a content-length header to an integer else return 0" do
+      it "should convert a content-length header to an integer else return nil" do
         frame[:'content-length'] = '510'
         frame.content_length.should == 510
         frame[:'content-length'] = nil
-        frame.content_length.should == 0
+        frame.content_length.should be_nil
       end
     end
     
