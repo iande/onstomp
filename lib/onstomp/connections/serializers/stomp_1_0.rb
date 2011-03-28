@@ -4,7 +4,7 @@ class OnStomp::Connections::Serializers::Stomp_1_0
   include OnStomp::Connections::Serializers::Stomp_1
   
   def initialize
-    init_serializer
+    reset_parser
   end
 
   def frame_to_string frame
@@ -19,5 +19,9 @@ class OnStomp::Connections::Serializers::Stomp_1_0
       raise OnStomp::MalformedHeaderError, "unterminated header: '#{str}'"
     end
     [ str[0...col], str[(col+1)..-1] ]
+  end
+  
+  # Nothing special needs to be done with Stomp 1.0 frames
+  def prepare_parsed_frame frame
   end
 end

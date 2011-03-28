@@ -12,7 +12,7 @@ class OnStomp::Connections::Serializers::Stomp_1_1
   ESCAPE_SEQUENCES = Hash[CHARACTER_ESCAPES.map { |k,v| [v,k] }]
 
   def initialize
-    init_serializer
+    reset_parser
   end
 
   def frame_to_string frame
@@ -40,7 +40,9 @@ class OnStomp::Connections::Serializers::Stomp_1_1
       unescape_header(str[(col+1)..-1]) ]
   end
   
-  def prepare_frame_for_dispatch frame
+  # Force the body encoding to match the content-type's charset
+  # if applicable.
+  def prepare_parsed_frame frame
     force_body_encoding frame
   end
   

@@ -62,7 +62,7 @@ module OnStomp::Connections::Serializers
       end
     end
     
-    describe ".prepare_frame_for_dispatch" do
+    describe ".prepare_parsed_frame" do
       let(:iso8859_frame) {
         OnStomp::Components::Frame.new('COMMAND', {
           :header1 => 'value 1',
@@ -88,8 +88,8 @@ module OnStomp::Connections::Serializers
         end
       end
       it "should force a body encoding on the frame" do
-        serializer.prepare_frame_for_dispatch(iso8859_frame)
-        serializer.prepare_frame_for_dispatch(utf8_frame)
+        serializer.prepare_parsed_frame(iso8859_frame)
+        serializer.prepare_parsed_frame(utf8_frame)
         iso8859_frame.should have_body_encoding('ISO-8859-1')
         utf8_frame.should have_body_encoding('UTF-8')
       end

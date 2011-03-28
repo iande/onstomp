@@ -5,10 +5,6 @@
 # The method +frame_to_string_base+ is provided as a factoring out of the
 # common tasks of serializing a frame for Stomp 1.0 and Stomp 1.1.
 module OnStomp::Connections::Serializers::Stomp_1
-  def init_serializer
-    reset_parser
-  end
-  
   def reset_parser
     @cur_command = nil
     @cur_header = nil
@@ -20,9 +16,6 @@ module OnStomp::Connections::Serializers::Stomp_1
     else
       @cur_headers = []
     end
-  end
-  
-  def prepare_frame_for_dispatch frame
   end
   
   def frame_to_string_base frame
@@ -135,7 +128,7 @@ module OnStomp::Connections::Serializers::Stomp_1
             frame.body = @cur_body
           end
           reset_parser
-          prepare_frame_for_dispatch frame
+          prepare_parsed_frame frame
           yield frame
         end
       end
@@ -147,8 +140,6 @@ module OnStomp::Connections::Serializers::Stomp_1
       frame_to_string(frame).tap { |s| s.force_encoding('ASCII-8BIT') }
     end
   else
-    def frame_to_bytes frame
-      frame_to_string frame
-    end
+    def frame_to_bytes(frame); frame_to_string(frame); end
   end
 end
