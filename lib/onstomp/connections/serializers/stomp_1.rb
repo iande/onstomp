@@ -22,6 +22,9 @@ module OnStomp::Connections::Serializers::Stomp_1
     end
   end
   
+  def prepare_frame_for_dispatch frame
+  end
+  
   def frame_to_string_base frame
     if frame.command
       frame.force_content_length
@@ -132,6 +135,7 @@ module OnStomp::Connections::Serializers::Stomp_1
             frame.body = @cur_body
           end
           reset_parser
+          prepare_frame_for_dispatch frame
           yield frame
         end
       end

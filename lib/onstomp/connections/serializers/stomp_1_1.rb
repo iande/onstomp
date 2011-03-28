@@ -40,8 +40,8 @@ class OnStomp::Connections::Serializers::Stomp_1_1
       unescape_header(str[(col+1)..-1]) ]
   end
   
-  def dispatch_frame frame
-    dispatcher.call force_body_encoding(frame)
+  def prepare_frame_for_dispatch frame
+    force_body_encoding frame
   end
   
   if RUBY_VERSION >= "1.9"

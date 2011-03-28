@@ -10,8 +10,8 @@ module OnStomp::Connections::Heartbeating
       (c_y == 0||s_x == 0 ? 0 : [c_y,s_x].max) ]
   end
   
-  def connected?
-    super && client_pulse? && broker_pulse?
+  def pulse?
+    client_pulse? && broker_pulse?
   end
   
   def heartbeat_client_limit

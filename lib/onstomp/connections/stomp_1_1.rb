@@ -15,6 +15,10 @@ class OnStomp::Connections::Stomp_1_1 < OnStomp::Connections::Base
     configure_heartbeating client.heartbeats, connected.heart_beat
   end
   
+  def connected?
+    super && pulse?
+  end
+  
   def ack_frame *args
     create_ack_or_nack 'ACK', args
   end
