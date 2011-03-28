@@ -8,7 +8,6 @@ module OnStomp::Connections::Serializers::Stomp_1
   def reset_parser
     @parser_accumulator = ''
     @cur_frame = nil
-    @cur_command = ''
     @parse_state = :command
     @body_length = nil
   end
