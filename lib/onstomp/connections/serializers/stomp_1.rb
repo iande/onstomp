@@ -6,16 +6,11 @@
 # common tasks of serializing a frame for Stomp 1.0 and Stomp 1.1.
 module OnStomp::Connections::Serializers::Stomp_1
   def reset_parser
-    @cur_command = nil
-    @cur_header = nil
-    @cur_body = nil
+    @parser_accumulator = ''
+    @cur_frame = nil
+    @cur_command = ''
     @parse_state = :command
     @body_length = nil
-    if @cur_headers
-      @cur_headers.clear
-    else
-      @cur_headers = []
-    end
   end
   
   def frame_to_string_base frame
@@ -34,58 +29,34 @@ module OnStomp::Connections::Serializers::Stomp_1
     end
   end
   
-  def buffer_unshift_unless_empty buffer, data, idx
-    remain = data[(idx+1)..-1]
-    buffer.unshift(remain) unless remain.empty?
-  end
-  
-  def parse_command data, buffer
+  def parse_command buffer
+    data = buffer.shift
     eol = data.index("\n")
     if eol
-      cdata = data[0...eol]
+      @parser_accumulator << data[0...eol]
       buffer_unshift_unless_empty buffer, data, eol
+      yield @parser_accumulator
+      @parser_accumulator = ''
     else
-      cdata = data
+      @parser_accumulator << data
     end
-    if @cur_command
-      @cur_command << cdata
-    else
-      @cur_command = cdata
-    end
-    !!eol
   end
   
-  def parse_headers data, buffer
-    done = false
+  def parse_header_line buffer
+    data = buffer.shift
     eol = data.index("\n")
     if eol
-      cdata = data[0...eol]
+      @parser_accumulator << data[0...eol]
       buffer_unshift_unless_empty buffer, data, eol
+      yield @parser_accumulator
+      @parser_accumulator = ''
     else
-      cdata = data
+      @parser_accumulator << data
     end
-    if @cur_header
-      @cur_header << cdata
-    else
-      @cur_header = cdata
-    end
-    if eol
-      if @cur_header.empty?
-        done = true
-      else
-        k,v = split_header(@cur_header)
-        if k == 'content-length'
-          @body_length = v.to_i
-        end
-        @cur_headers << [k, v]
-        @cur_header = nil
-      end
-    end
-    done
   end
   
-  def parse_body data, buffer
-    done = false
+  def parse_body buffer
+    data = buffer.shift
     body_upto = nil
     if @body_length
       if @body_length < data.length
@@ -98,49 +69,55 @@ module OnStomp::Connections::Serializers::Stomp_1
       body_upto = data.index("\000")
     end
     if body_upto
-      cdata = data[0...body_upto]
       buffer_unshift_unless_empty buffer, data, body_upto
-      done = true
+      @parser_accumulator << data[0...body_upto]
+      yield @parser_accumulator
+      @parser_accumulator = ''
     else
       @body_length &&= (@body_length - data.length)
-      cdata = data
+      @parser_accumulator << data
     end
-    if @cur_body
-      @cur_body << cdata
+  end
+  
+  def buffer_unshift_unless_empty buffer, data, idx
+    remain = data[(idx+1)..-1]
+    buffer.unshift(remain) unless remain.empty?
+  end
+  
+  def parser_transition_out_command command
+    @cur_frame = OnStomp::Components::Frame.new
+    if command.empty?
+      @parse_state = :completed
     else
-      @cur_body = cdata
+      @cur_frame.command = command
+      @parse_state = :header_line
     end
-    done
+  end
+  def parser_transition_out_header_line header_line
+    if header_line.empty?
+      @parse_state = :body
+    else
+      k,v = split_header(header_line)
+      if k == 'content-length'
+        @body_length = v.to_i
+      end
+      @cur_frame.headers.append(k, v)
+    end
+  end
+  def parser_transition_out_body body
+    @cur_frame.body = body
+    prepare_parsed_frame @cur_frame
+    @parse_state = :completed
   end
   
   def bytes_to_frame buffer
-    until buffer.first.nil?
-      data = buffer.shift
-      case @parse_state
-      when :command
-        if parse_command data, buffer
-          if @cur_command.empty?
-            yield OnStomp::Components::Frame.new
-            reset_parser
-          else
-            @parse_state = :header
-          end
-        end
-      when :header
-        if parse_headers data, buffer
-          @parse_state = :body
-        end
-      when :body
-        if parse_body data, buffer
-          frame = OnStomp::Components::Frame.new
-          frame.command = @cur_command
-          @cur_headers.each do |(k,v)|
-            frame.headers.append(k, v)
-          end
-          frame.body = @cur_body
-          reset_parser
-          prepare_parsed_frame frame
-          yield frame
+    until buffer.first.nil? && @parse_state != :completed
+      if @parse_state == :completed
+        yield @cur_frame
+        reset_parser
+      else
+        __send__(:"parse_#{@parse_state}", buffer) do |data|
+          __send__(:"parser_transition_out_#{@parse_state}", data)
         end
       end
     end

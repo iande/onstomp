@@ -42,33 +42,16 @@ module OnStomp::Connections::Serializers
     end
     
     describe ".bytes_to_frame" do
-      let(:buffer1) {
-        [ "COMMAND1\nheader",
-          " 1:Test value 1",
-          "\nHeader 2:",
-          "Test value 2\n",
-          "content-leng",
-          "th:1",
-          "6\n\ntesting this guy",
-          "\000\n\nCOMMAND4",
+      let(:buffer) {
+        [ "COMMAND1\nheader", " 1:Test value 1", "\nHeader 2:",
+          "Test value 2\n", "content-leng", "th:1",
+          "6\n\ntesting \000his guy", "\000\n\nCOMMAND4",
           "\nNext Header: some value \nMore headers:another value\n",
-          "\nbody of the frame without content-length\000\nCOMMAND5" ]
-      }
-      let(:buffer2) {
-        [ "\nheader:and its value\n\n\000", "COMMAND6\nheader" ]
-      }
-      let(:buffer3) {
-        [ " for command 6:another value\n\nyet another body\000",
-          "\n\nCOMMAND9\nlast Header:last Header ValuE!\n\nthis is a" ]
-      }
-      let(:buffer4) {
-        [ "nother body for yet another " ]
-      }
-      let(:buffer5) {
-        [ "frame" ]
-      }
-      let(:buffer6) {
-        [ "\000" ]
+          "\nbody of the frame without content-length\000\nCOMMAND6",
+          "\nheader:and its value\n\n\000", "COMMAND7\nheader",
+          " for command 7:another value\n\nyet another body\000",
+          "\n\nCOMMAND10\nlast Header:last Header ValuE!\n\nthis is a",
+          "nother body for yet another ", "frame", "\000" ]
       }
       
       before(:each) do
@@ -79,39 +62,27 @@ module OnStomp::Connections::Serializers
           str.split(':')
         end
         serializer.should_receive(:prepare_parsed_frame).exactly(5).times
-        yielded1 = []; yielded2 = []; yielded3 = []; yielded4 = []
-        yielded5 = []; yielded6 = []
-        serializer.reset_parser
-        serializer.bytes_to_frame(buffer1) { |f| yielded1 << f }
-        serializer.bytes_to_frame(buffer2) { |f| yielded2 << f }
-        serializer.bytes_to_frame(buffer3) { |f| yielded3 << f }
-        serializer.bytes_to_frame(buffer4) { |f| yielded4 << f }
-        serializer.bytes_to_frame(buffer5) { |f| yielded5 << f }
-        serializer.bytes_to_frame(buffer6) { |f| yielded6 << f }
-        yielded1.size.should == 5
-        yielded2.size.should == 1
-        yielded3.size.should == 3
-        yielded4.size.should == 0
-        yielded5.size.should == 0
-        yielded6.size.should == 1
-        yielded1[0].should be_an_onstomp_frame('COMMAND1', {
+        yielded = []
+        serializer.bytes_to_frame(buffer) { |f| yielded << f }
+        yielded.size.should == 10
+        yielded[0].should be_an_onstomp_frame('COMMAND1', {
           :'header 1' => 'Test value 1', :'Header 2' => 'Test value 2',
           :'content-length' => '16'
-        }, 'testing this guy')
-        yielded1[1].should be_an_onstomp_frame(nil, {}, nil)
-        yielded1[2].should be_an_onstomp_frame(nil, {}, nil)
-        yielded1[3].should be_an_onstomp_frame('COMMAND4', {
+        }, "testing \000his guy")
+        yielded[1].should be_an_onstomp_frame(nil, {}, nil)
+        yielded[2].should be_an_onstomp_frame(nil, {}, nil)
+        yielded[3].should be_an_onstomp_frame('COMMAND4', {
           :'Next Header' => ' some value ', :'More headers' => 'another value',
         }, 'body of the frame without content-length')
-        yielded1[4].should be_an_onstomp_frame(nil, {}, nil)
+        yielded[4].should be_an_onstomp_frame(nil, {}, nil)
         # Is this what you really want?
-        yielded2[0].should be_an_onstomp_frame('COMMAND5', {
+        yielded[5].should be_an_onstomp_frame('COMMAND6', {
           :header => 'and its value' }, '')
-        yielded3[0].should be_an_onstomp_frame('COMMAND6', {
-          :'header for command 6' => 'another value' }, 'yet another body')
-        yielded3[1].should be_an_onstomp_frame(nil, {}, nil)
-        yielded3[2].should be_an_onstomp_frame(nil, {}, nil)
-        yielded6[0].should be_an_onstomp_frame('COMMAND9', {
+        yielded[6].should be_an_onstomp_frame('COMMAND7', {
+          :'header for command 7' => 'another value' }, 'yet another body')
+        yielded[7].should be_an_onstomp_frame(nil, {}, nil)
+        yielded[8].should be_an_onstomp_frame(nil, {}, nil)
+        yielded[9].should be_an_onstomp_frame('COMMAND10', {
           :'last Header' => 'last Header ValuE!'
         }, 'this is another body for yet another frame')
       end
