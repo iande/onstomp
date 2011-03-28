@@ -56,6 +56,11 @@ module OnStomp::Connections::Serializers
       
       before(:each) do
         serializer.reset_parser
+        if RUBY_VERSION >= '1.9'
+          buffer.each do |b|
+            b.force_encoding('ASCII-8BIT')
+          end
+        end
       end
       it "should parse and yield the frames contained in the buffers" do
         serializer.should_receive(:split_header).exactly(8).times.and_return do |str|
