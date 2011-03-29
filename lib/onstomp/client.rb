@@ -9,7 +9,15 @@ class OnStomp::Client
   include OnStomp::Interfaces::ReceiptManager
   include OnStomp::Interfaces::SubscriptionManager
   
-  attr_reader :uri, :ssl, :connection
+  # The +URI+ reference to the STOMP broker
+  # @return [String]
+  attr_reader :uri
+  # SSL options for the connection
+  # @return {Symbol => Object}
+  attr_reader :ssl
+  # Connection object specific to the established STOMP protocol version
+  # @return [OnStomp::Connections::Base]
+  attr_reader :connection
   
   # The protocol versions to allow for this connection
   # @return [Array<String>]
@@ -38,6 +46,9 @@ class OnStomp::Client
   # @return [Class]
   attr_configurable_processor :processor
   
+  # Creates a new client for the specified uri and optional hash of options.
+  # @param [String,URI] uri
+  # @param [{Symbol => Object}] options
   def initialize(uri, options={})
     @uri = uri.is_a?(::URI) ? uri : ::URI.parse(uri)
     @ssl = options.delete(:ssl)
@@ -49,15 +60,25 @@ class OnStomp::Client
     end
   end
   
+  # Connects to the STOMP broker referenced by {#uri}. Includes optional
+  # headers in the CONNECT frame, if specified.
+  # @param [{#to_sym => #to_s}] headers
+  # @return [self]
   def connect(headers={})
     @connection = OnStomp::Connections.connect self, headers,
       { :'accept-version' => @versions.join(','), :host => @host,
         :'heart-beat' => @heartbeats.join(','), :login => @login,
         :passcode => @passcode }, pending_connection_events
     processor_inst.start
+    self
   end
   alias :open :connect
   
+  # Sends a DISCONNECT frame to the broker and blocks until the connection
+  # has been closed. This method ensures that all frames not yet sent to
+  # the broker will get processed barring any IO exceptions.
+  # @param [{#to_sym => #to_s}] headers
+  # @return [OnStomp::Components::Frame] transmitted DISCONNECT frame
   def disconnect_with_flush(headers={})
     disconnect_without_flush(headers).tap do
       processor_inst.join
@@ -66,15 +87,29 @@ class OnStomp::Client
   alias :disconnect_without_flush :disconnect
   alias :disconnect :disconnect_with_flush
   
+  # Returns true if a connection to the broker exists and itself is connected.
+  # @return [true,false]
   def connected?
     connection && connection.connected?
   end
   
+  # Forces the connection between broker and client closed.
+  # @note Use of this method may result in frames never being sent to the
+  #   broker. This method should only be used if {#disconnect} is not an
+  #   option and the connection needs to be terminated immediately.
+  # @return [self]
   def close!
     close
     processor_inst.stop
+    self
   end
   
+  # @group Methods you ought not use directly.
+  
+  # Ultimately sends a {OnStomp::Components::Frame frame} to the STOMP broker.
+  # This method should not be invoked directly. Use the frame methods provided
+  # by the {OnStomp::Interfaces:FrameMethod} interface.
+  # @return [OnStomp::Components::Frame]
   def transmit(frame, cbs={})
     frame.tap do
       register_callbacks frame, cbs
@@ -83,14 +118,20 @@ class OnStomp::Client
     end
   end
   
+  # Called by {#connection} when a frame has been read from the socket
+  # connection to the STOMP broker.
   def dispatch_received frame
     trigger_before_receiving frame
     trigger_after_receiving frame
   end
   
+  # Called by {#connection} when a frame has been written to the socket
+  # connection to the STOMP broker.
   def dispatch_transmitted frame
     trigger_after_transmitting frame
   end
+  
+  # @endgroup
   
   private
   def register_callbacks f, cbs

@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   
   s.required_ruby_version = '>= 1.8.7'
   s.has_rdoc = 'yard'
+  s.extra_rdoc_files = ['README.md', 'EXAMPLES.md', 'LICENSE']
   s.add_development_dependency('rspec', '~> 2.4.0')
   s.add_development_dependency('simplecov', '>= 0.3.0')
   s.add_development_dependency('yard', '>= 0.6.0')
