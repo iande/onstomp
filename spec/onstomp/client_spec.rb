@@ -232,6 +232,10 @@ module OnStomp
         client.processor = '::Module'
         client.processor.should == Module
       end
+      it "should use the NilProcessor if set to nil" do
+        client.processor = nil
+        client.processor.should == OnStomp::Components::NilProcessor
+      end
     end
     
     describe ".login" do
