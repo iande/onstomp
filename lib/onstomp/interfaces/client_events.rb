@@ -7,25 +7,17 @@ module OnStomp::Interfaces::ClientEvents
   # Transmitted frame events (on_<frame>, before_<frame>)
   [ :ack, :nack, :begin, :abort, :commit, :send,
     :subscribe, :unsubscribe, :disconnect, :client_beat ].each do |ev|
-    module_eval <<-EOS
-      def before_#{ev}(&block); bind_callback(:before_#{ev}, block); end
-      def on_#{ev}(&block); bind_callback(:on_#{ev}, block); end
-    EOS
+    create_event_methods ev, :before, :on
   end
   
-  # Received frame events (on_<frame>)
+  # Received frame events (on_<frame>, before_<frame>)
   [ :error, :message, :receipt, :broker_beat ].each do |ev|
-    module_eval <<-EOS
-      def on_#{ev}(&block); bind_callback(:on_#{ev}, block); end
-    EOS
+    create_event_methods ev, :before, :on
   end
   
   # General frame events (before_<event>, after_<event>)
   [ :transmitting, :receiving ].each do |ev|
-    module_eval <<-EOS
-      def before_#{ev}(&block); bind_callback(:before_#{ev}, block); end
-      def after_#{ev}(&block); bind_callback(:after_#{ev}, block); end
-    EOS
+    create_event_methods ev, :before, :after
   end
   
   # Helpers for setting up connection events through a client
@@ -53,6 +45,7 @@ module OnStomp::Interfaces::ClientEvents
   
   def trigger_before_receiving f
     trigger_event :before_receiving, f, self
+    trigger_frame_event f, :before, :broker
   end
   
   def trigger_after_receiving f

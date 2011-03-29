@@ -52,16 +52,6 @@ module OnStomp::Interfaces::UriConfigurable
       attr_configurable_single(*args, &trans)
     end
     
-    def attr_configurable_int *args, &block
-      trans = __attr_configurable_wrap__ lambda { |v| v.to_i }, block
-      attr_configurable_single(*args, &trans)
-    end
-    
-    def attr_configurable_float *args, &block
-      trans = __attr_configurable_wrap__ lambda { |v| v.to_f }, block
-      attr_configurable_single(*args, &trans)
-    end
-    
     private
     def __attr_configurable_wrap__(trans, block)
       if block

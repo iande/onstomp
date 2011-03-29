@@ -6,9 +6,7 @@ module OnStomp::Interfaces::ConnectionEvents
 
   # Connection events (on_connection_<event>)
   [ :established, :closed, :died, :terminated ].each do |ev|
-    module_eval <<-EOS
-      def on_#{ev}(&block); bind_callback(:on_#{ev}, block); end
-    EOS
+    create_event_methods ev, :on
   end
   
   def trigger_connection_event event
@@ -17,8 +15,8 @@ module OnStomp::Interfaces::ConnectionEvents
   
   def install_bindings_from_client ev_hash
     ev_hash.each do |ev, cbs|
-      cbs.each { |cb| bind_callback(ev, cb) }
+      cbs.each { |cb| bind_event(ev, cb) }
     end
-    trigger_connection_event :connected
+    trigger_connection_event :established
   end
 end
