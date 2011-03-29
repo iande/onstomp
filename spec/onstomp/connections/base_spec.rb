@@ -106,7 +106,7 @@ module OnStomp::Connections
         connection.io_process_write
       end
       it "should write to IO in a non-blocking fashion otherwise" do
-        connection.stub(:alive? => true)
+        connection.stub(:connected? => true)
         IO.stub(:select => true)
         connection.push_write_buffer 'FRAME_SERIALIZED', frame
         io.should_receive(:write_nonblock).with('FRAME_SERIALIZED').and_return(16)
@@ -114,7 +114,7 @@ module OnStomp::Connections
         connection.io_process_write
       end
       it "should put back the remaining data" do
-        connection.stub(:alive? => true)
+        connection.stub(:connected? => true)
         IO.stub(:select => true)
         connection.push_write_buffer 'FRAME_SERIALIZED', frame
         io.should_receive(:write_nonblock).with('FRAME_SERIALIZED').and_return(5)
@@ -122,7 +122,7 @@ module OnStomp::Connections
         connection.io_process_write
       end
       it "should put all the data back if EINTR is raised" do
-        connection.stub(:alive? => true)
+        connection.stub(:connected? => true)
         IO.stub(:select => true)
         connection.push_write_buffer 'FRAME_SERIALIZED', frame
         io.should_receive(:write_nonblock).with('FRAME_SERIALIZED').and_raise(Errno::EINTR)
@@ -130,7 +130,7 @@ module OnStomp::Connections
         connection.io_process_write
       end
       it "should put all the data back if EAGAIN is raised" do
-        connection.stub(:alive? => true)
+        connection.stub(:connected? => true)
         IO.stub(:select => true)
         connection.push_write_buffer 'FRAME_SERIALIZED', frame
         io.should_receive(:write_nonblock).with('FRAME_SERIALIZED').and_raise(Errno::EAGAIN)
@@ -138,7 +138,7 @@ module OnStomp::Connections
         connection.io_process_write
       end
       it "should put all the data back if EWOULDBLOCK is raised" do
-        connection.stub(:alive? => true)
+        connection.stub(:connected? => true)
         IO.stub(:select => true)
         connection.push_write_buffer 'FRAME_SERIALIZED', frame
         io.should_receive(:write_nonblock).with('FRAME_SERIALIZED').and_raise(Errno::EWOULDBLOCK)
@@ -146,7 +146,7 @@ module OnStomp::Connections
         connection.io_process_write
       end
       it "should close the connection and re-raise if an EOFError is raised" do
-        connection.stub(:alive? => true)
+        connection.stub(:connected? => true)
         IO.stub(:select => true)
         connection.push_write_buffer 'FRAME_SERIALIZED', frame
         io.should_receive(:write_nonblock).with('FRAME_SERIALIZED').and_raise(EOFError)
@@ -154,7 +154,7 @@ module OnStomp::Connections
         lambda { connection.io_process_write }.should raise_error(EOFError)
       end
       it "should close the connection and re-raise if an IOError is raised" do
-        connection.stub(:alive? => true)
+        connection.stub(:connected? => true)
         IO.stub(:select => true)
         connection.push_write_buffer 'FRAME_SERIALIZED', frame
         io.should_receive(:write_nonblock).with('FRAME_SERIALIZED').and_raise(IOError)
@@ -162,7 +162,7 @@ module OnStomp::Connections
         lambda { connection.io_process_write }.should raise_error(IOError)
       end
       it "should close the connection and re-raise if an EOFError is raised" do
-        connection.stub(:alive? => true)
+        connection.stub(:connected? => true)
         IO.stub(:select => true)
         connection.push_write_buffer 'FRAME_SERIALIZED', frame
         io.should_receive(:write_nonblock).with('FRAME_SERIALIZED').and_raise(SystemCallError.new('msg', 13))
@@ -170,7 +170,7 @@ module OnStomp::Connections
         lambda { connection.io_process_write }.should raise_error(SystemCallError)
       end
       it "should re-raise on any other exception" do
-        connection.stub(:alive? => true)
+        connection.stub(:connected? => true)
         IO.stub(:select => true)
         connection.push_write_buffer 'FRAME_SERIALIZED', frame
         io.should_receive(:write_nonblock).with('FRAME_SERIALIZED').and_raise(Exception)
@@ -182,18 +182,18 @@ module OnStomp::Connections
         connection.stub(:serializer => serializer)
       end
       it "should not read if the connection is not alive" do
-        connection.stub(:alive? => false)
+        connection.stub(:connected? => false)
         io.should_not_receive :read_nonblock
         connection.io_process_read
       end
       it "should not read if IO.select returns nil" do
-        connection.stub(:alive? => true)
+        connection.stub(:connected? => true)
         IO.stub(:select => nil)
         io.should_not_receive :read_nonblock
         connection.io_process_read
       end
       it "should read IO in a non-blocking fashion otherwise" do
-        connection.stub(:alive? => true)
+        connection.stub(:connected? => true)
         IO.stub(:select => true)
         io.should_receive(:read_nonblock).with(Base::MAX_BYTES_PER_READ).and_return('FRAME_SERIALIZED')
         serializer.should_receive(:bytes_to_frame).with(['FRAME_SERIALIZED'])
@@ -201,7 +201,7 @@ module OnStomp::Connections
       end
       it "should dispatch and yield a frame if the serializer yields one" do
         yielded = nil
-        connection.stub(:alive? => true)
+        connection.stub(:connected? => true)
         IO.stub(:select => true)
         io.should_receive(:read_nonblock).with(Base::MAX_BYTES_PER_READ).and_return('FRAME_SERIALIZED')
         serializer.should_receive(:bytes_to_frame).with(['FRAME_SERIALIZED']).and_yield(frame)
@@ -212,46 +212,46 @@ module OnStomp::Connections
         yielded.should == frame
       end
       it "should not raise an error if EINTR is raised" do
-        connection.stub(:alive? => true)
+        connection.stub(:connected? => true)
         IO.stub(:select => true)
         io.should_receive(:read_nonblock).with(Base::MAX_BYTES_PER_READ).and_raise(Errno::EINTR)
         lambda { connection.io_process_read }.should_not raise_error
       end
       it "should put all the data back if EAGAIN is raised" do
-        connection.stub(:alive? => true)
+        connection.stub(:connected? => true)
         IO.stub(:select => true)
         io.should_receive(:read_nonblock).with(Base::MAX_BYTES_PER_READ).and_raise(Errno::EAGAIN)
         lambda { connection.io_process_read }.should_not raise_error
       end
       it "should put all the data back if EWOULDBLOCK is raised" do
-        connection.stub(:alive? => true)
+        connection.stub(:connected? => true)
         IO.stub(:select => true)
         io.should_receive(:read_nonblock).with(Base::MAX_BYTES_PER_READ).and_raise(Errno::EWOULDBLOCK)
         lambda { connection.io_process_read }.should_not raise_error
       end
       it "should close the connection and not raise error if an EOFError is raised?" do
-        connection.stub(:alive? => true)
+        connection.stub(:connected? => true)
         IO.stub(:select => true)
         io.should_receive(:read_nonblock).with(Base::MAX_BYTES_PER_READ).and_raise(EOFError)
         io.should_receive(:close)
         lambda { connection.io_process_read }.should_not raise_error
       end
       it "should close the connection and re-raise if an IOError is raised" do
-        connection.stub(:alive? => true)
+        connection.stub(:connected? => true)
         IO.stub(:select => true)
         io.should_receive(:read_nonblock).with(Base::MAX_BYTES_PER_READ).and_raise(IOError)
         io.should_receive(:close)
         lambda { connection.io_process_read }.should raise_error(IOError)
       end
       it "should close the connection and re-raise if an EOFError is raised" do
-        connection.stub(:alive? => true)
+        connection.stub(:connected? => true)
         IO.stub(:select => true)
         io.should_receive(:read_nonblock).with(Base::MAX_BYTES_PER_READ).and_raise(SystemCallError.new('msg', 13))
         io.should_receive(:close)
         lambda { connection.io_process_read }.should raise_error(SystemCallError)
       end
       it "should re-raise on any other exception" do
-        connection.stub(:alive? => true)
+        connection.stub(:connected? => true)
         IO.stub(:select => true)
         io.should_receive(:read_nonblock).with(Base::MAX_BYTES_PER_READ).and_raise(Exception)
         lambda { connection.io_process_read }.should raise_error(Exception)

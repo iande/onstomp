@@ -13,13 +13,11 @@ class OnStomp::Components::ThreadedProcessor
   def start
     @run_thread = Thread.new do
       begin
-        while @client.alive?
+        while @client.connected?
           @client.connection.io_process
         end
       rescue OnStomp::StopReceiver
       rescue Exception
-        #$stdout.puts "What the crap?: #{$!}"
-        #$stdout.puts $!.backtrace
         raise
       end
     end
@@ -36,7 +34,7 @@ class OnStomp::Components::ThreadedProcessor
       @run_thread.raise OnStomp::StopReceiver if @run_thread.alive?
       @run_thread.join
     rescue IOError, SystemCallError
-      raise if @client.alive?
+      raise if @client.connected?
     end
     @run_thread = nil
     self

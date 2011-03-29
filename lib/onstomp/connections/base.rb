@@ -86,7 +86,7 @@ class OnStomp::Connections::Base
       written = 0
       while written < MAX_BYTES_PER_WRITE
         data, frame = shift_write_buffer
-        break unless data && alive?
+        break unless data && connected?
         begin
           w = socket.write_nonblock(data)
           written += w
@@ -117,7 +117,7 @@ class OnStomp::Connections::Base
   end
   
   def io_process_read
-    if alive? && IO.select([socket], nil, nil, 0.1)
+    if connected? && IO.select([socket], nil, nil, 0.1)
       begin
         data = socket.read_nonblock(MAX_BYTES_PER_READ)
         @read_buffer << data

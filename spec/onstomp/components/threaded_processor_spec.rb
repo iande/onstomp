@@ -7,7 +7,7 @@ module OnStomp::Components
       ThreadedProcessor.new(client)
     }
     let(:client) {
-      mock("client", :connection => connection, :alive? => false)
+      mock("client", :connection => connection, :connected? => false)
     }
     let(:connection) {
       mock("connection", :io_process => nil)
@@ -16,7 +16,7 @@ module OnStomp::Components
     describe ".start / .stop" do
       it "should start and stop the processor" do
         checked_client = false
-        client.stub(:alive?).and_return do
+        client.stub(:connected?).and_return do
           checked_client = true
           Thread.stop
         end
@@ -27,7 +27,7 @@ module OnStomp::Components
         processor.running?.should be_false
       end
       it "should raise any IOErrors raised in the thread, if the client is alive" do
-        client.stub(:alive? => true)
+        client.stub(:connected? => true)
         spun_up = false
         connection.stub(:io_process) do
           spun_up = true
@@ -38,7 +38,7 @@ module OnStomp::Components
         lambda { processor.stop }.should raise_error(IOError)
       end
       it "should raise any SystemCallErrors raised in the thread, if the client is alive" do
-        client.stub(:alive? => true)
+        client.stub(:connected? => true)
         spun_up = false
         connection.stub(:io_process) do
           spun_up = true
@@ -49,7 +49,7 @@ module OnStomp::Components
         lambda { processor.stop }.should raise_error(SystemCallError)
       end
       it "should not raise any IOErrors raised in the thread, if the client is dead" do
-        client.stub(:alive? => true)
+        client.stub(:connected? => true)
         spun_up = false
         connection.stub(:io_process) do
           spun_up = true
@@ -57,11 +57,11 @@ module OnStomp::Components
         end
         processor.start
         Thread.pass until spun_up
-        client.stub(:alive? => false)
+        client.stub(:connected? => false)
         lambda { processor.stop }.should_not raise_error
       end
       it "should not raise any SystemCallErrors raised in the thread, if the client is dead" do
-        client.stub(:alive? => true)
+        client.stub(:connected? => true)
         spun_up = false
         connection.stub(:io_process) do
           spun_up = true
@@ -69,7 +69,7 @@ module OnStomp::Components
         end
         processor.start
         Thread.pass until spun_up
-        client.stub(:alive? => false)
+        client.stub(:connected? => false)
         lambda { processor.stop }.should_not raise_error
       end
     end
@@ -83,10 +83,10 @@ module OnStomp::Components
         join_tester = Thread.new do
           Thread.pass until joining
           sleep(0.1)
-          client.stub(:alive? => false)
+          client.stub(:connected? => false)
           joined_properly = true
         end
-        client.stub(:alive?).and_return do
+        client.stub(:connected?).and_return do
           spun_up = true
         end
         processor.start
