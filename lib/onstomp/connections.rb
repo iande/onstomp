@@ -61,7 +61,7 @@ module OnStomp::Connections
   def self.create_socket_ssl client
     uri = client.uri
     host = uri.host || 'localhost'
-    ssl_opts = {} unless ssl_opts.is_a?(Hash)
+    ssl_opts = client.ssl.is_a?(Hash) ? client.ssl : {}
     ssl_opts = DEFAULT_SSL_OPTIONS.merge(ssl_opts)
     context = OpenSSL::SSL::SSLContext.new
     post_check = ssl_opts.delete(:post_connection_check)

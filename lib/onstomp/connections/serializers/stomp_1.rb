@@ -67,7 +67,7 @@ module OnStomp::Connections::Serializers::Stomp_1
     remain = data[(idx+1)..-1]
     buffer.unshift(remain) unless remain.empty?
     __send__ meth, (@parse_accum + data[0...idx])
-    @parse_accum.clear
+    @parse_accum = ''
   end
   
   def finish_command command

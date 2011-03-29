@@ -11,19 +11,20 @@ module OnStomp::Connections::Serializers
     end
     
     describe ".frame_to_string" do
+      # So tests pass with Ruby 1.8.7, we need to get the headers in order
       let(:frame_without_body) {
-        OnStomp::Components::Frame.new('COMMAND', {
-          :header1 => 'value 1',
-          :header2 => 'value 2',
-          "header\nwith:special \\characters" => "value:with\\special\ncharacters"
-        })
+        OnStomp::Components::Frame.new('COMMAND').tap do |f|
+          f[:header1] = 'value 1'
+          f[:header2] = 'value 2'
+          f["header\nwith:special \\characters"] = "value:with\\special\ncharacters"
+        end
       }
       let(:frame_with_body) {
-        OnStomp::Components::Frame.new('COMMAND', {
-          :header1 => 'value 1',
-          :header2 => 'value 2',
-          "header\nwith:special \\characters" => "value:with\\special\ncharacters"
-        }, "body of message")
+        OnStomp::Components::Frame.new('COMMAND',{},'body of message').tap do |f|
+          f[:header1] = 'value 1'
+          f[:header2] = 'value 2'
+          f["header\nwith:special \\characters"] = "value:with\\special\ncharacters"
+        end
       }
       it "should convert a frame to a string with escaped headers" do
         serializer.frame_to_string(frame_without_body).should ==
