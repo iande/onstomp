@@ -9,29 +9,29 @@ client = OnStomp.open("stomp://localhost")
 
 $stdout.puts "Connected to broker using protocol #{client.connection.version}"
 
-client.before_transmitting do |frame|
+client.before_transmitting do |frame, _|
   $stdout.puts "Frame headers [#{frame.command}] before modification: #{frame.headers.to_a.inspect}"
   frame[:'x-alt-header'] = 'another value'
 end
 
-client.before_send do |frame|
+client.before_send do |frame, _|
   $stdout.puts "SEND headers before modification: #{frame.headers.to_a.inspect}"
   frame[:'x-misc-header'] = 'this is a test'
 end
 
-client.after_transmitting do |frame|
+client.after_transmitting do |frame, _|
   $stdout.puts "Final frame headers [#{frame.command}]: #{frame.headers.to_a.inspect}"
 end
 
-client.before_disconnect do |frame|
+client.before_disconnect do |frame, _|
   $stdout.puts "Disconnecting from broker"
 end
 
-client.on_connection_closed do |con|
+client.on_connection_closed do |client, con|
   $stdout.puts "Connection has been closed"
 end
 
-client.on_connection_terminated do |con|
+client.on_connection_terminated do |client, con|
   $stdout.puts "Connection closed unexpectedly"
 end
 
