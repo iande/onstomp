@@ -28,47 +28,39 @@ module OnStomp::Components
       end
       it "should raise any IOErrors raised in the thread, if the client is alive" do
         client.stub(:connected? => true)
-        spun_up = false
         connection.stub(:io_process) do
-          spun_up = true
           raise IOError
         end
         processor.start
-        Thread.pass until spun_up
+        Thread.pass while processor.running?
         lambda { processor.stop }.should raise_error(IOError)
       end
       it "should raise any SystemCallErrors raised in the thread, if the client is alive" do
         client.stub(:connected? => true)
-        spun_up = false
         connection.stub(:io_process) do
-          spun_up = true
           raise SystemCallError.new('blather', 13)
         end
         processor.start
-        Thread.pass until spun_up
+        Thread.pass while processor.running?
         lambda { processor.stop }.should raise_error(SystemCallError)
       end
       it "should not raise any IOErrors raised in the thread, if the client is dead" do
         client.stub(:connected? => true)
-        spun_up = false
         connection.stub(:io_process) do
-          spun_up = true
           raise IOError
         end
         processor.start
-        Thread.pass until spun_up
+        Thread.pass while processor.running?
         client.stub(:connected? => false)
         lambda { processor.stop }.should_not raise_error
       end
       it "should not raise any SystemCallErrors raised in the thread, if the client is dead" do
         client.stub(:connected? => true)
-        spun_up = false
         connection.stub(:io_process) do
-          spun_up = true
           raise SystemCallError.new('blather', 13)
         end
         processor.start
-        Thread.pass until spun_up
+        Thread.pass while processor.running?
         client.stub(:connected? => false)
         lambda { processor.stop }.should_not raise_error
       end

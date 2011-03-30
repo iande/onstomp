@@ -24,6 +24,9 @@ module OnStomp
       mock('headers')
     }
     
+    let(:frame_method_interface) { client }
+    it_should_behave_like "frame method interfaces"
+    
     describe "configuration" do
       it "should provide some defaults" do
         client.versions.should == ['1.0', '1.1']

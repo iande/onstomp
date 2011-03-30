@@ -14,7 +14,7 @@ module OnStomp::Interfaces::FrameMethods
   # @yieldparam [OnStomp::Components::Frame] receipt RECEIPT for the frame
   # @raise OnStomp::UnsupportedCommandError if the connection does not support
   #   SEND frames
-  def send(dest, body, headers={}, &cb)
+  def send dest, body, headers={}, &cb
     transmit connection.send_frame(dest, body, headers), :receipt => cb
   end
   alias :puts :send
@@ -50,7 +50,7 @@ module OnStomp::Interfaces::FrameMethods
   # @see #unsubscribe
   # @see #ack
   # @see #nack
-  def subscribe(dest, headers={}, &cb)
+  def subscribe dest, headers={}, &cb
     transmit connection.subscribe_frame(dest, headers), :subscribe => cb
   end
   
@@ -69,7 +69,7 @@ module OnStomp::Interfaces::FrameMethods
   # @raise OnStomp::UnsupportedCommandError if the connection does not support
   #   UNSUBSCRIBE frames
   # @see #subscribe
-  def unsubscribe(frame_or_id, headers={})
+  def unsubscribe frame_or_id, headers={}
     transmit connection.unsubscribe_frame(frame_or_id, headers)
   end
   
@@ -83,7 +83,7 @@ module OnStomp::Interfaces::FrameMethods
   #   BEGIN frames
   # @see #abort
   # @see #commit
-  def begin(tx_id, headers={})
+  def begin tx_id, headers={}
     transmit connection.begin_frame(tx_id, headers)
   end
   
@@ -97,7 +97,7 @@ module OnStomp::Interfaces::FrameMethods
   #   ABORT frames
   # @see #begin
   # @see #commit
-  def abort(tx_id, headers={})
+  def abort tx_id, headers={}
     transmit connection.abort_frame(tx_id, headers)
   end
   
@@ -111,7 +111,7 @@ module OnStomp::Interfaces::FrameMethods
   #   COMMIT frames
   # @see #abort
   # @see #begin
-  def commit(tx_id, headers={})
+  def commit tx_id, headers={}
     transmit connection.commit_frame(tx_id, headers)
   end
 
@@ -122,7 +122,7 @@ module OnStomp::Interfaces::FrameMethods
   # @return [OnStomp::Components::Frame] DISCONNECT frame
   # @raise OnStomp::UnsupportedCommandError if the connection does not support
   #   DISCONNECT frames
-  def disconnect(headers={})
+  def disconnect headers={}
     transmit connection.disconnect_frame headers
   end
 
@@ -154,7 +154,7 @@ module OnStomp::Interfaces::FrameMethods
   # @raise OnStomp::UnsupportedCommandError if the connection does not support
   #   ACK frames
   # @see #nack
-  def ack(*args)
+  def ack *args
     transmit connection.ack_frame(*args)
   end
 
@@ -176,7 +176,7 @@ module OnStomp::Interfaces::FrameMethods
   # @raise OnStomp::UnsupportedCommandError if the connection does not support
   #   NACK frames
   # @see #ack
-  def nack(*args)
+  def nack *args
     transmit connection.nack_frame(*args)
   end
   

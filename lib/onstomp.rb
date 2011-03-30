@@ -79,15 +79,7 @@ module OnStomp
   # a transaction while it is in an invalid state.
   # @abstract
   class TransactionError < OnStompError; end
-  
-  # Raised if a transactionable frame is sent in a transaction that has
-  # already been aborted or committed.
-  class TransactionFinalizedError < TransactionError; end
-  
-  # Raised if a BEGIN frame is sent on a transaction that has already
-  # begun.
-  class TransactionStartedError < TransactionError; end
-  
+
   # Raised by ThreadedReceiver to stop the receiving thread.
   class StopReceiver < StandardError; end
   
@@ -149,7 +141,7 @@ module OnStomp
   end
 end
 require 'onstomp/version'
-require 'onstomp/components'
 require 'onstomp/interfaces'
+require 'onstomp/components'
 require 'onstomp/connections'
 require 'onstomp/client'

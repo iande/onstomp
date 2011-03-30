@@ -24,11 +24,11 @@ module OnStomp::Connections::Serializers
     
     describe ".frame_to_string_base" do
       let(:frame) {
-        OnStomp::Components::Frame.new('COMMAND', {
-          :heaDer1 => 'Value 1',
-          :headeR2 => 'Value 2',
-          'HEADER3' => 'Value 3'
-        }, "body of frame")
+        OnStomp::Components::Frame.new('COMMAND', {}, 'body of frame').tap do |f|
+          f[:heaDer1] = 'Value 1'
+          f[:headeR2] = 'Value 2'
+          f['HEADER3'] = 'Value 3'
+        end
       }
       it "should treat a frame with no command as a heartbeat" do
         frame.command = nil

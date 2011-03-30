@@ -8,6 +8,7 @@ class OnStomp::Client
   include OnStomp::Interfaces::ClientEvents
   include OnStomp::Interfaces::ReceiptManager
   include OnStomp::Interfaces::SubscriptionManager
+  include OnStomp::Components::Scopes
   
   # The +URI+ reference to the STOMP broker
   # @return [String]

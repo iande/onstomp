@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
-RSpec::Matchers.define :have_header do |header_name, expected|
+RSpec::Matchers.define :have_header_named do |header_name|
   match do |actual|
-    actual[header_name.to_sym] == expected
+    actual.headers.set? header_name
   end
 end
 
@@ -10,6 +10,28 @@ RSpec::Matchers.define :have_headers do |expected_hash|
     expected_hash.inject(true) do |matched, (k,v)|
       matched && actual[k] == v
     end
+  end
+end
+
+RSpec::Matchers.define :be_a_header_scope do |headers|
+  match do |actual|
+    actual.is_a?(OnStomp::Components::Scopes::HeaderScope) &&
+      actual.headers == headers
+  end
+end
+
+RSpec::Matchers.define :be_a_receipt_scope do |callback|
+  match do |actual|
+    actual.is_a?(OnStomp::Components::Scopes::ReceiptScope) &&
+      actual.callback == callback
+  end
+end
+
+RSpec::Matchers.define :be_a_transaction_scope do |tx_id|
+  match do |actual|
+    $stdout.puts "Checking transaction? #{tx_id.inspect}"
+    type_check = actual.is_a?(OnStomp::Components::Scopes::TransactionScope)
+    tx_id ? type_check && actual.transaction == tx_id : type_check
   end
 end
 
