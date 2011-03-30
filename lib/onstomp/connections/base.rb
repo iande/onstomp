@@ -25,6 +25,7 @@ class OnStomp::Connections::Base
     @write_buffer = []
     @read_buffer = []
     @client = client
+    @connection_up = false
   end
   
   # Performs any necessary configuration of the connection from the CONNECTED
@@ -77,6 +78,7 @@ class OnStomp::Connections::Base
     raise OnStomp::ConnectFailedError if broker_con.command != 'CONNECTED'
     vers = broker_con.header?(:version) ? broker_con[:version] : '1.0'
     raise OnStomp::UnsupportedProtocolVersionError, vers unless client.versions.include?(vers)
+    @connection_up = true
     [ vers, broker_con ]
   end
   
@@ -96,6 +98,9 @@ class OnStomp::Connections::Base
   def io_process &cb
     io_process_write &cb
     io_process_read &cb
+    if @connection_up && !connected?
+      triggered_close :died
+    end
   end
   
   # Serializes the given frame and adds the data to the connections internal
@@ -156,17 +161,14 @@ class OnStomp::Connections::Base
           # put data back and try again some other day
           unshift_write_buffer data, frame
           break
-        rescue EOFError, SystemCallError, IOError
-          socket.close
-          raise
         rescue Exception
-          # Give some thought to how this will get handled.
+          triggered_close :terminated
           raise
         end
       end
     end
     if @write_buffer.empty? && @closing
-      socket.close
+      triggered_close
     end
   end
   
@@ -187,14 +189,20 @@ class OnStomp::Connections::Base
       rescue Errno::EINTR, Errno::EAGAIN, Errno::EWOULDBLOCK
         # do not
       rescue EOFError
-        socket.close
-      rescue SystemCallError, IOError
-        socket.close
-        raise
+        triggered_close
       rescue Exception
-        # Give some thought to how this will get handled.
+        triggered_close :terminated
         raise
       end
     end
+  end
+  
+  private
+  def triggered_close *evs
+    @connection_up = false
+    @closing = false
+    socket.close
+    evs.each { |ev| trigger_connection_event ev }
+    trigger_connection_event :closed
   end
 end

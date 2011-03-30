@@ -170,11 +170,15 @@ module OnStomp::Connections
         lambda { connection.io_process_write }.should raise_error(SystemCallError)
       end
       it "should re-raise on any other exception" do
+        triggered = false
+        connection.on_terminated { triggered = true }
         connection.stub(:connected? => true)
         IO.stub(:select => true)
         connection.push_write_buffer 'FRAME_SERIALIZED', frame
+        io.should_receive(:close)
         io.should_receive(:write_nonblock).with('FRAME_SERIALIZED').and_raise(Exception)
         lambda { connection.io_process_write }.should raise_error(Exception)
+        triggered.should be_true
       end
     end
     describe ".io_process_read" do
@@ -251,20 +255,24 @@ module OnStomp::Connections
         lambda { connection.io_process_read }.should raise_error(SystemCallError)
       end
       it "should re-raise on any other exception" do
+        triggered = false
+        connection.on_terminated { triggered = true }
         connection.stub(:connected? => true)
         IO.stub(:select => true)
+        io.should_receive(:close)
         io.should_receive(:read_nonblock).with(Base::MAX_BYTES_PER_READ).and_raise(Exception)
         lambda { connection.io_process_read }.should raise_error(Exception)
+        triggered.should be_true
       end
     end
     
     describe ".connect" do
       let(:headers) { [] }
       let(:connect_frame) {
-        mock('connect frame')
+        OnStomp::Components::Frame.new('CONNECT')
       }
       let(:connected_frame) {
-        mock('connected frame')
+        OnStomp::Components::Frame.new('CONNECTED')
       }
       
       it "should raise an error if the first frame read is not CONNECTED" do
@@ -272,7 +280,7 @@ module OnStomp::Connections
         connection.should_receive(:write_frame_nonblock).with(connect_frame)
         connection.should_receive(:io_process_write).and_yield(connect_frame)
         connection.should_receive(:io_process_read).and_yield(connected_frame)
-        connected_frame.stub(:command => 'NOT CONNECTED')
+        connected_frame.command = 'NOT CONNECTED'
         lambda { connection.connect(client, *headers) }.should raise_error(OnStomp::ConnectFailedError)
       end
       it "should raise an error if the CONNECTED frame specifies an unsolicited version" do
@@ -280,9 +288,7 @@ module OnStomp::Connections
         connection.should_receive(:write_frame_nonblock).with(connect_frame)
         connection.should_receive(:io_process_write).and_yield(connect_frame)
         connection.should_receive(:io_process_read).and_yield(connected_frame)
-        connected_frame.stub(:command => 'CONNECTED')
-        connected_frame.stub(:header?).with(:version).and_return true
-        connected_frame.stub(:[]).with(:version).and_return '1.9'
+        connected_frame[:version] = '1.9'
         client.stub(:versions => [ '1.0', '1.1' ])
         lambda { connection.connect(client, *headers) }.should raise_error(OnStomp::UnsupportedProtocolVersionError)
       end
@@ -291,8 +297,6 @@ module OnStomp::Connections
         connection.should_receive(:write_frame_nonblock).with(connect_frame)
         connection.should_receive(:io_process_write).and_yield(connect_frame)
         connection.should_receive(:io_process_read).and_yield(connected_frame)
-        connected_frame.stub(:command => 'CONNECTED')
-        connected_frame.stub(:header?).with(:version).and_return(false)
         client.stub(:versions => [ '1.0', '1.1' ])
         connection.connect(client, *headers).should == ['1.0', connected_frame]
       end
@@ -301,11 +305,25 @@ module OnStomp::Connections
         connection.should_receive(:write_frame_nonblock).with(connect_frame)
         connection.should_receive(:io_process_write).and_yield(connect_frame)
         connection.should_receive(:io_process_read).and_yield(connected_frame)
-        connected_frame.stub(:command => 'CONNECTED')
-        connected_frame.stub(:header?).with(:version).and_return(true)
-        connected_frame.stub(:[]).with(:version).and_return('2.3')
+        connected_frame[:version] = '2.3'
         client.stub(:versions => [ '1.0', '2.3' ])
         connection.connect(client, *headers).should == ['2.3', connected_frame]
+      end
+      
+      it "should trigger :on_died once, if the connection was up but is no longer connected" do
+        connection.stub(:connect_frame => connect_frame,
+          :write_frame_nonblock => connect_frame)
+        client.stub(:versions => ['1.0', '1.1'])
+        connection.stub(:io_process_write).and_yield(connect_frame)
+        connection.stub(:io_process_read).and_yield(connected_frame)
+        triggered = 0
+        connection.on_died { |cl, cn| triggered += 1 }
+        connection.connect client
+        connection.stub(:io_process_write => nil, :io_process_read => nil)
+        connection.stub(:connected? => false)
+        connection.io_process
+        connection.io_process
+        triggered.should == 1
       end
     end
     

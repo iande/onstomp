@@ -39,6 +39,7 @@ class OnStomp::Components::ThreadedProcessor
   # @return [self]
   def join
     Thread.pass while running?
+    @run_thread && @run_thread.join
     self
   end
   
