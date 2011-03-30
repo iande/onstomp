@@ -1,0 +1,5 @@
+--no-private
+--title "OnStomp Documentation"
+--readme README.md
+--files LICENSE.md,CHANGELOG.md,DeveloperNarrative.md,UserNarrative.md
+lib/**/*.rb
