@@ -1,6 +1,10 @@
 # -*- encoding: utf-8 -*-
 
+# Mixin for {OnStomp::Client clients} to provide receipt management
 module OnStomp::Interfaces::SubscriptionManager
+  # Returns an array of {OnStomp::Components::Subscription} objects for all
+  # currently active subscriptions.
+  # @return [Array<OnStomp::Components::Subscription>]
   def subscriptions
     @subcription_mon.synchronize { @subscriptions.values }
   end

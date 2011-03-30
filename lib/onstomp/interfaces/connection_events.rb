@@ -3,16 +3,56 @@
 # Mixin for connection events
 module OnStomp::Interfaces::ConnectionEvents
   include OnStomp::Interfaces::EventManager
-
-  # Connection events (on_connection_<event>)
-  [ :established, :closed, :died, :terminated ].each do |ev|
-    create_event_methods ev, :on
-  end
   
+  # @group Connection State Events
+
+  # Binds a callback to be invoked when a connection has been fully
+  # established between broker and client.
+  # @yield [client, connection] callback invoked when event is triggered
+  # @yieldparam [OnStomp::Client] client
+  # @yieldparam [OnStomp::Connections::Base] connection that triggered
+  #   the event (in general the same as +client.connection+)
+  create_event_methods :established, :on
+  # Binds a callback to be invoked when a connection has been died due to
+  # insufficient data transfer.
+  # @note Only applies to STOMP 1.1 connections with heartbeating enabled.
+  # @yield [client, connection] callback invoked when event is triggered
+  # @yieldparam [OnStomp::Client] client
+  # @yieldparam [OnStomp::Connections::Base] connection that triggered
+  #   the event (in general the same as +client.connection+)
+  create_event_methods :died, :on
+  # Binds a callback to be invoked when a connection has been terminated
+  # (eg: closed unexpectedly due to an exception)
+  # @yield [client, connection] callback invoked when event is triggered
+  # @yieldparam [OnStomp::Client] client
+  # @yieldparam [OnStomp::Connections::Base] connection that triggered
+  #   the event (in general the same as +client.connection+)
+  create_event_methods :terminated, :on
+  # Binds a callback to be invoked when a connection has been closed, either
+  # through a graceful disconnect or unexpectedly.
+  # @note If connection is closed unexpectedly, {#on_died} is triggered first,
+  # followed by this event.
+  # @yield [client, connection] callback invoked when event is triggered
+  # @yieldparam [OnStomp::Client] client
+  # @yieldparam [OnStomp::Connections::Base] connection that triggered
+  #   the event (in general the same as +client.connection+)
+  create_event_methods :closed, :on
+  
+  # @endgroup
+
+  # Triggers a connection specific event.
+  # @param [Symbol] event name
   def trigger_connection_event event
     trigger_event :"on_#{event}", self.client, self
   end
   
+  # Takes a hash of event bindings a {OnStomp::Client client} has stored
+  # and binds them to this connection, then triggers +on_established+.
+  # This allows users to add callbacks for
+  # connection events before the connection exist and have said callbacks
+  # installed once the connection is created.
+  # @param [{Symbol => Array<Proc>}] callbacks to install, keyed by event name
+  # @see OnStomp::Interfaces::ClientEvents#pending_connection_events
   def install_bindings_from_client ev_hash
     ev_hash.each do |ev, cbs|
       cbs.each { |cb| bind_event(ev, cb) }

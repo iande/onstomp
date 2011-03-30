@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 
+# Namespace for interface mixins
 module OnStomp::Interfaces
 end
 

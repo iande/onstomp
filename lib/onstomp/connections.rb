@@ -1,6 +1,9 @@
 # -*- encoding: utf-8 -*-
 
+# Namespace for protocol specific connections used to communicate with
+# STOMP brokers.
 module OnStomp::Connections
+  # Default SSL options to use when establishing an SSL connection.
   DEFAULT_SSL_OPTIONS = {
     :verify_mode => OpenSSL::SSL::VERIFY_PEER |
       OpenSSL::SSL::VERIFY_FAIL_IF_NO_PEER_CERT,
@@ -11,15 +14,36 @@ module OnStomp::Connections
     :post_connection_check => true
   }
   
+  # Returns a list of supported protocol versions
+  # @return [Array<String>]
   def self.supported
     PROTOCOL_VERSIONS.keys.sort
   end
   
+  # Filters a list of supplied versions to only those
+  # that are supported. Results are in the same order as they are found
+  # in {.supported}. If none of the supplied versions are supported, an
+  # empty list is returned.
+  # @param [Array<String>] vers versions to filter
+  # @return [Array<String>]
   def self.select_supported vers
     vers = Array(vers)
     supported.select { |v| vers.include? v }
   end
   
+  # Creates an initial {OnStomp::Connections::Stomp_1_0 connection} to
+  # the client's broker uri, performs the CONNECT/CONNECTED frame exchange,
+  # and returns a {OnStomp::Connections::Base connection} suitable for the
+  # negotiated STOMP protocol version.
+  # @param [OnStomp::Client] client
+  # @param [{#to_sym => #to_s}] u_head user specified headers for CONNECT frame
+  # @param [{#to_sym => #to_s}] c_head client specified headers for CONNECT frame
+  # @param [{Symbol => Proc}] con_cbs event callbacks to install on the final
+  #   connection
+  # @return [OnStomp::Connections::Base] instance of Base subclass suited for
+  #   negotiated protocol version
+  # @raise [OnStomp::OnStompError] if negotiating the connection raises an
+  #   such an error.
   def self.connect client, u_head, c_head, con_cbs
     init_con = create_connection('1.0', nil, client)
     ver, connected = init_con.connect client, u_head, c_head
@@ -86,6 +110,8 @@ require 'onstomp/connections/stomp_1_0'
 require 'onstomp/connections/stomp_1_1'
 
 module OnStomp::Connections
+  # A mapping of protocol versions to the connection classes that support
+  # them.
   PROTOCOL_VERSIONS = {
     '1.0' => OnStomp::Connections::Stomp_1_0,
     '1.1' => OnStomp::Connections::Stomp_1_1

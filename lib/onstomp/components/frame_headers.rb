@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
-# A specialized container for storing header name / value pairs for a Stomp
-# {OnStomp::Frame Frame}.  This container behaves much like a +Hash+, but
+# A specialized container for storing header name / value pairs for a
+# {OnStomp::Components::Frame frame}.  This container behaves much like a +Hash+, but
 # is specialized for the Stomp protocol.  Header names are always converted
 # into +String+s through the use of +to_s+ and may have more than one value
 # associated with them.
@@ -178,13 +178,19 @@ class OnStomp::Components::FrameHeaders
         Enumerator.new(self)
       end
     end
-
+    
+    private
     def __initialize_names__; end
     def __delete_name__(name); end
     def __add_name__(name); end
   else
     attr_reader :names
     
+    # Iterates over header name / value pairs, yielding them as a pair
+    # of strings to the supplied block.
+    # @yield [header_name, header_value]
+    # @yieldparam [String] header_name
+    # @yieldparam [String] header_value
     def each(&block)
       if block_given?
         @names.each do |name|
@@ -198,6 +204,7 @@ class OnStomp::Components::FrameHeaders
       end
     end
 
+    private
     def __initialize_names__; @names = []; end
     def __delete_name__(name); @names.delete name; end
     def __add_name__(name); @names << name unless @values.key?(name); end

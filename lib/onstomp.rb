@@ -17,7 +17,7 @@ require 'thread'
 # Monitor support (prevent recursive dead locking)
 require 'monitor'
 
-# Primary namespace of the stomper gem.
+# Primary namespace for the +onstomp+ gem
 module OnStomp
   # A common base class for errors raised by the OnStomp gem
   # @abstract

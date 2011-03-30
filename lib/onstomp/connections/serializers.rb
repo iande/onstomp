@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 
+# Namespace for {OnStomp::Components::Frame frame} serializers / parsers.
 module OnStomp::Connections::Serializers
 end
 

@@ -13,3 +13,20 @@ class ConfigurableAttributeHandler < YARD::Handlers::Ruby::AttributeHandler
     register namespace.attributes[scope][name][:write]
   end
 end
+
+class EventMethodsHandler < YARD::Handlers::Ruby::MethodHandler
+  handles method_call(:create_event_methods)
+  namespace_only
+  
+  def process
+    base_name = statement.parameters.first.jump(:symbol, :ident).source[1..-1]
+    statement.parameters[1..-1].each do |pref_sexp|
+      if pref_sexp
+        pref = pref_sexp.jump(:symbol, :ident).source[1..-1]
+        name = "#{pref}_#{base_name}"
+        object = YARD::CodeObjects::MethodObject.new(namespace, name)
+        register object
+      end
+    end
+  end
+end

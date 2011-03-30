@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 
+# Namespace for various components used by OnStomp library.
 module OnStomp::Components
 end
 

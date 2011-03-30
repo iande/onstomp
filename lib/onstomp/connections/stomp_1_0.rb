@@ -1,14 +1,22 @@
 # -*- encoding: utf-8 -*-
 
+# A STOMP 1.0 specific connection
 class OnStomp::Connections::Stomp_1_0 < OnStomp::Connections::Base
   include OnStomp::Connections::Stomp_1
+  # The serializer that will convert {OnStomp::Components::Frame frames} into
+  # raw bytes and will convert raw bytes into {OnStomp::Components::Frame frames}
+  # @return [OnStomp::Connections::Serializers::Stomp_1_0]
   attr_reader :serializer
 
-  def initialize io, client
+  # Calls {OnStomp::Connections::Base#initialize} and creates a STOMP 1.0
+  # serializer
+  def initialize socket, client
     super
     @serializer = OnStomp::Connections::Serializers::Stomp_1_0.new
   end
 
+  # Creates an ACK frame
+  # @return [OnStomp::Components::Frame] ACK frame
   def ack_frame *args
     headers = args.last.is_a?(Hash) ? args.pop : {}
     m_id = args.shift

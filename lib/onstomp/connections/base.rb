@@ -1,15 +1,25 @@
 # -*- encoding: utf-8 -*-
 
+# Common behavior for all connections.
 class OnStomp::Connections::Base
   include OnStomp::Interfaces::ConnectionEvents
   attr_reader :version, :socket, :client
   attr_reader :last_transmitted_at, :last_received_at
   
+  # The approximate maximum number of bytes to write per call to
+  # {#io_process_write}.
   MAX_BYTES_PER_WRITE = 1024 * 8
+  # The maximum number of bytes to read per call to {#io_process_read}
   MAX_BYTES_PER_READ = 1024 * 4
   
-  def initialize io, client
-    @socket = io
+  # Creates a new connection using the given {#socket} object and
+  # {OnStomp::Client client}. The {#socket} object will generally be a +TCPSocket+
+  # or an +OpenSSL::SSL::SSLSocket+ and must support the methods +read_nonblock+
+  # +write_nonblock+, and +close+.
+  # @param [TCPSocket,OpenSSL::SSL::SSLSocket] socket
+  # @param [OnStomp::Client] client
+  def initialize socket, client
+    @socket = socket
     @write_mutex = Mutex.new
     @closing = false
     @write_buffer = []
@@ -17,15 +27,30 @@ class OnStomp::Connections::Base
     @client = client
   end
   
+  # Performs any necessary configuration of the connection from the CONNECTED
+  # frame sent by the broker and a +Hash+ of pending callbacks. This method
+  # is called after the protocol negotiation has taken place between client
+  # and broker, and the connection that receives it will be the connection
+  # used by the client for the duration of the session.
+  # @param [OnStomp::Components::Frame] connected
+  # @param [{Symbol => Proc}] con_cbs
   def configure connected, con_cbs
     @version = connected.header?(:version) ? connected[:version] : '1.0'
     install_bindings_from_client con_cbs
   end
   
+  # Returns true if the socket has not been closed, false otherwise.
+  # @return [true,false]
   def connected?
     !socket.closed?
   end
   
+  # Closes the {#socket}. If +blocking+ is true, the socket will be closed
+  # immediately, otherwies the socket will remain open until {#io_process_write}
+  # has finished writing all of its buffered data. Once this method has been
+  # invoked, {#write_frame_nonblock} will not enqueue any additional frames
+  # for writing.
+  # @param [true,false] blocking
   def close blocking=false
     @write_mutex.synchronize { @closing = true }
     if blocking
@@ -34,6 +59,11 @@ class OnStomp::Connections::Base
     end
   end
   
+  # Exchanges the CONNECT/CONNECTED frame handshake with the broker and returns
+  # the version detected along with the received CONNECTED frame. The supplied
+  # list of headers will be merged into the CONNECT frame sent to the broker.
+  # @param [OnStomp::Client] client
+  # @param [Array<Hash>] headers
   def connect client, *headers
     write_frame_nonblock connect_frame(*headers)
     client_con = nil
@@ -50,6 +80,9 @@ class OnStomp::Connections::Base
     [ vers, broker_con ]
   end
   
+  # Checks if the missing method ends with '_frame', and if so raises a
+  # {OnStomp::UnsupportedCommandError} exception.
+  # @raise [OnStomp::UnsupportedCommandError]
   def method_missing meth, *args, &block
     if meth.to_s =~ /^(.*)_frame$/
       raise OnStomp::UnsupportedCommandError, $1.upcase
@@ -58,28 +91,49 @@ class OnStomp::Connections::Base
     end
   end
   
+  # Makes a single call to {#io_process_write} and a single call to
+  # {#io_process_read}
   def io_process &cb
     io_process_write &cb
     io_process_read &cb
   end
   
+  # Serializes the given frame and adds the data to the connections internal
+  # write buffer
+  # @param [OnStomp::Components::Frame] frame
   def write_frame_nonblock frame
     ser = serializer.frame_to_bytes frame
     push_write_buffer ser, frame
   end
   
+  # Adds data and frame pair to the end of the write buffer
+  # @param [String] data
+  # @param [OnStomp::Components::Frame]
   def push_write_buffer data, frame
     @write_mutex.synchronize {
       @write_buffer << [data, frame] unless @closing
     }
   end
+  # Removes the first data and frame pair from the write buffer
+  # @param [String] data
+  # @param [OnStomp::Components::Frame]
   def shift_write_buffer
     @write_mutex.synchronize { @write_buffer.shift }
   end
+  # Adds the remains of data and frame pair to the head of the write buffer
+  # @param [String] data
+  # @param [OnStomp::Components::Frame]
   def unshift_write_buffer data, frame
     @write_mutex.synchronize { @write_buffer.unshift [data, frame] }
   end
   
+  # Writes serialized frame data to the socket if the write buffer is not
+  # empty and socket is ready for writing. Once a complete frame has
+  # been written, this method will call {OnStomp::Client#dispatch_transmitted}
+  # to notify the client that the frame has been sent to the broker. If a
+  # complete frame cannot be written without blocking, the unsent data is
+  # sent to the head of the write buffer to be processed first the next time
+  # this method is invoked.
   def io_process_write
     if @write_buffer.length > 0 && IO.select(nil, [socket], nil, 0.1)
       to_shift = @write_buffer.length / 3
@@ -116,6 +170,10 @@ class OnStomp::Connections::Base
     end
   end
   
+  # Reads serialized frame data from the socket if we're connected and
+  # and the socket is ready for reading.  The received data will be pushed
+  # to the end of a read buffer, which is then sent to the connection's
+  # {OnStomp::Connections::Serializers serializer} for processing.
   def io_process_read
     if connected? && IO.select([socket], nil, nil, 0.1)
       begin

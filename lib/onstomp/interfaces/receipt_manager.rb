@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 
+# Mixin for {OnStomp::Client clients} to provide receipt management
 module OnStomp::Interfaces::ReceiptManager
   private
   def configure_receipt_management
