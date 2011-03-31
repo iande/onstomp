@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+require 'open-uri'
 
 class OnStomp::Components::URI::STOMP
   def open(*args)

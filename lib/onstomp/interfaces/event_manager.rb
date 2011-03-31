@@ -32,6 +32,10 @@ module OnStomp::Interfaces::EventManager
   
   # Mixin to allow includers to define custom event methods
   module ClassMethods
+    def event_methods
+      @event_methods ||= []
+    end
+    
     # Creates a convenience method for binding callbacks to the given
     # event name.
     # @param [Symbol] name
@@ -44,6 +48,7 @@ module OnStomp::Interfaces::EventManager
     #
     #   example_obj.do_event { |arg1, arg2| ... }
     def create_event_method name
+      event_methods << name
       module_eval "def #{name}(&block); bind_event(:#{name}, block); end"
     end
 
