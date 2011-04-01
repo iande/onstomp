@@ -99,7 +99,7 @@ class OnStomp::Connections::Base
     io_process_write &cb
     io_process_read &cb
     if @connection_up && !connected?
-      triggered_close :died
+      triggered_close 'connection timed out', :died
     end
   end
   
@@ -162,13 +162,13 @@ class OnStomp::Connections::Base
           unshift_write_buffer data, frame
           break
         rescue Exception
-          triggered_close :terminated
+          triggered_close $!.message, :terminated
           raise
         end
       end
     end
     if @write_buffer.empty? && @closing
-      triggered_close
+      triggered_close 'client disconnected'
     end
   end
   
@@ -189,20 +189,21 @@ class OnStomp::Connections::Base
       rescue Errno::EINTR, Errno::EAGAIN, Errno::EWOULDBLOCK
         # do not
       rescue EOFError
-        triggered_close
+        triggered_close $!.message
       rescue Exception
-        triggered_close :terminated
+        triggered_close $!.message, :terminated
         raise
       end
     end
   end
   
   private
-  def triggered_close *evs
+  def triggered_close msg, *evs
     @connection_up = false
     @closing = false
     socket.close
-    evs.each { |ev| trigger_connection_event ev }
-    trigger_connection_event :closed
+    evs.each { |ev| trigger_connection_event ev, msg }
+    trigger_connection_event :closed, msg
+    @write_buffer.clear
   end
 end

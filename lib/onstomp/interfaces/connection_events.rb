@@ -42,8 +42,8 @@ module OnStomp::Interfaces::ConnectionEvents
 
   # Triggers a connection specific event.
   # @param [Symbol] event name
-  def trigger_connection_event event
-    trigger_event :"on_#{event}", self.client, self
+  def trigger_connection_event event, msg=''
+    trigger_event :"on_#{event}", self.client, self, msg
   end
   
   # Takes a hash of event bindings a {OnStomp::Client client} has stored
@@ -57,6 +57,6 @@ module OnStomp::Interfaces::ConnectionEvents
     ev_hash.each do |ev, cbs|
       cbs.each { |cb| bind_event(ev, cb) }
     end
-    trigger_connection_event :established
+    trigger_connection_event :established, "STOMP #{self.version} connection negotiated"
   end
 end

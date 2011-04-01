@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 
+# Subclasses must define +next_client+ or pool will not function.
 class OnStomp::Failover::Pools::Base
   attr_reader :clients
   
@@ -9,12 +10,12 @@ class OnStomp::Failover::Pools::Base
     end
   end
   
-  def shuffle!
-    clients.shuffle!
+  def next_client
+    raise ArgumentError, 'implemented in subclasses'
   end
   
-  def next_client
-    raise "Ha!"
+  def shuffle!
+    clients.shuffle!
   end
   
   def each &block

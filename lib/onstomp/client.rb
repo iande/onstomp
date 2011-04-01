@@ -115,7 +115,7 @@ class OnStomp::Client
     frame.tap do
       register_callbacks frame, cbs
       trigger_before_transmitting frame
-      connection.write_frame_nonblock frame
+      connection && connection.write_frame_nonblock(frame)
     end
   end
   

@@ -32,8 +32,15 @@ module OnStomp::Failover::FailoverConfigurable
     
     def attr_configurable_pool nm
       attr_configurable_class(nm,
-        :default => OnStomp::Failover::Pools::RoundRobin) do |pr|
-        pr || OnStomp::Failover::Pools::RoundRobin
+        :default => OnStomp::Failover::Pools::RoundRobin) do |p|
+        p || OnStomp::Failover::Pools::RoundRobin
+      end
+    end
+    
+    def attr_configurable_buffer nm
+      attr_configurable_class(nm,
+        :default => OnStomp::Failover::Buffers::Written) do |b|
+        b || OnStomp::Failover::Buffers::Written
       end
     end
   end

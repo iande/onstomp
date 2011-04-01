@@ -19,27 +19,33 @@ module OnStomp::Failover::FailoverEvents
     bind_client_event(:on_connection_established, block)
   end
   def on_connection_died &block
-    bind_client_event(:on_connection_established, block)
+    bind_client_event(:on_connection_died, block)
   end
   def on_connection_terminated &block
-    bind_client_event(:on_connection_established, block)
+    bind_client_event(:on_connection_terminated, block)
   end
   def on_connection_closed &block
-    bind_client_event(:on_connection_established, block)
+    bind_client_event(:on_connection_closed, block)
   end
   
   def bind_client_event(name, block)
     client_pool.each do |client|
-      client.__send__ name, &block
+      client.__send__ name do |*args|
+        if client == active_client
+          block.call *args
+        end
+      end
     end
   end
   
   create_event_methods :failover_retry, :before, :after
   create_event_methods :failover_connect_failure, :on
   create_event_methods :failover_retries_exceeded, :on
+  create_event_methods :failover_lost, :on
+  create_event_methods :failover_connected, :on
   
-  def trigger_failover_retry pref
-    trigger_failover_event :retry, pref, @retry_attempt, self.active_client
+  def trigger_failover_retry pref, attempt
+    trigger_failover_event :retry, pref, attempt, self.active_client
   end
   
   def trigger_failover_event ev, pref, *args

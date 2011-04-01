@@ -3,17 +3,16 @@
 class OnStomp::Failover::Client
   include OnStomp::Failover::FailoverConfigurable
   include OnStomp::Failover::FailoverEvents
-  include OnStomp::Failover::FrameMethods
+  include OnStomp::Interfaces::FrameMethods
   
   attr_configurable_processor :processor
   attr_configurable_pool :pool
+  attr_configurable_buffer :buffer
   attr_configurable_int :retry_delay, :default => 10
   attr_configurable_int :retry_attempts, :default => 0
   attr_configurable_bool :randomize, :default => false
   
-  attr_reader :subscription_manager
-  attr_reader :transaction_manager
-  attr_reader :uri, :client_pool, :active_client
+  attr_reader :uri, :client_pool, :active_client, :frame_buffer, :connection
   
   def initialize(uris, options={})
     if uris.is_a?(Array)
@@ -24,6 +23,8 @@ class OnStomp::Failover::Client
     configure_configurable options
     create_client_pool
     @active_client = nil
+    @connection = nil
+    @frame_buffer = buffer.new self
     @disconnecting = false
   end
   
@@ -37,7 +38,10 @@ class OnStomp::Failover::Client
   
   def connect
     @disconnecting = false
-    with_an_active_client { true }
+    unless reconnect
+      raise OnStomp::Failover::MaximumRetriesExceededError
+    end
+    self
   end
   
   def disconnect_with_failover_shutdown *args, &block
@@ -48,62 +52,43 @@ class OnStomp::Failover::Client
   alias :disconnect :disconnect_with_failover_shutdown
   
   private
-  def connection; active_client && active_client.connection; end
-  
   def reconnect
     @client_mutex.synchronize do
-      @retry_attempt = 1
-      while retry_connection?
+      attempt = 1
+      until connected? || retry_exceeded?(attempt)
+        sleep_for_retry attempt
         begin
-          trigger_failover_retry :before
+          trigger_failover_retry :before, attempt
           @active_client = client_pool.next_client
-          active_client.connect
+          # +reconnect+ could be called again within the marked range.
+          active_client.connect # <--- From here
+          @connection = active_client.connection
         rescue Exception
-          trigger_failover_event :connect_failure, :on, active_client, $!
-          active_client.close! rescue nil
+          trigger_failover_event :connect_failure, :on, active_client, $!.message
         end
-        trigger_failover_retry :after
-        @retry_attempt += 1
-        sleep_for_retry if retry_connection?
+        trigger_failover_retry :after, attempt
+        attempt += 1
       end
-      connected?
+      connected?.tap do |b|
+        b && trigger_failover_event(:connected, :on, active_client)
+      end # <--- Until here
     end
   end
   
-  def sleep_for_retry
-    sleep(retry_delay) if retry_delay > 0
+  def retry_exceeded? attempt
+    retry_attempts > 0 && attempt > retry_attempts
   end
   
-  def attempts_remaining
-    retry_attempts < 1 ? 1 : (retry_attempts - @retry_attempt)
+  def sleep_for_retry attempt
+    sleep(retry_delay) if retry_delay > 0 && attempt > 1
   end
-  
-  def retry_connection?
-    !connected? && attempts_remaining > 0
-  end
-  
-  def replay_connection
-  end
-  
-  def with_an_active_client
-    if connected? || reconnect
-      yield
-    else
-      active_client && active_client.close! rescue nil
-      raise OnStomp::Failover::MaximumRetriesExceededError,
-        "retried #{@retry_attempt} times"
-    end
-  end
-  
+    
   def create_client_pool
     @client_pool = pool.new(uri.failover_uris)
-    client_pool.each do |client|
-      # This can happen on a separate thread... but, this will ONLY happen
-      # on a separate thread... we should be just fine.
-      client.on_connection_closed do |cl, con|
-        unless @disconnecting || cl != active_client
-          reconnect && replay_connection
-        end
+    on_connection_closed do |client, *_|
+      unless @disconnecting
+        trigger_failover_event(:lost, :on, active_client)
+        reconnect
       end
     end
   end
