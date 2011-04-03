@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-require 'failover_spec_helper'
+require 'spec_helper'
 
 module OnStomp::Failover::Buffers
-  describe Written do
+  describe Written, :failover => true do
   
   end
 end

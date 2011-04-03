@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-require 'failover_spec_helper'
+require 'spec_helper'
 
-describe "OnStomp::Client.new with failover" do
+describe "OnStomp::Client.new with failover", :failover => true do
 
 end

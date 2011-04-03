@@ -3,9 +3,12 @@ require 'open-uri'
 
 class OnStomp::Components::URI::STOMP
   def open(*args)
-    client = OnStomp::OpenURI::Client.new(self, *args)
+    client = OnStomp::Client.new(self, *args)
+    client.extend OnStomp::OpenURI::ClientExtensions
+    client.auto_destination = self.path
     if block_given?
       begin
+        client.connect
         yield client
       ensure
         client.disconnect
@@ -19,5 +22,5 @@ module OnStomp::OpenURI
   class UnusableDestinationError < OnStomp::OnStompError; end
 end
 
-require 'onstomp/open-uri/nil_processor'
-require 'onstomp/open-uri/client'
+require 'onstomp/open-uri/message_queue'
+require 'onstomp/open-uri/client_extensions'

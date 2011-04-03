@@ -10,3 +10,5 @@ rescue LoadError
 end
 
 require 'onstomp'
+require 'onstomp/open-uri'
+require 'onstomp/failover'

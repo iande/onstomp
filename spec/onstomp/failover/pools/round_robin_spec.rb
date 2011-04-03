@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-require 'failover_spec_helper'
+require 'spec_helper'
 
 module OnStomp::Failover::Pools
-  describe RoundRobin do
+  describe RoundRobin, :failover => true do
   
   end
 end

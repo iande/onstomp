@@ -15,12 +15,12 @@ module OnStomp::Failover::FailoverConfigurable
   # clients.
   module ClassMethods
     def attr_configurable_int *args, &block
-      trans = __attr_configurable_wrap__ lambda { |v| v.to_i }, block
+      trans = attr_configurable_wrap lambda { |v| v.to_i }, block
       attr_configurable_single(*args, &trans)
     end
     
     def attr_configurable_bool *args, &block
-      trans = __attr_configurable_wrap__ lambda { |v|
+      trans = attr_configurable_wrap lambda { |v|
         [true, 'true', '1', 1].include?(v) }, block
       attr_configurable_single(*args, &trans)
       args.each do |a|

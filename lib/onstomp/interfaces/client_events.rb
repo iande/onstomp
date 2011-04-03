@@ -12,6 +12,10 @@ module OnStomp::Interfaces::ClientEvents
 
   # @group Client Frame Event Bindings
   
+  # Can't get +before+ because the CONNECT frame isn't transmitted by
+  # the client.
+  create_event_methods :connect, :on
+  
   # Binds a callback to be invoked when an ACK frame is transmitted
   # @yield [frame, client] callback invoked when event is triggered
   # @yieldparam [OnStomp::Components::Frame] frame
