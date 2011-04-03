@@ -62,7 +62,7 @@ See the full {file:docs/LICENSE.md LICENSE} for details.
 There are a few people/groups I'd like to thank for helping me with the
 creation of this gem.
 
-* Lionel Cons the good suggestions while I was implementing support for the
+* Lionel Cons for the good suggestions while I was implementing support for the
   STOMP 1.1 spec. Check out his Perl client [Net::STOMP::Client](http://search.cpan.org/~lcons/Net-STOMP-Client-0.9.5/lib/Net/STOMP/Client.pm)
 * Brian McCallister, Johan Sørensen, Guy M. Allard and Thiago Morello for
   their work on the `stomp` gem which introduced me to the STOMP protocol.
