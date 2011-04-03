@@ -12,6 +12,7 @@ class TestBroker
     @messages = Hash.new { |h,k| h[k] = [] }
     @subscribes = Hash.new { |h,k| h[k] = [] }
     @sub_mutex = Mutex.new
+    @session_mutex = Mutex.new
     @port = port
     begin
       @socket = TCPServer.new @port
@@ -22,10 +23,12 @@ class TestBroker
   end
   
   def kill_sessions
-    @sessions.each do |s|
-      s.kill
+    @session_mutex.synchronize do
+      @sessions.each do |s|
+        s.kill
+      end
+      @sessions.clear
     end
-    @sessions.clear
   end
   
   def enqueue_message s
@@ -85,7 +88,10 @@ class TestBroker
     @listener = Thread.new do
       begin
         loop do
-          @sessions << @session_class.new(self, @socket.accept)
+          sess = @session_class.new(self, @socket.accept)
+          @session_mutex.synchronize do
+            @sessions << sess
+          end
         end
       rescue StopThread
       rescue Exception
@@ -156,7 +162,6 @@ class TestBroker
       end
       
       on_disconnect do |d,_|
-        #$stdout.puts "Got a DISCONNECT!"
         @connection.close
       end
       

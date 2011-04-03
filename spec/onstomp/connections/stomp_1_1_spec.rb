@@ -30,6 +30,28 @@ module OnStomp::Connections
       end
     end
     
+    describe ".subscribe_frame" do
+      it "should automatically generate an 'id' header if one is not supplied" do
+        frame = connection.subscribe_frame('/queue/test', :ack => 'client',
+          :destination => '/queue/not-test')
+        frame.should be_an_onstomp_frame('SUBSCRIBE', {:ack => 'client',
+          :destination => '/queue/test'}, nil)
+        frame.header?(:id).should be_true
+      end
+      it "should build a SUBSCRIBE frame" do
+        connection.subscribe_frame('/queue/test', :ack => 'client-individual',
+          :destination => '/queue/not-test', :id => 's-1234'
+        ).should be_an_onstomp_frame('SUBSCRIBE', {:ack => 'client-individual',
+          :destination => '/queue/test', :id => 's-1234'}, nil)
+      end
+      it "should set ack mode to auto if it is not set to client or client-individual" do
+        connection.subscribe_frame('/queue/test', :ack => 'fudge!',
+          :destination => '/queue/not-test', :id => 's-1234'
+        ).should be_an_onstomp_frame('SUBSCRIBE', {:ack => 'auto',
+          :destination => '/queue/test', :id => 's-1234'}, nil)
+      end
+    end
+    
     describe ".ack_frame" do
       let(:message_frame) {
         OnStomp::Components::Frame.new('MESSAGE',

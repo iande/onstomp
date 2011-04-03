@@ -124,6 +124,7 @@ module OnStomp
         client.stub(:processor => processor_class)
       end
       it "should call disconnect_without_flush and join the processor" do
+        processor.should_receive(:prepare_to_close)
         processor.should_receive(:join)
         client.should_receive(:disconnect_without_flush).with(headers).and_return(frame)
         client.disconnect_with_flush(headers).should == frame

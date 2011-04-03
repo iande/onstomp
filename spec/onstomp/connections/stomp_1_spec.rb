@@ -64,27 +64,10 @@ module OnStomp::Connections
       end
     end
     
-    describe ".subscribe_frame" do
-      it "should automatically generate an 'id' header if one is not supplied" do
-        frame = connection.subscribe_frame('/queue/test', :ack => 'client',
-          :destination => '/queue/not-test')
-        frame.should be_an_onstomp_frame('SUBSCRIBE', {:ack => 'client',
-          :destination => '/queue/test'}, nil)
-        frame.header?(:id).should be_true
-      end
-      it "should build a SUBSCRIBE frame" do
-        connection.subscribe_frame('/queue/test', :ack => 'auto',
-          :destination => '/queue/not-test', :id => 's-1234'
-        ).should be_an_onstomp_frame('SUBSCRIBE', {:ack => 'auto',
-          :destination => '/queue/test', :id => 's-1234'}, nil)
-      end
-    end
-    
     describe ".unsubscribe_frame" do
       it "should build an UNSUBSCRIBE frame from a SUBSCRIBE frame" do
-        subscribe_frame = connection.subscribe_frame('/queue/test',
-          :ack => 'auto',
-          :destination => '/queue/not-test', :id => 's-1234')
+        subscribe_frame = OnStomp::Components::Frame.new('SUBSCRIBE',
+          :id => 's-1234', :ack => 'auto')
         unsubscribe_frame = connection.unsubscribe_frame(subscribe_frame,
           :header1 => 'value 1')
         unsubscribe_frame.should be_an_onstomp_frame('UNSUBSCRIBE',
