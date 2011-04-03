@@ -26,6 +26,7 @@ class OnStomp::Failover::Client
     @connection = nil
     @frame_buffer = buffer.new self
     @disconnecting = false
+    @client_ready = false
   end
   
   def connected?
@@ -44,16 +45,17 @@ class OnStomp::Failover::Client
     self
   end
   
-  def disconnect_with_failover_shutdown *args, &block
+  def disconnect *args, &block
+    return unless active_client
     @disconnecting = true
-    disconnect_without_failover_shutdown *args, &block
+    Thread.pass until @client_ready
+    active_client.disconnect *args, &block
   end
-  alias :disconnect_without_failover_shutdown :disconnect
-  alias :disconnect :disconnect_with_failover_shutdown
   
   private
   def reconnect
     @client_mutex.synchronize do
+      @client_ready = false
       attempt = 1
       until connected? || retry_exceeded?(attempt)
         sleep_for_retry attempt
@@ -71,6 +73,7 @@ class OnStomp::Failover::Client
       end
       connected?.tap do |b|
         b && trigger_failover_event(:connected, :on, active_client)
+        @client_ready = b
       end # <--- Until here
     end
   end
