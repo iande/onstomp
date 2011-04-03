@@ -9,5 +9,5 @@ module OnStomp
   # Patch version
   PATCH = 0
   # Complete version
-  VERSION = "#{MAJOR}.#{MINOR}.#{PATCH}pre1"
+  VERSION = "#{MAJOR}.#{MINOR}.#{PATCH}"
 end
