@@ -50,7 +50,7 @@ class OnStomp::Client
   # Creates a new client for the specified uri and optional hash of options.
   # @param [String,URI] uri
   # @param [{Symbol => Object}] options
-  def initialize(uri, options={})
+  def initialize uri, options={}
     @uri = uri.is_a?(::URI) ? uri : ::URI.parse(uri)
     @ssl = options.delete(:ssl)
     configure_configurable options
@@ -65,7 +65,7 @@ class OnStomp::Client
   # headers in the CONNECT frame, if specified.
   # @param [{#to_sym => #to_s}] headers
   # @return [self]
-  def connect(headers={})
+  def connect headers={}
     @connection = OnStomp::Connections.connect self, headers,
       { :'accept-version' => @versions.join(','), :host => @host,
         :'heart-beat' => @heartbeats.join(','), :login => @login,
@@ -80,7 +80,7 @@ class OnStomp::Client
   # the broker will get processed barring any IO exceptions.
   # @param [{#to_sym => #to_s}] headers
   # @return [OnStomp::Components::Frame] transmitted DISCONNECT frame
-  def disconnect_with_flush(headers={})
+  def disconnect_with_flush headers={}
     disconnect_without_flush(headers).tap do
       processor_inst.join
     end
@@ -111,7 +111,7 @@ class OnStomp::Client
   # This method should not be invoked directly. Use the frame methods provided
   # by the {OnStomp::Interfaces:FrameMethod} interface.
   # @return [OnStomp::Components::Frame]
-  def transmit(frame, cbs={})
+  def transmit frame, cbs={}
     frame.tap do
       register_callbacks frame, cbs
       trigger_before_transmitting frame
