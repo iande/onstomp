@@ -11,7 +11,7 @@ class OnStomp::Failover::Pools::Base
   end
   
   def next_client
-    raise ArgumentError, 'implemented in subclasses'
+    raise 'implemented in subclasses'
   end
   
   def shuffle!
