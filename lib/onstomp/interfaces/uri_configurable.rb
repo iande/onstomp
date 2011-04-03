@@ -29,7 +29,7 @@ module OnStomp::Interfaces::UriConfigurable
     def attr_configurable *args, &block
       opts = args.last.is_a?(Hash) ? args.pop : {}
       args.each do |attr_name|
-        __init_config_attribute__ attr_name, opts
+        init_config_attribute attr_name, opts
         attr_reader attr_name
         define_method :"#{attr_name}=" do |v|
           instance_variable_set(:"@#{attr_name}", (block ? block.call(v) : v))
@@ -44,7 +44,7 @@ module OnStomp::Interfaces::UriConfigurable
     # created by this method are assigned an +Array+, only the first element
     # will be used as their value.
     def attr_configurable_single *args, &block
-      trans = __attr_configurable_wrap__ lambda { |v| v.is_a?(Array) ? v.first : v }, block
+      trans = attr_configurable_wrap lambda { |v| v.is_a?(Array) ? v.first : v }, block
       attr_configurable(*args, &trans)
     end
     
@@ -55,7 +55,7 @@ module OnStomp::Interfaces::UriConfigurable
     # created by this method will be treated as though they were created
     # with {#attr_configurable_single} and will also be converted into Strings.
     def attr_configurable_str *args, &block
-      trans = __attr_configurable_wrap__ lambda { |v| v.to_s }, block
+      trans = attr_configurable_wrap lambda { |v| v.to_s }, block
       attr_configurable_single(*args, &trans)
     end
     
@@ -66,7 +66,7 @@ module OnStomp::Interfaces::UriConfigurable
     # created by this method are assigned a value that is not an +Array+, the
     # value will be wrapped in an array.
     def attr_configurable_arr *args, &block
-      trans = __attr_configurable_wrap__ lambda { |v| Array(v) }, block
+      trans = attr_configurable_wrap lambda { |v| Array(v) }, block
       attr_configurable(*args, &trans)
     end
     
@@ -78,12 +78,12 @@ module OnStomp::Interfaces::UriConfigurable
     # with {#attr_configurable_single} and will also be converted into Class
     # or Module objects.
     def attr_configurable_class *args, &block
-      trans = __attr_configurable_wrap__ lambda { |v| OnStomp.constantize(v) }, block
+      trans = attr_configurable_wrap lambda { |v| OnStomp.constantize(v) }, block
       attr_configurable_single(*args, &trans)
     end
     
     private
-    def __attr_configurable_wrap__(trans, block)
+    def attr_configurable_wrap(trans, block)
       if block
         lambda { |v| block.call(trans.call(v)) }
       else
@@ -91,7 +91,7 @@ module OnStomp::Interfaces::UriConfigurable
       end
     end
     
-    def __init_config_attribute__(name, opts)
+    def init_config_attribute(name, opts)
       unless respond_to?(:config_attributes)
         class << self
           def config_attributes

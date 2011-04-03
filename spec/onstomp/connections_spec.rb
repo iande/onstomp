@@ -63,6 +63,10 @@ module OnStomp
         Connections::PROTOCOL_VERSIONS['1.0'] = stomp_1_0_class
         Connections::PROTOCOL_VERSIONS['1.1'] = stomp_1_1_class
       end
+      after(:each) do
+        Connections::PROTOCOL_VERSIONS['1.0'] = Connections::Stomp_1_0
+        Connections::PROTOCOL_VERSIONS['1.1'] = Connections::Stomp_1_1
+      end
       
       describe "TCP connections" do
         before(:each) do

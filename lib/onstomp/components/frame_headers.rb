@@ -14,7 +14,7 @@ class OnStomp::Components::FrameHeaders
   # @see #merge!
   def initialize(headers={})
     @values = {}
-    __initialize_names__
+    initialize_names
     merge! headers
   end
   
@@ -115,7 +115,7 @@ class OnStomp::Components::FrameHeaders
   def delete(name)
     name = name.to_sym
     if @values.key? name
-      __delete_name__ name
+      delete_name name
       @values.delete name
     end
   end
@@ -150,7 +150,7 @@ class OnStomp::Components::FrameHeaders
   def []=(name, val)
     name = name.to_sym
     val = val.to_s
-    __add_name__ name
+    add_name name
     @values[name] = [val]
     val
   end
@@ -162,51 +162,48 @@ class OnStomp::Components::FrameHeaders
     @values.inject({}) { |h, (k,v)| h[k] = v.first; h }
   end
   
+  # Iterates over header name / value pairs, yielding them as a pair
+  # of strings to the supplied block.
+  # @yield [header_name, header_value]
+  # @yieldparam [String] header_name
+  # @yieldparam [String] header_value
+  def each &block
+    if block_given?
+      iterate_each &block
+      self
+    else
+      OnStomp::ENUMERATOR_KLASS.new(self)
+    end
+  end
+  
   if RUBY_VERSION >= "1.9"
     def names; @values.keys; end
     
-    def each(&block)
-      if block_given?
-        @values.each do |name, vals|
-          name_str = name.to_s
-          vals.each do |val|
-            yield [name_str, val]
-          end
+    private
+    def iterate_each
+      @values.each do |name, vals|
+        name_str = name.to_s
+        vals.each do |val|
+          yield [name_str, val]
         end
-        self
-      else
-        Enumerator.new(self)
       end
     end
-    
-    private
-    def __initialize_names__; end
-    def __delete_name__(name); end
-    def __add_name__(name); end
+    def initialize_names; end
+    def delete_name(name); end
+    def add_name(name); end
   else
     attr_reader :names
-    
-    # Iterates over header name / value pairs, yielding them as a pair
-    # of strings to the supplied block.
-    # @yield [header_name, header_value]
-    # @yieldparam [String] header_name
-    # @yieldparam [String] header_value
-    def each(&block)
-      if block_given?
-        @names.each do |name|
-          @values[name].each do |val|
-            yield [name.to_s, val]
-          end
-        end
-        self
-      else
-        Enumerable::Enumerator.new(self)
-      end
-    end
 
     private
-    def __initialize_names__; @names = []; end
-    def __delete_name__(name); @names.delete name; end
-    def __add_name__(name); @names << name unless @values.key?(name); end
+    def iterate_each
+      @names.each do |name|
+        @values[name].each do |val|
+          yield [name.to_s, val]
+        end
+      end
+    end
+    def initialize_names; @names = []; end
+    def delete_name(name); @names.delete name; end
+    def add_name(name); @names << name unless @values.key?(name); end
   end
 end

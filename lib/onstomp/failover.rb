@@ -7,7 +7,6 @@ end
 require 'onstomp/failover/uri'
 require 'onstomp/failover/failover_configurable'
 require 'onstomp/failover/failover_events'
-require 'onstomp/failover/frame_methods'
 require 'onstomp/failover/buffers'
 require 'onstomp/failover/pools'
 require 'onstomp/failover/client'

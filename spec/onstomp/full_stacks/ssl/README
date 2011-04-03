@@ -1,0 +1,6 @@
+These are all the SSL certificates / keys needed for testing SSL connectivity
+with stomper.  The CA key file is protected with the pass phrase "testing"
+The file broker_cert.pem is a copy of demoCA/newcerts/01.pem.
+The file client_cert.pem is a copy of demoCA/newcerts/02.pem.
+
+All keys, certificates and signing requests were created using OpenSSL 1.0.0c

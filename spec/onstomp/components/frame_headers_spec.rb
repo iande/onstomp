@@ -6,10 +6,7 @@ module OnStomp::Components
     let(:headers) {
       FrameHeaders.new
     }
-    let(:enumerator_module) {
-      RUBY_VERSION >= '1.9' ? Enumerator : Enumerable::Enumerator
-    }
-    
+        
     describe ".initialize" do
       it "should create an empty set of headers" do
         FrameHeaders.new.names.should == []
@@ -133,7 +130,7 @@ module OnStomp::Components
       end
       
       it "should yield an enumerator if called without a block" do
-        headers.each.should be_a_kind_of(enumerator_module)
+        headers.each.should be_a_kind_of(OnStomp::ENUMERATOR_KLASS)
       end
       
       it "should yield header names and values as pairs of strings" do

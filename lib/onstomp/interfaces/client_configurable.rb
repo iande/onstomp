@@ -40,16 +40,12 @@ module OnStomp::Interfaces::ClientConfigurable
     end
     
     # Creates a readable and writeable attribute with the given name that
-    # defaults to the {OnStomp::Components::ThreadedProcessor} and if set
-    # to nil will instead use {OnStomp::Components::NilProcessor}. Corresponds
+    # defaults to the {OnStomp::Components::ThreadedProcessor}. Corresponds
     # the the class to use when create new processor instances when a client
     # is connected.
     # @param [Symbol] nm name of attribute
     def attr_configurable_processor nm
-      attr_configurable_class(nm,
-        :default => OnStomp::Components::ThreadedProcessor) do |pr|
-        pr || OnStomp::Components::NilProcessor
-      end
+      attr_configurable_class(nm, :default => OnStomp::Components::ThreadedProcessor)
     end
   end
 end
