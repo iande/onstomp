@@ -1,0 +1,526 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module: OnStomp::Components::Scopes</title>
+<link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '../..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (S)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../../OnStomp.html" title="OnStomp (module)">OnStomp</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Components.html" title="OnStomp::Components (module)">Components</a></span></span>
+     &raquo; 
+    <span class="title">Scopes</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Module: OnStomp::Components::Scopes
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+    <dt class="r1">Included in:</dt>
+    <dd class="r1"><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></dd>
+    
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/onstomp/components/scopes.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+Mixin for <span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">clients</a></span> to create frame scopes.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+   
+    
+   
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Scopes/HeaderScope.html" title="OnStomp::Components::Scopes::HeaderScope (class)">HeaderScope</a></span>, <span class='object_link'><a href="Scopes/ReceiptScope.html" title="OnStomp::Components::Scopes::ReceiptScope (class)">ReceiptScope</a></span>, <span class='object_link'><a href="Scopes/TransactionScope.html" title="OnStomp::Components::Scopes::TransactionScope (class)">TransactionScope</a></span>
+    
+  
+</p>
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#transaction-instance_method" title="#transaction (instance method)">- (OnStomp::Components::Scopes::TransactionScope) <strong>transaction</strong>(tx_id = nil) {|t| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Creates a new <span class='object_link'><a href="Scopes/TransactionScope.html" title="OnStomp::Components::Scopes::TransactionScope (class)">TransactionScope</a></span> and evaluates
+the block within that scope if one is given.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#with_headers-instance_method" title="#with_headers (instance method)">- (OnStomp::Components::Scopes::HeaderScope) <strong>with_headers</strong>(headers) {|h| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Creates a new <span class='object_link'><a href="Scopes/HeaderScope.html" title="OnStomp::Components::Scopes::HeaderScope (class)">HeaderScope</a></span> that will apply
+the provided headers to all frames generated on the scope.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#with_receipt-instance_method" title="#with_receipt (instance method)">- (OnStomp::Components::Scopes::ReceiptScope) <strong>with_receipt</strong> {|r| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Creates a new <span class='object_link'><a href="Scopes/ReceiptScope.html" title="OnStomp::Components::Scopes::ReceiptScope (class)">ReceiptScope</a></span>.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="transaction-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Scopes/TransactionScope.html" title="OnStomp::Components::Scopes::TransactionScope (class)">OnStomp::Components::Scopes::TransactionScope</a></span></tt>) <strong>transaction</strong>(tx_id = nil) {|t| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Creates a new <span class='object_link'><a href="Scopes/TransactionScope.html" title="OnStomp::Components::Scopes::TransactionScope (class)">TransactionScope</a></span> and evaluates
+the block within that scope if one is given.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>tx_id</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>
+optional id for the transaction
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>t</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+block of frames to generate within a transaction
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Scopes/TransactionScope.html" title="OnStomp::Components::Scopes::TransactionScope (class)">OnStomp::Components::Scopes::TransactionScope</a></span></tt>)</span>
+      
+      
+        <span class='name'>t</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Scopes/TransactionScope.html" title="OnStomp::Components::Scopes::TransactionScope (class)">OnStomp::Components::Scopes::TransactionScope</a></span></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="Scopes/TransactionScope.html#perform-instance_method" title="OnStomp::Components::Scopes::TransactionScope#perform (method)">OnStomp::Components::Scopes::TransactionScope#perform</a></span></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+22
+23
+24
+25
+26</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/components/scopes.rb', line 22</span>
+
+<span class='kw'>def</span> <span class='id transaction'>transaction</span> <span class='id tx_id'>tx_id</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id block'>block</span>
+  <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>Components</span><span class='op'>::</span><span class='const'>Scopes</span><span class='op'>::</span><span class='const'>TransactionScope</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='id tx_id'>tx_id</span><span class='comma'>,</span> <span class='kw'>self</span><span class='rparen'>)</span><span class='period'>.</span><span class='id tap'>tap</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id t'>t</span><span class='op'>|</span>
+    <span class='id t'>t</span><span class='period'>.</span><span class='id perform'>perform</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id block'>block</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id block'>block</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="with_headers-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Scopes/HeaderScope.html" title="OnStomp::Components::Scopes::HeaderScope (class)">OnStomp::Components::Scopes::HeaderScope</a></span></tt>) <strong>with_headers</strong>(headers) {|h| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Creates a new <span class='object_link'><a href="Scopes/HeaderScope.html" title="OnStomp::Components::Scopes::HeaderScope (class)">HeaderScope</a></span> that will apply
+the provided headers to all frames generated on the scope. If a block is
+given, it will be evaluated within this scope.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>{#to_sym =&gt; #to_s}</tt>)</span>
+      
+      
+        <span class='name'>headers</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>h</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+block of frames to apply headers to
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Scopes/HeaderScope.html" title="OnStomp::Components::Scopes::HeaderScope (class)">OnStomp::Components::Scopes::HeaderScope</a></span></tt>)</span>
+      
+      
+        <span class='name'>h</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Scopes/HeaderScope.html" title="OnStomp::Components::Scopes::HeaderScope (class)">OnStomp::Components::Scopes::HeaderScope</a></span></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li>OnStomp::Components::Scopes::HeaderScope#perform</li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+36
+37
+38
+39
+40</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/components/scopes.rb', line 36</span>
+
+<span class='kw'>def</span> <span class='id with_headers'>with_headers</span> <span class='id headers'>headers</span>
+  <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>Components</span><span class='op'>::</span><span class='const'>Scopes</span><span class='op'>::</span><span class='const'>HeaderScope</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='id headers'>headers</span><span class='comma'>,</span> <span class='kw'>self</span><span class='rparen'>)</span><span class='period'>.</span><span class='id tap'>tap</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id h'>h</span><span class='op'>|</span>
+    <span class='kw'>yield</span> <span class='id h'>h</span> <span class='kw'>if</span> <span class='id block_given?'>block_given?</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="with_receipt-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Scopes/ReceiptScope.html" title="OnStomp::Components::Scopes::ReceiptScope (class)">OnStomp::Components::Scopes::ReceiptScope</a></span></tt>) <strong>with_receipt</strong> {|r| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Creates a new <span class='object_link'><a href="Scopes/ReceiptScope.html" title="OnStomp::Components::Scopes::ReceiptScope (class)">ReceiptScope</a></span>. Any receipt-able
+frame generated on this scope will automatically have the supplied callback
+attached as a RECEIPT handler.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>r</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback to be invoked when the RECEIPT frame is received
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>r</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+RECEIPT frame
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Scopes/ReceiptScope.html" title="OnStomp::Components::Scopes::ReceiptScope (class)">OnStomp::Components::Scopes::ReceiptScope</a></span></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+11
+12
+13</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/components/scopes.rb', line 11</span>
+
+<span class='kw'>def</span> <span class='id with_receipt'>with_receipt</span> <span class='op'>&amp;</span><span class='id block'>block</span>
+  <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>Components</span><span class='op'>::</span><span class='const'>Scopes</span><span class='op'>::</span><span class='const'>ReceiptScope</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='id block'>block</span><span class='comma'>,</span> <span class='kw'>self</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun Apr  3 16:54:10 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.5 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

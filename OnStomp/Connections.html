@@ -1,0 +1,544 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module: OnStomp::Connections</title>
+<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (C)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../OnStomp.html" title="OnStomp (module)">OnStomp</a></span></span>
+     &raquo; 
+    <span class="title">Connections</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Module: OnStomp::Connections
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/onstomp/connections.rb<span class="defines">,<br />
+  lib/onstomp/connections.rb</span>
+</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+Namespace for protocol specific connections used to communicate with STOMP
+brokers.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+   
+    
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Connections/Heartbeating.html" title="OnStomp::Connections::Heartbeating (module)">Heartbeating</a></span>, <span class='object_link'><a href="Connections/Serializers.html" title="OnStomp::Connections::Serializers (module)">Serializers</a></span>, <span class='object_link'><a href="Connections/Stomp_1.html" title="OnStomp::Connections::Stomp_1 (module)">Stomp_1</a></span>
+    
+   
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Connections/Base.html" title="OnStomp::Connections::Base (class)">Base</a></span>, <span class='object_link'><a href="Connections/Stomp_1_0.html" title="OnStomp::Connections::Stomp_1_0 (class)">Stomp_1_0</a></span>, <span class='object_link'><a href="Connections/Stomp_1_1.html" title="OnStomp::Connections::Stomp_1_1 (class)">Stomp_1_1</a></span>
+    
+  
+</p>
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="DEFAULT_SSL_OPTIONS-constant" class="">DEFAULT_SSL_OPTIONS =
+          <div class="docstring">
+  <div class="discussion">
+    <p>
+Default SSL options to use when establishing an SSL connection.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span>
+  <span class='symbol'>:verify_mode</span> <span class='op'>=&gt;</span> <span class='const'>OpenSSL</span><span class='op'>::</span><span class='const'>SSL</span><span class='op'>::</span><span class='const'>VERIFY_PEER</span> <span class='op'>|</span>
+    <span class='const'>OpenSSL</span><span class='op'>::</span><span class='const'>SSL</span><span class='op'>::</span><span class='const'>VERIFY_FAIL_IF_NO_PEER_CERT</span><span class='comma'>,</span>
+  <span class='symbol'>:ca_file</span> <span class='op'>=&gt;</span> <span class='kw'>nil</span><span class='comma'>,</span>
+  <span class='symbol'>:ca_path</span> <span class='op'>=&gt;</span> <span class='kw'>nil</span><span class='comma'>,</span>
+  <span class='symbol'>:cert</span> <span class='op'>=&gt;</span> <span class='kw'>nil</span><span class='comma'>,</span>
+  <span class='symbol'>:key</span> <span class='op'>=&gt;</span> <span class='kw'>nil</span><span class='comma'>,</span>
+  <span class='symbol'>:post_connection_check</span> <span class='op'>=&gt;</span> <span class='kw'>true</span>
+<span class='rbrace'>}</span></pre></dd>
+      
+        <dt id="PROTOCOL_VERSIONS-constant" class="">PROTOCOL_VERSIONS =
+          <div class="docstring">
+  <div class="discussion">
+    <p>
+A mapping of protocol versions to the connection classes that support them.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span>
+  <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>1.0</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>Connections</span><span class='op'>::</span><span class='const'>Stomp_1_0</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>1.1</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>Connections</span><span class='op'>::</span><span class='const'>Stomp_1_1</span>
+<span class='rbrace'>}</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#connect-class_method" title="connect (class method)">+ (OnStomp::Connections::Base) <strong>connect</strong>(client, u_head, c_head, con_cbs) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Creates an initial <span class='object_link'><a href="Connections/Stomp_1_0.html" title="OnStomp::Connections::Stomp_1_0 (class)">connection</a></span> to the
+client&#8217;s broker uri, performs the CONNECT/CONNECTED frame exchange,
+and returns a <span class='object_link'><a href="Connections/Base.html" title="OnStomp::Connections::Base (class)">connection</a></span> suitable for the
+negotiated STOMP protocol version.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#select_supported-class_method" title="select_supported (class method)">+ (Array&lt;String&gt;) <strong>select_supported</strong>(vers) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Filters a list of supplied versions to only those that are supported.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#supported-class_method" title="supported (class method)">+ (Array&lt;String&gt;) <strong>supported</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns a list of supported protocol versions.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="connect-class_method">
+  
+    + (<tt><span class='object_link'><a href="Connections/Base.html" title="OnStomp::Connections::Base (class)">OnStomp::Connections::Base</a></span></tt>) <strong>connect</strong>(client, u_head, c_head, con_cbs) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Creates an initial <span class='object_link'><a href="Connections/Stomp_1_0.html" title="OnStomp::Connections::Stomp_1_0 (class)">connection</a></span> to the
+client&#8217;s broker uri, performs the CONNECT/CONNECTED frame exchange,
+and returns a <span class='object_link'><a href="Connections/Base.html" title="OnStomp::Connections::Base (class)">connection</a></span> suitable for the
+negotiated STOMP protocol version.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>{#to_sym =&gt; #to_s}</tt>)</span>
+      
+      
+        <span class='name'>u_head</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+user specified headers for CONNECT frame
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>{#to_sym =&gt; #to_s}</tt>)</span>
+      
+      
+        <span class='name'>c_head</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+client specified headers for CONNECT frame
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>{Symbol =&gt; Proc}</tt>)</span>
+      
+      
+        <span class='name'>con_cbs</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+event callbacks to install on the final connection
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Connections/Base.html" title="OnStomp::Connections::Base (class)">OnStomp::Connections::Base</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+instance of Base subclass suited for negotiated protocol version
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Raises:</h3>
+<ul class="raise">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="OnStompError.html" title="OnStomp::OnStompError (class)">OnStomp::OnStompError</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+if negotiating the connection raises an such an error.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/connections.rb', line 47</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id connect'>connect</span> <span class='id client'>client</span><span class='comma'>,</span> <span class='id u_head'>u_head</span><span class='comma'>,</span> <span class='id c_head'>c_head</span><span class='comma'>,</span> <span class='id con_cbs'>con_cbs</span>
+  <span class='id init_con'>init_con</span> <span class='op'>=</span> <span class='id create_connection'>create_connection</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>1.0</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id client'>client</span><span class='rparen'>)</span>
+  <span class='id ver'>ver</span><span class='comma'>,</span> <span class='id connected'>connected</span> <span class='op'>=</span> <span class='id init_con'>init_con</span><span class='period'>.</span><span class='id connect'>connect</span> <span class='id client'>client</span><span class='comma'>,</span> <span class='id u_head'>u_head</span><span class='comma'>,</span> <span class='id c_head'>c_head</span>
+  <span class='kw'>begin</span>
+    <span class='id negotiate_connection'>negotiate_connection</span><span class='lparen'>(</span><span class='id ver'>ver</span><span class='comma'>,</span> <span class='id init_con'>init_con</span><span class='comma'>,</span> <span class='id client'>client</span><span class='rparen'>)</span><span class='period'>.</span><span class='id tap'>tap</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id final_con'>final_con</span><span class='op'>|</span>
+      <span class='id final_con'>final_con</span><span class='period'>.</span><span class='id configure'>configure</span> <span class='id connected'>connected</span><span class='comma'>,</span> <span class='id con_cbs'>con_cbs</span>
+    <span class='kw'>end</span>
+  <span class='kw'>rescue</span> <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>OnStompError</span>
+    <span class='comment'># Perform a blocking close.
+</span>    <span class='id init_con'>init_con</span><span class='period'>.</span><span class='id close'>close</span> <span class='kw'>true</span>
+    <span class='id raise'>raise</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="select_supported-class_method">
+  
+    + (<tt>Array&lt;String&gt;</tt>) <strong>select_supported</strong>(vers) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Filters a list of supplied versions to only those that are supported.
+Results are in the same order as they are found in <span class='object_link'><a href="#supported-class_method" title="OnStomp::Connections.supported (method)">supported</a></span>. If none of
+the supplied versions are supported, an empty list is returned.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+        <span class='name'>vers</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+versions to filter
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+29
+30
+31
+32</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/connections.rb', line 29</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id select_supported'>select_supported</span> <span class='id vers'>vers</span>
+  <span class='id vers'>vers</span> <span class='op'>=</span> <span class='const'>Array</span><span class='lparen'>(</span><span class='id vers'>vers</span><span class='rparen'>)</span>
+  <span class='id supported'>supported</span><span class='period'>.</span><span class='id select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id v'>v</span><span class='op'>|</span> <span class='id vers'>vers</span><span class='period'>.</span><span class='id include?'>include?</span> <span class='id v'>v</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="supported-class_method">
+  
+    + (<tt>Array&lt;String&gt;</tt>) <strong>supported</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns a list of supported protocol versions
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+19
+20
+21</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/connections.rb', line 19</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id supported'>supported</span>
+  <span class='const'>PROTOCOL_VERSIONS</span><span class='period'>.</span><span class='id keys'>keys</span><span class='period'>.</span><span class='id sort'>sort</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun Apr  3 16:54:09 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.5 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>File: UserNarrative</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html" title="Index">Index</a> &raquo; 
+    <span class="title">File: UserNarrative</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><div id='filecontents'><h1>A Narrative for Users</h1>
+
+<p>This document explores the <code>OnStomp</code> API through a narrative aimed at end
+users of the library.  It will start with the basics and work through the
+available features through exposition and examples. It may be helpful to
+review the <a href="http://stomp.github.com/index.html">STOMP specification</a> before
+diving into this document.</p>
+
+<h2>Creating a STOMP Client</h2>
+
+<p>Creating a <span class='object_link'><a href="OnStomp/Client.html" title="OnStomp::Client (class)">client</a></span> connection to a STOMP broker is done
+by creating a new client and connecting it. This can be accomplished a few
+different ways.</p>
+
+<pre class="code"><span class='comment'># The common way
+</span><span class='id client'>client</span> <span class='op'>=</span> <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>Client</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>stomp://host.example.org</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='id client'>client</span><span class='period'>.</span><span class='id connect'>connect</span>
+
+<span class='comment'># A short-cut
+</span><span class='id client'>client</span> <span class='op'>=</span> <span class='const'>OnStomp</span><span class='period'>.</span><span class='id connect'>connect</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>stomp://host.example.org</span><span class='tstring_end'>&quot;</span></span>
+</pre>
+
+<p>The <span class='object_link'><a href="OnStomp.html#connect-class_method" title="OnStomp.connect (method)">OnStomp.connect</a></span> method creates a new client instance and immediately
+calls <span class='object_link'><a href="OnStomp/Client.html#connect-instance_method" title="OnStomp::Client#connect (method)">connect</a></span> on it. This method is also aliased as
+<code>open</code>, so use the verbiage you're most comfortable with.</p>
+
+<p>Once connected, frames can be sent to the STOMP broker through a series of
+convenient (and fairly common amongst most STOMP clients) methods such as
+<span class='object_link'><a href="OnStomp/Interfaces/FrameMethods.html#send-instance_method" title="OnStomp::Interfaces::FrameMethods#send (method)">send</a></span>,
+<span class='object_link'><a href="OnStomp/Interfaces/FrameMethods.html#subscribe-instance_method" title="OnStomp::Interfaces::FrameMethods#subscribe (method)">subscribe</a></span> and
+<span class='object_link'><a href="OnStomp/Interfaces/FrameMethods.html#ack-instance_method" title="OnStomp::Interfaces::FrameMethods#ack (method)">ack</a></span>. A full list of the frame methods can
+be found in the documentation for the <span class='object_link'><a href="OnStomp/Interfaces/FrameMethods.html" title="OnStomp::Interfaces::FrameMethods (module)">OnStomp::Interfaces::FrameMethods</a></span>
+mixin.</p>
+
+<p>So, let's send some SEND frame to the broker:</p>
+
+<pre class="code"><span class='id client'>client</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Hello World!</span><span class='tstring_end'>'</span></span>
+<span class='id client'>client</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Persist this, please.</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:persistent</span> <span class='op'>=&gt;</span> <span class='kw'>true</span>
+</pre>
+
+<p>Most frame-generating methods treat the last parameter as a hash of headers
+to include with the generated frame. The only exception to this is the
+<span class='object_link'><a href="OnStomp/Interfaces/FrameMethods.html#beat-instance_method" title="OnStomp::Interfaces::FrameMethods#beat (method)">heart-beat</a></span> frame, which has no
+command, headers or body.</p>
+
+<h2>Subscriptions and Receipts</h2>
+
+<h3>Subscribing: Send me stuff, and maybe I'll tell you when I got it.</h3>
+
+<p>Subscriptions in <code>onstomp</code> are pretty much just blocks that get called every
+time a MESSAGE frame is received that matches a previously sent SUBSCRIBE frame.</p>
+
+<p>To set up a subscription, just pass a block to the
+<span class='object_link'><a href="OnStomp/Interfaces/FrameMethods.html#subscribe-instance_method" title="OnStomp::Interfaces::FrameMethods#subscribe (method)">subscribe</a></span> method:</p>
+
+<pre class="code"><span class='id client'>client</span><span class='period'>.</span><span class='id subscribe'>subscribe</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id msg'>msg</span><span class='op'>|</span>
+  <span class='comment'># Invoked every time the broker delivers a MESSAGE frame for the
+</span>  <span class='comment'># SUBSCRIBE frame generated by this method call.
+</span>  <span class='id puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Got a message: </span><span class='embexpr_beg'>#{</span><span class='id msg'>msg</span><span class='period'>.</span><span class='id body'>body</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+</pre>
+
+<p>The STOMP protocol supports a few different ways of acknowledging that MESSAGE
+frames were received, depending upon the protocol version. STOMP 1.0
+connections support automatic acknowledgment (the default behavior) and
+client-side message acknowledgment.  STOMP 1.1 adds a <code>client-individual</code> mode
+that may behave differently depending upon the broker you are using.  It is
+considered incorrect for a client to acknowledge MESSAGE frames with ACK
+frames if the subscription is operating in <code>auto</code> mode. To set the ack mode
+of a subscription, include an <code>:ack</code> header in your call to
+<span class='object_link'><a href="OnStomp/Interfaces/FrameMethods.html#subscribe-instance_method" title="OnStomp::Interfaces::FrameMethods#subscribe (method)">subscribe</a></span>:</p>
+
+<pre class="code"><span class='comment'># Technically, this isn't needed as auto is the default ack mode
+</span><span class='id client'>client</span><span class='period'>.</span><span class='id subscribe'>subscribe</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:ack</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>auto</span><span class='tstring_end'>'</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id msg'>msg</span><span class='op'>|</span>
+  <span class='comment'># process the MESSAGE frame
+</span>  <span class='comment'># ...
+</span><span class='kw'>end</span>
+
+<span class='comment'># Set the subscription's ack mode to client
+</span><span class='id client'>client</span><span class='period'>.</span><span class='id subscribe'>subscribe</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:ack</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>client</span><span class='tstring_end'>'</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id msg'>msg</span><span class='op'>|</span>
+  <span class='comment'># process the MESSAGE frame
+</span>  <span class='comment'># ...
+</span>  <span class='comment'># Tell the broker that the MESSAGE frame was processed
+</span>  <span class='id client'>client</span><span class='period'>.</span><span class='id ack'>ack</span> <span class='id msg'>msg</span>
+<span class='kw'>end</span>
+
+<span class='comment'># Set the subscription's ack mode to client-individual
+</span><span class='id client'>client</span><span class='period'>.</span><span class='id subscribe'>subscribe</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:ack</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>client-individual</span><span class='tstring_end'>'</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id msg'>msg</span><span class='op'>|</span>
+  <span class='comment'># process the MESSAGE frame
+</span>  <span class='comment'># ...
+</span>  <span class='comment'># Tell the broker that the MESSAGE frame was NOT processed
+</span>  <span class='id client'>client</span><span class='period'>.</span><span class='id nack'>nack</span> <span class='id msg'>msg</span>
+<span class='kw'>end</span>
+</pre>
+
+<p>The difference between <code>:ack =&gt; 'client'</code> and <code>:ack =&gt; 'client-individual</code>
+largely depends upon the STOMP broker. Apache's <a href="http://activemq.apache.org/">ActiveMQ</a>
+treats ACK frames received for a MESSAGE frame as "cumulative acknowledgements,"
+that is an ACK frame acknowledges the MESSAGE it was sent for and all previous
+MESSAGE frames sent from the broker to the client.  The STOMP 1.1 spec
+clarified the expected behavior brokers should exhibit when receiving an ACK
+frame, and a <code>client-individual</code> ack mode specifies that each MESSAGE frame
+will be acknowledged with its own ACK (or NACK) frame. There may be brokers
+that behave this way when using a <code>client</code> ack mode, so what happens when
+you ACK a MESSAGE in <code>client</code> mode depends heavily on the broker being used.</p>
+
+<p>The NACK frame was introduced in the STOMP 1.1 spec and gives the client a
+way to tell the broker that it did not successfully process a MESSAGE. It is
+very similar in structure to an ACK frame, which makes sense it is little
+more than a "Not ACK".</p>
+
+<h3>Receipts: Did you get that thing I sent you?</h3>
+
+<p>Most frames a client sends to a STOMP broker can be receipted (ie: the
+client can instruct the broker to send a RECEIPT frame after it receives
+the original frame.) The two exceptions to this are heart-beat frames (as
+mentioned previously, heart-beats really aren't frames) and CONNECT
+frames.  The client does this by including a <code>receipt</code> header that specifies
+an receipt ID for the frame being sent, the broker will in turn deliver a
+RECEIPT frame with a matching <code>receipt-id</code> header. In OnStomp, requesting a
+receipt for a SEND frame is as easy as including a block with your call to
+<span class='object_link'><a href="OnStomp/Interfaces/FrameMethods.html#send-instance_method" title="OnStomp::Interfaces::FrameMethods#send (method)">send</a></span>:</p>
+
+<pre class="code"><span class='id client'>client</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Did you get this?</span><span class='tstring_end'>'</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id r'>r</span><span class='op'>|</span>
+  <span class='id puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Got my receipt: </span><span class='embexpr_beg'>#{</span><span class='id r'>r</span><span class='lbracket'>[</span><span class='symbol'>:receipt-id</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+</pre>
+
+<p>To request receipts for other types of frames, see
+<a href="file.UserNarrative.html#with_receipt" title="with_receipt">with_receipt</a> subsection of
+<a href="file.UserNarrative.html#Scopes" title="Scopes">Scopes</a>.</p>
+
+<h2>Scopes</h2>
+
+<p>Sometimes you want to do the same stuff with a series of frames, and that's
+why we have <span class='object_link'><a href="OnStomp/Components/Scopes.html" title="OnStomp::Components::Scopes (module)">scopes</a></span>.</p>
+
+<h3>with_headers</h3>
+
+<p>A <span class='object_link'><a href="OnStomp/Components/Scopes/HeaderScope.html" title="OnStomp::Components::Scopes::HeaderScope (class)">header</a></span> scope is a convenient way to
+apply a common set of headers to a series of frames. You can create a new
+header scope from a client by calling
+<span class='object_link'><a href="OnStomp/Components/Scopes.html#with_headers-instance_method" title="OnStomp::Components::Scopes#with_headers (method)">with_headers</a></span>:</p>
+
+<pre class="code"><span class='id scope'>scope</span> <span class='op'>=</span> <span class='id client'>client</span><span class='period'>.</span><span class='id with_headers'>with_headers</span> <span class='symbol'>:persistent</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='symbol'>:content-type</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>text/plain</span><span class='tstring_end'>'</span></span>
+<span class='id scope'>scope</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>walks in to the room</span><span class='tstring_end'>'</span></span>
+<span class='id scope'>scope</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>feels like a big balloon</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:persitent</span> <span class='op'>=&gt;</span> <span class='kw'>false</span>
+<span class='id scope'>scope</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>big girls, you are beautiful</span><span class='tstring_end'>'</span></span>
+</pre>
+
+<p>All of the SEND frames generated will have a <code>content-type</code> header with a value
+of <code>text/plain</code>. The first and last frames will also have a header of
+<code>persistent</code> with a value of <code>true</code>; however, the middle frame's <code>persistent</code>
+header will have a value of <code>false</code>. As illustrated, headers specified on
+the frame-generating methods will override those defined for the scope.</p>
+
+<p>If you want to apply the headers to a series of frames in one swoop and don't
+need to keep a <code>scope</code> variable around, you can pass a block to <code>with_headers</code>:</p>
+
+<pre class="code"><span class='id client'>client</span><span class='period'>.</span><span class='id with_headers'>with_headers</span> <span class='symbol'>:persistent</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='symbol'>:content-type</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>text/plain</span><span class='tstring_end'>'</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id h'>h</span><span class='op'>|</span>
+  <span class='id h'>h</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>walks in to the room</span><span class='tstring_end'>'</span></span>
+  <span class='id h'>h</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>feels like a big balloon</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:persitent</span> <span class='op'>=&gt;</span> <span class='kw'>false</span>
+  <span class='id h'>h</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>big girls, you are beautiful</span><span class='tstring_end'>'</span></span>
+<span class='kw'>end</span>
+</pre>
+
+<p>This code sample produces the same results as the earlier example but without
+the need to keep track of the header scope instance.</p>
+
+<h3>with_receipt</h3>
+
+<p>A <span class='object_link'><a href="OnStomp/Components/Scopes/ReceiptScope.html" title="OnStomp::Components::Scopes::ReceiptScope (class)">receipt</a></span> scope is a convenient way
+to use the same receipt callback for multiple receipts. You can create a new
+receipt scope from a client by calling
+<span class='object_link'><a href="OnStomp/Components/Scopes.html#with_receipt-instance_method" title="OnStomp::Components::Scopes#with_receipt (method)">with_receipt</a></span> with the shared
+callback:</p>
+
+<pre class="code"><span class='id scope'>scope</span> <span class='op'>=</span> <span class='id client'>client</span><span class='period'>.</span><span class='id with_receipt'>with_receipt</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id r'>r</span><span class='op'>|</span>
+  <span class='id puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Got my receipt!</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+
+<span class='id scope'>scope</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>walks in to the room</span><span class='tstring_end'>'</span></span>
+<span class='id scope'>scope</span><span class='period'>.</span><span class='id subscribe'>subscribe</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test2</span><span class='tstring_end'>'</span></span>
+</pre>
+
+<p>This code sample will instruct the broker to create RECEIPT frames for client
+generated SEND and SUBSCRIBE frames. The receipt scope takes care of generating
+unique values for the <code>receipt</code> header of each frame. If you only need the
+receipt handler for one frame, you can use a bit of method chaining:</p>
+
+<pre class="code"><span class='id client'>client</span><span class='period'>.</span><span class='id with_receipt'>with_receipt</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id r'>r</span><span class='op'>|</span>
+  <span class='id puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Broker got DISCONNECT</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span><span class='period'>.</span><span class='id disconnect'>disconnect</span>
+</pre>
+
+<h3>transaction</h3>
+
+<p>A <span class='object_link'><a href="OnStomp/Components/Scopes/TransactionScope.html" title="OnStomp::Components::Scopes::TransactionScope (class)">transaction</a></span> scope is a little
+more complicated than the previous scopes, but only marginally so. This scope
+is useful if you want to deliver some frames as part of a transaction, but
+don't want to be bothered with managing <code>transaction</code> headers manually.</p>
+
+<h2>Events and Callbacks</h2>
+
+<h2>Body Encodings</h2>
+
+<h2>The <code>open-uri</code> Angle</h2>
+
+<h2>Failing Over</h2>
+
+<h2>Appendix: Technical Things and Gotchas</h2></div></div>
+    
+    <div id="footer">
+  Generated on Sun Apr  3 16:54:09 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.5 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

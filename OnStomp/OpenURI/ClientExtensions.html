@@ -1,0 +1,685 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module: OnStomp::OpenURI::ClientExtensions</title>
+<link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '../..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (C)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../../OnStomp.html" title="OnStomp (module)">OnStomp</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../OpenURI.html" title="OnStomp::OpenURI (module)">OpenURI</a></span></span>
+     &raquo; 
+    <span class="title">ClientExtensions</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Module: OnStomp::OpenURI::ClientExtensions
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/onstomp/open-uri/client_extensions.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+Mixin of extensions added to <span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">clients</a></span> when they are
+created by opening a stomp:// URI.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#auto_destination-instance_method" title="#auto_destination (instance method)">- (Object) <strong>auto_destination</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute auto_destination.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#openuri_message_queue-instance_method" title="#openuri_message_queue (instance method)">- (Object) <strong>openuri_message_queue</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute openuri_message_queue.
+</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#extended-class_method" title="extended (class method)">+ (Object) <strong>extended</strong>(inst) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Aliases <span class='object_link'><a href="#send_with_openuri-instance_method" title="OnStomp::OpenURI::ClientExtensions#send_with_openuri (method)">#send_with_openuri</a></span> as <tt>send</tt>.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#each-instance_method" title="#each (instance method)">- (Enumerator, self) <strong>each</strong> {|m| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Creates a subscription to <span class='object_link'><a href="#auto_destination-instance_method" title="OnStomp::OpenURI::ClientExtensions#auto_destination (method)">#auto_destination</a></span> and yields each MESSAGE frame
+read from the subscription to the supplied block.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#first-instance_method" title="#first (instance method)">- (OnStomp::Components::Frame<sup>+</sup>) <strong>first</strong>(n = nil) </a>
+    
+
+    
+      (also: #take, #gets)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns <tt>n</tt> frames read from the subscription.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#send_with_openuri-instance_method" title="#send_with_openuri (instance method)">- (OnStomp::Components::Frame) <strong>send_with_openuri</strong>(*args, &amp;block) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Adds the ability for clients to generate SEND frames without specifying a
+destination by using <span class='object_link'><a href="#auto_destination-instance_method" title="OnStomp::OpenURI::ClientExtensions#auto_destination (method)">#auto_destination</a></span> instead.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="auto_destination=-instance_method"></span>
+      <span id="auto_destination-instance_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="auto_destination-instance_method">
+  
+    - (<tt>Object</tt>) <strong>auto_destination</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute auto_destination
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+6
+7
+8</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/open-uri/client_extensions.rb', line 6</span>
+
+<span class='kw'>def</span> <span class='id auto_destination'>auto_destination</span>
+  <span class='ivar'>@auto_destination</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <span id="openuri_message_queue-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="openuri_message_queue-instance_method">
+  
+    - (<tt>Object</tt>) <strong>openuri_message_queue</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute openuri_message_queue
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+6
+7
+8</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/open-uri/client_extensions.rb', line 6</span>
+
+<span class='kw'>def</span> <span class='id openuri_message_queue'>openuri_message_queue</span>
+  <span class='ivar'>@openuri_message_queue</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="extended-class_method">
+  
+    + (<tt>Object</tt>) <strong>extended</strong>(inst) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Aliases <span class='object_link'><a href="#send_with_openuri-instance_method" title="OnStomp::OpenURI::ClientExtensions#send_with_openuri (method)">#send_with_openuri</a></span> as <tt>send</tt>
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+9
+10
+11
+12
+13
+14
+15</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/open-uri/client_extensions.rb', line 9</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id extended'>extended</span> <span class='id inst'>inst</span>
+  <span class='id inst'>inst</span><span class='period'>.</span><span class='id instance_eval'>instance_eval</span> <span class='kw'>do</span>
+    <span class='kw'>alias</span> <span class='symbol'>:send_without_openuri</span> <span class='symbol'>:send</span>
+    <span class='kw'>alias</span> <span class='symbol'>:send</span> <span class='symbol'>:send_with_openuri</span>
+    <span class='kw'>alias</span> <span class='symbol'>:puts</span> <span class='symbol'>:send</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="each-instance_method">
+  
+    - (<tt>Enumerator</tt>, <tt>self</tt>) <strong>each</strong> {|m| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Creates a subscription to <span class='object_link'><a href="#auto_destination-instance_method" title="OnStomp::OpenURI::ClientExtensions#auto_destination (method)">#auto_destination</a></span> and yields each MESSAGE frame
+read from the subscription to the supplied block. If no block is provided
+an enumerator is returned.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>m</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+block to call for each MESSAGE frame
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>m</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Enumerator</tt>, <tt>self</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/open-uri/client_extensions.rb', line 35</span>
+
+<span class='kw'>def</span> <span class='id each'>each</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id block'>block</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id block'>block</span>
+    <span class='id subscribe_to_auto_destination'>subscribe_to_auto_destination</span>
+    <span class='id loop'>loop</span> <span class='kw'>do</span>
+      <span class='kw'>yield</span> <span class='id openuri_message_queue'>openuri_message_queue</span><span class='period'>.</span><span class='id shift'>shift</span>
+    <span class='kw'>end</span>
+  <span class='kw'>else</span>
+    <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>ENUMERATOR_KLASS</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="first-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt><sup>+</sup>) <strong>first</strong>(n = nil) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='take-instance_method'>take</span>, <span id='gets-instance_method'>gets</span></span>
+    </span>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns <tt>n</tt> frames read from the subscription. If <tt>n</tt> is
+ommited, the next frame is returned, otherwise an array of the next
+<tt>n</tt> frames is returned.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Fixnum</tt>, <tt>nil</tt>)</span>
+      
+      
+        <span class='name'>n</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>, <tt>Array&lt;<span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span>&gt;</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#each-instance_method" title="OnStomp::OpenURI::ClientExtensions#each (method)">#each</a></span></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+52
+53
+54
+55
+56
+57
+58
+59
+60</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/open-uri/client_extensions.rb', line 52</span>
+
+<span class='kw'>def</span> <span class='id first'>first</span><span class='lparen'>(</span><span class='id n'>n</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id to_recv'>to_recv</span> <span class='op'>=</span> <span class='id n'>n</span> <span class='op'>||</span> <span class='int'>1</span>
+  <span class='id received'>received</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id m'>m</span><span class='op'>|</span>
+    <span class='id received'>received</span> <span class='op'>&lt;&lt;</span> <span class='id m'>m</span>
+    <span class='kw'>break</span> <span class='kw'>if</span> <span class='id received'>received</span><span class='period'>.</span><span class='id size'>size</span> <span class='op'>==</span> <span class='id to_recv'>to_recv</span>
+  <span class='kw'>end</span>
+  <span class='id n'>n</span> <span class='op'>?</span> <span class='id received'>received</span> <span class='op'>:</span> <span class='id received'>received</span><span class='period'>.</span><span class='id first'>first</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="send_with_openuri-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>) <strong>send_with_openuri</strong>(*args, &amp;block) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Adds the ability for clients to generate SEND frames without specifying a
+destination by using <span class='object_link'><a href="#auto_destination-instance_method" title="OnStomp::OpenURI::ClientExtensions#auto_destination (method)">#auto_destination</a></span> instead.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+SEND frame
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+20
+21
+22
+23
+24
+25
+26
+27</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/open-uri/client_extensions.rb', line 20</span>
+
+<span class='kw'>def</span> <span class='id send_with_openuri'>send_with_openuri</span> <span class='op'>*</span><span class='id args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id block'>block</span>
+  <span class='id headers'>headers</span> <span class='op'>=</span> <span class='id args'>args</span><span class='period'>.</span><span class='id last'>last</span><span class='period'>.</span><span class='id is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id args'>args</span><span class='period'>.</span><span class='id pop'>pop</span> <span class='op'>:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='id dest'>dest</span><span class='comma'>,</span> <span class='id body'>body</span> <span class='op'>=</span> <span class='id args'>args</span>
+  <span class='kw'>if</span> <span class='id body'>body</span><span class='period'>.</span><span class='id nil?'>nil?</span>
+    <span class='id body'>body</span><span class='comma'>,</span> <span class='id dest'>dest</span> <span class='op'>=</span> <span class='id dest'>dest</span><span class='comma'>,</span> <span class='id verified_auto_destination'>verified_auto_destination</span>
+  <span class='kw'>end</span>
+  <span class='id send_without_openuri'>send_without_openuri</span> <span class='id dest'>dest</span><span class='comma'>,</span> <span class='id body'>body</span><span class='comma'>,</span> <span class='id headers'>headers</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id block'>block</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun Apr  3 16:54:12 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.5 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

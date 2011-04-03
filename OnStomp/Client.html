@@ -1,0 +1,1710 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: OnStomp::Client</title>
+<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (C)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../OnStomp.html" title="OnStomp (module)">OnStomp</a></span></span>
+     &raquo; 
+    <span class="title">Client</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: OnStomp::Client
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">OnStomp::Client</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+      <dt class="r2">Includes:</dt>
+      <dd class="r2"><span class='object_link'><a href="Components/Scopes.html" title="OnStomp::Components::Scopes (module)">OnStomp::Components::Scopes</a></span>, <span class='object_link'><a href="Interfaces/ClientConfigurable.html" title="OnStomp::Interfaces::ClientConfigurable (module)">Interfaces::ClientConfigurable</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html" title="OnStomp::Interfaces::ClientEvents (module)">Interfaces::ClientEvents</a></span>, <span class='object_link'><a href="Interfaces/FrameMethods.html" title="OnStomp::Interfaces::FrameMethods (module)">Interfaces::FrameMethods</a></span>, <span class='object_link'><a href="Interfaces/ReceiptManager.html" title="OnStomp::Interfaces::ReceiptManager (module)">Interfaces::ReceiptManager</a></span>, <span class='object_link'><a href="Interfaces/SubscriptionManager.html" title="OnStomp::Interfaces::SubscriptionManager (module)">Interfaces::SubscriptionManager</a></span></dd>
+      
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/onstomp/client.rb<span class="defines">,<br />
+  lib/onstomp/failover/new_with_failover.rb</span>
+</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+This class encapsulates a client connection to a message broker through the
+Stomp protocol.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#connection-instance_method" title="#connection (instance method)">- (OnStomp::Connections::Base) <strong>connection</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Connection object specific to the established STOMP protocol version.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#heartbeats-instance_method" title="#heartbeats (instance method)">- (Array&lt;Fixnum&gt;) <strong>heartbeats</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+The client-side heartbeat settings to allow for this connection.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#host-instance_method" title="#host (instance method)">- (String) <strong>host</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+The host header value to send to the broker when connecting.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#login-instance_method" title="#login (instance method)">- (String) <strong>login</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+The login header value to send to the broker when connecting.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#passcode-instance_method" title="#passcode (instance method)">- (String) <strong>passcode</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+The passcode header value to send to the broker when connecting.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ssl-instance_method" title="#ssl (instance method)">- (Symbol =&gt; Object) <strong>ssl</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+SSL options for the connection.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#uri-instance_method" title="#uri (instance method)">- (String) <strong>uri</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+The <tt>URI</tt> reference to the STOMP broker.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#versions-instance_method" title="#versions (instance method)">- (Array&lt;String&gt;) <strong>versions</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+The protocol versions to allow for this connection.
+</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+  
+    <h2>
+      Methods you ought not use directly.
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#dispatch_received-instance_method" title="#dispatch_received (instance method)">- (Object) <strong>dispatch_received</strong>(frame) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Called by <span class='object_link'><a href="#connection-instance_method" title="OnStomp::Client#connection (method)">#connection</a></span> when a frame has been read from the socket
+connection to the STOMP broker.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#dispatch_transmitted-instance_method" title="#dispatch_transmitted (instance method)">- (Object) <strong>dispatch_transmitted</strong>(frame) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Called by <span class='object_link'><a href="#connection-instance_method" title="OnStomp::Client#connection (method)">#connection</a></span> when a frame has been written to the socket
+connection to the STOMP broker.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#transmit-instance_method" title="#transmit (instance method)">- (OnStomp::Components::Frame) <strong>transmit</strong>(frame, cbs = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Ultimately sends a <span class='object_link'><a href="Components/Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span> to the STOMP broker.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#new_with_failover-class_method" title="new_with_failover (class method)">+ (OnStomp::Client, OnStomp::Failover::Client) <strong>new_with_failover</strong>(uri, options = {}) </a>
+    
+
+    
+      (also: new)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Creates an alias chain for <span class='object_link'><a href="#new-class_method" title="OnStomp::Client.new (method)">new</a></span> so that if a failover: URI
+or an array of URIs are passed to the constructor, a
+<span class='object_link'><a href="Failover/Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client is built instead.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#close%21-instance_method" title="#close! (instance method)">- (self) <strong>close!</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Forces the connection between broker and client closed.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#connect-instance_method" title="#connect (instance method)">- (self) <strong>connect</strong>(headers = {}) </a>
+    
+
+    
+      (also: #open)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Connects to the STOMP broker referenced by <span class='object_link'><a href="#uri-instance_method" title="OnStomp::Client#uri (method)">#uri</a></span>.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#connected%3F-instance_method" title="#connected? (instance method)">- (true, false) <strong>connected?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns true if a connection to the broker exists and itself is connected.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#disconnect_with_flush-instance_method" title="#disconnect_with_flush (instance method)">- (OnStomp::Components::Frame) <strong>disconnect_with_flush</strong>(headers = {}) </a>
+    
+
+    
+      (also: #disconnect)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Sends a DISCONNECT frame to the broker and blocks until the connection has
+been closed.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Client) <strong>initialize</strong>(uri, options = {}) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Creates a new client for the specified uri and optional hash of options.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Components/Scopes.html" title="OnStomp::Components::Scopes (module)">OnStomp::Components::Scopes</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Components/Scopes.html#transaction-instance_method" title="OnStomp::Components::Scopes#transaction (method)">#transaction</a></span>, <span class='object_link'><a href="Components/Scopes.html#with_headers-instance_method" title="OnStomp::Components::Scopes#with_headers (method)">#with_headers</a></span>, <span class='object_link'><a href="Components/Scopes.html#with_receipt-instance_method" title="OnStomp::Components::Scopes#with_receipt (method)">#with_receipt</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Interfaces/SubscriptionManager.html" title="OnStomp::Interfaces::SubscriptionManager (module)">Interfaces::SubscriptionManager</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Interfaces/SubscriptionManager.html#subscriptions-instance_method" title="OnStomp::Interfaces::SubscriptionManager#subscriptions (method)">#subscriptions</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Interfaces/ClientEvents.html" title="OnStomp::Interfaces::ClientEvents (module)">Interfaces::ClientEvents</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Interfaces/ClientEvents.html#after_receiving-instance_method" title="OnStomp::Interfaces::ClientEvents#after_receiving (method)">#after_receiving</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#after_transmitting-instance_method" title="OnStomp::Interfaces::ClientEvents#after_transmitting (method)">#after_transmitting</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#before_abort-instance_method" title="OnStomp::Interfaces::ClientEvents#before_abort (method)">#before_abort</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#before_ack-instance_method" title="OnStomp::Interfaces::ClientEvents#before_ack (method)">#before_ack</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#before_begin-instance_method" title="OnStomp::Interfaces::ClientEvents#before_begin (method)">#before_begin</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#before_broker_beat-instance_method" title="OnStomp::Interfaces::ClientEvents#before_broker_beat (method)">#before_broker_beat</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#before_client_beat-instance_method" title="OnStomp::Interfaces::ClientEvents#before_client_beat (method)">#before_client_beat</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#before_commit-instance_method" title="OnStomp::Interfaces::ClientEvents#before_commit (method)">#before_commit</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#before_disconnect-instance_method" title="OnStomp::Interfaces::ClientEvents#before_disconnect (method)">#before_disconnect</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#before_error-instance_method" title="OnStomp::Interfaces::ClientEvents#before_error (method)">#before_error</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#before_message-instance_method" title="OnStomp::Interfaces::ClientEvents#before_message (method)">#before_message</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#before_nack-instance_method" title="OnStomp::Interfaces::ClientEvents#before_nack (method)">#before_nack</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#before_receipt-instance_method" title="OnStomp::Interfaces::ClientEvents#before_receipt (method)">#before_receipt</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#before_receiving-instance_method" title="OnStomp::Interfaces::ClientEvents#before_receiving (method)">#before_receiving</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#before_send-instance_method" title="OnStomp::Interfaces::ClientEvents#before_send (method)">#before_send</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#before_subscribe-instance_method" title="OnStomp::Interfaces::ClientEvents#before_subscribe (method)">#before_subscribe</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#before_transmitting-instance_method" title="OnStomp::Interfaces::ClientEvents#before_transmitting (method)">#before_transmitting</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#before_unsubscribe-instance_method" title="OnStomp::Interfaces::ClientEvents#before_unsubscribe (method)">#before_unsubscribe</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#on_abort-instance_method" title="OnStomp::Interfaces::ClientEvents#on_abort (method)">#on_abort</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#on_ack-instance_method" title="OnStomp::Interfaces::ClientEvents#on_ack (method)">#on_ack</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#on_begin-instance_method" title="OnStomp::Interfaces::ClientEvents#on_begin (method)">#on_begin</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#on_broker_beat-instance_method" title="OnStomp::Interfaces::ClientEvents#on_broker_beat (method)">#on_broker_beat</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#on_client_beat-instance_method" title="OnStomp::Interfaces::ClientEvents#on_client_beat (method)">#on_client_beat</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#on_commit-instance_method" title="OnStomp::Interfaces::ClientEvents#on_commit (method)">#on_commit</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#on_connect-instance_method" title="OnStomp::Interfaces::ClientEvents#on_connect (method)">#on_connect</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#on_disconnect-instance_method" title="OnStomp::Interfaces::ClientEvents#on_disconnect (method)">#on_disconnect</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#on_error-instance_method" title="OnStomp::Interfaces::ClientEvents#on_error (method)">#on_error</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#on_message-instance_method" title="OnStomp::Interfaces::ClientEvents#on_message (method)">#on_message</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#on_nack-instance_method" title="OnStomp::Interfaces::ClientEvents#on_nack (method)">#on_nack</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#on_receipt-instance_method" title="OnStomp::Interfaces::ClientEvents#on_receipt (method)">#on_receipt</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#on_send-instance_method" title="OnStomp::Interfaces::ClientEvents#on_send (method)">#on_send</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#on_subscribe-instance_method" title="OnStomp::Interfaces::ClientEvents#on_subscribe (method)">#on_subscribe</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#on_unsubscribe-instance_method" title="OnStomp::Interfaces::ClientEvents#on_unsubscribe (method)">#on_unsubscribe</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#pending_connection_events-instance_method" title="OnStomp::Interfaces::ClientEvents#pending_connection_events (method)">#pending_connection_events</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#trigger_after_receiving-instance_method" title="OnStomp::Interfaces::ClientEvents#trigger_after_receiving (method)">#trigger_after_receiving</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#trigger_after_transmitting-instance_method" title="OnStomp::Interfaces::ClientEvents#trigger_after_transmitting (method)">#trigger_after_transmitting</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#trigger_before_receiving-instance_method" title="OnStomp::Interfaces::ClientEvents#trigger_before_receiving (method)">#trigger_before_receiving</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#trigger_before_transmitting-instance_method" title="OnStomp::Interfaces::ClientEvents#trigger_before_transmitting (method)">#trigger_before_transmitting</a></span>, <span class='object_link'><a href="Interfaces/ClientEvents.html#trigger_frame_event-instance_method" title="OnStomp::Interfaces::ClientEvents#trigger_frame_event (method)">#trigger_frame_event</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Interfaces/EventManager.html" title="OnStomp::Interfaces::EventManager (module)">Interfaces::EventManager</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Interfaces/EventManager.html#bind_event-instance_method" title="OnStomp::Interfaces::EventManager#bind_event (method)">#bind_event</a></span>, <span class='object_link'><a href="Interfaces/EventManager.html#event_callbacks-instance_method" title="OnStomp::Interfaces::EventManager#event_callbacks (method)">#event_callbacks</a></span>, <span class='object_link'><a href="Interfaces/EventManager.html#included-class_method" title="OnStomp::Interfaces::EventManager.included (method)">included</a></span>, <span class='object_link'><a href="Interfaces/EventManager.html#trigger_event-instance_method" title="OnStomp::Interfaces::EventManager#trigger_event (method)">#trigger_event</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Interfaces/FrameMethods.html" title="OnStomp::Interfaces::FrameMethods (module)">Interfaces::FrameMethods</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Interfaces/FrameMethods.html#abort-instance_method" title="OnStomp::Interfaces::FrameMethods#abort (method)">#abort</a></span>, <span class='object_link'><a href="Interfaces/FrameMethods.html#ack-instance_method" title="OnStomp::Interfaces::FrameMethods#ack (method)">#ack</a></span>, <span class='object_link'><a href="Interfaces/FrameMethods.html#beat-instance_method" title="OnStomp::Interfaces::FrameMethods#beat (method)">#beat</a></span>, <span class='object_link'><a href="Interfaces/FrameMethods.html#begin-instance_method" title="OnStomp::Interfaces::FrameMethods#begin (method)">#begin</a></span>, <span class='object_link'><a href="Interfaces/FrameMethods.html#commit-instance_method" title="OnStomp::Interfaces::FrameMethods#commit (method)">#commit</a></span>, <span class='object_link'><a href="Interfaces/FrameMethods.html#nack-instance_method" title="OnStomp::Interfaces::FrameMethods#nack (method)">#nack</a></span>, <span class='object_link'><a href="Interfaces/FrameMethods.html#send-instance_method" title="OnStomp::Interfaces::FrameMethods#send (method)">#send</a></span>, <span class='object_link'><a href="Interfaces/FrameMethods.html#subscribe-instance_method" title="OnStomp::Interfaces::FrameMethods#subscribe (method)">#subscribe</a></span>, <span class='object_link'><a href="Interfaces/FrameMethods.html#unsubscribe-instance_method" title="OnStomp::Interfaces::FrameMethods#unsubscribe (method)">#unsubscribe</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Interfaces/ClientConfigurable.html" title="OnStomp::Interfaces::ClientConfigurable (module)">Interfaces::ClientConfigurable</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Interfaces/ClientConfigurable.html#included-class_method" title="OnStomp::Interfaces::ClientConfigurable.included (method)">included</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="OnStomp::Client (class)">Client</a></span></tt>) <strong>initialize</strong>(uri, options = {}) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Creates a new client for the specified uri and optional hash of options.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>, <tt><span class='object_link'><a href="../URI.html" title="URI (module)">URI</a></span></tt>)</span>
+      
+      
+        <span class='name'>uri</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>{Symbol =&gt; Object}</tt>)</span>
+      
+      
+        <span class='name'>options</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 53</span>
+
+<span class='kw'>def</span> <span class='id initialize'>initialize</span> <span class='id uri'>uri</span><span class='comma'>,</span> <span class='id options'>options</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='ivar'>@uri</span> <span class='op'>=</span> <span class='id uri'>uri</span><span class='period'>.</span><span class='id is_a?'>is_a?</span><span class='lparen'>(</span><span class='op'>::</span><span class='const'>URI</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id uri'>uri</span> <span class='op'>:</span> <span class='op'>::</span><span class='const'>URI</span><span class='period'>.</span><span class='id parse'>parse</span><span class='lparen'>(</span><span class='id uri'>uri</span><span class='rparen'>)</span>
+  <span class='ivar'>@ssl</span> <span class='op'>=</span> <span class='id options'>options</span><span class='period'>.</span><span class='id delete'>delete</span><span class='lparen'>(</span><span class='symbol'>:ssl</span><span class='rparen'>)</span>
+  <span class='id configure_configurable'>configure_configurable</span> <span class='id options'>options</span>
+  <span class='id configure_subscription_management'>configure_subscription_management</span>
+  <span class='id configure_receipt_management'>configure_receipt_management</span>
+  <span class='id on_disconnect'>on_disconnect</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id f'>f</span><span class='comma'>,</span> <span class='id con'>con</span><span class='op'>|</span>
+    <span class='id close'>close</span> <span class='kw'>unless</span> <span class='id f'>f</span><span class='lbracket'>[</span><span class='symbol'>:receipt</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <span id="connection-instance_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="connection-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Connections/Base.html" title="OnStomp::Connections::Base (class)">OnStomp::Connections::Base</a></span></tt>) <strong>connection</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Connection object specific to the established STOMP protocol version
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Connections/Base.html" title="OnStomp::Connections::Base (class)">OnStomp::Connections::Base</a></span></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+21
+22
+23</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 21</span>
+
+<span class='kw'>def</span> <span class='id connection'>connection</span>
+  <span class='ivar'>@connection</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="heartbeats=-instance_method"></span>
+      <span id="heartbeats-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="heartbeats-instance_method">
+  
+    - (<tt>Array&lt;Fixnum&gt;</tt>) <strong>heartbeats</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+The client-side heartbeat settings to allow for this connection
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array&lt;Fixnum&gt;</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+29</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 29</span>
+
+<span class='id attr_configurable_client_beats'>attr_configurable_client_beats</span> <span class='symbol'>:heartbeats</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="host=-instance_method"></span>
+      <span id="host-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="host-instance_method">
+  
+    - (<tt>String</tt>) <strong>host</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+The host header value to send to the broker when connecting. This allows
+the client to inform the server which host it wishes to connect with when
+multiple brokers may share an IP address through virtual hosting.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+35</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 35</span>
+
+<span class='id attr_configurable_str'>attr_configurable_str</span> <span class='symbol'>:host</span><span class='comma'>,</span> <span class='symbol'>:default</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>localhost</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:uri_attr</span> <span class='op'>=&gt;</span> <span class='symbol'>:host</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="login=-instance_method"></span>
+      <span id="login-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="login-instance_method">
+  
+    - (<tt>String</tt>) <strong>login</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+The login header value to send to the broker when connecting.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+39</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 39</span>
+
+<span class='id attr_configurable_str'>attr_configurable_str</span> <span class='symbol'>:login</span><span class='comma'>,</span> <span class='symbol'>:default</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:uri_attr</span> <span class='op'>=&gt;</span> <span class='symbol'>:user</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="passcode=-instance_method"></span>
+      <span id="passcode-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="passcode-instance_method">
+  
+    - (<tt>String</tt>) <strong>passcode</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+The passcode header value to send to the broker when connecting.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+43</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 43</span>
+
+<span class='id attr_configurable_str'>attr_configurable_str</span> <span class='symbol'>:passcode</span><span class='comma'>,</span> <span class='symbol'>:default</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:uri_attr</span> <span class='op'>=&gt;</span> <span class='symbol'>:password</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <span id="ssl-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="ssl-instance_method">
+  
+    - (<tt>Symbol =&gt; Object</tt>) <strong>ssl</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+SSL options for the connection
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Symbol =&gt; Object</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+18
+19
+20</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 18</span>
+
+<span class='kw'>def</span> <span class='id ssl'>ssl</span>
+  <span class='ivar'>@ssl</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <span id="uri-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="uri-instance_method">
+  
+    - (<tt>String</tt>) <strong>uri</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+The <tt>URI</tt> reference to the STOMP broker
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+15
+16
+17</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 15</span>
+
+<span class='kw'>def</span> <span class='id uri'>uri</span>
+  <span class='ivar'>@uri</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="versions=-instance_method"></span>
+      <span id="versions-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="versions-instance_method">
+  
+    - (<tt>Array&lt;String&gt;</tt>) <strong>versions</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+The protocol versions to allow for this connection
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+25</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 25</span>
+
+<span class='id attr_configurable_protocols'>attr_configurable_protocols</span> <span class='symbol'>:versions</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="new_with_failover-class_method">
+  
+    + (<tt><span class='object_link'><a href="" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>, <tt><span class='object_link'><a href="Failover/Client.html" title="OnStomp::Failover::Client (class)">OnStomp::Failover::Client</a></span></tt>) <strong>new_with_failover</strong>(uri, options = {}) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='new-class_method'>new</span></span>
+    </span>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Creates an alias chain for <span class='object_link'><a href="#new-class_method" title="OnStomp::Client.new (method)">new</a></span> so that if a failover: URI
+or an array of URIs are passed to the constructor, a
+<span class='object_link'><a href="Failover/Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client is built instead.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>, <tt><span class='object_link'><a href="Failover/Client.html" title="OnStomp::Failover::Client (class)">OnStomp::Failover::Client</a></span></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+9
+10
+11
+12
+13
+14
+15</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/new_with_failover.rb', line 9</span>
+
+<span class='kw'>def</span> <span class='id new_with_failover'>new_with_failover</span><span class='lparen'>(</span><span class='id uri'>uri</span><span class='comma'>,</span> <span class='id options'>options</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id uri'>uri</span><span class='period'>.</span><span class='id is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id uri'>uri</span><span class='period'>.</span><span class='id to_s'>to_s</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^failover:</span><span class='regexp_end'>/i</span></span>
+    <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>Failover</span><span class='op'>::</span><span class='const'>Client</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='id uri'>uri</span><span class='comma'>,</span> <span class='id options'>options</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id new_without_failover'>new_without_failover</span><span class='lparen'>(</span><span class='id uri'>uri</span><span class='comma'>,</span> <span class='id options'>options</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="close!-instance_method">
+  
+    - (<tt>self</tt>) <strong>close!</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong> 
+    <div class='inline'><p>
+Use of this method may result in frames never being sent to the broker.
+This method should only be used if <span class='object_link'><a href="#disconnect-instance_method" title="OnStomp::Client#disconnect (method)">#disconnect</a></span> is not an option and the
+connection needs to be terminated immediately.
+</p>
+</div>
+  </div>
+
+<p>
+Forces the connection between broker and client closed.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>self</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+103
+104
+105
+106
+107</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 103</span>
+
+<span class='kw'>def</span> <span class='id close!'>close!</span>
+  <span class='id close'>close</span>
+  <span class='id processor_inst'>processor_inst</span><span class='period'>.</span><span class='id stop'>stop</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="connect-instance_method">
+  
+    - (<tt>self</tt>) <strong>connect</strong>(headers = {}) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='open-instance_method'>open</span></span>
+    </span>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Connects to the STOMP broker referenced by <span class='object_link'><a href="#uri-instance_method" title="OnStomp::Client#uri (method)">#uri</a></span>. Includes optional
+headers in the CONNECT frame, if specified.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>{#to_sym =&gt; #to_s}</tt>)</span>
+      
+      
+        <span class='name'>headers</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>self</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+68
+69
+70
+71
+72
+73
+74
+75</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 68</span>
+
+<span class='kw'>def</span> <span class='id connect'>connect</span> <span class='id headers'>headers</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='ivar'>@connection</span> <span class='op'>=</span> <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>Connections</span><span class='period'>.</span><span class='id connect'>connect</span> <span class='kw'>self</span><span class='comma'>,</span> <span class='id headers'>headers</span><span class='comma'>,</span>
+    <span class='lbrace'>{</span> <span class='symbol'>:accept-version</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='ivar'>@versions</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>,</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='symbol'>:host</span> <span class='op'>=&gt;</span> <span class='ivar'>@host</span><span class='comma'>,</span>
+      <span class='symbol'>:heart-beat</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='ivar'>@heartbeats</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>,</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='symbol'>:login</span> <span class='op'>=&gt;</span> <span class='ivar'>@login</span><span class='comma'>,</span>
+      <span class='symbol'>:passcode</span> <span class='op'>=&gt;</span> <span class='ivar'>@passcode</span> <span class='rbrace'>}</span><span class='comma'>,</span> <span class='id pending_connection_events'>pending_connection_events</span>
+  <span class='id processor_inst'>processor_inst</span><span class='period'>.</span><span class='id start'>start</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="connected?-instance_method">
+  
+    - (<tt>true</tt>, <tt>false</tt>) <strong>connected?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns true if a connection to the broker exists and itself is connected.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+94
+95
+96</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 94</span>
+
+<span class='kw'>def</span> <span class='id connected?'>connected?</span>
+  <span class='id connection'>connection</span> <span class='op'>&amp;&amp;</span> <span class='id connection'>connection</span><span class='period'>.</span><span class='id connected?'>connected?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="disconnect_with_flush-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>) <strong>disconnect_with_flush</strong>(headers = {}) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='disconnect-instance_method'>disconnect</span></span>
+    </span>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Sends a DISCONNECT frame to the broker and blocks until the connection has
+been closed. This method ensures that all frames not yet sent to the broker
+will get processed barring any IO exceptions.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>{#to_sym =&gt; #to_s}</tt>)</span>
+      
+      
+        <span class='name'>headers</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+transmitted DISCONNECT frame
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+83
+84
+85
+86
+87
+88</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 83</span>
+
+<span class='kw'>def</span> <span class='id disconnect_with_flush'>disconnect_with_flush</span> <span class='id headers'>headers</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='id processor_inst'>processor_inst</span><span class='period'>.</span><span class='id prepare_to_close'>prepare_to_close</span>
+  <span class='id disconnect_without_flush'>disconnect_without_flush</span><span class='lparen'>(</span><span class='id headers'>headers</span><span class='rparen'>)</span><span class='period'>.</span><span class='id tap'>tap</span> <span class='kw'>do</span>
+    <span class='id processor_inst'>processor_inst</span><span class='period'>.</span><span class='id join'>join</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="dispatch_received-instance_method">
+  
+    - (<tt>Object</tt>) <strong>dispatch_received</strong>(frame) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Called by <span class='object_link'><a href="#connection-instance_method" title="OnStomp::Client#connection (method)">#connection</a></span> when a frame has been read from the socket
+connection to the STOMP broker.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+125
+126
+127
+128</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 125</span>
+
+<span class='kw'>def</span> <span class='id dispatch_received'>dispatch_received</span> <span class='id frame'>frame</span>
+  <span class='id trigger_before_receiving'>trigger_before_receiving</span> <span class='id frame'>frame</span>
+  <span class='id trigger_after_receiving'>trigger_after_receiving</span> <span class='id frame'>frame</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="dispatch_transmitted-instance_method">
+  
+    - (<tt>Object</tt>) <strong>dispatch_transmitted</strong>(frame) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Called by <span class='object_link'><a href="#connection-instance_method" title="OnStomp::Client#connection (method)">#connection</a></span> when a frame has been written to the socket
+connection to the STOMP broker.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+132
+133
+134</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 132</span>
+
+<span class='kw'>def</span> <span class='id dispatch_transmitted'>dispatch_transmitted</span> <span class='id frame'>frame</span>
+  <span class='id trigger_after_transmitting'>trigger_after_transmitting</span> <span class='id frame'>frame</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="transmit-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>) <strong>transmit</strong>(frame, cbs = {}) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Ultimately sends a <span class='object_link'><a href="Components/Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span> to the STOMP broker.
+This method should not be invoked directly. Use the frame methods provided
+by the Interfaces:FrameMethod interface.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+115
+116
+117
+118
+119
+120
+121</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 115</span>
+
+<span class='kw'>def</span> <span class='id transmit'>transmit</span> <span class='id frame'>frame</span><span class='comma'>,</span> <span class='id cbs'>cbs</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='id frame'>frame</span><span class='period'>.</span><span class='id tap'>tap</span> <span class='kw'>do</span>
+    <span class='id register_callbacks'>register_callbacks</span> <span class='id frame'>frame</span><span class='comma'>,</span> <span class='id cbs'>cbs</span>
+    <span class='id trigger_before_transmitting'>trigger_before_transmitting</span> <span class='id frame'>frame</span>
+    <span class='id connection'>connection</span> <span class='op'>&amp;&amp;</span> <span class='id connection'>connection</span><span class='period'>.</span><span class='id write_frame_nonblock'>write_frame_nonblock</span><span class='lparen'>(</span><span class='id frame'>frame</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun Apr  3 16:54:09 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.5 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,547 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: OnStomp::Components::Scopes::HeaderScope</title>
+<link rel="stylesheet" href="../../../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../../../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '../../..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../../_index.html">Index (H)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../../../OnStomp.html" title="OnStomp (module)">OnStomp</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Components.html" title="OnStomp::Components (module)">Components</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Scopes.html" title="OnStomp::Components::Scopes (module)">Scopes</a></span></span>
+     &raquo; 
+    <span class="title">HeaderScope</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: OnStomp::Components::Scopes::HeaderScope
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">OnStomp::Components::Scopes::HeaderScope</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+      <dt class="r2">Includes:</dt>
+      <dd class="r2"><span class='object_link'><a href="../../Interfaces/FrameMethods.html" title="OnStomp::Interfaces::FrameMethods (module)">Interfaces::FrameMethods</a></span></dd>
+      
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/onstomp/components/scopes/header_scope.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+Adds the a set of headers to all frames generated on the scope.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+
+  
+  
+  
+  
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#client-instance_method" title="#client (instance method)">- (Object) <strong>client</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute client.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#connection-instance_method" title="#connection (instance method)">- (Object) <strong>connection</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute connection.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#headers-instance_method" title="#headers (instance method)">- (Object) <strong>headers</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute headers.
+</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (HeaderScope) <strong>initialize</strong>(headers, client) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+A new instance of HeaderScope.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#transmit-instance_method" title="#transmit (instance method)">- (OnStomp::Components::Frame) <strong>transmit</strong>(frame, cbs = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Wraps <span class='object_link'><a href="../../Client.html#transmit-instance_method" title="OnStomp::Client#transmit (method)">OnStomp::Client#transmit</a></span>, applying the set of <span class='object_link'><a href="#headers-instance_method" title="OnStomp::Components::Scopes::HeaderScope#headers (method)">#headers</a></span> to all
+frames befor they are delivered to the broker.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../../Interfaces/FrameMethods.html" title="OnStomp::Interfaces::FrameMethods (module)">Interfaces::FrameMethods</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../../Interfaces/FrameMethods.html#abort-instance_method" title="OnStomp::Interfaces::FrameMethods#abort (method)">#abort</a></span>, <span class='object_link'><a href="../../Interfaces/FrameMethods.html#ack-instance_method" title="OnStomp::Interfaces::FrameMethods#ack (method)">#ack</a></span>, <span class='object_link'><a href="../../Interfaces/FrameMethods.html#beat-instance_method" title="OnStomp::Interfaces::FrameMethods#beat (method)">#beat</a></span>, <span class='object_link'><a href="../../Interfaces/FrameMethods.html#begin-instance_method" title="OnStomp::Interfaces::FrameMethods#begin (method)">#begin</a></span>, <span class='object_link'><a href="../../Interfaces/FrameMethods.html#commit-instance_method" title="OnStomp::Interfaces::FrameMethods#commit (method)">#commit</a></span>, <span class='object_link'><a href="../../Interfaces/FrameMethods.html#disconnect-instance_method" title="OnStomp::Interfaces::FrameMethods#disconnect (method)">#disconnect</a></span>, <span class='object_link'><a href="../../Interfaces/FrameMethods.html#nack-instance_method" title="OnStomp::Interfaces::FrameMethods#nack (method)">#nack</a></span>, <span class='object_link'><a href="../../Interfaces/FrameMethods.html#send-instance_method" title="OnStomp::Interfaces::FrameMethods#send (method)">#send</a></span>, <span class='object_link'><a href="../../Interfaces/FrameMethods.html#subscribe-instance_method" title="OnStomp::Interfaces::FrameMethods#subscribe (method)">#subscribe</a></span>, <span class='object_link'><a href="../../Interfaces/FrameMethods.html#unsubscribe-instance_method" title="OnStomp::Interfaces::FrameMethods#unsubscribe (method)">#unsubscribe</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="OnStomp::Components::Scopes::HeaderScope (class)">HeaderScope</a></span></tt>) <strong>initialize</strong>(headers, client) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of HeaderScope
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+9
+10
+11
+12
+13</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/components/scopes/header_scope.rb', line 9</span>
+
+<span class='kw'>def</span> <span class='id initialize'>initialize</span> <span class='id headers'>headers</span><span class='comma'>,</span> <span class='id client'>client</span>
+  <span class='ivar'>@headers</span> <span class='op'>=</span> <span class='id headers'>headers</span>
+  <span class='ivar'>@client</span> <span class='op'>=</span> <span class='id client'>client</span>
+  <span class='ivar'>@connection</span> <span class='op'>=</span> <span class='id client'>client</span><span class='period'>.</span><span class='id connection'>connection</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <span id="client-instance_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="client-instance_method">
+  
+    - (<tt>Object</tt>) <strong>client</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute client
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+7
+8
+9</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/components/scopes/header_scope.rb', line 7</span>
+
+<span class='kw'>def</span> <span class='id client'>client</span>
+  <span class='ivar'>@client</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <span id="connection-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="connection-instance_method">
+  
+    - (<tt>Object</tt>) <strong>connection</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute connection
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+7
+8
+9</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/components/scopes/header_scope.rb', line 7</span>
+
+<span class='kw'>def</span> <span class='id connection'>connection</span>
+  <span class='ivar'>@connection</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <span id="headers-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="headers-instance_method">
+  
+    - (<tt>Object</tt>) <strong>headers</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute headers
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+7
+8
+9</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/components/scopes/header_scope.rb', line 7</span>
+
+<span class='kw'>def</span> <span class='id headers'>headers</span>
+  <span class='ivar'>@headers</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="transmit-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>) <strong>transmit</strong>(frame, cbs = {}) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Wraps <span class='object_link'><a href="../../Client.html#transmit-instance_method" title="OnStomp::Client#transmit (method)">OnStomp::Client#transmit</a></span>, applying the set of <span class='object_link'><a href="#headers-instance_method" title="OnStomp::Components::Scopes::HeaderScope#headers (method)">#headers</a></span> to all
+frames befor they are delivered to the broker.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>{Symbol =&gt; Proc}</tt>)</span>
+      
+      
+        <span class='name'>cbs</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="../../Client.html#transmit-instance_method" title="OnStomp::Client#transmit (method)">OnStomp::Client#transmit</a></span></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+21
+22
+23
+24</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/components/scopes/header_scope.rb', line 21</span>
+
+<span class='kw'>def</span> <span class='id transmit'>transmit</span> <span class='id frame'>frame</span><span class='comma'>,</span> <span class='id cbs'>cbs</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='id frame'>frame</span><span class='period'>.</span><span class='id headers'>headers</span><span class='period'>.</span><span class='id reverse_merge!'>reverse_merge!</span><span class='lparen'>(</span><span class='id headers'>headers</span><span class='rparen'>)</span>
+  <span class='id client'>client</span><span class='period'>.</span><span class='id transmit'>transmit</span> <span class='id frame'>frame</span><span class='comma'>,</span> <span class='id cbs'>cbs</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun Apr  3 16:54:12 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.5 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

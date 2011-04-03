@@ -1,0 +1,523 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: OnStomp::Connections::Serializers::Stomp_1_0</title>
+<link rel="stylesheet" href="../../../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../../../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '../../..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../../_index.html">Index (S)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../../../OnStomp.html" title="OnStomp (module)">OnStomp</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Connections.html" title="OnStomp::Connections (module)">Connections</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Serializers.html" title="OnStomp::Connections::Serializers (module)">Serializers</a></span></span>
+     &raquo; 
+    <span class="title">Stomp_1_0</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: OnStomp::Connections::Serializers::Stomp_1_0
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">OnStomp::Connections::Serializers::Stomp_1_0</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+      <dt class="r2">Includes:</dt>
+      <dd class="r2"><span class='object_link'><a href="Stomp_1.html" title="OnStomp::Connections::Serializers::Stomp_1 (module)">Stomp_1</a></span></dd>
+      
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/onstomp/connections/serializers/stomp_1_0.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+Frame serializer / parser for STOMP 1.0 connections.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+
+  
+  
+  
+  
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#frame_to_string-instance_method" title="#frame_to_string (instance method)">- (String) <strong>frame_to_string</strong>(frame) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Converts a <span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span> to a string.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Stomp_1_0) <strong>initialize</strong> </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Creates a new serializer and calls <span class='object_link'><a href="Stomp_1.html#reset_parser-instance_method" title="OnStomp::Connections::Serializers::Stomp_1#reset_parser (method)">OnStomp::Connections::Serializers::Stomp_1#reset_parser</a></span>.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#prepare_parsed_frame-instance_method" title="#prepare_parsed_frame (instance method)">- (nil) <strong>prepare_parsed_frame</strong>(frame) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Nothing special needs to be done with frames parsed from a STOMP 1.0
+connection, so this is a no-op.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#split_header-instance_method" title="#split_header (instance method)">- ([String, String]) <strong>split_header</strong>(str) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Splits a header line into a header name / header value pair at the first
+&#8217;:&#8217; character and returns the pair.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Stomp_1.html" title="OnStomp::Connections::Serializers::Stomp_1 (module)">Stomp_1</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Stomp_1.html#bytes_to_frame-instance_method" title="OnStomp::Connections::Serializers::Stomp_1#bytes_to_frame (method)">#bytes_to_frame</a></span>, <span class='object_link'><a href="Stomp_1.html#finish_body-instance_method" title="OnStomp::Connections::Serializers::Stomp_1#finish_body (method)">#finish_body</a></span>, <span class='object_link'><a href="Stomp_1.html#finish_command-instance_method" title="OnStomp::Connections::Serializers::Stomp_1#finish_command (method)">#finish_command</a></span>, <span class='object_link'><a href="Stomp_1.html#finish_header_line-instance_method" title="OnStomp::Connections::Serializers::Stomp_1#finish_header_line (method)">#finish_header_line</a></span>, <span class='object_link'><a href="Stomp_1.html#frame_to_bytes-instance_method" title="OnStomp::Connections::Serializers::Stomp_1#frame_to_bytes (method)">#frame_to_bytes</a></span>, <span class='object_link'><a href="Stomp_1.html#frame_to_string_base-instance_method" title="OnStomp::Connections::Serializers::Stomp_1#frame_to_string_base (method)">#frame_to_string_base</a></span>, <span class='object_link'><a href="Stomp_1.html#parse_body-instance_method" title="OnStomp::Connections::Serializers::Stomp_1#parse_body (method)">#parse_body</a></span>, <span class='object_link'><a href="Stomp_1.html#parse_command-instance_method" title="OnStomp::Connections::Serializers::Stomp_1#parse_command (method)">#parse_command</a></span>, <span class='object_link'><a href="Stomp_1.html#parse_header_line-instance_method" title="OnStomp::Connections::Serializers::Stomp_1#parse_header_line (method)">#parse_header_line</a></span>, <span class='object_link'><a href="Stomp_1.html#parser_flush-instance_method" title="OnStomp::Connections::Serializers::Stomp_1#parser_flush (method)">#parser_flush</a></span>, <span class='object_link'><a href="Stomp_1.html#reset_parser-instance_method" title="OnStomp::Connections::Serializers::Stomp_1#reset_parser (method)">#reset_parser</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="OnStomp::Connections::Serializers::Stomp_1_0 (class)">Stomp_1_0</a></span></tt>) <strong>initialize</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Creates a new serializer and calls <span class='object_link'><a href="Stomp_1.html#reset_parser-instance_method" title="OnStomp::Connections::Serializers::Stomp_1#reset_parser (method)">OnStomp::Connections::Serializers::Stomp_1#reset_parser</a></span>
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+8
+9
+10</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/serializers/stomp_1_0.rb', line 8</span>
+
+<span class='kw'>def</span> <span class='id initialize'>initialize</span>
+  <span class='id reset_parser'>reset_parser</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="frame_to_string-instance_method">
+  
+    - (<tt>String</tt>) <strong>frame_to_string</strong>(frame) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Converts a <span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span> to a string
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+15
+16
+17
+18
+19</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/serializers/stomp_1_0.rb', line 15</span>
+
+<span class='kw'>def</span> <span class='id frame_to_string'>frame_to_string</span> <span class='id frame'>frame</span>
+  <span class='id frame_to_string_base'>frame_to_string_base</span><span class='lparen'>(</span><span class='id frame'>frame</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id k'>k</span><span class='comma'>,</span><span class='id v'>v</span><span class='op'>|</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id k'>k</span><span class='period'>.</span><span class='id gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[\n:]</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>:</span><span class='embexpr_beg'>#{</span><span class='id v'>v</span><span class='period'>.</span><span class='id gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\n</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="prepare_parsed_frame-instance_method">
+  
+    - (<tt>nil</tt>) <strong>prepare_parsed_frame</strong>(frame) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Nothing special needs to be done with frames parsed from a STOMP 1.0
+connection, so this is a no-op.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>nil</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+39
+40</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/serializers/stomp_1_0.rb', line 39</span>
+
+<span class='kw'>def</span> <span class='id prepare_parsed_frame'>prepare_parsed_frame</span> <span class='id frame'>frame</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="split_header-instance_method">
+  
+    - (<tt>[String, String]</tt>) <strong>split_header</strong>(str) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Splits a header line into a header name / header value pair at the first
+&#8217;:&#8217; character and returns the pair.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>str</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+header line to split
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>[String, String]</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Raises:</h3>
+<ul class="raise">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../MalformedHeaderError.html" title="OnStomp::MalformedHeaderError (class)">OnStomp::MalformedHeaderError</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+if the header line lacks a &#8217;:&#8217; character
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+27
+28
+29
+30
+31
+32
+33</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/serializers/stomp_1_0.rb', line 27</span>
+
+<span class='kw'>def</span> <span class='id split_header'>split_header</span><span class='lparen'>(</span><span class='id str'>str</span><span class='rparen'>)</span>
+  <span class='id col'>col</span> <span class='op'>=</span> <span class='id str'>str</span><span class='period'>.</span><span class='id index'>index</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>:</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='id col'>col</span>
+    <span class='id raise'>raise</span> <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>MalformedHeaderError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>unterminated header: '</span><span class='embexpr_beg'>#{</span><span class='id str'>str</span><span class='rbrace'>}</span><span class='tstring_content'>'</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  <span class='lbracket'>[</span> <span class='id str'>str</span><span class='lbracket'>[</span><span class='int'>0</span><span class='op'>...</span><span class='id col'>col</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id str'>str</span><span class='lbracket'>[</span><span class='lparen'>(</span><span class='id col'>col</span><span class='op'>+</span><span class='int'>1</span><span class='rparen'>)</span><span class='op'>..</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span> <span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun Apr  3 16:54:12 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.5 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

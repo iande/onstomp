@@ -1,0 +1,315 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: OnStomp::Failover::URI::FAILOVER</title>
+<link rel="stylesheet" href="../../../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../../../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '../../..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../../_index.html">Index (F)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../../../OnStomp.html" title="OnStomp (module)">OnStomp</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Failover.html" title="OnStomp::Failover (module)">Failover</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../URI.html" title="OnStomp::Failover::URI (module)">URI</a></span></span>
+     &raquo; 
+    <span class="title">FAILOVER</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: OnStomp::Failover::URI::FAILOVER
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'><a href="../../Components/URI/STOMP.html" title="OnStomp::Components::URI::STOMP (class)">Components::URI::STOMP</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">URI::Generic</li>
+          
+            <li class="next"><span class='object_link'><a href="../../Components/URI/STOMP.html" title="OnStomp::Components::URI::STOMP (class)">Components::URI::STOMP</a></span></li>
+          
+            <li class="next">OnStomp::Failover::URI::FAILOVER</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/onstomp/failover/uri.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+A URI class for representing URIs with a &#8216;failover&#8217; scheme.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="FAILOVER_OPAQUE_REG-constant" class="">FAILOVER_OPAQUE_REG =
+          <div class="docstring">
+  <div class="discussion">
+    <p>
+Matches the internal URIs and query contained in the <tt>opaque</tt> part
+of a failover: URI
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\(([^\)]+)\)(?:\?(.*))?</span><span class='regexp_end'>/</span></span></pre></dd>
+      
+    </dl>
+  
+
+
+  
+  
+  
+  
+  <h3 class="inherited">Constants inherited from <span class='object_link'><a href="../../Components/URI/STOMP.html" title="OnStomp::Components::URI::STOMP (class)">Components::URI::STOMP</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../../Components/URI/STOMP.html#DEFAULT_PORT-constant" title="OnStomp::Components::URI::STOMP::DEFAULT_PORT (constant)">DEFAULT_PORT</a></span></p>
+
+  
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#failover_uris-instance_method" title="#failover_uris (instance method)">- (Object) <strong>failover_uris</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute failover_uris.
+</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (FAILOVER) <strong>initialize</strong>(*args) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+A new instance of FAILOVER.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="../../Components/URI/STOMP.html" title="OnStomp::Components::URI::STOMP (class)">Components::URI::STOMP</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../../Components/URI/STOMP.html#onstomp_socket_type-instance_method" title="OnStomp::Components::URI::STOMP#onstomp_socket_type (method)">#onstomp_socket_type</a></span>, <span class='object_link'><a href="../../Components/URI/STOMP.html#open-instance_method" title="OnStomp::Components::URI::STOMP#open (method)">#open</a></span></p>
+
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="OnStomp::Failover::URI::FAILOVER (class)">FAILOVER</a></span></tt>) <strong>initialize</strong>(*args) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of FAILOVER
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+12
+13
+14
+15</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/uri.rb', line 12</span>
+
+<span class='kw'>def</span> <span class='id initialize'>initialize</span><span class='lparen'>(</span><span class='op'>*</span><span class='id args'>args</span><span class='rparen'>)</span>
+  <span class='kw'>super</span>
+  <span class='id _split_opaque_'>_split_opaque_</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <span id="failover_uris-instance_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="failover_uris-instance_method">
+  
+    - (<tt>Object</tt>) <strong>failover_uris</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute failover_uris
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+11
+12
+13</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/uri.rb', line 11</span>
+
+<span class='kw'>def</span> <span class='id failover_uris'>failover_uris</span>
+  <span class='ivar'>@failover_uris</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun Apr  3 16:54:09 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.5 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

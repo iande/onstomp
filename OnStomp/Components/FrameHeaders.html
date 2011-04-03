@@ -1,0 +1,1569 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: OnStomp::Components::FrameHeaders</title>
+<link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '../..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (F)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../../OnStomp.html" title="OnStomp (module)">OnStomp</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Components.html" title="OnStomp::Components (module)">Components</a></span></span>
+     &raquo; 
+    <span class="title">FrameHeaders</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: OnStomp::Components::FrameHeaders
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">OnStomp::Components::FrameHeaders</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+      <dt class="r2">Includes:</dt>
+      <dd class="r2">Enumerable</dd>
+      
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/onstomp/components/frame_headers.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+A specialized container for storing header name / value pairs for a
+<span class='object_link'><a href="Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span>.  This container behaves much like a
+<tt>Hash</tt>, but is specialized for the Stomp protocol.  Header names are
+always converted into <tt>String</tt>s through the use of <tt>to_s</tt> and may
+have more than one value associated with them.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+
+  
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#names-instance_method" title="#names (instance method)">- (Object) <strong>names</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute names.
+</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#%5B%5D-instance_method" title="#[] (instance method)">- (String<sup>?</sup>) <strong>[]</strong>(name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Gets the principle header value paired with the supplied header name.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#%5B%5D%3D-instance_method" title="#[]= (instance method)">- (String) <strong>[]=</strong>(name, val) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Sets the header value paired with the supplied header name.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#all_values-instance_method" title="#all_values (instance method)">- (Array) <strong>all_values</strong>(name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Retrieves all header values associated with the supplied header name.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#append-instance_method" title="#append (instance method)">- (String) <strong>append</strong>(name, val) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Appends a header value to the specified header name.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#delete-instance_method" title="#delete (instance method)">- (Array) <strong>delete</strong>(name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Deletes all of the header values associated with the header name and
+removes the header name itself.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#each-instance_method" title="#each (instance method)">- (Object) <strong>each</strong> {|header_name, header_value| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Iterates over header name / value pairs, yielding them as a pair of strings
+to the supplied block.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (FrameHeaders) <strong>initialize</strong>(headers = {}) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Creates a new headers collection, initialized with the optional hash
+parameter.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#merge%21-instance_method" title="#merge! (instance method)">- (Object) <strong>merge!</strong>(hash) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Merges a hash into this collection of headers.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#present%3F-instance_method" title="#present? (instance method)">- (Boolean) <strong>present?</strong>(name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns true if a header value has been set for the supplied header, and
+the value is neither <tt>nil</tt> nor an empty string.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#reverse_merge%21-instance_method" title="#reverse_merge! (instance method)">- (Object) <strong>reverse_merge!</strong>(hash) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Reverse merges a hash into this collection of headers.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#set%3F-instance_method" title="#set? (instance method)">- (Boolean) <strong>set?</strong>(name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns true if a header value has been set for the supplied header name.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_hash-instance_method" title="#to_hash (instance method)">- (Hash) <strong>to_hash</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns a new <tt>Hash</tt> object associating symbolized header names and
+their principle values.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="OnStomp::Components::FrameHeaders (class)">FrameHeaders</a></span></tt>) <strong>initialize</strong>(headers = {}) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Creates a new headers collection, initialized with the optional hash
+parameter.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <span class='name'>headers</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#merge%21-instance_method" title="OnStomp::Components::FrameHeaders#merge! (method)">#merge!</a></span></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+15
+16
+17
+18
+19</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/components/frame_headers.rb', line 15</span>
+
+<span class='kw'>def</span> <span class='id initialize'>initialize</span><span class='lparen'>(</span><span class='id headers'>headers</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='ivar'>@values</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='id initialize_names'>initialize_names</span>
+  <span class='id merge!'>merge!</span> <span class='id headers'>headers</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <span id="names-instance_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="names-instance_method">
+  
+    - (<tt>Object</tt>) <strong>names</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute names
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+180</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/components/frame_headers.rb', line 180</span>
+
+<span class='kw'>def</span> <span class='id names'>names</span><span class='semicolon'>;</span> <span class='ivar'>@values</span><span class='period'>.</span><span class='id keys'>keys</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="[]-instance_method">
+  
+    - (<tt>String</tt><sup>?</sup>) <strong>[]</strong>(name) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Gets the principle header value paired with the supplied header name. The
+name will be converted to a Symbol, so must respond to the <tt>to_sym</tt>
+method.  The Stomp 1.1 protocol specifies that in the event of a repeated
+header name, the first value encountered serves as the principle value.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='id headers'>headers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>content-type</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='comment'>#=&gt; 'text/plain'</span></pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>#to_sym</tt>)</span>
+      
+      
+        <span class='name'>name</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the header name paired with the desired value (will be converted using
+<tt>to_sym</tt>)
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the value associated with the requested header name
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>nil</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+if no value has been set for the associated header name
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+133
+134
+135
+136</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/components/frame_headers.rb', line 133</span>
+
+<span class='kw'>def</span> <span class='op'>[]</span><span class='lparen'>(</span><span class='id name'>name</span><span class='rparen'>)</span>
+  <span class='id name'>name</span> <span class='op'>=</span> <span class='id name'>name</span><span class='period'>.</span><span class='id to_sym'>to_sym</span>
+  <span class='ivar'>@values</span><span class='lbracket'>[</span><span class='id name'>name</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@values</span><span class='lbracket'>[</span><span class='id name'>name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id first'>first</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="[]=-instance_method">
+  
+    - (<tt>String</tt>) <strong>[]=</strong>(name, val) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Sets the header value paired with the supplied header name.  The name  will
+be converted to a Symbol and must respond to <tt>to_sym</tt>; meanwhile,
+the value will be converted to a String so must respond to <tt>to_s</tt>.
+Setting a header value in this fashion will overwrite any repeated header
+values.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='id headers'>headers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>content-type</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>image/png</span><span class='tstring_end'>'</span></span> <span class='comment'>#=&gt; 'image/png'
+</span><span class='id headers'>headers</span><span class='lbracket'>[</span><span class='symbol'>:content-type</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>nil</span> <span class='comment'>#=&gt; ''
+</span><span class='id headers'>headers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>content-type</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='comment'>#=&gt; ''</span></pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>#to_sym</tt>)</span>
+      
+      
+        <span class='name'>name</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the header name to associate with the supplied value (will be converted
+using <tt>to_sym</tt>)
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>#to_s</tt>)</span>
+      
+      
+        <span class='name'>val</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the value to pair with the supplied name (will be converted using
+<tt>to_s</tt>)
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the supplied value as a string.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+150
+151
+152
+153
+154
+155
+156</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/components/frame_headers.rb', line 150</span>
+
+<span class='kw'>def</span> <span class='op'>[]=</span><span class='lparen'>(</span><span class='id name'>name</span><span class='comma'>,</span> <span class='id val'>val</span><span class='rparen'>)</span>
+  <span class='id name'>name</span> <span class='op'>=</span> <span class='id name'>name</span><span class='period'>.</span><span class='id to_sym'>to_sym</span>
+  <span class='id val'>val</span> <span class='op'>=</span> <span class='id val'>val</span><span class='period'>.</span><span class='id to_s'>to_s</span>
+  <span class='id add_name'>add_name</span> <span class='id name'>name</span>
+  <span class='ivar'>@values</span><span class='lbracket'>[</span><span class='id name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id val'>val</span><span class='rbracket'>]</span>
+  <span class='id val'>val</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="all_values-instance_method">
+  
+    - (<tt>Array</tt>) <strong>all_values</strong>(name) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Retrieves all header values associated with the supplied header name. In
+general, this will be an array containing only the principle header value;
+however, in the event a frame contained repeated header names, this method
+will return all of the associated values.  The first element of the array
+will be the principle value of the supplied header name.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='id headers'>headers</span><span class='period'>.</span><span class='id all_values'>all_values</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>content-type</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; [ 'text/plain' ]
+</span><span class='id headers'>headers</span><span class='period'>.</span><span class='id all_values'>all_values</span><span class='lparen'>(</span><span class='symbol'>:repeated_header</span><span class='rparen'>)</span> <span class='comment'>#=&gt; [ 'principle value', '13', 'other value']
+</span><span class='id headers'>headers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>name</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id headers'>headers</span><span class='period'>.</span><span class='id all_values'>all_values</span><span class='lparen'>(</span><span class='symbol'>:name</span><span class='rparen'>)</span><span class='period'>.</span><span class='id first'>first</span> <span class='comment'>#=&gt; true</span></pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>#to_sym</tt>)</span>
+      
+      
+        <span class='name'>name</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the header name associated with the desired values (will be converted using
+<tt>to_sym</tt>)
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the array of values associated with the header name.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+77
+78
+79</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/components/frame_headers.rb', line 77</span>
+
+<span class='kw'>def</span> <span class='id all_values'>all_values</span><span class='lparen'>(</span><span class='id name'>name</span><span class='rparen'>)</span>
+  <span class='ivar'>@values</span><span class='lbracket'>[</span><span class='id name'>name</span><span class='period'>.</span><span class='id to_sym'>to_sym</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="append-instance_method">
+  
+    - (<tt>String</tt>) <strong>append</strong>(name, val) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Appends a header value to the specified header name.  If the specified
+header name is not known, the supplied value will also become the principle
+value.  This method is used internally when constructing frames sent by the
+broker to capture repeated header names.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='id headers'>headers</span><span class='period'>.</span><span class='id append'>append</span><span class='lparen'>(</span><span class='symbol'>:new header</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>first value</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; 'first value'
+</span><span class='id headers'>headers</span><span class='period'>.</span><span class='id append'>append</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>new header</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span> <span class='comment'>#=&gt; ''
+</span><span class='id headers'>headers</span><span class='period'>.</span><span class='id append'>append</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>new header</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='int'>13</span><span class='rparen'>)</span> <span class='comment'>#=&gt; '13'
+</span><span class='id headers'>headers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>new header</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='comment'>#=&gt; 'first value'
+</span><span class='id headers'>headers</span><span class='period'>.</span><span class='id all'>all</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>new header</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; ['first value', '', '13']</span></pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>#to_sym</tt>)</span>
+      
+      
+        <span class='name'>name</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the header name to associate with the supplied value (will be converted
+using <tt>to_s</tt>)
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>#to_s</tt>)</span>
+      
+      
+        <span class='name'>val</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the header value to associate with the supplied name (will be converted
+using <tt>to_s</tt>)
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the supplied value as a string.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/components/frame_headers.rb', line 95</span>
+
+<span class='kw'>def</span> <span class='id append'>append</span><span class='lparen'>(</span><span class='id name'>name</span><span class='comma'>,</span> <span class='id val'>val</span><span class='rparen'>)</span>
+  <span class='id name'>name</span> <span class='op'>=</span> <span class='id name'>name</span><span class='period'>.</span><span class='id to_sym'>to_sym</span>
+  <span class='id val'>val</span> <span class='op'>=</span> <span class='id val'>val</span><span class='period'>.</span><span class='id to_s'>to_s</span>
+  <span class='kw'>if</span> <span class='ivar'>@values</span><span class='period'>.</span><span class='id key?'>key?</span><span class='lparen'>(</span><span class='id name'>name</span><span class='rparen'>)</span>
+    <span class='ivar'>@values</span><span class='lbracket'>[</span><span class='id name'>name</span><span class='rbracket'>]</span> <span class='op'>&lt;&lt;</span> <span class='id val'>val</span>
+  <span class='kw'>else</span>
+    <span class='kw'>self</span><span class='lbracket'>[</span><span class='id name'>name</span><span class='rbracket'>]</span><span class='op'>=</span> <span class='id val'>val</span>
+  <span class='kw'>end</span>
+  <span class='id val'>val</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="delete-instance_method">
+  
+    - (<tt>Array</tt>) <strong>delete</strong>(name) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Deletes all of the header values associated with the header name and
+removes the header name itself.  This is analogous to the <tt>delete</tt>
+method found in Hash objects.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='id headers'>headers</span><span class='period'>.</span><span class='id delete'>delete</span><span class='lparen'>(</span><span class='symbol'>:content-type</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; [ 'text/html' ]
+</span><span class='id headers'>headers</span><span class='period'>.</span><span class='id delete'>delete</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>no such header</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; nil</span></pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>#to_sym</tt>)</span>
+      
+      
+        <span class='name'>name</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the header name to remove from this collection (will be converted using
+<tt>to_sym</tt>)
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the array of values associated with the deleted header, or <tt>nil</tt> if
+the header name did not exist
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+115
+116
+117
+118
+119
+120
+121</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/components/frame_headers.rb', line 115</span>
+
+<span class='kw'>def</span> <span class='id delete'>delete</span><span class='lparen'>(</span><span class='id name'>name</span><span class='rparen'>)</span>
+  <span class='id name'>name</span> <span class='op'>=</span> <span class='id name'>name</span><span class='period'>.</span><span class='id to_sym'>to_sym</span>
+  <span class='kw'>if</span> <span class='ivar'>@values</span><span class='period'>.</span><span class='id key?'>key?</span> <span class='id name'>name</span>
+    <span class='id delete_name'>delete_name</span> <span class='id name'>name</span>
+    <span class='ivar'>@values</span><span class='period'>.</span><span class='id delete'>delete</span> <span class='id name'>name</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="each-instance_method">
+  
+    - (<tt>Object</tt>) <strong>each</strong> {|header_name, header_value| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Iterates over header name / value pairs, yielding them as a pair of strings
+to the supplied block.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>header_name</tt>, <tt>header_value</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>header_name</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>header_value</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+170
+171
+172
+173
+174
+175
+176
+177</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/components/frame_headers.rb', line 170</span>
+
+<span class='kw'>def</span> <span class='id each'>each</span> <span class='op'>&amp;</span><span class='id block'>block</span>
+  <span class='kw'>if</span> <span class='id block_given?'>block_given?</span>
+    <span class='id iterate_each'>iterate_each</span> <span class='op'>&amp;</span><span class='id block'>block</span>
+    <span class='kw'>self</span>
+  <span class='kw'>else</span>
+    <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>ENUMERATOR_KLASS</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="merge!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>merge!</strong>(hash) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong> 
+    <div class='inline'><p>
+With Ruby 1.8.7, the order of hash keys may not be preserved
+</p>
+</div>
+  </div>
+
+<p>
+Merges a hash into this collection of headers. All of the keys used in the
+hash must be convertable to Symbols through <tt>to_sym</tt>.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <span class='name'>hash</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+25
+26
+27</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/components/frame_headers.rb', line 25</span>
+
+<span class='kw'>def</span> <span class='id merge!'>merge!</span><span class='lparen'>(</span><span class='id hash'>hash</span><span class='rparen'>)</span>
+  <span class='id hash'>hash</span><span class='period'>.</span><span class='id each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id k'>k</span><span class='comma'>,</span> <span class='id v'>v</span><span class='op'>|</span> <span class='kw'>self</span><span class='lbracket'>[</span><span class='id k'>k</span><span class='rbracket'>]</span><span class='op'>=</span> <span class='id v'>v</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="present?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>present?</strong>(name) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns true if a header value has been set for the supplied header, and
+the value is neither <tt>nil</tt> nor an empty string.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='id header'>header</span><span class='lbracket'>[</span><span class='symbol'>:test1</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>set</span><span class='tstring_end'>'</span></span>
+<span class='id header'>header</span><span class='lbracket'>[</span><span class='symbol'>:test2</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span>
+<span class='id header'>header</span><span class='period'>.</span><span class='id present?'>present?</span> <span class='symbol'>:test1</span> <span class='comment'>#=&gt; true
+</span><span class='id header'>header</span><span class='period'>.</span><span class='id present?'>present?</span> <span class='symbol'>:test2</span> <span class='comment'>#=&gt; false</span></pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>#to_sym</tt>)</span>
+      
+      
+        <span class='name'>name</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the header name to test
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+59
+60
+61
+62</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/components/frame_headers.rb', line 59</span>
+
+<span class='kw'>def</span> <span class='id present?'>present?</span><span class='lparen'>(</span><span class='id name'>name</span><span class='rparen'>)</span>
+  <span class='id val'>val</span> <span class='op'>=</span> <span class='kw'>self</span><span class='lbracket'>[</span><span class='id name'>name</span><span class='rbracket'>]</span>
+  <span class='op'>!</span><span class='lparen'>(</span><span class='id val'>val</span><span class='period'>.</span><span class='id nil?'>nil?</span> <span class='op'>||</span> <span class='id val'>val</span><span class='period'>.</span><span class='id empty?'>empty?</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="reverse_merge!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>reverse_merge!</strong>(hash) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong> 
+    <div class='inline'><p>
+With Ruby 1.8.7, the order of hash keys may not be preserved
+</p>
+</div>
+  </div>
+
+<p>
+Reverse merges a hash into this collection of headers. The hash keys and
+values are included only if the headers collection does not already have a
+matching key. All of the keys used in the hash must be convertable to
+Symbols through <tt>to_sym</tt>.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <span class='name'>hash</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+35
+36
+37
+38
+39</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/components/frame_headers.rb', line 35</span>
+
+<span class='kw'>def</span> <span class='id reverse_merge!'>reverse_merge!</span><span class='lparen'>(</span><span class='id hash'>hash</span><span class='rparen'>)</span>
+  <span class='id hash'>hash</span><span class='period'>.</span><span class='id each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id k'>k</span><span class='comma'>,</span> <span class='id v'>v</span><span class='op'>|</span>
+    <span class='kw'>self</span><span class='lbracket'>[</span><span class='id k'>k</span><span class='rbracket'>]</span><span class='op'>=</span> <span class='id v'>v</span> <span class='kw'>unless</span> <span class='id set?'>set?</span><span class='lparen'>(</span><span class='id k'>k</span><span class='rparen'>)</span>
+  <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="set?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>set?</strong>(name) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns true if a header value has been set for the supplied header name.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='id header'>header</span><span class='period'>.</span><span class='id set?'>set?</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>content-type</span><span class='tstring_end'>'</span></span> <span class='comment'>#=&gt; true</span></pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>#to_sym</tt>)</span>
+      
+      
+        <span class='name'>name</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the header name to test
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+46
+47
+48</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/components/frame_headers.rb', line 46</span>
+
+<span class='kw'>def</span> <span class='id set?'>set?</span><span class='lparen'>(</span><span class='id name'>name</span><span class='rparen'>)</span>
+  <span class='ivar'>@values</span><span class='period'>.</span><span class='id key?'>key?</span><span class='lparen'>(</span><span class='id name'>name</span><span class='period'>.</span><span class='id to_sym'>to_sym</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="to_hash-instance_method">
+  
+    - (<tt>Hash</tt>) <strong>to_hash</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns a new <tt>Hash</tt> object associating symbolized header names and
+their principle values.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+161
+162
+163</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/components/frame_headers.rb', line 161</span>
+
+<span class='kw'>def</span> <span class='id to_hash'>to_hash</span>
+  <span class='ivar'>@values</span><span class='period'>.</span><span class='id inject'>inject</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id h'>h</span><span class='comma'>,</span> <span class='lparen'>(</span><span class='id k'>k</span><span class='comma'>,</span><span class='id v'>v</span><span class='rparen'>)</span><span class='op'>|</span> <span class='id h'>h</span><span class='lbracket'>[</span><span class='id k'>k</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id v'>v</span><span class='period'>.</span><span class='id first'>first</span><span class='semicolon'>;</span> <span class='id h'>h</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun Apr  3 16:54:12 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.5 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,4097 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module: OnStomp::Interfaces::ClientEvents</title>
+<link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '../..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (C)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../../OnStomp.html" title="OnStomp (module)">OnStomp</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Interfaces.html" title="OnStomp::Interfaces (module)">Interfaces</a></span></span>
+     &raquo; 
+    <span class="title">ClientEvents</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Module: OnStomp::Interfaces::ClientEvents
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+      <dt class="r1">Includes:</dt>
+      <dd class="r1"><span class='object_link'><a href="EventManager.html" title="OnStomp::Interfaces::EventManager (module)">EventManager</a></span></dd>
+      
+    
+  
+  
+    <dt class="r2">Included in:</dt>
+    <dd class="r2"><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">Client</a></span></dd>
+    
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/onstomp/interfaces/client_events.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+Mixin for <span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">client</a></span> events There are a few special event
+methods that will be passed on to the client&#8217;s connection, they are:
+</p>
+<ul>
+<li><p>
+<tt>on_connection_established</tt> =>
+<span class='object_link'><a href="ConnectionEvents.html#on_established-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_established (method)">OnStomp::Interfaces::ConnectionEvents#on_established</a></span>
+</p>
+</li>
+<li><p>
+<tt>on_connection_died</tt> =>
+<span class='object_link'><a href="ConnectionEvents.html#on_died-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_died (method)">OnStomp::Interfaces::ConnectionEvents#on_died</a></span>
+</p>
+</li>
+<li><p>
+<tt>on_connection_terminated</tt> =>
+<span class='object_link'><a href="ConnectionEvents.html#on_terminated-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_terminated (method)">OnStomp::Interfaces::ConnectionEvents#on_terminated</a></span>
+</p>
+</li>
+<li><p>
+<tt>on_connection_closed</tt> =>
+<span class='object_link'><a href="ConnectionEvents.html#on_closed-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_closed (method)">OnStomp::Interfaces::ConnectionEvents#on_closed</a></span>
+</p>
+</li>
+</ul>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+
+  
+  
+  
+  
+
+  
+    <h2>
+      Client Frame Event Bindings
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#before_abort-instance_method" title="#before_abort (instance method)">- (Object) <strong>before_abort</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when an ABORT frame is transmitted.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#before_ack-instance_method" title="#before_ack (instance method)">- (Object) <strong>before_ack</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when an ACK frame is transmitted.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#before_begin-instance_method" title="#before_begin (instance method)">- (Object) <strong>before_begin</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when a BEGIN frame is transmitted.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#before_client_beat-instance_method" title="#before_client_beat (instance method)">- (Object) <strong>before_client_beat</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when a client heartbeat is transmitted.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#before_commit-instance_method" title="#before_commit (instance method)">- (Object) <strong>before_commit</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when a COMMIT frame is transmitted.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#before_disconnect-instance_method" title="#before_disconnect (instance method)">- (Object) <strong>before_disconnect</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when a DISCONNECT frame is transmitted.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#before_nack-instance_method" title="#before_nack (instance method)">- (Object) <strong>before_nack</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when a NACK frame is transmitted.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#before_send-instance_method" title="#before_send (instance method)">- (Object) <strong>before_send</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when a SEND frame is transmitted.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#before_subscribe-instance_method" title="#before_subscribe (instance method)">- (Object) <strong>before_subscribe</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when a SUBSCRIBE frame is transmitted.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#before_unsubscribe-instance_method" title="#before_unsubscribe (instance method)">- (Object) <strong>before_unsubscribe</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when an UNSUBSCRIBE frame is transmitted.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on_abort-instance_method" title="#on_abort (instance method)">- (Object) <strong>on_abort</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when an ABORT frame is transmitted.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on_ack-instance_method" title="#on_ack (instance method)">- (Object) <strong>on_ack</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when an ACK frame is transmitted.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on_begin-instance_method" title="#on_begin (instance method)">- (Object) <strong>on_begin</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when a BEGIN frame is transmitted.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on_client_beat-instance_method" title="#on_client_beat (instance method)">- (Object) <strong>on_client_beat</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when a client heartbeat is transmitted.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on_commit-instance_method" title="#on_commit (instance method)">- (Object) <strong>on_commit</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when a COMMIT frame is transmitted.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on_connect-instance_method" title="#on_connect (instance method)">- (Object) <strong>on_connect</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Can&#8217;t get <tt>before</tt> because the CONNECT frame isn&#8217;t
+transmitted by the client.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on_disconnect-instance_method" title="#on_disconnect (instance method)">- (Object) <strong>on_disconnect</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when a DISCONNECT frame is transmitted.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on_nack-instance_method" title="#on_nack (instance method)">- (Object) <strong>on_nack</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when a NACK frame is transmitted.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on_send-instance_method" title="#on_send (instance method)">- (Object) <strong>on_send</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when a SEND frame is transmitted.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on_subscribe-instance_method" title="#on_subscribe (instance method)">- (Object) <strong>on_subscribe</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when a SUBSCRIBE frame is transmitted.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on_unsubscribe-instance_method" title="#on_unsubscribe (instance method)">- (Object) <strong>on_unsubscribe</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when an UNSUBSCRIBE frame is transmitted.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Broker Frame Event Bindings
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#before_broker_beat-instance_method" title="#before_broker_beat (instance method)">- (Object) <strong>before_broker_beat</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when a broker heartbeat is received.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#before_error-instance_method" title="#before_error (instance method)">- (Object) <strong>before_error</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when an ERROR frame is received.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#before_message-instance_method" title="#before_message (instance method)">- (Object) <strong>before_message</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when a MESSAGE frame is received.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#before_receipt-instance_method" title="#before_receipt (instance method)">- (Object) <strong>before_receipt</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when a RECEIPT frame is received.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on_broker_beat-instance_method" title="#on_broker_beat (instance method)">- (Object) <strong>on_broker_beat</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when a broker heartbeat is received.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on_error-instance_method" title="#on_error (instance method)">- (Object) <strong>on_error</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when an ERROR frame is received.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on_message-instance_method" title="#on_message (instance method)">- (Object) <strong>on_message</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when a MESSAGE frame is received.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on_receipt-instance_method" title="#on_receipt (instance method)">- (Object) <strong>on_receipt</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when a RECEIPT frame is received.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Frame Exchange Event Bindings
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#after_receiving-instance_method" title="#after_receiving (instance method)">- (Object) <strong>after_receiving</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when any frame is received.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#after_transmitting-instance_method" title="#after_transmitting (instance method)">- (Object) <strong>after_transmitting</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when any frame is transmitted.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#before_receiving-instance_method" title="#before_receiving (instance method)">- (Object) <strong>before_receiving</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when any frame is received.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#before_transmitting-instance_method" title="#before_transmitting (instance method)">- (Object) <strong>before_transmitting</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Binds a callback to be invoked when any frame is transmitted.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pending_connection_events-instance_method" title="#pending_connection_events (instance method)">- ({Symbol =&gt; Array&lt;Proc&gt;}) <strong>pending_connection_events</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns a hash of event bindings that should be set on a
+<span class='object_link'><a href="../Connections/Base.html" title="OnStomp::Connections::Base (class)">connection</a></span>, but were set on the client because
+the connection does not exist yet.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#trigger_after_receiving-instance_method" title="#trigger_after_receiving (instance method)">- (Object) <strong>trigger_after_receiving</strong>(f) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Triggers the :after_receiving event and the <tt>on</tt> prefixed frame
+specific event (eg: <tt>:on_message</tt>).
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#trigger_after_transmitting-instance_method" title="#trigger_after_transmitting (instance method)">- (Object) <strong>trigger_after_transmitting</strong>(f) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Triggers the :after_transmitting event and the <tt>on</tt> prefixed frame
+specific event (eg: <tt>:on_send</tt>).
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#trigger_before_receiving-instance_method" title="#trigger_before_receiving (instance method)">- (Object) <strong>trigger_before_receiving</strong>(f) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Triggers the :before_receiving event and the <tt>before</tt> prefixed frame
+specific event (eg: <tt>:before_error</tt>).
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#trigger_before_transmitting-instance_method" title="#trigger_before_transmitting (instance method)">- (Object) <strong>trigger_before_transmitting</strong>(f) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Triggers the :before_transmitting event and the <tt>before</tt> prefixed
+frame specific event (eg: <tt>:before_disconnect</tt>).
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#trigger_frame_event-instance_method" title="#trigger_frame_event (instance method)">- (Object) <strong>trigger_frame_event</strong>(f, pref, origin) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Triggers an event named by the supplied frame, prefixed with the supplied
+prefix.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="EventManager.html" title="OnStomp::Interfaces::EventManager (module)">EventManager</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="EventManager.html#bind_event-instance_method" title="OnStomp::Interfaces::EventManager#bind_event (method)">#bind_event</a></span>, <span class='object_link'><a href="EventManager.html#event_callbacks-instance_method" title="OnStomp::Interfaces::EventManager#event_callbacks (method)">#event_callbacks</a></span>, <span class='object_link'><a href="EventManager.html#included-class_method" title="OnStomp::Interfaces::EventManager.included (method)">included</a></span>, <span class='object_link'><a href="EventManager.html#trigger_event-instance_method" title="OnStomp::Interfaces::EventManager#trigger_event (method)">#trigger_event</a></span></p>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="after_receiving-instance_method">
+  
+    - (<tt>Object</tt>) <strong>after_receiving</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when any frame is received
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+104</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 104</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:receiving</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:after</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="after_transmitting-instance_method">
+  
+    - (<tt>Object</tt>) <strong>after_transmitting</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when any frame is transmitted
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+99</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 99</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:transmitting</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:after</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="before_abort-instance_method">
+  
+    - (<tt>Object</tt>) <strong>before_abort</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when an ABORT frame is transmitted
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+38</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 38</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:abort</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="before_ack-instance_method">
+  
+    - (<tt>Object</tt>) <strong>before_ack</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when an ACK frame is transmitted
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+23</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 23</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:ack</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="before_begin-instance_method">
+  
+    - (<tt>Object</tt>) <strong>before_begin</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when a BEGIN frame is transmitted
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+33</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 33</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:begin</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="before_broker_beat-instance_method">
+  
+    - (<tt>Object</tt>) <strong>before_broker_beat</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when a broker heartbeat is received
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+91</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 91</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:broker_beat</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="before_client_beat-instance_method">
+  
+    - (<tt>Object</tt>) <strong>before_client_beat</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when a client heartbeat is transmitted
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+68</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 68</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:client_beat</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="before_commit-instance_method">
+  
+    - (<tt>Object</tt>) <strong>before_commit</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when a COMMIT frame is transmitted
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+43</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 43</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:commit</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="before_disconnect-instance_method">
+  
+    - (<tt>Object</tt>) <strong>before_disconnect</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when a DISCONNECT frame is transmitted
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+63</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 63</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:disconnect</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="before_error-instance_method">
+  
+    - (<tt>Object</tt>) <strong>before_error</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when an ERROR frame is received
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+76</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 76</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:error</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="before_message-instance_method">
+  
+    - (<tt>Object</tt>) <strong>before_message</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when a MESSAGE frame is received
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+81</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 81</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:message</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="before_nack-instance_method">
+  
+    - (<tt>Object</tt>) <strong>before_nack</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when a NACK frame is transmitted
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+28</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 28</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:nack</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="before_receipt-instance_method">
+  
+    - (<tt>Object</tt>) <strong>before_receipt</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when a RECEIPT frame is received
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+86</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 86</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:receipt</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="before_receiving-instance_method">
+  
+    - (<tt>Object</tt>) <strong>before_receiving</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when any frame is received
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+104</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 104</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:receiving</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:after</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="before_send-instance_method">
+  
+    - (<tt>Object</tt>) <strong>before_send</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when a SEND frame is transmitted
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+48</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 48</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:send</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="before_subscribe-instance_method">
+  
+    - (<tt>Object</tt>) <strong>before_subscribe</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when a SUBSCRIBE frame is transmitted
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 53</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:subscribe</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="before_transmitting-instance_method">
+  
+    - (<tt>Object</tt>) <strong>before_transmitting</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when any frame is transmitted
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+99</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 99</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:transmitting</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:after</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="before_unsubscribe-instance_method">
+  
+    - (<tt>Object</tt>) <strong>before_unsubscribe</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when an UNSUBSCRIBE frame is transmitted
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+58</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 58</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:unsubscribe</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="on_abort-instance_method">
+  
+    - (<tt>Object</tt>) <strong>on_abort</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when an ABORT frame is transmitted
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+38</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 38</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:abort</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="on_ack-instance_method">
+  
+    - (<tt>Object</tt>) <strong>on_ack</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when an ACK frame is transmitted
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+23</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 23</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:ack</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="on_begin-instance_method">
+  
+    - (<tt>Object</tt>) <strong>on_begin</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when a BEGIN frame is transmitted
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+33</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 33</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:begin</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="on_broker_beat-instance_method">
+  
+    - (<tt>Object</tt>) <strong>on_broker_beat</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when a broker heartbeat is received
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+91</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 91</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:broker_beat</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="on_client_beat-instance_method">
+  
+    - (<tt>Object</tt>) <strong>on_client_beat</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when a client heartbeat is transmitted
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+68</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 68</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:client_beat</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="on_commit-instance_method">
+  
+    - (<tt>Object</tt>) <strong>on_commit</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when a COMMIT frame is transmitted
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+43</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 43</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:commit</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="on_connect-instance_method">
+  
+    - (<tt>Object</tt>) <strong>on_connect</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Can&#8217;t get <tt>before</tt> because the CONNECT frame isn&#8217;t
+transmitted by the client.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+17</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 17</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:connect</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="on_disconnect-instance_method">
+  
+    - (<tt>Object</tt>) <strong>on_disconnect</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when a DISCONNECT frame is transmitted
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+63</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 63</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:disconnect</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="on_error-instance_method">
+  
+    - (<tt>Object</tt>) <strong>on_error</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when an ERROR frame is received
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+76</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 76</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:error</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="on_message-instance_method">
+  
+    - (<tt>Object</tt>) <strong>on_message</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when a MESSAGE frame is received
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+81</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 81</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:message</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="on_nack-instance_method">
+  
+    - (<tt>Object</tt>) <strong>on_nack</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when a NACK frame is transmitted
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+28</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 28</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:nack</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="on_receipt-instance_method">
+  
+    - (<tt>Object</tt>) <strong>on_receipt</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when a RECEIPT frame is received
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+86</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 86</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:receipt</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="on_send-instance_method">
+  
+    - (<tt>Object</tt>) <strong>on_send</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when a SEND frame is transmitted
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+48</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 48</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:send</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="on_subscribe-instance_method">
+  
+    - (<tt>Object</tt>) <strong>on_subscribe</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when a SUBSCRIBE frame is transmitted
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 53</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:subscribe</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="on_unsubscribe-instance_method">
+  
+    - (<tt>Object</tt>) <strong>on_unsubscribe</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Binds a callback to be invoked when an UNSUBSCRIBE frame is transmitted
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+callback invoked when event is triggered
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+58</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 58</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:unsubscribe</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="pending_connection_events-instance_method">
+  
+    - (<tt>{Symbol =&gt; Array&lt;Proc&gt;}</tt>) <strong>pending_connection_events</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns a hash of event bindings that should be set on a
+<span class='object_link'><a href="../Connections/Base.html" title="OnStomp::Connections::Base (class)">connection</a></span>, but were set on the client because
+the connection does not exist yet.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>{Symbol =&gt; Array&lt;Proc&gt;}</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+125
+126
+127</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 125</span>
+
+<span class='kw'>def</span> <span class='id pending_connection_events'>pending_connection_events</span>
+  <span class='ivar'>@pending_connection_events</span> <span class='op'>||=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id new'>new</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id h'>h</span><span class='comma'>,</span><span class='id k'>k</span><span class='op'>|</span> <span class='id h'>h</span><span class='lbracket'>[</span><span class='id k'>k</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="trigger_after_receiving-instance_method">
+  
+    - (<tt>Object</tt>) <strong>trigger_after_receiving</strong>(f) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Triggers the :after_receiving event and the <tt>on</tt> prefixed frame
+specific event (eg: <tt>:on_message</tt>)
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>f</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+152
+153
+154
+155</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 152</span>
+
+<span class='kw'>def</span> <span class='id trigger_after_receiving'>trigger_after_receiving</span> <span class='id f'>f</span>
+  <span class='id trigger_event'>trigger_event</span> <span class='symbol'>:after_receiving</span><span class='comma'>,</span> <span class='id f'>f</span><span class='comma'>,</span> <span class='kw'>self</span>
+  <span class='id trigger_frame_event'>trigger_frame_event</span> <span class='id f'>f</span><span class='comma'>,</span> <span class='symbol'>:on</span><span class='comma'>,</span> <span class='symbol'>:broker</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="trigger_after_transmitting-instance_method">
+  
+    - (<tt>Object</tt>) <strong>trigger_after_transmitting</strong>(f) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Triggers the :after_transmitting event and the <tt>on</tt> prefixed frame
+specific event (eg: <tt>:on_send</tt>).
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>f</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+168
+169
+170
+171</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 168</span>
+
+<span class='kw'>def</span> <span class='id trigger_after_transmitting'>trigger_after_transmitting</span> <span class='id f'>f</span>
+  <span class='id trigger_event'>trigger_event</span> <span class='symbol'>:after_transmitting</span><span class='comma'>,</span> <span class='id f'>f</span><span class='comma'>,</span> <span class='kw'>self</span>
+  <span class='id trigger_frame_event'>trigger_frame_event</span> <span class='id f'>f</span><span class='comma'>,</span> <span class='symbol'>:on</span><span class='comma'>,</span> <span class='symbol'>:client</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="trigger_before_receiving-instance_method">
+  
+    - (<tt>Object</tt>) <strong>trigger_before_receiving</strong>(f) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Triggers the :before_receiving event and the <tt>before</tt> prefixed frame
+specific event (eg: <tt>:before_error</tt>).
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>f</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+144
+145
+146
+147</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 144</span>
+
+<span class='kw'>def</span> <span class='id trigger_before_receiving'>trigger_before_receiving</span> <span class='id f'>f</span>
+  <span class='id trigger_event'>trigger_event</span> <span class='symbol'>:before_receiving</span><span class='comma'>,</span> <span class='id f'>f</span><span class='comma'>,</span> <span class='kw'>self</span>
+  <span class='id trigger_frame_event'>trigger_frame_event</span> <span class='id f'>f</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:broker</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="trigger_before_transmitting-instance_method">
+  
+    - (<tt>Object</tt>) <strong>trigger_before_transmitting</strong>(f) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Triggers the :before_transmitting event and the <tt>before</tt> prefixed
+frame specific event (eg: <tt>:before_disconnect</tt>).
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>f</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+160
+161
+162
+163</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 160</span>
+
+<span class='kw'>def</span> <span class='id trigger_before_transmitting'>trigger_before_transmitting</span> <span class='id f'>f</span>
+  <span class='id trigger_event'>trigger_event</span> <span class='symbol'>:before_transmitting</span><span class='comma'>,</span> <span class='id f'>f</span><span class='comma'>,</span> <span class='kw'>self</span>
+  <span class='id trigger_frame_event'>trigger_frame_event</span> <span class='id f'>f</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:client</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="trigger_frame_event-instance_method">
+  
+    - (<tt>Object</tt>) <strong>trigger_frame_event</strong>(f, pref, origin) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Triggers an event named by the supplied frame, prefixed with the supplied
+prefix. If the supplied frame is a &#8216;heart-beat&#8217;, origin will be
+used to dispatch appropriate heart-beat event (client_beat or broker_beat)
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>f</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the frame trigger this event
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>:on</tt>, <tt>:before</tt>, <tt>etc</tt>)</span>
+      
+      
+        <span class='name'>pref</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the prefix for the event name
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>:client</tt>, <tt>:broker</tt>)</span>
+      
+      
+        <span class='name'>origin</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+135
+136
+137
+138
+139</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 135</span>
+
+<span class='kw'>def</span> <span class='id trigger_frame_event'>trigger_frame_event</span> <span class='id f'>f</span><span class='comma'>,</span> <span class='id pref'>pref</span><span class='comma'>,</span> <span class='id origin'>origin</span>
+  <span class='id e'>e</span> <span class='op'>=</span> <span class='id f'>f</span><span class='period'>.</span><span class='id command'>command</span> <span class='op'>?</span> <span class='symbol'>:#{</span><span class='id pref'>pref</span><span class='rbrace'>}</span><span class='tstring_content'>_</span><span class='embexpr_beg'>#{</span><span class='id f'>f</span><span class='period'>.</span><span class='id command'>command</span><span class='period'>.</span><span class='id downcase'>downcase</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span>
+    <span class='symbol'>:#{</span><span class='id pref'>pref</span><span class='rbrace'>}</span><span class='tstring_content'>_</span><span class='embexpr_beg'>#{</span><span class='id origin'>origin</span><span class='rbrace'>}</span><span class='tstring_content'>_beat</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id trigger_event'>trigger_event</span> <span class='id e'>e</span><span class='comma'>,</span> <span class='id f'>f</span><span class='comma'>,</span> <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun Apr  3 16:54:11 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.5 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>
