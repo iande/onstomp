@@ -65,12 +65,7 @@ class OnStomp::Failover::Buffers::Written
     end
     
     replay_frames.each do |f|
-      $stdout.puts "Replaying frame: #{f.command} on #{client.object_id}"
-      begin
-        client.transmit f
-      rescue
-        $stdout.puts "Fail mode!: #{$!}"
-      end
+      client.transmit f
     end
   end
 end

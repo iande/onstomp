@@ -5,7 +5,7 @@
 class TestBroker
   class StopThread < StandardError; end
   
-  attr_reader :messages
+  attr_reader :messages, :sessions
   
   def initialize(port=61613)
     @sessions = []
@@ -19,6 +19,13 @@ class TestBroker
       $stdout.puts "Could not bind: #{ex}"
     end
     @session_class = Session10
+  end
+  
+  def kill_sessions
+    @sessions.each do |s|
+      s.kill
+    end
+    @sessions.clear
   end
   
   def enqueue_message s
@@ -182,6 +189,11 @@ class TestBroker
         #@connection.close
         @processor.join
       end
+    end
+    
+    def kill
+      @socket.close
+      @processor.stop
     end
     
     def stop

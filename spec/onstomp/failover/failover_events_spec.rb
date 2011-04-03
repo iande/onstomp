@@ -8,16 +8,42 @@ module OnStomp::Failover
         m.extend FailoverEvents
       end
     }
+    let(:client1) {
+      mock('client 1', :connection => nil).tap do |m|
+        m.extend OnStomp::Interfaces::ClientEvents
+      end
+    }
+    let(:client2) {
+      mock('client 2', :connection => nil).tap do |m|
+        m.extend OnStomp::Interfaces::ClientEvents
+      end
+    }
     let(:client_pool) {
-      [mock('client 1'), mock('client 2')]
+      [client1, client2]
     }
     describe "client events" do
       before(:each) do
         events.stub(:client_pool => client_pool)
       end
-      (OnStomp::Interfaces::ClientEvents.event_methods +
-        [:on_connection_established, :on_connection_died,
-          :on_connection_terminated, :on_connection_closed]).each do |meth|
+      OnStomp::Interfaces::ClientEvents.event_methods.each do |meth|
+        it "should bind #{meth} to each client" do
+          client_pool.each { |c| c.should_receive(meth) }
+          events.__send__(meth) { |*_| true }
+        end
+        it "should only invoke the event if the triggering client is active" do
+          triggered = false
+          events.__send__(meth) { |*_| triggered = true }
+          events.stub(:active_client => client2)
+          client1.trigger_event meth
+          triggered.should be_false
+          triggered = false
+          client2.trigger_event meth
+          triggered.should be_true
+        end
+      end
+      
+      [:on_connection_established, :on_connection_died,
+        :on_connection_terminated, :on_connection_closed].each do |meth|
         it "should bind #{meth} to each client" do
           client_pool.each { |c| c.should_receive(meth) }
           events.__send__(meth) { |*_| true }
