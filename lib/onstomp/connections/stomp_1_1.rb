@@ -31,6 +31,14 @@ class OnStomp::Connections::Stomp_1_1 < OnStomp::Connections::Base
     super && pulse?
   end
   
+  # Creates a SUBSCRIBE frame. Sets +ack+ header to 'auto' unless it is
+  # already set to 'client' or 'client-individual'.
+  # @return [OnStomp::Components::Frame] SUBSCRIBE frame
+  def subscribe_frame d, h
+    h[:ack] = 'auto' unless ['client', 'client-individual'].include?(h[:ack])
+    create_frame 'SUBSCRIBE', [{:id => OnStomp.next_serial}, h, {:destination => d}]
+  end
+  
   # Creates an ACK frame
   # @return [OnStomp::Components::Frame] ACK frame
   def ack_frame *args

@@ -38,12 +38,6 @@ module OnStomp::Connections::Stomp_1
     create_frame 'DISCONNECT', [h]
   end
   
-  # Creates a SUBSCRIBE frame
-  # @return [OnStomp::Components::Frame] SUBSCRIBE frame
-  def subscribe_frame d, h
-    create_frame 'SUBSCRIBE', [{:id => OnStomp.next_serial}, h, {:destination => d}]
-  end
-  
   # Creates an UNSUBSCRIBE frame
   # @return [OnStomp::Components::Frame] UNSUBSCRIBE frame
   def unsubscribe_frame f, h
