@@ -36,6 +36,7 @@ class OnStomp::Components::ThreadedProcessor
     self
   end
   
+  # Prepares the conneciton for closing by flushing its write buffer.
   def prepare_to_close
     if running?
       @closing = true

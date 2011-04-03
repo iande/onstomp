@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 
+# Namespace for client pool managers.
 module OnStomp::Failover::Pools
 end
 

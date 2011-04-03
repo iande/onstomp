@@ -2,10 +2,14 @@ class ConfigurableAttributeHandler < YARD::Handlers::Ruby::AttributeHandler
   handles method_call(:attr_configurable_str)
   handles method_call(:attr_configurable_client_beats)
   handles method_call(:attr_configurable_protocols)
+  handles method_call(:attr_configurable_pool)
+  handles method_call(:attr_configurable_buffer)
+  handles method_call(:attr_configurable_int)
+  handles method_call(:attr_configurable_bool)
   namespace_only
   
   def process
-    name = statement.parameters.first.jump(:symbol, :ident).source
+    name = statement.parameters.first.jump(:symbol, :ident).source[1..-1]
     namespace.attributes[scope][name] ||= SymbolHash[:read => nil, :write => nil]
     namespace.attributes[scope][name][:read] = YARD::CodeObjects::MethodObject.new(namespace, name)
     namespace.attributes[scope][name][:write] = YARD::CodeObjects::MethodObject.new(namespace, "#{name}=")

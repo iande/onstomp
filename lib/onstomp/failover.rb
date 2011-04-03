@@ -1,6 +1,9 @@
 # -*- encoding: utf-8 -*-
 
+# Namespace for failover extensions.
 module OnStomp::Failover
+  # Raised if the supplied failover: URI is not properly formatted as
+  # +failover:(uri,uri,...)?optionalParams=values+
   class InvalidFailoverURIError < OnStomp::OnStompError; end
 end
 

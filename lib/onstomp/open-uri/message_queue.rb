@@ -1,5 +1,7 @@
 # -*- encoding: utf-8 -*-
 
+# A simple synchronized message queue used to handle yielding MESSAGE frames
+# to {OnStomp::OpenURI::ClientExtensions#each} blocks.
 class OnStomp::OpenURI::MessageQueue
   def initialize
     @queue = []
@@ -7,10 +9,13 @@ class OnStomp::OpenURI::MessageQueue
     @empty_check = @queue.new_cond
   end
   
+  # Waits until the queue contains at least one element, then takes it out
+  # and returns it.
   def shift
     take_from_queue :shift
   end
   
+  # Puts a new object into the queue.
   def push msg
     put_in_queue :push, msg
   end

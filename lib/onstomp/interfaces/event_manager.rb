@@ -32,6 +32,9 @@ module OnStomp::Interfaces::EventManager
   
   # Mixin to allow includers to define custom event methods
   module ClassMethods
+    # A convenient way to get a list of all of the event methods a class
+    # has defined for itself. Returns an array of event method names as symbols.
+    # @return [Array<Symbol>]
     def event_methods
       @event_methods ||= []
     end

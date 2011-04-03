@@ -1,15 +1,35 @@
 # -*- encoding: utf-8 -*-
 
+# A failover client that wraps multiple {OnStomp::Client clients} and maintains
+# a connection to one of these clients. Frames are sent to the currently
+# connected client. If the connection is lost, a failover client will
+# automatically reconnect to another client in the pool, re-transmit any
+# necessary frames and resume operation.
 class OnStomp::Failover::Client
   include OnStomp::Failover::FailoverConfigurable
   include OnStomp::Failover::FailoverEvents
   include OnStomp::Interfaces::FrameMethods
   
-  attr_configurable_processor :processor
+  # The class to use when instantiating a new {#client_pool}.
+  # Defaults to {OnStomp::Failover::Pools::RoundRobin}
+  # @return [Class]
   attr_configurable_pool :pool
+  # The class to use when instantiating a new frame buffer.
+  # Defaults to {OnStomp::Failover::Buffers::Written}
+  # @return [Class]
   attr_configurable_buffer :buffer
+  # The delay in seconds to wait between connection retries.
+  # Defaults to +10+.
+  # @return [Fixnum]
   attr_configurable_int :retry_delay, :default => 10
+  # The maximum number of times to retry connecting during a reconnect
+  # loop. A non-positive number will force the failover client to try to
+  # reconnect indefinitely. Defaults to +0+
+  # @return [Fixnum]
   attr_configurable_int :retry_attempts, :default => 0
+  # Whether or not to randomize the {#client_pool} before connecting through
+  # any of its {OnStomp::Client clients}. Defaults to +false+
+  # @return [true,false]
   attr_configurable_bool :randomize, :default => false
   
   attr_reader :uri, :client_pool, :active_client, :frame_buffer, :connection
@@ -29,14 +49,21 @@ class OnStomp::Failover::Client
     @client_ready = false
   end
   
+  # Returns true if there is an {#active_client} and it is
+  # {OnStomp::Client#connected? connected}.
+  # @return [true,false,nil]
   def connected?
     active_client && active_client.connected?
   end
 
+  # Transmits a frame to the {#active_client} if one exists.
+  # @return [OnStomp::Components::Frame,nil]
   def transmit frame, cbs={}
     active_client && active_client.transmit(frame, cbs)
   end
   
+  # Connects to one of the clients in the {#client_pool}
+  # @return [self]
   def connect
     @disconnecting = false
     unless reconnect
@@ -45,6 +72,8 @@ class OnStomp::Failover::Client
     self
   end
   
+  # Ensures that a connection is properly established, then invokes
+  # {OnStomp::Client#disconnect disconnect} on the {#active_client}
   def disconnect *args, &block
     return unless active_client
     @disconnecting = true

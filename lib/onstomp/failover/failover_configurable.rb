@@ -14,11 +14,18 @@ module OnStomp::Failover::FailoverConfigurable
   # Provides attribute methods for {OnStomp::Failover::Client failover}
   # clients.
   module ClassMethods
+    # Creates readable and writeable attributes that are automatically
+    # converted into integers.
     def attr_configurable_int *args, &block
       trans = attr_configurable_wrap lambda { |v| v.to_i }, block
       attr_configurable_single(*args, &trans)
     end
     
+    # Creates readable and writeable attributes that are automatically
+    # converted into boolean values. Assigning the attributes any of
+    # +true+, +'true'+, +'1'+ or +1+ will set the attribute to +true+, all
+    # other values with be treated as +false+. This method will also alias
+    # the reader methods with +attr_name?+
     def attr_configurable_bool *args, &block
       trans = attr_configurable_wrap lambda { |v|
         [true, 'true', '1', 1].include?(v) }, block
@@ -30,6 +37,11 @@ module OnStomp::Failover::FailoverConfigurable
       end
     end
     
+    # Creates a readable and writeable attribute with the given name that
+    # defaults to the {OnStomp::Failover::Pools::RoundRobin}. Corresponds
+    # the the class to use when creating new
+    # {OnStomp::Failover::Client#client_pool client pools}.
+    # @param [Symbol] nm name of attribute
     def attr_configurable_pool nm
       attr_configurable_class(nm,
         :default => OnStomp::Failover::Pools::RoundRobin) do |p|
@@ -37,6 +49,10 @@ module OnStomp::Failover::FailoverConfigurable
       end
     end
     
+    # Creates a readable and writeable attribute with the given name that
+    # defaults to the {OnStomp::Failover::Buffers::Written}. Corresponds
+    # the the class to use for frame buffering and de-buffering.
+    # @param [Symbol] nm name of attribute
     def attr_configurable_buffer nm
       attr_configurable_class(nm,
         :default => OnStomp::Failover::Buffers::Written) do |b|

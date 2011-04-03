@@ -1,8 +1,11 @@
 # -*- encoding: utf-8 -*-
 
+# Mixin of extensions added to {OnStomp::Client clients} when they are
+# created by opening a stomp:// URI.
 module OnStomp::OpenURI::ClientExtensions
   attr_reader :auto_destination, :openuri_message_queue
   
+  # Aliases {#send_with_openuri} as +send+
   def self.extended inst
     inst.instance_eval do
       alias :send_without_openuri :send
@@ -11,6 +14,9 @@ module OnStomp::OpenURI::ClientExtensions
     end
   end
   
+  # Adds the ability for clients to generate SEND frames without specifying
+  # a destination by using {#auto_destination} instead.
+  # @return [OnStomp::Components::Frame] SEND frame
   def send_with_openuri *args, &block
     headers = args.last.is_a?(Hash) ? args.pop : {}
     dest, body = args
@@ -20,6 +26,12 @@ module OnStomp::OpenURI::ClientExtensions
     send_without_openuri dest, body, headers, &block
   end
   
+  # Creates a subscription to {#auto_destination} and yields each MESSAGE frame
+  # read from the subscription to the supplied block. If no block is provided
+  # an enumerator is returned.
+  # @yield [m] block to call for each MESSAGE frame
+  # @yieldparam [OnStomp::Components::Frame] m
+  # @return [Enumerator,self] 
   def each(&block)
     if block
       subscribe_to_auto_destination
@@ -31,6 +43,12 @@ module OnStomp::OpenURI::ClientExtensions
     end
   end
 
+  # Returns +n+ frames read from the subscription. If +n+ is ommited,
+  # the next frame is returned, otherwise an array of the next +n+ frames
+  # is returned.
+  # @see #each
+  # @param [Fixnum,nil] n
+  # @return [OnStomp::Components::Frame,Array<OnStomp::Components::Frame>]
   def first(n=nil)
     to_recv = n || 1
     received = []
@@ -43,6 +61,10 @@ module OnStomp::OpenURI::ClientExtensions
   alias :take :first
   alias :gets :first
   
+  # Assigns the auto destination. When a stomp:// URI is opened, this
+  # will initially be set to the +path+ of the URI.
+  # @param [String] dest
+  # @return [String,nil]
   def auto_destination= dest
     @auto_destination = (dest == '/') ? nil : dest
   end

@@ -1,5 +1,7 @@
 # -*- encoding: utf-8 -*-
 
+# Namespace for various frame buffering strategies to keep failover working
+# like it should.
 module OnStomp::Failover::Buffers
 end
 

@@ -93,6 +93,8 @@ class OnStomp::Connections::Base
     end
   end
   
+  # Flushes the write buffer by invoking {#io_process_write} until the
+  # buffer is empty.
   def flush_write_buffer
     io_process_write until @write_buffer.empty?
   end

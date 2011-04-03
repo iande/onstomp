@@ -1,7 +1,11 @@
 # -*- encoding: utf-8 -*-
 
+# Namespace for failover related URI classes.
 module OnStomp::Failover::URI
+  # A URI class for representing URIs with a 'failover' scheme.
   class FAILOVER < OnStomp::Components::URI::STOMP
+    # Matches the internal URIs and query contained in
+    # the +opaque+ part of a failover: URI
     FAILOVER_OPAQUE_REG = /^\(([^\)]+)\)(?:\?(.*))?/
     
     attr_reader :failover_uris
