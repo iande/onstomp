@@ -81,6 +81,7 @@ class OnStomp::Client
   # @param [{#to_sym => #to_s}] headers
   # @return [OnStomp::Components::Frame] transmitted DISCONNECT frame
   def disconnect_with_flush headers={}
+    processor_inst.prepare_to_close
     disconnect_without_flush(headers).tap do
       processor_inst.join
     end

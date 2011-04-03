@@ -7,6 +7,7 @@ class OnStomp::Components::ThreadedProcessor
   def initialize client
     @client = client
     @run_thread = nil
+    @closing = false
   end
   
   # Returns true if its IO thread has been created and is alive, otherwise
@@ -25,6 +26,7 @@ class OnStomp::Components::ThreadedProcessor
       begin
         while @client.connected?
           @client.connection.io_process
+          Thread.stop if @closing
         end
       rescue OnStomp::StopReceiver
       rescue Exception
@@ -32,6 +34,16 @@ class OnStomp::Components::ThreadedProcessor
       end
     end
     self
+  end
+  
+  def prepare_to_close
+    if running?
+      @closing = true
+      Thread.pass until @run_thread.stop?
+      @client.connection.flush_write_buffer
+      @closing = false
+      @run_thread.wakeup
+    end
   end
   
   # Causes the thread this method was invoked in to +pass+ until the

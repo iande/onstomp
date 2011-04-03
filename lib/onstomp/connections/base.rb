@@ -93,6 +93,10 @@ class OnStomp::Connections::Base
     end
   end
   
+  def flush_write_buffer
+    io_process_write until @write_buffer.empty?
+  end
+  
   # Makes a single call to {#io_process_write} and a single call to
   # {#io_process_read}
   def io_process &cb
