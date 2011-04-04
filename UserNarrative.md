@@ -4,7 +4,10 @@ This document explores the `OnStomp` API through a narrative aimed at end
 users of the library.  It will start with the basics and work through the
 available features through exposition and examples. It may be helpful to
 review the [STOMP specification](http://stomp.github.com/index.html) before
-diving into this document.
+diving into this document. It's also important to note that `onstomp` can
+only be used with Ruby 1.8.7+.  Support for Rubies prior to 1.8.7 does not
+exist, and even requiring the library in your code will probably generate
+errors.
 
 ## Creating a STOMP Client
 
@@ -13,6 +16,8 @@ by creating a new client and connecting it. This can be accomplished a few
 different ways.
 
     !!!ruby
+    require 'onstomp'
+    
     # The common way
     client = OnStomp::Client.new("stomp://host.example.org")
     client.connect
@@ -202,16 +207,305 @@ don't want to be bothered with managing `transaction` headers manually.
 The simplest way to use a transaction scope is to hand it a block you want
 handled transactionally:
 
+    !!!ruby
     client.transaction do |t|
-      
+      t.send '/queue/test', 'one of three'
+      t.send '/queue/test', 'two of three'
+      t.send '/queue/test', 'three of three'
     end
+    
+When passed a block, the transaction scope will automatically transmit a
+BEGIN frame, deliver all transactional frames in the block with a matching
+`transaction` header and then send a `COMMIT` frame to complete the
+transaction. If an error is raised within the block, an ABORT frame will be
+sent to the broker to roll-back the transaction and the offending error
+will be re-raised.
+
+Transaction scopes also support being re-used, but a little more work is
+required on your part:
+
+    trans = client.transaction
+    trans.begin
+    trans.send '/queue/test', 'one of three'
+    trans.send '/queue/test', 'two of three'
+    trans.send '/queue/test', 'three of three'
+    trans.commit
+    # First transaction is complete
+    trans.begin
+    trans.send '/queue/other', 'next transaction'
+    trans.abort
+    # Second transaction is rolled-back
+    trans.begin
+    trans.send '/queue/yet-another', 'last transaction'
+    trans.commit
+    
+When used like this, the transaction scope will automatically generate a new
+transaction id with each call to
+{OnStomp::Components::Scopes::TransactionScope#begin begin}, but you must
+manually begin and end the transactions. If you attempt to transmit a frame
+as part of a transaction that was already committed or aborted, the frame
+will be sent to the broker, but will not be a part of any transaction (ie:
+it will not have a `transaction` header.) This is also the case for frames
+that cannot be transacted (eg: SUBSCRIBE, UNSUBSCRIBE.)
 
 ## Events and Callbacks
 
+A key feature of the `onstomp` gem is the
+{OnStomp::Interfaces::ClientEvents event-driven} interface. A sufficient set
+of events can be bound to fully monitor what frames are being sent or received
+or event what frame information is ultimately delivered to the broker. There
+are two event hooks for every type of STOMP frame, one prefixed with
+`before_`, the other prefixed with `on_`. The difference between the two
+is when they are triggered:
+
+    client.before_send do |frame, client_obj|
+      # In here, frame is the SEND frame to deliver to the broker and
+      # client_obj == client.  All frame-based event callbacks are passed
+      # these two parameters.
+      puts "SEND frame will be sent, but hasn't been sent yet!"
+      frame[:a_header] = 'a header set in an event callback'
+    end
+    
+    client.on_send do |frame, client_obj|
+      puts "SEND frame was delivered to the broker: #{frame[:a_header]}"
+      # By now, the SEND frame has already been delivered to the broker,
+      # so the following line does not change what the broker received,
+      # but the change will be picked up by all other `on_send` callbacks
+      # registered after this one.
+      frame[:a_header] = 'a header changed in an event callback'
+    end
+
+Internally, `onstomp` uses non-blocking IO calls to read from and write to
+the STOMP broker (for more details, check out {OnStomp::Connections::Base}.)
+When dealing with client-generated frames (eg: SEND, SUBSCRIBE, DISCONNECT),
+the `before_<frame>` and
+{OnStomp::Interfaces::ClientEvents#before\_transmitting before\_transmitting}
+events are triggered after a frame has been queued in the write buffer. Once
+the frame has actually been written to the underlying TCP/IP socket, the
+`after_transmitting` and `on_<frame>` events are triggered.
+Below is list illustrating the sequence client related frame events are
+triggered:
+
+1. You call `client.send ...` and a SEND frame is created
+1. The event `before_transmitting` is triggered for the SEND frame
+1. The event `before_send` is triggered for the SEND frame
+1. The SEND frame is added to the {OnStomp::Connections::Base connection}'s
+   write buffer.
+1. Some amount of time passes (perhaps a little, perhaps a lot depending on
+   the IO load between you and the broker)
+1. The SEND frame is serialized and fully written to the broker.
+1. The event `after_transmitting` is triggered for the SEND frame
+1. The event `on_send` is triggered for the SEND frame.
+1. The frame delivery process is now complete!
+
+When broker generated frames (eg: MESSAGE, ERROR, RECEIPT) are received,
+the corresponding `before_<frame>` and `before_receiving` events are
+triggered, followed immediately by the triggering of the `on_<frame>` and
+`after_receiving` events.
+Below is a list illustrating the sequence broker related frame events are
+triggered:
+
+1. The broker writes a MESSAGE frame to the TCP/IP socket.
+1. Some amount of time passes (perhaps a little, perhaps a lot depending on
+   the IO load between you and the broker)
+1. The client fully reads and de-serializes the MESSAGE frame
+1. The event `before_receiving` is triggered for the MESSAGE frame
+1. The event `before_message` is triggered for the MESSAGE frame
+1. The event `after_receiving` is triggered for the MESSAGE frame
+1. The event `on_message` is triggered for the MESSAGE frame
+1. The frame receiving process is now complete!
+
+Unlike transmitted frames, nothing special happens between `before_receiving`
+and `after_receiving`, these event prefixes exist to help ease order of
+execution issues you may have with received frames.
+
+In addition to all of the frame-related events, there are a few connection
+related events that are triggered by changes in the connection between
+you and the STOMP broker: `on_connection_established`, `on_connection_died`,
+`on_connection_terminated`, and `on_connection_closed`. These are mostly just
+wrappers around the similarly named
+{OnStomp::Interfaces::ConnectionEvents connection events}, with the added
+bonus that they can be bound before the client has created a connection (for
+more details on the difference between a client and a connection, see
+the {file:docs/UserNarrative.md#On\_Clients\_and\_Connections On Clients and Connections}
+subsection of the {file:docs/UserNarrative.md#Appendix Appendix}.) What follows
+is a brief run-down of these events:
+
+* `on_connection_establised` - triggered when a socket to the broker has
+  been created and the CONNECT/CONNECTED frame exchange has taken place.
+* `on_connection_died` - triggered by STOMP 1.1 connections when the agreed
+  upon heart-beating rate has not been met by either the broker or the client.
+* `on_connection_terminated` - triggered when the connection is closed
+  unexpectedly (ie: when reading or writing to the socket raises an exception.)
+* `on_connection_closed` - triggered any time the socket is closed.
+
+All connection event callbacks will be invoked with two parameters: the
+client and the {OnStomp::Connections::Base connection}, respectively.
+
 ## Body Encodings
 
-## The `open-uri` Angle
+The STOMP 1.1 protocol allows users to encode the bodies of frames and notify
+the broker (and other clients) of the encoding within the `content-type`
+header. OnStomp tries to do the right thing for you, but only if you're using
+Ruby 1.9+. Before I get into that, I'm going to first talk about what
+happens if you're using Ruby 1.8.7.
 
-## Failing Over
+Prior to version 1.9, Ruby treated strings as a collection of bytes without
+paying any mind to character encodings. As a result of this, if you are
+connected to a STOMP 1.1 broker, it will be up to you to set `content-type`
+header and its `charset` parameter appropriately. The good news is, if you
+don't specify a charset header, STOMP 1.1 dictates that the frame's body
+should be treated as binary data so at least the broker shouldn't choke
+on your SEND frames. Further, if your frame bodies contain ASCII or UTF-8
+text, you can set the `content-type` header to 'text/whatever', and ignore
+its `charset` parameter because all frames that have a `content-type` header
+with a `text` type default to a UTF-8 encoding when `charset` is not specified.
+You should be aware that any MESSAGE frames the broker sends to you
+may contain bodies with various character encodings that Ruby will treat as
+a collection of bytes.  The last thing to be aware of, is that STOMP 1.1
+requires headers are UTF-8 encoded, so only use UTF-8 characters in your header
+names and values or incur the wrath of your STOMP broker. You've been warned!
 
-## Appendix: Technical Things and Gotchas
+If you're using Ruby 1.9+, most of the work will be done for you, but there is
+one potential "gotcha." First off, the good stuff: use whatever encoding
+you like for your headers and your frame bodies. As long as the headers
+can be cleanly translated to UTF-8, `onstomp` will automatically do the work
+for you so the broker receives the UTF-8 encoded headers it expects.
+Furthermore, use whatever Ruby supported encoding you like for your SEND
+frames and `onstomp` will make sure `content-type` and its `charset` header
+get set accordingly. But wait, there's more! When the broker sends you a frame
+with a body using a Ruby supported encoding, you can rest easy knowing that
+`frame.body.encoding` will be there handling your big beautiful character
+encodings. And now that you're sitting there, content in the knowledge that
+`onstomp` does so much for you, it's time to hit you with the "gotcha." If
+the body of your SEND frame is meant to be treated as binary data, you'll
+need to make sure your string is using the ASCII-8BIT (aka: BINARY) encoding.
+This should be the case if you read your data from a file, but almost
+certainly won't be the case if you're data is a literal string inside your
+code. If your body string does not have a binary encoding, `onstomp` will
+assume that the body is plain text and will set the `charset` parameter
+of the `content-type` header, which you probably don't want if you really
+are working with binary data.
+
+## Finishing Up
+
+After you're all done with your messaging exchange, make sure to disconnect!
+
+    # This ensures that all buffered data is sent to the broker
+    client.disconnect
+
+For more information on why it is so important to
+{OnStomp::Client#disconnect disconnect} your clients, please read the next
+section.
+
+## Appendix
+
+### What Really Goes Down when you `.disconnect`
+
+If there are a lot of frames being exchanged between you and a STOMP broker,
+you may notice that calling `client.disconnect` seems to hang. That's because
+it does! Calling {OnStomp::Client#disconnect disconnect} forces a client's
+connection to write all of the data in its write buffer to broker before
+going any further. By default, `onstomp` uses a separate thread to perform
+both reading and writing IO operations to keep data moving quickly. This
+approach has one significant draw-back: you could write a program that
+delivers a few SENDs, reads a bunch of MESSAGEs and then exits only to
+discover that not all of your SENDs actually got sent. That is because the
+main thread of your program terminated before the IO thread ever did its
+thing. Fortunately, I don't want you to have to worry about threaded
+non-blocking IO, so I made {OnStomp::Client#disconnect disconnect} special.
+As long as you call `disconnect` on your client before your program finishes,
+every frame you told your client to deliver will be written to the broker.
+
+The sometimes noticeable side-effect of this is that if there is a lot of
+traffic between your client and the STOMP broker, the write buffer may
+be pretty full when you call `disconnect`, which means it will take some
+time for all those frames to get flushed. In testing, I found this becomes
+most noticeable when the STOMP broker is sending lots and lots of frames
+(I was deliberately causing the broker to generate an ERROR frame for each
+of 5,000 frames I sent to it.)
+
+### On Clients and Connections
+
+A single {OnStomp::Client client} implementation works with both
+STOMP 1.0 and STOMP 1.1 protocols (and, hopefully, with any future STOMP
+protocol.) This is made possible by the goodness that is composition:
+each {OnStomp::Client client} creates an instance of a
+{OnStomp::Connections::Base connection} when it is told to connect to
+its broker. The connections do the protocol-specific work of generating
+supported frames with their necessary components. At present, there are
+two concrete connection classes, one for
+{OnStomp::Connections::Stomp\_1\_0 STOMP 1.0} and one for
+{OnStomp::Connections::Stomp\_1\_1 STOMP 1.1}. The changes between STOMP 1.0
+and STOMP 1.1 were meant to be largely backwards compatible, and so all of
+the common functionality for these connections is contained in the
+{OnStomp::Connections::Stomp\_1 Stomp\_1} module.
+
+With any luck, implementing future versions of the STOMP protocol will only
+require creating a new connection subclass that "does the right thing" and
+a bit of fiddling with the {OnStomp::Connections} module to register the
+protocol and possibly tweak how protocol negotiation goes down.
+
+
+### The `open-uri` Angle
+
+The code to support `open-uri` style STOMP interaction is a direct port of
+the code used in the deprecated `stomper` gem. While I've tested it and it seems
+to be working just fine with `onstomp`, I'd like to review the code a bit more
+before I'll call it anything other than experimental.  However, if you want
+to try it out, you can do so with `require 'onstomp/open-uri'`:
+
+    require 'onstomp'
+    # This will automatically require open-uri from Ruby's stdlib.
+    require 'onstomp/open-uri'
+    
+    open('stomp://host.example.org/queue/onstomp/open-uri-test') do |c|
+      c.send 'Hello from open-uri!'
+      c.send 'Another pointless message coming at ya!'
+      c.send 'big girls, you are beautiful'
+      
+      c.each do |m|
+        puts "Got a message: #{m.body}"
+        break
+      end
+      
+      c.first(2)  # => [ MESSAGE FRAME ('Another pointless..'),
+                  # MESSAGE FRAME ('big girls, you ...') ]
+    end
+
+Again, for now this feature is experimental, but if you're using it and find
+any bugs, don't hesitate to report them in the
+[issue tracker](https://github.com/meadvillerb/onstomp/issues)
+
+### Failing Over
+
+This is another experimental feature of `onstomp` that was a port of a 
+`stomper` feature. This extension adds failover / reliability support to
+your communications with a STOMP broker. The same caveats of the `open-uri`
+extension apply here and feel free to report any bugs you find in the
+[issue tracker](https://github.com/meadvillerb/onstomp/issues). If you want
+to make use of the failover features, you can do so with
+`require 'onstomp/failover'`:
+
+    require 'onstomp'
+    require 'onstomp/failover'
+    
+    client = OnStomp::Failover::Client.new 'failover:(stomp://host1.example.org,stomp+ssl://host2.example.org)'
+    
+    client.subscribe '/queue/test' do |m|
+      puts "Got a message: #{m.body}"
+    end
+    client.send '/queue/test', 'Hello from failover!'
+    client.send '/queue/test', 'Another message coming from failover!'
+    
+    client.disconnect
+    
+You can create a failover client by using a 'failover:' URI or an array of
+standard URIs. It is very important, however, that any 'failover:' URIs follow
+the above pattern. Using a URI such as
+`failover://stomp://host1.example.org,stomp://host2.example.org` or even
+`failover://(stomp://host1.example.org,stomp://host2.example.org)` will produce
+a parsing error at this time. In future releases I hope to make the failover
+URI parser a bit more robust, but for the time being only URIs of the form:
+
+    failover:(uri1,uri2,uri3)?param1=value1&param2=value2
