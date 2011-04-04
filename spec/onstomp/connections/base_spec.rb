@@ -94,6 +94,21 @@ module OnStomp::Connections
       end
     end
     
+    describe ".flush_write_buffer" do
+      it "should run until the buffer is empty" do
+        connection.stub(:connected? => true)
+        IO.stub(:select => true)
+        connection.push_write_buffer 'FRAME_SERIALIZED', frame
+        connection.push_write_buffer 'FRAME_SERIALIZED', frame
+        connection.push_write_buffer 'FRAME_SERIALIZED', frame
+        io.should_receive(:write_nonblock).exactly(6).times.and_return do |d|
+          8
+        end
+        connection.flush_write_buffer
+        connection.shift_write_buffer.should be_nil
+      end
+    end
+    
     describe ".io_process_write" do
       it "should not write if the buffer is empty" do
         io.should_not_receive :write_nonblock

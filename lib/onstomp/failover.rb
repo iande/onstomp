@@ -5,6 +5,7 @@ module OnStomp::Failover
   # Raised if the supplied failover: URI is not properly formatted as
   # +failover:(uri,uri,...)?optionalParams=values+
   class InvalidFailoverURIError < OnStomp::OnStompError; end
+  class MaximumRetriesExceededError < OnStomp::OnStompError; end
 end
 
 require 'onstomp/failover/uri'

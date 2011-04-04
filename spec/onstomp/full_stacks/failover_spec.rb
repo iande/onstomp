@@ -18,7 +18,7 @@ describe OnStomp::Failover, "full stack test", :fullstack => true, :failover => 
       committed = false
       killed = false
       
-      client = OnStomp::Failover::Client.new('failover:(stomp:///,stomp:///)')      
+      client = OnStomp::Failover::Client.new('failover:(stomp:///,stomp://localhost)')      
       client.on_commit do |c|
         committed = true
       end
@@ -45,7 +45,7 @@ describe OnStomp::Failover, "full stack test", :fullstack => true, :failover => 
       end
       client.unsubscribe sub, :'x-onstomp-real-client' => client.active_client.object_id
       client.commit 't-1234', :'x-onstomp-real-client' => client.active_client.object_id
-      # This is not waiting for debuffering?
+      
       client.disconnect :'x-onstomp-real-client' => client.active_client.object_id
       broker.join
       killed.should be_true

@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 module OnStomp::Failover::Buffers
-  describe Written, :failover => true do
+  describe Receipts, :failover => true do
     let(:clients) {
       ['client 1', 'client 2', 'client 3'].map do |c|
         mock(c).tap do |m|
@@ -18,7 +18,7 @@ module OnStomp::Failover::Buffers
       end
     }
     let(:buffer) {
-      Written.new failover
+      Receipts.new failover
     }
     let(:partial_transaction) {
       [
@@ -30,6 +30,11 @@ module OnStomp::Failover::Buffers
         OnStomp::Components::Frame.new('SEND', {:transaction => 't-1234'}, 'message 3'),
       ]
     }
+    
+    def receipt_for frame
+      raise "frame does not have a receipt header" unless frame.header?(:receipt)
+      OnStomp::Components::Frame.new 'RECEIPT', :'receipt-id' => frame[:receipt]
+    end
     
     describe "basic replaying" do
       before(:each) do
@@ -43,6 +48,18 @@ module OnStomp::Failover::Buffers
           failover.trigger_failover_event :connected, clients.first
         end
       end
+      it "should attach a receipt header to frames lacking one" do
+        frame = OnStomp::Components::Frame.new 'SEND',
+          { :destination => '/queue/test' }, 'body of message'
+        active_client.trigger_before_transmitting frame
+        frame.header?(:receipt).should be_true
+      end
+      it "should not molest existing receipt headeres" do
+        frame = OnStomp::Components::Frame.new 'SUBSCRIBE',
+          { :destination => '/queue/test', :receipt => 'r-1234' }
+        active_client.trigger_before_transmitting frame
+        frame[:receipt].should == 'r-1234'
+      end
       it "should replay SEND frames" do
         frame = OnStomp::Components::Frame.new 'SEND',
           { :destination => '/queue/test' }, 'body of message'
@@ -55,27 +72,25 @@ module OnStomp::Failover::Buffers
         frame = OnStomp::Components::Frame.new 'SEND',
           { :destination => '/queue/test' }, 'body of message'
         active_client.trigger_before_transmitting frame
-        active_client.trigger_after_transmitting frame
+        active_client.trigger_after_receiving receipt_for(frame)
         active_client.should_not_receive(:transmit)
         failover.trigger_failover_event :connected, :on, clients.first
       end
-      it "should replay SUBSCRIBE frames, even fully written ones" do
+      it "should replay SUBSCRIBE frames, even receipted ones" do
         frame = OnStomp::Components::Frame.new 'SUBSCRIBE',
           { :destination => '/queue/test', :id => 's-1234' }
         active_client.trigger_before_transmitting frame
-        active_client.trigger_after_transmitting frame
+        active_client.trigger_after_receiving receipt_for(frame)
         active_client.should_receive(:transmit).with(an_onstomp_frame(
           'SUBSCRIBE', {:destination => '/queue/test', :id => 's-1234'}))
         failover.trigger_failover_event :connected, :on, clients.first
       end
-      it "should debuffer SUBSCRIBE frames as soon as UNSUBSCRIBE is in the write buffer (does not need to be fully written)" do
+      it "should debuffer SUBSCRIBE frames as soon as UNSUBSCRIBE is in the write buffer (does not need to be receipted)" do
         frame = OnStomp::Components::Frame.new 'SUBSCRIBE',
           { :destination => '/queue/test', :id => 's-1234' }
         active_client.trigger_before_transmitting frame
         active_client.trigger_after_transmitting frame
-        
         frame = OnStomp::Components::Frame.new 'UNSUBSCRIBE', :id => 's-1234'
-        
         active_client.trigger_before_transmitting frame
         active_client.should_not_receive :transmit
         failover.trigger_failover_event :connected, :on, clients.first
@@ -113,7 +128,7 @@ module OnStomp::Failover::Buffers
             active_client.trigger_after_transmitting f
           end
           active_client.trigger_before_transmitting fin_frame
-          active_client.trigger_after_transmitting fin_frame
+          active_client.trigger_after_receiving receipt_for(fin_frame)
           active_client.stub(:transmit).and_return { |f| replayed << f; f }
           failover.trigger_failover_event :connected, :on, clients.first
           replayed.should be_empty

@@ -1,16 +1,18 @@
 # -*- encoding: utf-8 -*-
 
-# A buffer that ensures frames are at least written to a
+# A buffer that ensures frames are RECEIPTed against a
 # {OnStomp::Client client}'s {OnStomp::Connections::Base connection} and
 # replays the ones that were not when the
 # {OnStomp::Failover::Client failover} client reconnects.
-class OnStomp::Failover::Buffers::Written
+# @todo Quite a lot of this code is shared between Written and Receipts,
+#   we'll want to factor the common stuff out.
+class OnStomp::Failover::Buffers::Receipts
   def initialize failover
     @failover = failover
     @buffer_mutex = Mutex.new
     @buffer = []
     @txs = {}
-
+    
     failover.before_send &method(:buffer_frame)
     failover.before_commit &method(:buffer_frame)
     failover.before_abort &method(:buffer_frame)
@@ -20,11 +22,7 @@ class OnStomp::Failover::Buffers::Written
     # because if we replay before UNSUBSCRIBE was sent, we still don't
     # want to be subscribed when we reconnect.
     failover.before_unsubscribe &method(:debuffer_subscription)
-    # We only want to scrub the transactions if ABORT or COMMIT was
-    # at least written fully to the socket.
-    failover.on_commit &method(:debuffer_transaction)
-    failover.on_abort &method(:debuffer_transaction)
-    failover.on_send &method(:debuffer_non_transactional_frame)
+    failover.on_receipt &method(:debuffer_frame)
     
     failover.on_failover_connected &method(:replay)
   end
@@ -33,7 +31,10 @@ class OnStomp::Failover::Buffers::Written
   # {OnStomp::Failover::Client failover} client re-connects
   def buffer_frame f, *_
     @buffer_mutex.synchronize do
+      # Don't re-buffer frames that are being replayed.
       unless f.header? :'x-onstomp-failover-replay'
+        # Create a receipt header, unless the frame already has one.
+        f[:receipt] = OnStomp.next_serial unless f.header?(:receipt)
         @buffer << f 
       end
     end
@@ -49,7 +50,7 @@ class OnStomp::Failover::Buffers::Written
   # Removes the recorded transaction from the buffer after it has been
   # written the broker socket so that it will not be replayed when the
   # {OnStomp::Failover::Client failover} client re-connects
-  def debuffer_transaction f, *_
+  def debuffer_transaction f
     tx = f[:transaction]
     if @txs.delete tx
       @buffer_mutex.synchronize do
@@ -68,12 +69,19 @@ class OnStomp::Failover::Buffers::Written
     end
   end
   
-  # Removes a frame that is not part of a transaction from the buffer
-  # after it has been written the broker socket so that it will not be
-  # replayed when the {OnStomp::Failover::Client failover} client re-connects
-  def debuffer_non_transactional_frame f, *_
-    unless @txs.key?(f[:transaction])
-      @buffer_mutex.synchronize { @buffer.delete f }
+  def debuffer_frame r, *_
+    orig = @buffer_mutex.synchronize do
+      @buffer.detect { |f| f[:receipt] == r[:'receipt-id'] }
+    end
+    if orig
+      # COMMIT and ABORT debuffer the whole transaction sequence
+      if ['COMMIT', 'ABORT'].include? orig.command
+        debuffer_transaction orig
+      # Otherwise, if this isn't part of a transaction, debuffer the
+      # particular frame
+      elsif orig.command != 'SUBSCRIBE' && !orig.header?(:transaction)
+        @buffer_mutex.synchronize { @buffer.delete orig }
+      end
     end
   end
   

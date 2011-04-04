@@ -66,6 +66,27 @@ module OnStomp::Components
       end
     end
     
+    describe ".prepare_to_close" do
+      it "should do nothing special if it is not running" do
+        processor.stub(:running? => false)
+        processor.prepare_to_close
+      end
+      it "should stop its worker thread, flush the connection's buffer then restart the thread" do
+        # ugg....
+        def processor.stopped?
+          @run_thread.stop?
+        end
+        client.stub(:connected? => true)
+        processor.start
+        connection.should_receive(:flush_write_buffer).and_return do
+          processor.stopped?.should be_true
+          nil
+        end
+        processor.prepare_to_close
+        processor.stopped?.should be_false
+      end
+    end
+    
     describe ".join" do
       it "should block the current thread until connection is no longer alive" do
         joined_properly = false

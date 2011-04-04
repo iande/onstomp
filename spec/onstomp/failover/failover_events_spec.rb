@@ -61,8 +61,7 @@ module OnStomp::Failover
         end
       end
       
-      [:connect_failure, :retries_exceeded,
-        :lost, :connected].each do |ev|
+      [:connect_failure, :lost, :connected].each do |ev|
         it "should have an event :on_failover_#{ev}" do
           triggered = false
           events.send(:"on_failover_#{ev}") { |*_| triggered = true }

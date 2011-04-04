@@ -4,7 +4,9 @@ require 'spec_helper'
 module OnStomp::Failover
   describe Client, :failover => true do
     let(:active_client) {
-      mock('active client')
+      mock('active client').tap do |m|
+        m.extend OnStomp::Interfaces::ClientEvents
+      end
     }
     let(:client) {
       Client.new('failover:(stomp:///,stomp+ssl:///)').tap do |c|
@@ -23,6 +25,73 @@ module OnStomp::Failover
       it "should not be connected if it has no active client" do
         client.stub(:active_client => nil)
         client.connected?.should be_false
+      end
+    end
+    
+    describe ".connect" do
+      it "should call reconnect" do
+        client.should_receive(:reconnect).and_return(true)
+        client.connect.should == client
+      end
+      it "should raise an maximum retries error if reconnect is false" do
+        client.stub(:reconnect => false)
+        lambda {
+          client.connect
+        }.should raise_error(OnStomp::Failover::MaximumRetriesExceededError)
+      end
+      it "should trigger :on_failover_connect_failure if connecting raises an exception" do
+        triggered = false
+        client.on_failover_connect_failure { |*_| triggered = true }
+        active_client.stub(:connected? => false)
+        active_client.should_receive(:connect).and_return do
+          active_client.stub(:connected? => true)
+          raise "find yourself a big lady"
+        end
+        client.connect
+        triggered.should be_true
+      end
+    end
+    
+    describe ".disconnect" do
+      let(:connection) {
+        mock('connection').tap do |m|
+          m.extend OnStomp::Interfaces::ConnectionEvents
+        end
+      }
+      let(:client_pool) {
+        [active_client].tap do |m|
+          m.stub(:next_client => active_client)
+        end
+      }
+      before(:each) do
+        # Get the hooks installed on our mocks
+        active_client.stub(:connection => connection)
+        client.stub(:client_pool => client_pool)
+        client.__send__ :create_client_pool
+      end
+      it "should do nothing special if there is no active client" do
+        client.stub(:active_client => nil)
+        client.disconnect
+      end
+      it "should wait until the active client is ready, then call its disconnect method" do
+        active_client.stub(:connected? => false)
+        active_client.stub(:connect).and_return do
+          active_client.stub(:connected? => true)
+        end
+        client.connect
+        actual_disconnect = client.method(:disconnect)
+        client.stub(:disconnect).and_return do |*args|
+          active_client.stub(:connected? => false)
+          # Fire this off in a separate thread, as would be the real case
+          t = Thread.new do
+            connection.trigger_event :on_closed, active_client, connection
+          end
+          Thread.pass while t.alive?
+          actual_disconnect.call *args
+        end
+        
+        active_client.should_receive(:disconnect).with(:header1 => 'value 1')
+        client.disconnect :header1 => 'value 1'
       end
     end
     

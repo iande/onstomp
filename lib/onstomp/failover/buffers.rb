@@ -6,3 +6,4 @@ module OnStomp::Failover::Buffers
 end
 
 require 'onstomp/failover/buffers/written'
+require 'onstomp/failover/buffers/receipts'

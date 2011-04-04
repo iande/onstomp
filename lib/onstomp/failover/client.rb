@@ -46,7 +46,6 @@ class OnStomp::Failover::Client
     @connection = nil
     @frame_buffer = buffer.new self
     @disconnecting = false
-    @client_ready = false
   end
   
   # Returns true if there is an {#active_client} and it is
@@ -77,14 +76,15 @@ class OnStomp::Failover::Client
   def disconnect *args, &block
     return unless active_client
     @disconnecting = true
-    Thread.pass until @client_ready
+    # This is a bit problematic. If maximum retries is exceeded, this will
+    # just hang indefinitely.
+    Thread.pass until connected?
     active_client.disconnect *args, &block
   end
   
   private
   def reconnect
     @client_mutex.synchronize do
-      @client_ready = false
       attempt = 1
       until connected? || retry_exceeded?(attempt)
         sleep_for_retry attempt
@@ -102,7 +102,6 @@ class OnStomp::Failover::Client
       end
       connected?.tap do |b|
         b && trigger_failover_event(:connected, :on, active_client)
-        @client_ready = b
       end # <--- Until here
     end
   end
