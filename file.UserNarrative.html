@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
 <title>File: UserNarrative</title>
 <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -47,7 +47,10 @@
 users of the library.  It will start with the basics and work through the
 available features through exposition and examples. It may be helpful to
 review the <a href="http://stomp.github.com/index.html">STOMP specification</a> before
-diving into this document.</p>
+diving into this document. It's also important to note that <code>onstomp</code> can
+only be used with Ruby 1.8.7+.  Support for Rubies prior to 1.8.7 does not
+exist, and even requiring the library in your code will probably generate
+errors.</p>
 
 <h2>Creating a STOMP Client</h2>
 
@@ -55,7 +58,9 @@ diving into this document.</p>
 by creating a new client and connecting it. This can be accomplished a few
 different ways.</p>
 
-<pre class="code"><span class='comment'># The common way
+<pre class="code"><span class='id require'>require</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>onstomp</span><span class='tstring_end'>'</span></span>
+
+<span class='comment'># The common way
 </span><span class='id client'>client</span> <span class='op'>=</span> <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>Client</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>stomp://host.example.org</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 <span class='id client'>client</span><span class='period'>.</span><span class='id connect'>connect</span>
 
@@ -241,22 +246,331 @@ receipt handler for one frame, you can use a bit of method chaining:</p>
 <p>A <span class='object_link'><a href="OnStomp/Components/Scopes/TransactionScope.html" title="OnStomp::Components::Scopes::TransactionScope (class)">transaction</a></span> scope is a little
 more complicated than the previous scopes, but only marginally so. This scope
 is useful if you want to deliver some frames as part of a transaction, but
-don't want to be bothered with managing <code>transaction</code> headers manually.</p>
+don't want to be bothered with managing <code>transaction</code> headers manually.
+The simplest way to use a transaction scope is to hand it a block you want
+handled transactionally:</p>
+
+<pre class="code"><span class='id client'>client</span><span class='period'>.</span><span class='id transaction'>transaction</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id t'>t</span><span class='op'>|</span>
+  <span class='id t'>t</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>one of three</span><span class='tstring_end'>'</span></span>
+  <span class='id t'>t</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>two of three</span><span class='tstring_end'>'</span></span>
+  <span class='id t'>t</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>three of three</span><span class='tstring_end'>'</span></span>
+<span class='kw'>end</span>
+</pre>
+
+<p>When passed a block, the transaction scope will automatically transmit a
+BEGIN frame, deliver all transactional frames in the block with a matching
+<code>transaction</code> header and then send a <code>COMMIT</code> frame to complete the
+transaction. If an error is raised within the block, an ABORT frame will be
+sent to the broker to roll-back the transaction and the offending error
+will be re-raised.</p>
+
+<p>Transaction scopes also support being re-used, but a little more work is
+required on your part:</p>
+
+<pre class="code"><span class='id trans'>trans</span> <span class='op'>=</span> <span class='id client'>client</span><span class='period'>.</span><span class='id transaction'>transaction</span>
+<span class='id trans'>trans</span><span class='period'>.</span><span class='id begin'>begin</span>
+<span class='id trans'>trans</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>one of three</span><span class='tstring_end'>'</span></span>
+<span class='id trans'>trans</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>two of three</span><span class='tstring_end'>'</span></span>
+<span class='id trans'>trans</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>three of three</span><span class='tstring_end'>'</span></span>
+<span class='id trans'>trans</span><span class='period'>.</span><span class='id commit'>commit</span>
+<span class='comment'># First transaction is complete
+</span><span class='id trans'>trans</span><span class='period'>.</span><span class='id begin'>begin</span>
+<span class='id trans'>trans</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/other</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>next transaction</span><span class='tstring_end'>'</span></span>
+<span class='id trans'>trans</span><span class='period'>.</span><span class='id abort'>abort</span>
+<span class='comment'># Second transaction is rolled-back
+</span><span class='id trans'>trans</span><span class='period'>.</span><span class='id begin'>begin</span>
+<span class='id trans'>trans</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/yet-another</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>last transaction</span><span class='tstring_end'>'</span></span>
+<span class='id trans'>trans</span><span class='period'>.</span><span class='id commit'>commit</span>
+</pre>
+
+<p>When used like this, the transaction scope will automatically generate a new
+transaction id with each call to
+<span class='object_link'><a href="OnStomp/Components/Scopes/TransactionScope.html#begin-instance_method" title="OnStomp::Components::Scopes::TransactionScope#begin (method)">begin</a></span>, but you must
+manually begin and end the transactions. If you attempt to transmit a frame
+as part of a transaction that was already committed or aborted, the frame
+will be sent to the broker, but will not be a part of any transaction (ie:
+it will not have a <code>transaction</code> header.) This is also the case for frames
+that cannot be transacted (eg: SUBSCRIBE, UNSUBSCRIBE.)</p>
 
 <h2>Events and Callbacks</h2>
 
+<p>A key feature of the <code>onstomp</code> gem is the
+<span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html" title="OnStomp::Interfaces::ClientEvents (module)">event-driven</a></span> interface. A sufficient set
+of events can be bound to fully monitor what frames are being sent or received
+or event what frame information is ultimately delivered to the broker. There
+are two event hooks for every type of STOMP frame, one prefixed with
+<code>before_</code>, the other prefixed with <code>on_</code>. The difference between the two
+is when they are triggered:</p>
+
+<pre class="code"><span class='id client'>client</span><span class='period'>.</span><span class='id before_send'>before_send</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id frame'>frame</span><span class='comma'>,</span> <span class='id client_obj'>client_obj</span><span class='op'>|</span>
+  <span class='comment'># In here, frame is the SEND frame to deliver to the broker and
+</span>  <span class='comment'># client_obj == client.  All frame-based event callbacks are passed
+</span>  <span class='comment'># these two parameters.
+</span>  <span class='id puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SEND frame will be sent, but hasn't been sent yet!</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id frame'>frame</span><span class='lbracket'>[</span><span class='symbol'>:a_header</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>a header set in an event callback</span><span class='tstring_end'>'</span></span>
+<span class='kw'>end</span>
+
+<span class='id client'>client</span><span class='period'>.</span><span class='id on_send'>on_send</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id frame'>frame</span><span class='comma'>,</span> <span class='id client_obj'>client_obj</span><span class='op'>|</span>
+  <span class='id puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SEND frame was delivered to the broker: </span><span class='embexpr_beg'>#{</span><span class='id frame'>frame</span><span class='lbracket'>[</span><span class='symbol'>:a_header</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='comment'># By now, the SEND frame has already been delivered to the broker,
+</span>  <span class='comment'># so the following line does not change what the broker received,
+</span>  <span class='comment'># but the change will be picked up by all other `on_send` callbacks
+</span>  <span class='comment'># registered after this one.
+</span>  <span class='id frame'>frame</span><span class='lbracket'>[</span><span class='symbol'>:a_header</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>a header changed in an event callback</span><span class='tstring_end'>'</span></span>
+<span class='kw'>end</span>
+</pre>
+
+<p>Internally, <code>onstomp</code> uses non-blocking IO calls to read from and write to
+the STOMP broker (for more details, check out <span class='object_link'><a href="OnStomp/Connections/Base.html" title="OnStomp::Connections::Base (class)">OnStomp::Connections::Base</a></span>.)
+When dealing with client-generated frames (eg: SEND, SUBSCRIBE, DISCONNECT),
+the <code>before_&lt;frame&gt;</code> and
+<span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#before_transmitting-instance_method" title="OnStomp::Interfaces::ClientEvents#before_transmitting (method)">before_transmitting</a></span>
+events are triggered after a frame has been queued in the write buffer. Once
+the frame has actually been written to the underlying TCP/IP socket, the
+<code>after_transmitting</code> and <code>on_&lt;frame&gt;</code> events are triggered.
+Below is list illustrating the sequence client related frame events are
+triggered:</p>
+
+<ol>
+<li>You call <code>client.send ...</code> and a SEND frame is created</li>
+<li>The event <code>before_transmitting</code> is triggered for the SEND frame</li>
+<li>The event <code>before_send</code> is triggered for the SEND frame</li>
+<li>The SEND frame is added to the <span class='object_link'><a href="OnStomp/Connections/Base.html" title="OnStomp::Connections::Base (class)">connection</a></span>'s
+write buffer.</li>
+<li>Some amount of time passes (perhaps a little, perhaps a lot depending on
+the IO load between you and the broker)</li>
+<li>The SEND frame is serialized and fully written to the broker.</li>
+<li>The event <code>after_transmitting</code> is triggered for the SEND frame</li>
+<li>The event <code>on_send</code> is triggered for the SEND frame.</li>
+<li>The frame delivery process is now complete!</li>
+</ol>
+
+
+<p>When broker generated frames (eg: MESSAGE, ERROR, RECEIPT) are received,
+the corresponding <code>before_&lt;frame&gt;</code> and <code>before_receiving</code> events are
+triggered, followed immediately by the triggering of the <code>on_&lt;frame&gt;</code> and
+<code>after_receiving</code> events.
+Below is a list illustrating the sequence broker related frame events are
+triggered:</p>
+
+<ol>
+<li>The broker writes a MESSAGE frame to the TCP/IP socket.</li>
+<li>Some amount of time passes (perhaps a little, perhaps a lot depending on
+the IO load between you and the broker)</li>
+<li>The client fully reads and de-serializes the MESSAGE frame</li>
+<li>The event <code>before_receiving</code> is triggered for the MESSAGE frame</li>
+<li>The event <code>before_message</code> is triggered for the MESSAGE frame</li>
+<li>The event <code>after_receiving</code> is triggered for the MESSAGE frame</li>
+<li>The event <code>on_message</code> is triggered for the MESSAGE frame</li>
+<li>The frame receiving process is now complete!</li>
+</ol>
+
+
+<p>Unlike transmitted frames, nothing special happens between <code>before_receiving</code>
+and <code>after_receiving</code>, these event prefixes exist to help ease order of
+execution issues you may have with received frames.</p>
+
+<p>In addition to all of the frame-related events, there are a few connection
+related events that are triggered by changes in the connection between
+you and the STOMP broker: <code>on_connection_established</code>, <code>on_connection_died</code>,
+<code>on_connection_terminated</code>, and <code>on_connection_closed</code>. These are mostly just
+wrappers around the similarly named
+<span class='object_link'><a href="OnStomp/Interfaces/ConnectionEvents.html" title="OnStomp::Interfaces::ConnectionEvents (module)">connection events</a></span>, with the added
+bonus that they can be bound before the client has created a connection (for
+more details on the difference between a client and a connection, see
+the <a href="file.UserNarrative.html#On_Clients_and_Connections" title="On Clients and Connections">On Clients and Connections</a>
+subsection of the <a href="file.UserNarrative.html#Appendix" title="Appendix">Appendix</a>.) What follows
+is a brief run-down of these events:</p>
+
+<ul>
+<li><code>on_connection_establised</code> - triggered when a socket to the broker has
+been created and the CONNECT/CONNECTED frame exchange has taken place.</li>
+<li><code>on_connection_died</code> - triggered by STOMP 1.1 connections when the agreed
+upon heart-beating rate has not been met by either the broker or the client.</li>
+<li><code>on_connection_terminated</code> - triggered when the connection is closed
+unexpectedly (ie: when reading or writing to the socket raises an exception.)</li>
+<li><code>on_connection_closed</code> - triggered any time the socket is closed.</li>
+</ul>
+
+
+<p>All connection event callbacks will be invoked with two parameters: the
+client and the <span class='object_link'><a href="OnStomp/Connections/Base.html" title="OnStomp::Connections::Base (class)">connection</a></span>, respectively.</p>
+
 <h2>Body Encodings</h2>
 
-<h2>The <code>open-uri</code> Angle</h2>
+<p>The STOMP 1.1 protocol allows users to encode the bodies of frames and notify
+the broker (and other clients) of the encoding within the <code>content-type</code>
+header. OnStomp tries to do the right thing for you, but only if you're using
+Ruby 1.9+. Before I get into that, I'm going to first talk about what
+happens if you're using Ruby 1.8.7.</p>
 
-<h2>Failing Over</h2>
+<p>Prior to version 1.9, Ruby treated strings as a collection of bytes without
+paying any mind to character encodings. As a result of this, if you are
+connected to a STOMP 1.1 broker, it will be up to you to set <code>content-type</code>
+header and its <code>charset</code> parameter appropriately. The good news is, if you
+don't specify a charset header, STOMP 1.1 dictates that the frame's body
+should be treated as binary data so at least the broker shouldn't choke
+on your SEND frames. Further, if your frame bodies contain ASCII or UTF-8
+text, you can set the <code>content-type</code> header to 'text/whatever', and ignore
+its <code>charset</code> parameter because all frames that have a <code>content-type</code> header
+with a <code>text</code> type default to a UTF-8 encoding when <code>charset</code> is not specified.
+You should be aware that any MESSAGE frames the broker sends to you
+may contain bodies with various character encodings that Ruby will treat as
+a collection of bytes.  The last thing to be aware of, is that STOMP 1.1
+requires headers are UTF-8 encoded, so only use UTF-8 characters in your header
+names and values or incur the wrath of your STOMP broker. You've been warned!</p>
 
-<h2>Appendix: Technical Things and Gotchas</h2></div></div>
+<p>If you're using Ruby 1.9+, most of the work will be done for you, but there is
+one potential "gotcha." First off, the good stuff: use whatever encoding
+you like for your headers and your frame bodies. As long as the headers
+can be cleanly translated to UTF-8, <code>onstomp</code> will automatically do the work
+for you so the broker receives the UTF-8 encoded headers it expects.
+Furthermore, use whatever Ruby supported encoding you like for your SEND
+frames and <code>onstomp</code> will make sure <code>content-type</code> and its <code>charset</code> header
+get set accordingly. But wait, there's more! When the broker sends you a frame
+with a body using a Ruby supported encoding, you can rest easy knowing that
+<code>frame.body.encoding</code> will be there handling your big beautiful character
+encodings. And now that you're sitting there, content in the knowledge that
+<code>onstomp</code> does so much for you, it's time to hit you with the "gotcha." If
+the body of your SEND frame is meant to be treated as binary data, you'll
+need to make sure your string is using the ASCII-8BIT (aka: BINARY) encoding.
+This should be the case if you read your data from a file, but almost
+certainly won't be the case if you're data is a literal string inside your
+code. If your body string does not have a binary encoding, <code>onstomp</code> will
+assume that the body is plain text and will set the <code>charset</code> parameter
+of the <code>content-type</code> header, which you probably don't want if you really
+are working with binary data.</p>
+
+<h2>Finishing Up</h2>
+
+<p>After you're all done with your messaging exchange, make sure to disconnect!</p>
+
+<pre class="code"><span class='comment'># This ensures that all buffered data is sent to the broker
+</span><span class='id client'>client</span><span class='period'>.</span><span class='id disconnect'>disconnect</span>
+</pre>
+
+<p>For more information on why it is so important to
+<span class='object_link'><a href="OnStomp/Client.html#disconnect-instance_method" title="OnStomp::Client#disconnect (method)">disconnect</a></span> your clients, please read the next
+section.</p>
+
+<h2>Appendix</h2>
+
+<h3>What Really Goes Down when you <code>.disconnect</code></h3>
+
+<p>If there are a lot of frames being exchanged between you and a STOMP broker,
+you may notice that calling <code>client.disconnect</code> seems to hang. That's because
+it does! Calling <span class='object_link'><a href="OnStomp/Client.html#disconnect-instance_method" title="OnStomp::Client#disconnect (method)">disconnect</a></span> forces a client's
+connection to write all of the data in its write buffer to broker before
+going any further. By default, <code>onstomp</code> uses a separate thread to perform
+both reading and writing IO operations to keep data moving quickly. This
+approach has one significant draw-back: you could write a program that
+delivers a few SENDs, reads a bunch of MESSAGEs and then exits only to
+discover that not all of your SENDs actually got sent. That is because the
+main thread of your program terminated before the IO thread ever did its
+thing. Fortunately, I don't want you to have to worry about threaded
+non-blocking IO, so I made <span class='object_link'><a href="OnStomp/Client.html#disconnect-instance_method" title="OnStomp::Client#disconnect (method)">disconnect</a></span> special.
+As long as you call <code>disconnect</code> on your client before your program finishes,
+every frame you told your client to deliver will be written to the broker.</p>
+
+<p>The sometimes noticeable side-effect of this is that if there is a lot of
+traffic between your client and the STOMP broker, the write buffer may
+be pretty full when you call <code>disconnect</code>, which means it will take some
+time for all those frames to get flushed. In testing, I found this becomes
+most noticeable when the STOMP broker is sending lots and lots of frames
+(I was deliberately causing the broker to generate an ERROR frame for each
+of 5,000 frames I sent to it.)</p>
+
+<h3>On Clients and Connections</h3>
+
+<p>A single <span class='object_link'><a href="OnStomp/Client.html" title="OnStomp::Client (class)">client</a></span> implementation works with both
+STOMP 1.0 and STOMP 1.1 protocols (and, hopefully, with any future STOMP
+protocol.) This is made possible by the goodness that is composition:
+each <span class='object_link'><a href="OnStomp/Client.html" title="OnStomp::Client (class)">client</a></span> creates an instance of a
+<span class='object_link'><a href="OnStomp/Connections/Base.html" title="OnStomp::Connections::Base (class)">connection</a></span> when it is told to connect to
+its broker. The connections do the protocol-specific work of generating
+supported frames with their necessary components. At present, there are
+two concrete connection classes, one for
+<span class='object_link'><a href="OnStomp/Connections/Stomp_1_0.html" title="OnStomp::Connections::Stomp_1_0 (class)">STOMP 1.0</a></span> and one for
+<span class='object_link'><a href="OnStomp/Connections/Stomp_1_1.html" title="OnStomp::Connections::Stomp_1_1 (class)">STOMP 1.1</a></span>. The changes between STOMP 1.0
+and STOMP 1.1 were meant to be largely backwards compatible, and so all of
+the common functionality for these connections is contained in the
+<span class='object_link'><a href="OnStomp/Connections/Stomp_1.html" title="OnStomp::Connections::Stomp_1 (module)">Stomp_1</a></span> module.</p>
+
+<p>With any luck, implementing future versions of the STOMP protocol will only
+require creating a new connection subclass that "does the right thing" and
+a bit of fiddling with the <span class='object_link'><a href="OnStomp/Connections.html" title="OnStomp::Connections (module)">OnStomp::Connections</a></span> module to register the
+protocol and possibly tweak how protocol negotiation goes down.</p>
+
+<h3>The <code>open-uri</code> Angle</h3>
+
+<p>The code to support <code>open-uri</code> style STOMP interaction is a direct port of
+the code used in the deprecated <code>stomper</code> gem. While I've tested it and it seems
+to be working just fine with <code>onstomp</code>, I'd like to review the code a bit more
+before I'll call it anything other than experimental.  However, if you want
+to try it out, you can do so with <code>require 'onstomp/open-uri'</code>:</p>
+
+<pre class="code"><span class='id require'>require</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>onstomp</span><span class='tstring_end'>'</span></span>
+<span class='comment'># This will automatically require open-uri from Ruby's stdlib.
+</span><span class='id require'>require</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>onstomp/open-uri</span><span class='tstring_end'>'</span></span>
+
+<span class='id open'>open</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>stomp://host.example.org/queue/onstomp/open-uri-test</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id c'>c</span><span class='op'>|</span>
+  <span class='id c'>c</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Hello from open-uri!</span><span class='tstring_end'>'</span></span>
+  <span class='id c'>c</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Another pointless message coming at ya!</span><span class='tstring_end'>'</span></span>
+  <span class='id c'>c</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>big girls, you are beautiful</span><span class='tstring_end'>'</span></span>
+
+  <span class='id c'>c</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id m'>m</span><span class='op'>|</span>
+    <span class='id puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Got a message: </span><span class='embexpr_beg'>#{</span><span class='id m'>m</span><span class='period'>.</span><span class='id body'>body</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>break</span>
+  <span class='kw'>end</span>
+
+  <span class='id c'>c</span><span class='period'>.</span><span class='id first'>first</span><span class='lparen'>(</span><span class='int'>2</span><span class='rparen'>)</span>  <span class='comment'># =&gt; [ MESSAGE FRAME ('Another pointless..'),
+</span>              <span class='comment'># MESSAGE FRAME ('big girls, you ...') ]
+</span><span class='kw'>end</span>
+</pre>
+
+<p>Again, for now this feature is experimental, but if you're using it and find
+any bugs, don't hesitate to report them in the
+<a href="https://github.com/meadvillerb/onstomp/issues">issue tracker</a></p>
+
+<h3>Failing Over</h3>
+
+<p>This is another experimental feature of <code>onstomp</code> that was a port of a
+<code>stomper</code> feature. This extension adds failover / reliability support to
+your communications with a STOMP broker. The same caveats of the <code>open-uri</code>
+extension apply here and feel free to report any bugs you find in the
+<a href="https://github.com/meadvillerb/onstomp/issues">issue tracker</a>. If you want
+to make use of the failover features, you can do so with
+<code>require 'onstomp/failover'</code>:</p>
+
+<pre class="code"><span class='id require'>require</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>onstomp</span><span class='tstring_end'>'</span></span>
+<span class='id require'>require</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>onstomp/failover</span><span class='tstring_end'>'</span></span>
+
+<span class='id client'>client</span> <span class='op'>=</span> <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>Failover</span><span class='op'>::</span><span class='const'>Client</span><span class='period'>.</span><span class='id new'>new</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>failover:(stomp://host1.example.org,stomp+ssl://host2.example.org)</span><span class='tstring_end'>'</span></span>
+
+<span class='id client'>client</span><span class='period'>.</span><span class='id subscribe'>subscribe</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id m'>m</span><span class='op'>|</span>
+  <span class='id puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Got a message: </span><span class='embexpr_beg'>#{</span><span class='id m'>m</span><span class='period'>.</span><span class='id body'>body</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+<span class='id client'>client</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Hello from failover!</span><span class='tstring_end'>'</span></span>
+<span class='id client'>client</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Another message coming from failover!</span><span class='tstring_end'>'</span></span>
+
+<span class='id client'>client</span><span class='period'>.</span><span class='id disconnect'>disconnect</span>
+</pre>
+
+<p>You can create a failover client by using a 'failover:' URI or an array of
+standard URIs. It is very important, however, that any 'failover:' URIs follow
+the above pattern. Using a URI such as
+<code>failover://stomp://host1.example.org,stomp://host2.example.org</code> or even
+<code>failover://(stomp://host1.example.org,stomp://host2.example.org)</code> will produce
+a parsing error at this time. In future releases I hope to make the failover
+URI parser a bit more robust, but for the time being only URIs of the form:</p>
+
+<pre class="code">failover:(uri1,uri2,uri3)?param1=value1&amp;param2=value2
+</pre></div></div>
     
     <div id="footer">
-  Generated on Sun Apr  3 16:54:09 2011 by 
+  Generated on Sun Apr  3 20:46:56 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.5 (ruby-1.9.2).
+  0.6.4 (ruby-1.9.2).
 </div>
 
   </body>
