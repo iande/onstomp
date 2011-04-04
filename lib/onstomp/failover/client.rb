@@ -28,7 +28,7 @@ class OnStomp::Failover::Client
   # @return [Fixnum]
   attr_configurable_int :retry_attempts, :default => 0
   # Whether or not to randomize the {#client_pool} before connecting through
-  # any of its {OnStomp::Client clients}. Defaults to +false+
+  # any of its {OnStomp::Client clients}. Defaults to `false`
   # @return [true,false]
   attr_configurable_bool :randomize, :default => false
   
@@ -88,7 +88,7 @@ class OnStomp::Failover::Client
         begin
           trigger_failover_retry :before, attempt
           @active_client = client_pool.next_client
-          # +reconnect+ could be called again within the marked range.
+          # `reconnect` could be called again within the marked range.
           active_client.connect # <--- From here
           @connection = active_client.connection
         rescue Exception

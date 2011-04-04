@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 
 # A specialized container for storing header name / value pairs for a
-# {OnStomp::Components::Frame frame}.  This container behaves much like a +Hash+, but
+# {OnStomp::Components::Frame frame}.  This container behaves much like a `Hash`, but
 # is specialized for the Stomp protocol.  Header names are always converted
-# into +String+s through the use of +to_s+ and may have more than one value
+# into `String`s through the use of `to_s` and may have more than one value
 # associated with them.
 class OnStomp::Components::FrameHeaders
   include Enumerable
@@ -19,7 +19,7 @@ class OnStomp::Components::FrameHeaders
   end
   
   # Merges a hash into this collection of headers. All of the keys used
-  # in the hash must be convertable to Symbols through +to_sym+.
+  # in the hash must be convertable to Symbols through `to_sym`.
   # @note With Ruby 1.8.7, the order of hash keys may not be preserved
   # @param [Hash] hash
   def merge!(hash)
@@ -29,7 +29,7 @@ class OnStomp::Components::FrameHeaders
   # Reverse merges a hash into this collection of headers. The hash keys and
   # values are included only if the headers collection does not already have
   # a matching key. All of the keys used
-  # in the hash must be convertable to Symbols through +to_sym+.
+  # in the hash must be convertable to Symbols through `to_sym`.
   # @note With Ruby 1.8.7, the order of hash keys may not be preserved
   # @param [Hash] hash
   def reverse_merge!(hash)
@@ -48,7 +48,7 @@ class OnStomp::Components::FrameHeaders
   end
   
   # Returns true if a header value has been set for the supplied header, and
-  # the value is neither +nil+ nor an empty string.
+  # the value is neither `nil` nor an empty string.
   # @param [#to_sym] name the header name to test
   # @return [Boolean]
   # @example
@@ -68,7 +68,7 @@ class OnStomp::Components::FrameHeaders
   # element of the array will be the principle value of the supplied
   # header name.
   #
-  # @param [#to_sym] name the header name associated with the desired values (will be converted using +to_sym+)
+  # @param [#to_sym] name the header name associated with the desired values (will be converted using `to_sym`)
   # @return [Array] the array of values associated with the header name.
   # @example
   #   headers.all_values('content-type') #=> [ 'text/plain' ]
@@ -83,8 +83,8 @@ class OnStomp::Components::FrameHeaders
   # principle value.  This method is used internally when constructing
   # frames sent by the broker to capture repeated header names.
   #
-  # @param [#to_sym] name the header name to associate with the supplied value (will be converted using +to_s+)
-  # @param [#to_s] val the header value to associate with the supplied name (will be converted using +to_s+)
+  # @param [#to_sym] name the header name to associate with the supplied value (will be converted using `to_s`)
+  # @param [#to_s] val the header value to associate with the supplied name (will be converted using `to_s`)
   # @return [String] the supplied value as a string.
   # @example
   #   headers.append(:'new header', 'first value') #=> 'first value'
@@ -104,11 +104,11 @@ class OnStomp::Components::FrameHeaders
   end
   
   # Deletes all of the header values associated with the header name and
-  # removes the header name itself.  This is analogous to the +delete+
+  # removes the header name itself.  This is analogous to the `delete`
   # method found in Hash objects.
   #
-  # @param [#to_sym] name the header name to remove from this collection (will be converted using +to_sym+)
-  # @return [Array] the array of values associated with the deleted header, or +nil+ if the header name did not exist
+  # @param [#to_sym] name the header name to remove from this collection (will be converted using `to_sym`)
+  # @return [Array] the array of values associated with the deleted header, or `nil` if the header name did not exist
   # @example
   #   headers.delete(:'content-type') #=> [ 'text/html' ]
   #   headers.delete('no such header') #=> nil
@@ -121,11 +121,11 @@ class OnStomp::Components::FrameHeaders
   end
   
   # Gets the principle header value paired with the supplied header name. The name will
-  # be converted to a Symbol, so must respond to the +to_sym+ method.  The
+  # be converted to a Symbol, so must respond to the `to_sym` method.  The
   # Stomp 1.1 protocol specifies that in the event of a repeated header name,
   # the first value encountered serves as the principle value.
   #
-  # @param [#to_sym] name the header name paired with the desired value (will be converted using +to_sym+)
+  # @param [#to_sym] name the header name paired with the desired value (will be converted using `to_sym`)
   # @return [String] the value associated with the requested header name
   # @return [nil] if no value has been set for the associated header name
   # @example
@@ -136,12 +136,12 @@ class OnStomp::Components::FrameHeaders
   end
   
   # Sets the header value paired with the supplied header name.  The name 
-  # will be converted to a Symbol and must respond to +to_sym+; meanwhile,
-  # the value will be converted to a String so must respond to +to_s+.
+  # will be converted to a Symbol and must respond to `to_sym`; meanwhile,
+  # the value will be converted to a String so must respond to `to_s`.
   # Setting a header value in this fashion will overwrite any repeated header values.
   #
-  # @param [#to_sym] name the header name to associate with the supplied value (will be converted using +to_sym+)
-  # @param [#to_s] val the value to pair with the supplied name (will be converted using +to_s+)
+  # @param [#to_sym] name the header name to associate with the supplied value (will be converted using `to_sym`)
+  # @param [#to_s] val the value to pair with the supplied name (will be converted using `to_s`)
   # @return [String] the supplied value as a string.
   # @example
   #   headers['content-type'] = 'image/png' #=> 'image/png'
@@ -155,7 +155,7 @@ class OnStomp::Components::FrameHeaders
     val
   end
   
-  # Returns a new +Hash+ object associating symbolized header names and their
+  # Returns a new `Hash` object associating symbolized header names and their
   # principle values.
   # @return [Hash]
   def to_hash

@@ -47,7 +47,7 @@ module OnStomp::Interfaces::ConnectionEvents
   end
   
   # Takes a hash of event bindings a {OnStomp::Client client} has stored
-  # and binds them to this connection, then triggers +on_established+.
+  # and binds them to this connection, then triggers `on_established`.
   # This allows users to add callbacks for
   # connection events before the connection exist and have said callbacks
   # installed once the connection is created.

@@ -70,7 +70,7 @@ class OnStomp::Failover::Buffers::Receipts
   end
   
   # Removes frames that neither transactional nor SUBSCRIBEs from the buffer
-  # by looking the buffered frames up by their +receipt+ header.
+  # by looking the buffered frames up by their `receipt` header.
   def debuffer_frame r, *_
     orig = @buffer_mutex.synchronize do
       @buffer.detect { |f| f[:receipt] == r[:'receipt-id'] }
@@ -88,7 +88,7 @@ class OnStomp::Failover::Buffers::Receipts
   end
   
   # Called when the {OnStomp::Failover::Client failover} client triggers
-  # +on_failover_connected+ to start replaying any frames in the buffer.
+  # `on_failover_connected` to start replaying any frames in the buffer.
   def replay fail, client, *_
     replay_frames = @buffer_mutex.synchronize do
       @buffer.select { |f| f[:'x-onstomp-failover-replay'] = '1'; true }

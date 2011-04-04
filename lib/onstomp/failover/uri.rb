@@ -32,9 +32,9 @@ module OnStomp::Failover::URI
       # fine with +failover:(uri1,uri2,..)?params=..+ style URIs, but chokes
       # on +failover://uri1,uri2,..+ forms. This method gives us a bit more
       # flexibility.
-      # @note If you are using the +open-uri+ extension with +failover+, you
+      # @note If you are using the +open-uri+ extension with `failover`, you
       #   MUST use the +failover:(uri1,uri2,..)+ form because +open-uri+
-      #   relies on +URI.parse+ to convert strings into +URI+ objects.
+      #   relies on +URI.parse+ to convert strings into `URI` objects.
       # @overload parse(str)
       #   @param [String] str
       #   @return [FAILOVER]

@@ -3,7 +3,7 @@
 # Module for configurable attributes specific to
 # {OnStomp::Failover::Client failover} clients.
 module OnStomp::Failover::FailoverConfigurable
-  # Includes {OnStomp::Interfaces::ClientConfigurable} into +base+ and
+  # Includes {OnStomp::Interfaces::ClientConfigurable} into `base` and
   # extends {OnStomp::Failover::FailoverConfigurable::ClassMethods}
   # @param [Module] base
   def self.included(base)
@@ -23,8 +23,8 @@ module OnStomp::Failover::FailoverConfigurable
     
     # Creates readable and writeable attributes that are automatically
     # converted into boolean values. Assigning the attributes any of
-    # +true+, +'true'+, +'1'+ or +1+ will set the attribute to +true+, all
-    # other values with be treated as +false+. This method will also alias
+    # `true`, +'true'+, +'1'+ or +1+ will set the attribute to `true`, all
+    # other values with be treated as `false`. This method will also alias
     # the reader methods with +attr_name?+
     def attr_configurable_bool *args, &block
       trans = attr_configurable_wrap lambda { |v|

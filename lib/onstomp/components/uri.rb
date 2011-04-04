@@ -23,7 +23,7 @@ module OnStomp::Components::URI
   end
 end
 
-# Add the new URI classes to +URI+'s set of known schemes.
+# Add the new URI classes to `URI`'s set of known schemes.
 module ::URI
   @@schemes['STOMP'] = OnStomp::Components::URI::STOMP
   @@schemes['STOMP+SSL'] = OnStomp::Components::URI::STOMP_SSL

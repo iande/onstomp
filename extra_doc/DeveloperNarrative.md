@@ -37,25 +37,25 @@ A frame's {OnStomp::Components::Frame#command command} attribute is a string
 that matches the corresponding STOMP command (eg: SEND, RECEIPT) with one
 exception: heart-beats. The STOMP 1.1 protocol supports "heart-beating" to
 let brokers and clients know that the connection is still active on the other
-end by sending bare line-feed (ie: +\n+) characters between frame exchanges.
+end by sending bare line-feed (ie: `\n`) characters between frame exchanges.
 As a result, calling {OnStomp::Interfaces::FrameMethods#beat beat} on a client
-will generate a frame whose command attribute is +nil+. This in turn lets the
+will generate a frame whose command attribute is `nil`. This in turn lets the
 serializer know that this isn't a true frame and it will convert it to
 +"\n"+ instead of performing the normal serialization operation.
 
 A frame's {OnStomp::Components::FrameHeaders headers} behave much like a
-standard Ruby +Hash+ but with a few important differences. First, the order
+standard Ruby `Hash` but with a few important differences. First, the order
 that header names were added is preserved. This is also true of Ruby 1.9+
 hashes but not those of Ruby 1.8.7, and as a result there is some code
 to maintain the ordering when running 1.8.7. Second, accessing headers
 is somewhat indifferent:
 
     frame[:some_header] = 'a value'
-    frame[:some_header] == frame["some_header"] == "a value"
+    frame["some_header"] #=> 'a value'
     
-What actually happens is all header names are converted to +Symbol+s
-(by calling +obj.to\_sym+) before any setting or getting takes place. Using
-an object as a header name that does not respond to +to\_sym+ will raise an
+What actually happens is all header names are converted to `Symbol`s
+(by calling `obj.to_sym`) before any setting or getting takes place. Using
+an object as a header name that does not respond to `to_sym` will raise an
 error. The final major difference between headers and hashes is that header
 values are only strings:
 
@@ -66,7 +66,7 @@ If the object passed as a header value cannot be converted to a string an
 error will be raised.
 
 A frame's {OnStomp::Components::Frame#body body} will often be an empty
-string or +nil+. The only frames that support non-empty bodies are SEND,
+string or `nil`. The only frames that support non-empty bodies are SEND,
 MESSAGE, and ERROR.
 
 ## Events

@@ -31,7 +31,7 @@ require 'thread'
 # Monitor support (prevent recursive dead locking)
 require 'monitor'
 
-# Primary namespace for the +onstomp+ gem
+# Primary namespace for the `onstomp` gem
 module OnStomp
   # Class to use for creating enumerator objects, which depends upon the
   # version of Ruby being used.
@@ -98,11 +98,11 @@ module OnStomp
     alias :open :connect
     
     # Duplicates an existing hash while transforming its keys to symbols.
-    # The keys must implement the +to_sym+ method, otherwise an exception will
+    # The keys must implement the `to_sym` method, otherwise an exception will
     # be raised. This method is used internally to convert hashes keyed with
     # Strings.
     #
-    # @param [{Object => Object}] hsh The hash to convert. It's keys must respond to +to_sym+.
+    # @param [{Object => Object}] hsh The hash to convert. It's keys must respond to `to_sym`.
     # @return [{Symbol => Object}]
     # @example
     #   hash = { '10' => nil, 'key2' => [3, 5, 8, 13, 21], :other => :value }
@@ -126,8 +126,8 @@ module OnStomp
       end
     end
 
-    # Converts a string to the Ruby constant it names. If the +klass+ parameter
-    # is a kind of +Module+, this method will return +klass+ directly.
+    # Converts a string to the Ruby constant it names. If the `klass` parameter
+    # is a kind of `Module`, this method will return `klass` directly.
     # @param [String,Module] klass
     # @return [Module]
     # @example

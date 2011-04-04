@@ -5,7 +5,7 @@
 module OnStomp::OpenURI::ClientExtensions
   attr_reader :auto_destination, :openuri_message_queue
   
-  # Aliases {#send_with_openuri} as +send+
+  # Aliases {#send_with_openuri} as `send`
   def self.extended inst
     inst.instance_eval do
       alias :send_without_openuri :send
@@ -43,8 +43,8 @@ module OnStomp::OpenURI::ClientExtensions
     end
   end
 
-  # Returns +n+ frames read from the subscription. If +n+ is ommited,
-  # the next frame is returned, otherwise an array of the next +n+ frames
+  # Returns `n` frames read from the subscription. If `n` is ommited,
+  # the next frame is returned, otherwise an array of the next `n` frames
   # is returned.
   # @see #each
   # @param [Fixnum,nil] n
@@ -62,7 +62,7 @@ module OnStomp::OpenURI::ClientExtensions
   alias :gets :first
   
   # Assigns the auto destination. When a stomp:// URI is opened, this
-  # will initially be set to the +path+ of the URI.
+  # will initially be set to the `path` of the URI.
   # @param [String] dest
   # @return [String,nil]
   def auto_destination= dest

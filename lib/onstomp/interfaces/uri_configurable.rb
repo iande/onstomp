@@ -2,7 +2,7 @@
 
 # Module for configurable attributes
 module OnStomp::Interfaces::UriConfigurable
-  # Extends +base+ with {OnStomp::Interfaces::UriConfigurable::ClassMethods}
+  # Extends `base` with {OnStomp::Interfaces::UriConfigurable::ClassMethods}
   def self.included(base)
     base.extend ClassMethods
   end
@@ -41,7 +41,7 @@ module OnStomp::Interfaces::UriConfigurable
     # by a URI query parameter sharing the same name, a property of a URI or
     # a default value. The value of this attribute will be transformed by
     # invoking the given block, if one has been provided. If the attributes
-    # created by this method are assigned an +Array+, only the first element
+    # created by this method are assigned an `Array`, only the first element
     # will be used as their value.
     def attr_configurable_single *args, &block
       trans = attr_configurable_wrap lambda { |v| v.is_a?(Array) ? v.first : v }, block
@@ -63,7 +63,7 @@ module OnStomp::Interfaces::UriConfigurable
     # by a URI query parameter sharing the same name, a property of a URI or
     # a default value. The value of this attribute will be transformed by
     # invoking the given block, if one has been provided. If the attributes
-    # created by this method are assigned a value that is not an +Array+, the
+    # created by this method are assigned a value that is not an `Array`, the
     # value will be wrapped in an array.
     def attr_configurable_arr *args, &block
       trans = attr_configurable_wrap lambda { |v| Array(v) }, block

@@ -78,7 +78,7 @@ class OnStomp::Failover::Buffers::Written
   end
   
   # Called when the {OnStomp::Failover::Client failover} client triggers
-  # +on_failover_connected+ to start replaying any frames in the buffer.
+  # `on_failover_connected` to start replaying any frames in the buffer.
   def replay fail, client, *_
     replay_frames = @buffer_mutex.synchronize do
       @buffer.select { |f| f[:'x-onstomp-failover-replay'] = '1'; true }

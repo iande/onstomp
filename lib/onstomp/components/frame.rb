@@ -13,8 +13,8 @@ class OnStomp::Components::Frame
   attr_reader :headers
   
   # Creates a new frame. The frame will be initialized with the optional
-  # +command+ name, a {OnStomp::Components::FrameHeaders headers} collection initialized
-  # with the optional +headers+ hash, and an optional body.
+  # `command` name, a {OnStomp::Components::FrameHeaders headers} collection initialized
+  # with the optional `headers` hash, and an optional body.
   def initialize(command=nil, headers={}, body=nil)
     @command = command
     @headers = OnStomp::Components::FrameHeaders.new(headers)
@@ -52,9 +52,9 @@ class OnStomp::Components::Frame
   
   # If a +content-type+ header is set, splits it into three parts: type,
   # subtype and charset. If any component of the +content-type+ is missing,
-  # its value will be +nil+ in the returned triple. If the +content-type+
+  # its value will be `nil` in the returned triple. If the +content-type+
   # header is not set or does not match {OnStomp::Components::Frame::CONTENT_TYPE_REG}
-  # all values in the triple will be +nil+.
+  # all values in the triple will be `nil`.
   # @return [Array<String,nil>]
   def content_type
     @headers[:'content-type'] =~ CONTENT_TYPE_REG ? [$1, $2, $3] : [nil, nil, nil]

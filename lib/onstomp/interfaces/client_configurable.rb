@@ -2,7 +2,7 @@
 
 # Module for configurable attributes specific to {OnStomp::Client client} objects.
 module OnStomp::Interfaces::ClientConfigurable
-  # Includes {OnStomp::Interfaces::UriConfigurable} into +base+ and
+  # Includes {OnStomp::Interfaces::UriConfigurable} into `base` and
   # extends {OnStomp::Interfaces::ClientConfigurable::ClassMethods}
   # @param [Module] base
   def self.included(base)

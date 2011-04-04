@@ -2,7 +2,7 @@
 
 # An abstract pool of clients. This class manages the shared behaviors
 # of client pools, but has no means of picking successive clients.
-# Subclasses must define +next_client+ or pool will not function.
+# Subclasses must define `next_client` or pool will not function.
 class OnStomp::Failover::Pools::Base
   attr_reader :clients
   

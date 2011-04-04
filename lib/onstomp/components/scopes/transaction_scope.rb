@@ -8,7 +8,7 @@
 class OnStomp::Components::Scopes::TransactionScope
   include OnStomp::Interfaces::FrameMethods
   
-  # The id of the current transaction. This may be +nil+ if the transaction
+  # The id of the current transaction. This may be `nil` if the transaction
   # has not been started with {#begin} or if the transaction has been completed
   # by a call to either {#abort} or {#commit}.
   # @return [String,nil]
@@ -18,7 +18,7 @@ class OnStomp::Components::Scopes::TransactionScope
   # @return [OnStomp::Client]
   attr_reader :client
   
-  # A reference to +self+ to trick {OnStomp::Interfaces::FrameMethods} into
+  # A reference to `self` to trick {OnStomp::Interfaces::FrameMethods} into
   # creating frames on this object instead of the client's actual
   # {OnStomp::Client#connection connection}.
   # @return [self]
@@ -89,9 +89,9 @@ class OnStomp::Components::Scopes::TransactionScope
   
   # Overrides the {OnStomp::Connections::Stomp_1#send_frame send_frame} method
   # of the {OnStomp::Client#connection client's connection}, setting a
-  # +transaction+ header to match the current transaction if it has been
+  # `transaction` header to match the current transaction if it has been
   # started.
-  # @param [arg1, arg2, ...] args arguments to connection's +send_frame+ method
+  # @param [arg1, arg2, ...] args arguments to connection's `send_frame` method
   # @return [OnStomp::Components::Frame] SEND frame
   def send_frame *args, &blk
     client.connection.send_frame(*args,&blk).tap do |f|
@@ -101,9 +101,9 @@ class OnStomp::Components::Scopes::TransactionScope
   
   # Overrides the {OnStomp::Connections::Stomp_1_0#ack_frame ack_frame} method
   # of the client's {OnStomp::Client#connection connection}, setting a
-  # +transaction+ header to match the current transaction if it has been
+  # `transaction` header to match the current transaction if it has been
   # started.
-  # @param [arg1, arg2, ...] args arguments to connection's +ack_frame+ method
+  # @param [arg1, arg2, ...] args arguments to connection's `ack_frame` method
   # @return [OnStomp::Components::Frame] ACK frame
   def ack_frame *args
     client.connection.ack_frame(*args).tap do |f|
@@ -113,9 +113,9 @@ class OnStomp::Components::Scopes::TransactionScope
   
   # Overrides the {OnStomp::Connections::Stomp_1_1#nack_frame nack_frame} method
   # of the {OnStomp::Client#connection client's connection}, setting a
-  # +transaction+ header to match the current transaction if it has been
+  # `transaction` header to match the current transaction if it has been
   # started.
-  # @param [arg1, arg2, ...] args arguments to connection's +nack_frame+ method
+  # @param [arg1, arg2, ...] args arguments to connection's `nack_frame` method
   # @return [OnStomp::Components::Frame] NACK frame
   def nack_frame *args
     client.connection.ack_frame(*args).tap do |f|
@@ -123,13 +123,13 @@ class OnStomp::Components::Scopes::TransactionScope
     end
   end
   
-  # If the name of the missing method ends with +_frame+, the method is passed
+  # If the name of the missing method ends with `_frame`, the method is passed
   # along to the client's {OnStomp::Client#connection connection} so that it
   # might build the appropriate (non-transactional) frame.
   # @return [OnStomp::Components::Frame]
   # @raise [OnStomp::UnsupportedCommandError] if the connection does not
   #   support the requested frame command.
-  # @raise [NoMethodError] if the method name does not end in +_frame+
+  # @raise [NoMethodError] if the method name does not end in `_frame`
   def method_missing meth, *args, &block
     if meth.to_s =~ /^(.*)_frame$/
       client.connection.__send__(meth, *args, &block)
@@ -154,7 +154,7 @@ class OnStomp::Components::Scopes::TransactionScope
   # @return [self]
   # @raise [Exception] if supplied block raises an exception
   # @yield [t] block of frames to transmit transactionally
-  # @yieldparam [OnStomp::Components::Scopes::TransactionScope] t +self+
+  # @yieldparam [OnStomp::Components::Scopes::TransactionScope] t `self`
   def perform
     begin
       self.begin unless @started

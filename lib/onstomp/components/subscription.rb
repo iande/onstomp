@@ -12,10 +12,10 @@ class OnStomp::Components::Subscription
     @frame = fr
     @callback = cb
   end
-  # Returns the +id+ header of the associated SUBSCRIBE frame
+  # Returns the `id` header of the associated SUBSCRIBE frame
   # @return [String]
   def id; frame[:id]; end
-  # Returns the +destination+ header of the associated SUBSCRIBE frame
+  # Returns the `destination` header of the associated SUBSCRIBE frame
   # @return [String]
   def destination; frame[:destination]; end
   # Invokes the {#callback}, passing along the supplied MESSAGE frame

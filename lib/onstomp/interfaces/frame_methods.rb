@@ -135,7 +135,7 @@ module OnStomp::Interfaces::FrameMethods
   #   @param [{#to_sym => #to_s}] headers additional headers to include in
   #     the frame
   # @overload ack(message_id, headers={})
-  #   @note This form will raise an +ArgumentError+ with STOMP 1.1 connections
+  #   @note This form will raise an `ArgumentError` with STOMP 1.1 connections
   #     as a subscription ID is also required to ACK a received MESSAGE.
   #   @param [String] message_id +message-id+ header of MESSAGE frame to
   #     acknowledge.
@@ -146,7 +146,7 @@ module OnStomp::Interfaces::FrameMethods
   #     not possible to provide the actual MESSAGE frame.
   #   @param [String] message_id +message-id+ header of MESSAGE frame to
   #     acknowledge.
-  #   @param [String] subscription_id +subscription+ header of MESSAGE frame to
+  #   @param [String] subscription_id `subscription` header of MESSAGE frame to
   #     acknowledge.
   #   @param [{#to_sym => #to_s}] headers additional headers to include in
   #     the frame
@@ -168,7 +168,7 @@ module OnStomp::Interfaces::FrameMethods
   # @overload nack(message_id, subscription_id, heders={})
   #   @param [String] message_id +message-id+ header of MESSAGE frame to
   #     un-acknowledge.
-  #   @param [String] subscription_id +subscription+ header of MESSAGE frame to
+  #   @param [String] subscription_id `subscription` header of MESSAGE frame to
   #     un-acknowledge.
   #   @param [{#to_sym => #to_s}] headers additional headers to include in
   #     the frame

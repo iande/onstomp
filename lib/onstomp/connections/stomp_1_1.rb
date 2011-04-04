@@ -31,7 +31,7 @@ class OnStomp::Connections::Stomp_1_1 < OnStomp::Connections::Base
     super && pulse?
   end
   
-  # Creates a SUBSCRIBE frame. Sets +ack+ header to 'auto' unless it is
+  # Creates a SUBSCRIBE frame. Sets `ack` header to 'auto' unless it is
   # already set to 'client' or 'client-individual'.
   # @return [OnStomp::Components::Frame] SUBSCRIBE frame
   def subscribe_frame d, h

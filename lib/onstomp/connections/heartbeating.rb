@@ -53,14 +53,14 @@ module OnStomp::Connections::Heartbeating
   end
   
   # Number of milliseconds since data was last transmitted to the broker or
-  # +nil+ if no data has been transmitted when the method is called.
+  # `nil` if no data has been transmitted when the method is called.
   # @return [Fixnum, nil]
   def duration_since_transmitted
     last_transmitted_at && ((Time.now - last_transmitted_at)*1000).to_i
   end
   
   # Number of milliseconds since data was last received from the broker or
-  # +nil+ if no data has been received when the method is called.
+  # `nil` if no data has been received when the method is called.
   # @return [Fixnum, nil]
   def duration_since_received
     last_received_at && ((Time.now - last_received_at)*1000).to_i

@@ -15,7 +15,7 @@ class OnStomp::Connections::Stomp_1_0 < OnStomp::Connections::Base
     @serializer = OnStomp::Connections::Serializers::Stomp_1_0.new
   end
   
-  # Creates a SUBSCRIBE frame. Sets +ack+ header to 'auto' unless it is
+  # Creates a SUBSCRIBE frame. Sets `ack` header to 'auto' unless it is
   # already set to 'client'.
   # @return [OnStomp::Components::Frame] SUBSCRIBE frame
   def subscribe_frame d, h

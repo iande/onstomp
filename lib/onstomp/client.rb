@@ -10,7 +10,7 @@ class OnStomp::Client
   include OnStomp::Interfaces::SubscriptionManager
   include OnStomp::Components::Scopes
   
-  # The +URI+ reference to the STOMP broker
+  # The `URI` reference to the STOMP broker
   # @return [String]
   attr_reader :uri
   # SSL options for the connection

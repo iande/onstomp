@@ -47,7 +47,7 @@ class OnStomp::Components::ThreadedProcessor
     end
   end
   
-  # Causes the thread this method was invoked in to +pass+ until the
+  # Causes the thread this method was invoked in to `pass` until the
   # processor is no longer {#running? running}.
   # @return [self]
   def join

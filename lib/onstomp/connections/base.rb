@@ -13,9 +13,9 @@ class OnStomp::Connections::Base
   MAX_BYTES_PER_READ = 1024 * 4
   
   # Creates a new connection using the given {#socket} object and
-  # {OnStomp::Client client}. The {#socket} object will generally be a +TCPSocket+
-  # or an +OpenSSL::SSL::SSLSocket+ and must support the methods +read_nonblock+
-  # +write_nonblock+, and +close+.
+  # {OnStomp::Client client}. The {#socket} object will generally be a `TCPSocket`
+  # or an +OpenSSL::SSL::SSLSocket+ and must support the methods `read_nonblock`
+  # `write_nonblock`, and `close`.
   # @param [TCPSocket,OpenSSL::SSL::SSLSocket] socket
   # @param [OnStomp::Client] client
   def initialize socket, client
@@ -29,7 +29,7 @@ class OnStomp::Connections::Base
   end
   
   # Performs any necessary configuration of the connection from the CONNECTED
-  # frame sent by the broker and a +Hash+ of pending callbacks. This method
+  # frame sent by the broker and a `Hash` of pending callbacks. This method
   # is called after the protocol negotiation has taken place between client
   # and broker, and the connection that receives it will be the connection
   # used by the client for the duration of the session.
@@ -46,7 +46,7 @@ class OnStomp::Connections::Base
     !socket.closed?
   end
   
-  # Closes the {#socket}. If +blocking+ is true, the socket will be closed
+  # Closes the {#socket}. If `blocking` is true, the socket will be closed
   # immediately, otherwies the socket will remain open until {#io_process_write}
   # has finished writing all of its buffered data. Once this method has been
   # invoked, {#write_frame_nonblock} will not enqueue any additional frames

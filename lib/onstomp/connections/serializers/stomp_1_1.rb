@@ -94,7 +94,7 @@ class OnStomp::Connections::Serializers::Stomp_1_1
       f.body.force_encoding(charset)
       f
     end
-    # Set an appropriate +content-type+ header with +charset+ parameter for
+    # Set an appropriate +content-type+ header with `charset` parameter for
     # frames with a text body
     # @note No-op for Ruby 1.8.x
     # @param [OnStomp::Components::Frame] f
@@ -124,7 +124,7 @@ class OnStomp::Connections::Serializers::Stomp_1_1
     # @param [OnStomp::Components::Frame] f
     # @return [OnStomp::Components::Frame]
     def force_body_encoding(f); f; end
-    # Set an appropriate +content-type+ header with +charset+ parameter for
+    # Set an appropriate +content-type+ header with `charset` parameter for
     # frames with a text body
     # @note No-op for Ruby 1.8.x
     # @param [OnStomp::Components::Frame] f

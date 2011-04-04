@@ -7,7 +7,7 @@ module OnStomp::Interfaces::EventManager
     base.extend ClassMethods
   end
   
-  # Binds a +Proc+ to be invoked when the given +event_name+ is triggered.
+  # Binds a `Proc` to be invoked when the given `event_name` is triggered.
   # @param [Symbol] event_name
   # @param [Proc] cb_proc
   # @return [self]
@@ -23,7 +23,7 @@ module OnStomp::Interfaces::EventManager
   end
   
   # Triggers an event by the given name, passing along any additional
-  # +args+ as parameters to the callback
+  # `args` as parameters to the callback
   # @param [Symbol] event_name event to trigger
   # @param [Object, Object, ...] args
   def trigger_event(event_name, *args)

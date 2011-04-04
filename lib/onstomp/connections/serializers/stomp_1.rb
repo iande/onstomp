@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
-# Classes that mix this in must define +split_header+ and +prepare_parsed_frame+
-# The method +frame_to_string_base+ is provided as a factoring out of the
+# Classes that mix this in must define `split_header` and `prepare_parsed_frame`
+# The method `frame_to_string_base` is provided as a factoring out of the
 # common tasks of serializing a frame for STOMP 1.0 and STOMP 1.1.
 module OnStomp::Connections::Serializers::Stomp_1
   # Resets the parser that converts byte strings to {OnStomp::Components::Frame frames}
@@ -72,7 +72,7 @@ module OnStomp::Connections::Serializers::Stomp_1
   end
   
   # Adds the substring +data[0...idx]+ to the parser's accumulator,
-  # unshifts the remaining data back onto the buffer, and calls +meth+
+  # unshifts the remaining data back onto the buffer, and calls `meth`
   # with the parser's accumulated string.
   # @param [Array<String>] buffer
   # @param [String] data
@@ -117,7 +117,7 @@ module OnStomp::Connections::Serializers::Stomp_1
   
   # Called when a frame's body has been fully read from the buffer. This
   # method will set the frame's {OnStomp::Components::Frame#body body}
-  # attribute, call +prepare_parsed_frame+ with the "current frame",
+  # attribute, call `prepare_parsed_frame` with the "current frame",
   # and tell the parser to move on to the next state.
   # @param [String] body
   def finish_body body
@@ -150,14 +150,14 @@ module OnStomp::Connections::Serializers::Stomp_1
   end
   
   if RUBY_VERSION >= "1.9"
-    # Takes the result of +frame_to_string+ and forces it to use a binary
+    # Takes the result of `frame_to_string` and forces it to use a binary
     # encoding
     # @return [String] string serialization of frame with 'ASCII-8BIT' encoding
     def frame_to_bytes frame
       frame_to_string(frame).tap { |s| s.force_encoding('ASCII-8BIT') }
     end
   else
-    # Takes the result of +frame_to_string+ and passes it along. Ruby 1.8.7
+    # Takes the result of `frame_to_string` and passes it along. Ruby 1.8.7
     # treats strings as a collection of bytes, so we don't need to do any
     # further work.
     # @return [String]

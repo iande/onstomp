@@ -3,16 +3,16 @@
 # Mixin for {OnStomp::Client client} events
 # There are a few special event methods that will be passed on
 # to the client's connection, they are:
-# * +on_connection_established+ => {OnStomp::Interfaces::ConnectionEvents#on_established}
-# * +on_connection_died+ => {OnStomp::Interfaces::ConnectionEvents#on_died}
-# * +on_connection_terminated+ => {OnStomp::Interfaces::ConnectionEvents#on_terminated}
-# * +on_connection_closed+ => {OnStomp::Interfaces::ConnectionEvents#on_closed}
+# * `on_connection_established` => {OnStomp::Interfaces::ConnectionEvents#on_established}
+# * `on_connection_died` => {OnStomp::Interfaces::ConnectionEvents#on_died}
+# * `on_connection_terminated` => {OnStomp::Interfaces::ConnectionEvents#on_terminated}
+# * `on_connection_closed` => {OnStomp::Interfaces::ConnectionEvents#on_closed}
 module OnStomp::Interfaces::ClientEvents
   include OnStomp::Interfaces::EventManager
 
   # @group Client Frame Event Bindings
   
-  # Can't get +before+ because the CONNECT frame isn't transmitted by
+  # Can't get `before` because the CONNECT frame isn't transmitted by
   # the client.
   create_event_methods :connect, :on
   
@@ -139,7 +139,7 @@ module OnStomp::Interfaces::ClientEvents
   end
   
   # Triggers the :before_receiving event and the
-  # +before+ prefixed frame specific event (eg: +:before_error+).
+  # `before` prefixed frame specific event (eg: +:before_error+).
   # @param [OnStomp::Components::Frame] f
   def trigger_before_receiving f
     trigger_event :before_receiving, f, self
@@ -147,7 +147,7 @@ module OnStomp::Interfaces::ClientEvents
   end
   
   # Triggers the :after_receiving event and the
-  # +on+ prefixed frame specific event (eg: +:on_message+)
+  # `on` prefixed frame specific event (eg: +:on_message+)
   # @param [OnStomp::Components::Frame] f
   def trigger_after_receiving f
     trigger_event :after_receiving, f, self
@@ -155,7 +155,7 @@ module OnStomp::Interfaces::ClientEvents
   end
   
   # Triggers the :before_transmitting event and the
-  # +before+ prefixed frame specific event (eg: +:before_disconnect+).
+  # `before` prefixed frame specific event (eg: +:before_disconnect+).
   # @param [OnStomp::Components::Frame] f
   def trigger_before_transmitting f
     trigger_event :before_transmitting, f, self
@@ -163,7 +163,7 @@ module OnStomp::Interfaces::ClientEvents
   end
   
   # Triggers the :after_transmitting event and the
-  # +on+ prefixed frame specific event (eg: +:on_send+).
+  # `on` prefixed frame specific event (eg: +:on_send+).
   # @param [OnStomp::Components::Frame] f
   def trigger_after_transmitting f
     trigger_event :after_transmitting, f, self
