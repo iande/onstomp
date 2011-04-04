@@ -16,24 +16,46 @@ task :default => :spec
 desc "Generate yard docs on gh-pages branch and push out to github"
 task :ghpages do
   require 'tmpdir'
+  stashed = false
   tmp_doc = Dir.mktmpdir 'onstomp_docs'
   prior_docs = []
   new_docs = []
   puts "Generating yard docs in temp dir #{tmp_doc}"
   `rake yard OPTS="--output-dir #{tmp_doc}"`
-  `git stash save "stashing changes for gh-pages update"`
-  `git checkout gh-pages`
-  `git pull origin gh-pages`
+  `git diff-files --quiet`
+  if $?.exitstatus == 1
+    # we have changes
+    puts "Stashing your working changes"
+    stashed = true
+    `git stash save "stashing changes for gh-pages update"`
+  end
+  sh "git checkout gh-pages"
+  sh "git pull origin gh-pages"
   prior_docs = `git ls-files`.split("\n")
   rm_rf [ Dir.glob("*.html"), "OnStomp", "js", "css" ]
   cp_r "#{tmp_doc}/.", '.'
   new_docs = Dir.glob("#{tmp_doc}/**/*").map { |f| f.sub(tmp_doc + '/','') }
   rm_rf tmp_doc
   removed_docs = prior_docs - new_docs
+  puts "Adding changed documentation"
   `git add #{new_docs.join(' ')}`
-  `git rm #{removed_docs.join(' ')}`
-  `git commit -m "updated yard docs"`
+  unless removed_docs.empty?
+    puts "Cleaning out old doc files"
+    `git rm #{removed_docs.join(' ')}`
+  end
+  sh "git commit -m \"updated yard docs\""
+  puts "Pushing changes to remote 'origin/gh-pages'"
   `git push origin gh-pages`
-  `git checkout master`
-  `git stash pop`
+  if $?.exitstatus == 1
+    puts "Updates could not be pushed to remote, resolve the conflict then:"
+    puts "\tgit push origin gh-pages"
+    puts "\tgit checkout master"
+    puts "\tgit stash pop" if stashed
+  else
+    `git checkout master`
+    if stashed
+      puts "Restoring your working copy changes"
+      `git stash pop`
+    end
+  end
 end
