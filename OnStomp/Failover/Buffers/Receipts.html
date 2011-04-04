@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Class: OnStomp::Failover::Buffers::Written</title>
+<title>Class: OnStomp::Failover::Buffers::Receipts</title>
 <link rel="stylesheet" href="../../../css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="../../../css/common.css" type="text/css" media="screen" charset="utf-8" />
 
@@ -23,10 +23,10 @@
     <div id="header">
       <div id="menu">
   
-    <a href="../../../_index.html">Index (W)</a> &raquo; 
+    <a href="../../../_index.html">Index (R)</a> &raquo; 
     <span class='title'><span class='object_link'><a href="../../../OnStomp.html" title="OnStomp (module)">OnStomp</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Failover.html" title="OnStomp::Failover (module)">Failover</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Buffers.html" title="OnStomp::Failover::Buffers (module)">Buffers</a></span></span>
      &raquo; 
-    <span class="title">Written</span>
+    <span class="title">Receipts</span>
   
   
   <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
@@ -43,7 +43,7 @@
     
     <iframe id="search_frame"></iframe>
     
-    <div id="content"><h1>Class: OnStomp::Failover::Buffers::Written
+    <div id="content"><h1>Class: OnStomp::Failover::Buffers::Receipts
   
   
   
@@ -58,7 +58,7 @@
         <ul class="fullTree">
           <li>Object</li>
           
-            <li class="next">OnStomp::Failover::Buffers::Written</li>
+            <li class="next">OnStomp::Failover::Buffers::Receipts</li>
           
         </ul>
         <a href="#" class="inheritanceTree">show all</a>
@@ -74,15 +74,25 @@
   
   
     <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">lib/onstomp/failover/buffers/written.rb</dd>
+    <dd class="r2 last">lib/onstomp/failover/buffers/receipts.rb</dd>
   
 </dl>
 <div class="clear"></div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>
-A buffer that ensures frames are at least written to a <span class='object_link'><a href="../../Client.html" title="OnStomp::Client (class)">client</a></span>&#8217;s <span class='object_link'><a href="../../Connections/Base.html" title="OnStomp::Connections::Base (class)">connection</a></span> and replays the
+    
+  <div class="note todo">
+    <strong>TODO:</strong> 
+    <div class='inline'><p>
+Quite a lot of this code is shared between Written and Receipts,
+we&#8217;ll want to factor the common stuff out.
+</p>
+</div>
+  </div>
+
+<p>
+A buffer that ensures frames are RECEIPTed against a <span class='object_link'><a href="../../Client.html" title="OnStomp::Client (class)">client</a></span>&#8217;s <span class='object_link'><a href="../../Connections/Base.html" title="OnStomp::Connections::Base (class)">connection</a></span> and replays the
 ones that were not when the <span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client
 reconnects.
 </p>
@@ -156,7 +166,7 @@ Records the start of a transaction so that it may be replayed if the
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#debuffer_non_transactional_frame-instance_method" title="#debuffer_non_transactional_frame (instance method)">- (Object) <strong>debuffer_non_transactional_frame</strong>(f, *_) </a>
+      <a href="#debuffer_frame-instance_method" title="#debuffer_frame (instance method)">- (Object) <strong>debuffer_frame</strong>(r, *_) </a>
     
 
     
@@ -169,12 +179,7 @@ Records the start of a transaction so that it may be replayed if the
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Removes a frame that is not part of a transaction from the buffer after it
-has been written the broker socket so that it will not be replayed when the
-<span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client re-connects.
-</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -209,7 +214,7 @@ re-connects.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#debuffer_transaction-instance_method" title="#debuffer_transaction (instance method)">- (Object) <strong>debuffer_transaction</strong>(f, *_) </a>
+      <a href="#debuffer_transaction-instance_method" title="#debuffer_transaction (instance method)">- (Object) <strong>debuffer_transaction</strong>(f) </a>
     
 
     
@@ -235,7 +240,7 @@ the broker socket so that it will not be replayed when the
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Written) <strong>initialize</strong>(failover) </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Receipts) <strong>initialize</strong>(failover) </a>
     
 
     
@@ -251,7 +256,7 @@ the broker socket so that it will not be replayed when the
 
   
     <span class="summary_desc"><div class='inline'><p>
-A new instance of Written.
+A new instance of Receipts.
 </p>
 </div></span>
   
@@ -292,14 +297,14 @@ Called when the <span class='object_link'><a href="../Client.html" title="OnStom
     <div class="method_details first">
   <p class="signature first" id="initialize-instance_method">
   
-    - (<tt><span class='object_link'><a href="" title="OnStomp::Failover::Buffers::Written (class)">Written</a></span></tt>) <strong>initialize</strong>(failover) 
+    - (<tt><span class='object_link'><a href="" title="OnStomp::Failover::Buffers::Receipts (class)">Receipts</a></span></tt>) <strong>initialize</strong>(failover) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-A new instance of Written
+A new instance of Receipts
 </p>
 
 
@@ -313,8 +318,6 @@ A new instance of Written
       <pre class="lines">
 
 
-8
-9
 10
 11
 12
@@ -333,19 +336,17 @@ A new instance of Written
 25
 26
 27
-28
-29
-30</pre>
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/buffers/written.rb', line 8</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/buffers/receipts.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='id initialize'>initialize</span> <span class='id failover'>failover</span>
   <span class='ivar'>@failover</span> <span class='op'>=</span> <span class='id failover'>failover</span>
   <span class='ivar'>@buffer_mutex</span> <span class='op'>=</span> <span class='const'>Mutex</span><span class='period'>.</span><span class='id new'>new</span>
   <span class='ivar'>@buffer</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='ivar'>@txs</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
-
+  
   <span class='id failover'>failover</span><span class='period'>.</span><span class='id before_send'>before_send</span> <span class='op'>&amp;</span><span class='id method'>method</span><span class='lparen'>(</span><span class='symbol'>:buffer_frame</span><span class='rparen'>)</span>
   <span class='id failover'>failover</span><span class='period'>.</span><span class='id before_commit'>before_commit</span> <span class='op'>&amp;</span><span class='id method'>method</span><span class='lparen'>(</span><span class='symbol'>:buffer_frame</span><span class='rparen'>)</span>
   <span class='id failover'>failover</span><span class='period'>.</span><span class='id before_abort'>before_abort</span> <span class='op'>&amp;</span><span class='id method'>method</span><span class='lparen'>(</span><span class='symbol'>:buffer_frame</span><span class='rparen'>)</span>
@@ -355,11 +356,7 @@ A new instance of Written
 </span>  <span class='comment'># because if we replay before UNSUBSCRIBE was sent, we still don't
 </span>  <span class='comment'># want to be subscribed when we reconnect.
 </span>  <span class='id failover'>failover</span><span class='period'>.</span><span class='id before_unsubscribe'>before_unsubscribe</span> <span class='op'>&amp;</span><span class='id method'>method</span><span class='lparen'>(</span><span class='symbol'>:debuffer_subscription</span><span class='rparen'>)</span>
-  <span class='comment'># We only want to scrub the transactions if ABORT or COMMIT was
-</span>  <span class='comment'># at least written fully to the socket.
-</span>  <span class='id failover'>failover</span><span class='period'>.</span><span class='id on_commit'>on_commit</span> <span class='op'>&amp;</span><span class='id method'>method</span><span class='lparen'>(</span><span class='symbol'>:debuffer_transaction</span><span class='rparen'>)</span>
-  <span class='id failover'>failover</span><span class='period'>.</span><span class='id on_abort'>on_abort</span> <span class='op'>&amp;</span><span class='id method'>method</span><span class='lparen'>(</span><span class='symbol'>:debuffer_transaction</span><span class='rparen'>)</span>
-  <span class='id failover'>failover</span><span class='period'>.</span><span class='id on_send'>on_send</span> <span class='op'>&amp;</span><span class='id method'>method</span><span class='lparen'>(</span><span class='symbol'>:debuffer_non_transactional_frame</span><span class='rparen'>)</span>
+  <span class='id failover'>failover</span><span class='period'>.</span><span class='id on_receipt'>on_receipt</span> <span class='op'>&amp;</span><span class='id method'>method</span><span class='lparen'>(</span><span class='symbol'>:debuffer_frame</span><span class='rparen'>)</span>
   
   <span class='id failover'>failover</span><span class='period'>.</span><span class='id on_failover_connected'>on_failover_connected</span> <span class='op'>&amp;</span><span class='id method'>method</span><span class='lparen'>(</span><span class='symbol'>:replay</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -400,20 +397,26 @@ Adds a frame to a buffer so that it may be replayed if the
       <pre class="lines">
 
 
+32
+33
 34
 35
 36
 37
 38
 39
-40</pre>
+40
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/buffers/written.rb', line 34</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/buffers/receipts.rb', line 32</span>
 
 <span class='kw'>def</span> <span class='id buffer_frame'>buffer_frame</span> <span class='id f'>f</span><span class='comma'>,</span> <span class='op'>*</span><span class='id _'>_</span>
   <span class='ivar'>@buffer_mutex</span><span class='period'>.</span><span class='id synchronize'>synchronize</span> <span class='kw'>do</span>
-    <span class='kw'>unless</span> <span class='id f'>f</span><span class='period'>.</span><span class='id header?'>header?</span> <span class='symbol'>:x-onstomp-failover-replay</span><span class='tstring_end'>'</span></span>
+    <span class='comment'># Don't re-buffer frames that are being replayed.
+</span>    <span class='kw'>unless</span> <span class='id f'>f</span><span class='period'>.</span><span class='id header?'>header?</span> <span class='symbol'>:x-onstomp-failover-replay</span><span class='tstring_end'>'</span></span>
+      <span class='comment'># Create a receipt header, unless the frame already has one.
+</span>      <span class='id f'>f</span><span class='lbracket'>[</span><span class='symbol'>:receipt</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>OnStomp</span><span class='period'>.</span><span class='id next_serial'>next_serial</span> <span class='kw'>unless</span> <span class='id f'>f</span><span class='period'>.</span><span class='id header?'>header?</span><span class='lparen'>(</span><span class='symbol'>:receipt</span><span class='rparen'>)</span>
       <span class='ivar'>@buffer</span> <span class='op'>&lt;&lt;</span> <span class='id f'>f</span> 
     <span class='kw'>end</span>
   <span class='kw'>end</span>
@@ -448,13 +451,13 @@ Records the start of a transaction so that it may be replayed if the
       <pre class="lines">
 
 
-44
 45
 46
-47</pre>
+47
+48</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/buffers/written.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/buffers/receipts.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='id buffer_transaction'>buffer_transaction</span> <span class='id f'>f</span><span class='comma'>,</span> <span class='op'>*</span><span class='id _'>_</span>
   <span class='ivar'>@txs</span><span class='lbracket'>[</span><span class='id f'>f</span><span class='lbracket'>[</span><span class='symbol'>:transaction</span><span class='rbracket'>]</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>true</span>
@@ -466,43 +469,50 @@ Records the start of a transaction so that it may be replayed if the
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="debuffer_non_transactional_frame-instance_method">
+  <p class="signature " id="debuffer_frame-instance_method">
   
-    - (<tt>Object</tt>) <strong>debuffer_non_transactional_frame</strong>(f, *_) 
+    - (<tt>Object</tt>) <strong>debuffer_frame</strong>(r, *_) 
   
 
   
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-Removes a frame that is not part of a transaction from the buffer after it
-has been written the broker socket so that it will not be replayed when the
-<span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client re-connects
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-</div><table class="source_code">
+</p><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
+72
+73
 74
 75
 76
 77
-78</pre>
+78
+79
+80
+81
+82
+83
+84
+85
+86</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/buffers/written.rb', line 74</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/buffers/receipts.rb', line 72</span>
 
-<span class='kw'>def</span> <span class='id debuffer_non_transactional_frame'>debuffer_non_transactional_frame</span> <span class='id f'>f</span><span class='comma'>,</span> <span class='op'>*</span><span class='id _'>_</span>
-  <span class='kw'>unless</span> <span class='ivar'>@txs</span><span class='period'>.</span><span class='id key?'>key?</span><span class='lparen'>(</span><span class='id f'>f</span><span class='lbracket'>[</span><span class='symbol'>:transaction</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-    <span class='ivar'>@buffer_mutex</span><span class='period'>.</span><span class='id synchronize'>synchronize</span> <span class='lbrace'>{</span> <span class='ivar'>@buffer</span><span class='period'>.</span><span class='id delete'>delete</span> <span class='id f'>f</span> <span class='rbrace'>}</span>
+<span class='kw'>def</span> <span class='id debuffer_frame'>debuffer_frame</span> <span class='id r'>r</span><span class='comma'>,</span> <span class='op'>*</span><span class='id _'>_</span>
+  <span class='id orig'>orig</span> <span class='op'>=</span> <span class='ivar'>@buffer_mutex</span><span class='period'>.</span><span class='id synchronize'>synchronize</span> <span class='kw'>do</span>
+    <span class='ivar'>@buffer</span><span class='period'>.</span><span class='id detect'>detect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id f'>f</span><span class='op'>|</span> <span class='id f'>f</span><span class='lbracket'>[</span><span class='symbol'>:receipt</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id r'>r</span><span class='lbracket'>[</span><span class='symbol'>:receipt-id</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='id orig'>orig</span>
+    <span class='comment'># COMMIT and ABORT debuffer the whole transaction sequence
+</span>    <span class='kw'>if</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>COMMIT</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>ABORT</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id include?'>include?</span> <span class='id orig'>orig</span><span class='period'>.</span><span class='id command'>command</span>
+      <span class='id debuffer_transaction'>debuffer_transaction</span> <span class='id orig'>orig</span>
+    <span class='comment'># Otherwise, if this isn't part of a transaction, debuffer the
+</span>    <span class='comment'># particular frame
+</span>    <span class='kw'>elsif</span> <span class='id orig'>orig</span><span class='period'>.</span><span class='id command'>command</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>SUBSCRIBE</span><span class='tstring_end'>'</span></span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id orig'>orig</span><span class='period'>.</span><span class='id header?'>header?</span><span class='lparen'>(</span><span class='symbol'>:transaction</span><span class='rparen'>)</span>
+      <span class='ivar'>@buffer_mutex</span><span class='period'>.</span><span class='id synchronize'>synchronize</span> <span class='lbrace'>{</span> <span class='ivar'>@buffer</span><span class='period'>.</span><span class='id delete'>delete</span> <span class='id orig'>orig</span> <span class='rbrace'>}</span>
+    <span class='kw'>end</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -537,14 +547,14 @@ re-connects
       <pre class="lines">
 
 
-65
 66
 67
 68
-69</pre>
+69
+70</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/buffers/written.rb', line 65</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/buffers/receipts.rb', line 66</span>
 
 <span class='kw'>def</span> <span class='id debuffer_subscription'>debuffer_subscription</span> <span class='id f'>f</span><span class='comma'>,</span> <span class='op'>*</span><span class='id _'>_</span>
   <span class='ivar'>@buffer_mutex</span><span class='period'>.</span><span class='id synchronize'>synchronize</span> <span class='kw'>do</span>
@@ -559,7 +569,7 @@ re-connects
       <div class="method_details ">
   <p class="signature " id="debuffer_transaction-instance_method">
   
-    - (<tt>Object</tt>) <strong>debuffer_transaction</strong>(f, *_) 
+    - (<tt>Object</tt>) <strong>debuffer_transaction</strong>(f) 
   
 
   
@@ -582,19 +592,19 @@ the broker socket so that it will not be replayed when the
       <pre class="lines">
 
 
-52
 53
 54
 55
 56
 57
 58
-59</pre>
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/buffers/written.rb', line 52</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/buffers/receipts.rb', line 53</span>
 
-<span class='kw'>def</span> <span class='id debuffer_transaction'>debuffer_transaction</span> <span class='id f'>f</span><span class='comma'>,</span> <span class='op'>*</span><span class='id _'>_</span>
+<span class='kw'>def</span> <span class='id debuffer_transaction'>debuffer_transaction</span> <span class='id f'>f</span>
   <span class='id tx'>tx</span> <span class='op'>=</span> <span class='id f'>f</span><span class='lbracket'>[</span><span class='symbol'>:transaction</span><span class='rbracket'>]</span>
   <span class='kw'>if</span> <span class='ivar'>@txs</span><span class='period'>.</span><span class='id delete'>delete</span> <span class='id tx'>tx</span>
     <span class='ivar'>@buffer_mutex</span><span class='period'>.</span><span class='id synchronize'>synchronize</span> <span class='kw'>do</span>
@@ -632,18 +642,18 @@ Called when the <span class='object_link'><a href="../Client.html" title="OnStom
       <pre class="lines">
 
 
-82
-83
-84
-85
-86
-87
-88
-89
-90</pre>
+90
+91
+92
+93
+94
+95
+96
+97
+98</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/buffers/written.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/buffers/receipts.rb', line 90</span>
 
 <span class='kw'>def</span> <span class='id replay'>replay</span> <span class='id fail'>fail</span><span class='comma'>,</span> <span class='id client'>client</span><span class='comma'>,</span> <span class='op'>*</span><span class='id _'>_</span>
   <span class='id replay_frames'>replay_frames</span> <span class='op'>=</span> <span class='ivar'>@buffer_mutex</span><span class='period'>.</span><span class='id synchronize'>synchronize</span> <span class='kw'>do</span>

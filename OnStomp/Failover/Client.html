@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Class: OnStomp::Failover::Client</title>
 <link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -607,8 +607,7 @@ A new instance of Client
 46
 47
 48
-49
-50</pre>
+49</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/onstomp/failover/client.rb', line 37</span>
@@ -625,7 +624,6 @@ A new instance of Client
   <span class='ivar'>@connection</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='ivar'>@frame_buffer</span> <span class='op'>=</span> <span class='id buffer'>buffer</span><span class='period'>.</span><span class='id new'>new</span> <span class='kw'>self</span>
   <span class='ivar'>@disconnecting</span> <span class='op'>=</span> <span class='kw'>false</span>
-  <span class='ivar'>@client_ready</span> <span class='op'>=</span> <span class='kw'>false</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1152,16 +1150,16 @@ Connects to one of the clients in the <span class='object_link'><a href="#client
       <pre class="lines">
 
 
+66
 67
 68
 69
 70
 71
-72
-73</pre>
+72</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/client.rb', line 67</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/client.rb', line 66</span>
 
 <span class='kw'>def</span> <span class='id connect'>connect</span>
   <span class='ivar'>@disconnecting</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -1213,12 +1211,12 @@ Returns true if there is an <span class='object_link'><a href="#active_client-in
       <pre class="lines">
 
 
+54
 55
-56
-57</pre>
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/client.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/client.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='id connected?'>connected?</span>
   <span class='id active_client'>active_client</span> <span class='op'>&amp;&amp;</span> <span class='id active_client'>active_client</span><span class='period'>.</span><span class='id connected?'>connected?</span>
@@ -1253,20 +1251,24 @@ Ensures that a connection is properly established, then invokes
       <pre class="lines">
 
 
+76
 77
 78
 79
 80
 81
-82</pre>
+82
+83</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/client.rb', line 77</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/client.rb', line 76</span>
 
 <span class='kw'>def</span> <span class='id disconnect'>disconnect</span> <span class='op'>*</span><span class='id args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id block'>block</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id active_client'>active_client</span>
   <span class='ivar'>@disconnecting</span> <span class='op'>=</span> <span class='kw'>true</span>
-  <span class='const'>Thread</span><span class='period'>.</span><span class='id pass'>pass</span> <span class='kw'>until</span> <span class='ivar'>@client_ready</span>
+  <span class='comment'># This is a bit problematic. If maximum retries is exceeded, this will
+</span>  <span class='comment'># just hang indefinitely.
+</span>  <span class='const'>Thread</span><span class='period'>.</span><span class='id pass'>pass</span> <span class='kw'>until</span> <span class='id connected?'>connected?</span>
   <span class='id active_client'>active_client</span><span class='period'>.</span><span class='id disconnect'>disconnect</span> <span class='op'>*</span><span class='id args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id block'>block</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1311,12 +1313,12 @@ Transmits a frame to the <span class='object_link'><a href="#active_client-insta
       <pre class="lines">
 
 
+60
 61
-62
-63</pre>
+62</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/client.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/client.rb', line 60</span>
 
 <span class='kw'>def</span> <span class='id transmit'>transmit</span> <span class='id frame'>frame</span><span class='comma'>,</span> <span class='id cbs'>cbs</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='id active_client'>active_client</span> <span class='op'>&amp;&amp;</span> <span class='id active_client'>active_client</span><span class='period'>.</span><span class='id transmit'>transmit</span><span class='lparen'>(</span><span class='id frame'>frame</span><span class='comma'>,</span> <span class='id cbs'>cbs</span><span class='rparen'>)</span>
@@ -1331,9 +1333,9 @@ Transmits a frame to the <span class='object_link'><a href="#active_client-insta
 </div>
     
     <div id="footer">
-  Generated on Sun Apr  3 20:46:57 2011 by 
+  Generated on Mon Apr  4 13:31:52 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.4 (ruby-1.9.2).
+  0.6.5 (ruby-1.9.2).
 </div>
 
   </body>
