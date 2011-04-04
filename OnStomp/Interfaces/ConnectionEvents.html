@@ -74,9 +74,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>
-Mixin for connection events
-</p>
+    <p>Mixin for connection events</p>
 
 
   </div>
@@ -114,10 +112,8 @@ Mixin for connection events
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when a connection has been closed, either
-through a graceful disconnect or unexpectedly.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a connection has been closed, either
+through a graceful disconnect or unexpectedly.</p>
 </div></span>
   
 </li>
@@ -139,10 +135,8 @@ through a graceful disconnect or unexpectedly.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when a connection has been died due to
-insufficient data transfer.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a connection has been died due to
+insufficient data transfer.</p>
 </div></span>
   
 </li>
@@ -164,10 +158,8 @@ insufficient data transfer.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when a connection has been fully established
-between broker and client.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a connection has been fully
+established between broker and client.</p>
 </div></span>
   
 </li>
@@ -189,10 +181,8 @@ between broker and client.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when a connection has been terminated (eg:
-closed unexpectedly due to an exception).
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a connection has been terminated
+(eg: closed unexpectedly due to an exception).</p>
 </div></span>
   
 </li>
@@ -223,10 +213,8 @@ closed unexpectedly due to an exception).
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Takes a hash of event bindings a <span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">client</a></span> has stored and
-binds them to this connection, then triggers <tt>on_established</tt>.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Takes a hash of event bindings a <span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">client</a></span> has stored
+and binds them to this connection, then triggers +on_established+.</p>
 </div></span>
   
 </li>
@@ -248,9 +236,7 @@ binds them to this connection, then triggers <tt>on_established</tt>.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Triggers a connection specific event.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Triggers a connection specific event.</p>
 </div></span>
   
 </li>
@@ -284,12 +270,11 @@ Triggers a connection specific event.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Takes a hash of event bindings a <span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">client</a></span> has stored and
-binds them to this connection, then triggers <tt>on_established</tt>. This
-allows users to add callbacks for connection events before the connection
-exist and have said callbacks installed once the connection is created.
-</p>
+    <p>Takes a hash of event bindings a <span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">client</a></span> has stored
+and binds them to this connection, then triggers +on_established+.
+This allows users to add callbacks for
+connection events before the connection exist and have said callbacks
+installed once the connection is created.</p>
 
 
   </div>
@@ -308,9 +293,7 @@ exist and have said callbacks installed once the connection is created.
       
       
         &mdash;
-        <div class='inline'><p>
-to install, keyed by event name
-</p>
+        <div class='inline'><p>to install, keyed by event name</p>
 </div>
       
     </li>
@@ -363,16 +346,13 @@ to install, keyed by event name
     
   <div class="note notetag">
     <strong>Note:</strong> 
-    <div class='inline'><p>
-If connection is closed unexpectedly, <span class='object_link'><a href="#on_died-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_died (method)">#on_died</a></span> is triggered first,
-</p>
+    <div class='inline'><p>If connection is closed unexpectedly, <span class='object_link'><a href="#on_died-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_died (method)">#on_died</a></span> is triggered first,</p>
 </div>
   </div>
 
-<p>
-Binds a callback to be invoked when a connection has been closed, either
-through a graceful disconnect or unexpectedly. followed by this event.
-</p>
+<p>Binds a callback to be invoked when a connection has been closed, either
+through a graceful disconnect or unexpectedly.
+followed by this event.</p>
 
 
   </div>
@@ -389,9 +369,7 @@ through a graceful disconnect or unexpectedly. followed by this event.
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -421,10 +399,8 @@ callback invoked when event is triggered
       
       
         &mdash;
-        <div class='inline'><p>
-that triggered the event (in general the same as
-<tt>client.connection</tt>)
-</p>
+        <div class='inline'><p>that triggered
+the event (in general the same as +client.connection+)</p>
 </div>
       
     </li>
@@ -460,16 +436,12 @@ that triggered the event (in general the same as
     
   <div class="note notetag">
     <strong>Note:</strong> 
-    <div class='inline'><p>
-Only applies to STOMP 1.1 connections with heartbeating enabled.
-</p>
+    <div class='inline'><p>Only applies to STOMP 1.1 connections with heartbeating enabled.</p>
 </div>
   </div>
 
-<p>
-Binds a callback to be invoked when a connection has been died due to
-insufficient data transfer.
-</p>
+<p>Binds a callback to be invoked when a connection has been died due to
+insufficient data transfer.</p>
 
 
   </div>
@@ -486,9 +458,7 @@ insufficient data transfer.
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -518,10 +488,8 @@ callback invoked when event is triggered
       
       
         &mdash;
-        <div class='inline'><p>
-that triggered the event (in general the same as
-<tt>client.connection</tt>)
-</p>
+        <div class='inline'><p>that triggered
+the event (in general the same as +client.connection+)</p>
 </div>
       
     </li>
@@ -554,10 +522,8 @@ that triggered the event (in general the same as
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when a connection has been fully established
-between broker and client.
-</p>
+    <p>Binds a callback to be invoked when a connection has been fully
+established between broker and client.</p>
 
 
   </div>
@@ -574,9 +540,7 @@ between broker and client.
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -606,10 +570,8 @@ callback invoked when event is triggered
       
       
         &mdash;
-        <div class='inline'><p>
-that triggered the event (in general the same as
-<tt>client.connection</tt>)
-</p>
+        <div class='inline'><p>that triggered
+the event (in general the same as +client.connection+)</p>
 </div>
       
     </li>
@@ -642,10 +604,8 @@ that triggered the event (in general the same as
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when a connection has been terminated (eg:
-closed unexpectedly due to an exception)
-</p>
+    <p>Binds a callback to be invoked when a connection has been terminated
+(eg: closed unexpectedly due to an exception)</p>
 
 
   </div>
@@ -662,9 +622,7 @@ closed unexpectedly due to an exception)
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -694,10 +652,8 @@ callback invoked when event is triggered
       
       
         &mdash;
-        <div class='inline'><p>
-that triggered the event (in general the same as
-<tt>client.connection</tt>)
-</p>
+        <div class='inline'><p>that triggered
+the event (in general the same as +client.connection+)</p>
 </div>
       
     </li>
@@ -730,9 +686,7 @@ that triggered the event (in general the same as
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Triggers a connection specific event.
-</p>
+    <p>Triggers a connection specific event.</p>
 
 
   </div>
@@ -751,9 +705,7 @@ Triggers a connection specific event.
       
       
         &mdash;
-        <div class='inline'><p>
-name
-</p>
+        <div class='inline'><p>name</p>
 </div>
       
     </li>
@@ -786,7 +738,7 @@ name
 </div>
     
     <div id="footer">
-  Generated on Mon Apr  4 14:42:00 2011 by 
+  Generated on Mon Apr  4 16:26:39 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>

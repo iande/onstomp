@@ -85,9 +85,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>
-Common behavior for all connections.
-</p>
+    <p>Common behavior for all connections.</p>
 
 
   </div>
@@ -106,10 +104,8 @@ Common behavior for all connections.
         <dt id="MAX_BYTES_PER_WRITE-constant" class="">MAX_BYTES_PER_WRITE =
           <div class="docstring">
   <div class="discussion">
-    <p>
-The approximate maximum number of bytes to write per call to
-<span class='object_link'><a href="#io_process_write-instance_method" title="OnStomp::Connections::Base#io_process_write (method)">#io_process_write</a></span>.
-</p>
+    <p>The approximate maximum number of bytes to write per call to
+<span class='object_link'><a href="#io_process_write-instance_method" title="OnStomp::Connections::Base#io_process_write (method)">#io_process_write</a></span>.</p>
 
 
   </div>
@@ -123,9 +119,7 @@ The approximate maximum number of bytes to write per call to
         <dt id="MAX_BYTES_PER_READ-constant" class="">MAX_BYTES_PER_READ =
           <div class="docstring">
   <div class="discussion">
-    <p>
-The maximum number of bytes to read per call to <span class='object_link'><a href="#io_process_read-instance_method" title="OnStomp::Connections::Base#io_process_read (method)">#io_process_read</a></span>
-</p>
+    <p>The maximum number of bytes to read per call to <span class='object_link'><a href="#io_process_read-instance_method" title="OnStomp::Connections::Base#io_process_read (method)">#io_process_read</a></span></p>
 
 
   </div>
@@ -170,9 +164,7 @@ The maximum number of bytes to read per call to <span class='object_link'><a hre
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns the value of attribute client.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute client.</p>
 </div></span>
   
 </li>
@@ -197,9 +189,7 @@ Returns the value of attribute client.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns the value of attribute last_received_at.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute last_received_at.</p>
 </div></span>
   
 </li>
@@ -224,9 +214,7 @@ Returns the value of attribute last_received_at.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns the value of attribute last_transmitted_at.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute last_transmitted_at.</p>
 </div></span>
   
 </li>
@@ -251,9 +239,7 @@ Returns the value of attribute last_transmitted_at.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns the value of attribute socket.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute socket.</p>
 </div></span>
   
 </li>
@@ -278,9 +264,7 @@ Returns the value of attribute socket.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns the value of attribute version.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute version.</p>
 </div></span>
   
 </li>
@@ -313,9 +297,7 @@ Returns the value of attribute version.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Closes the <span class='object_link'><a href="#socket-instance_method" title="OnStomp::Connections::Base#socket (method)">#socket</a></span>.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Closes the <span class='object_link'><a href="#socket-instance_method" title="OnStomp::Connections::Base#socket (method)">#socket</a></span>.</p>
 </div></span>
   
 </li>
@@ -337,10 +319,8 @@ Closes the <span class='object_link'><a href="#socket-instance_method" title="On
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Performs any necessary configuration of the connection from the CONNECTED
-frame sent by the broker and a <tt>Hash</tt> of pending callbacks.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Performs any necessary configuration of the connection from the CONNECTED
+frame sent by the broker and a +Hash+ of pending callbacks.</p>
 </div></span>
   
 </li>
@@ -362,10 +342,8 @@ frame sent by the broker and a <tt>Hash</tt> of pending callbacks.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Exchanges the CONNECT/CONNECTED frame handshake with the broker and returns
-the version detected along with the received CONNECTED frame.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Exchanges the CONNECT/CONNECTED frame handshake with the broker and returns
+the version detected along with the received CONNECTED frame.</p>
 </div></span>
   
 </li>
@@ -387,9 +365,7 @@ the version detected along with the received CONNECTED frame.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns true if the socket has not been closed, false otherwise.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns true if the socket has not been closed, false otherwise.</p>
 </div></span>
   
 </li>
@@ -411,10 +387,8 @@ Returns true if the socket has not been closed, false otherwise.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Flushes the write buffer by invoking <span class='object_link'><a href="#io_process_write-instance_method" title="OnStomp::Connections::Base#io_process_write (method)">#io_process_write</a></span> until the buffer
-is empty.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Flushes the write buffer by invoking <span class='object_link'><a href="#io_process_write-instance_method" title="OnStomp::Connections::Base#io_process_write (method)">#io_process_write</a></span> until the
+buffer is empty.</p>
 </div></span>
   
 </li>
@@ -438,10 +412,8 @@ is empty.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Creates a new connection using the given <span class='object_link'><a href="#socket-instance_method" title="OnStomp::Connections::Base#socket (method)">#socket</a></span> object and
-<span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">client</a></span>.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Creates a new connection using the given <span class='object_link'><a href="#socket-instance_method" title="OnStomp::Connections::Base#socket (method)">#socket</a></span> object and
+<span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">client</a></span>.</p>
 </div></span>
   
 </li>
@@ -463,10 +435,8 @@ Creates a new connection using the given <span class='object_link'><a href="#soc
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Makes a single call to <span class='object_link'><a href="#io_process_write-instance_method" title="OnStomp::Connections::Base#io_process_write (method)">#io_process_write</a></span> and a single call to
-<span class='object_link'><a href="#io_process_read-instance_method" title="OnStomp::Connections::Base#io_process_read (method)">#io_process_read</a></span>.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Makes a single call to <span class='object_link'><a href="#io_process_write-instance_method" title="OnStomp::Connections::Base#io_process_write (method)">#io_process_write</a></span> and a single call to
+<span class='object_link'><a href="#io_process_read-instance_method" title="OnStomp::Connections::Base#io_process_read (method)">#io_process_read</a></span>.</p>
 </div></span>
   
 </li>
@@ -488,10 +458,8 @@ Makes a single call to <span class='object_link'><a href="#io_process_write-inst
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Reads serialized frame data from the socket if we&#8217;re connected and
-and the socket is ready for reading.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Reads serialized frame data from the socket if we're connected and
+and the socket is ready for reading.</p>
 </div></span>
   
 </li>
@@ -513,10 +481,8 @@ and the socket is ready for reading.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Writes serialized frame data to the socket if the write buffer is not empty
-and socket is ready for writing.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Writes serialized frame data to the socket if the write buffer is not
+empty and socket is ready for writing.</p>
 </div></span>
   
 </li>
@@ -538,10 +504,8 @@ and socket is ready for writing.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Checks if the missing method ends with &#8216;_frame&#8217;, and if so
-raises a <span class='object_link'><a href="../UnsupportedCommandError.html" title="OnStomp::UnsupportedCommandError (class)">UnsupportedCommandError</a></span> exception.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Checks if the missing method ends with '_frame', and if so raises a
+<span class='object_link'><a href="../UnsupportedCommandError.html" title="OnStomp::UnsupportedCommandError (class)">UnsupportedCommandError</a></span> exception.</p>
 </div></span>
   
 </li>
@@ -563,9 +527,7 @@ raises a <span class='object_link'><a href="../UnsupportedCommandError.html" tit
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Adds data and frame pair to the end of the write buffer.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Adds data and frame pair to the end of the write buffer.</p>
 </div></span>
   
 </li>
@@ -587,9 +549,7 @@ Adds data and frame pair to the end of the write buffer.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Removes the first data and frame pair from the write buffer.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Removes the first data and frame pair from the write buffer.</p>
 </div></span>
   
 </li>
@@ -611,9 +571,7 @@ Removes the first data and frame pair from the write buffer.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Adds the remains of data and frame pair to the head of the write buffer.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Adds the remains of data and frame pair to the head of the write buffer.</p>
 </div></span>
   
 </li>
@@ -635,10 +593,8 @@ Adds the remains of data and frame pair to the head of the write buffer.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Serializes the given frame and adds the data to the connections internal
-write buffer.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Serializes the given frame and adds the data to the connections internal
+write buffer.</p>
 </div></span>
   
 </li>
@@ -679,12 +635,10 @@ write buffer.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Creates a new connection using the given <span class='object_link'><a href="#socket-instance_method" title="OnStomp::Connections::Base#socket (method)">#socket</a></span> object and
-<span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">client</a></span>. The <span class='object_link'><a href="#socket-instance_method" title="OnStomp::Connections::Base#socket (method)">#socket</a></span> object will generally be a
-<tt>TCPSocket</tt> or an <tt>OpenSSL::SSL::SSLSocket</tt> and must support the
-methods <tt>read_nonblock</tt> <tt>write_nonblock</tt>, and <tt>close</tt>.
-</p>
+    <p>Creates a new connection using the given <span class='object_link'><a href="#socket-instance_method" title="OnStomp::Connections::Base#socket (method)">#socket</a></span> object and
+<span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">client</a></span>. The <span class='object_link'><a href="#socket-instance_method" title="OnStomp::Connections::Base#socket (method)">#socket</a></span> object will generally be a +TCPSocket+
+or an +OpenSSL::SSL::SSLSocket+ and must support the methods +read_nonblock+
++write_nonblock+, and +close+.</p>
 
 
   </div>
@@ -767,10 +721,8 @@ methods <tt>read_nonblock</tt> <tt>write_nonblock</tt>, and <tt>close</tt>.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Checks if the missing method ends with &#8216;_frame&#8217;, and if so
-raises a <span class='object_link'><a href="../UnsupportedCommandError.html" title="OnStomp::UnsupportedCommandError (class)">UnsupportedCommandError</a></span> exception.
-</p>
+    <p>Checks if the missing method ends with '_frame', and if so raises a
+<span class='object_link'><a href="../UnsupportedCommandError.html" title="OnStomp::UnsupportedCommandError (class)">UnsupportedCommandError</a></span> exception.</p>
 
 
   </div>
@@ -836,9 +788,7 @@ raises a <span class='object_link'><a href="../UnsupportedCommandError.html" tit
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns the value of attribute client
-</p>
+    <p>Returns the value of attribute client</p>
 
 
   </div>
@@ -878,9 +828,7 @@ Returns the value of attribute client
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns the value of attribute last_received_at
-</p>
+    <p>Returns the value of attribute last_received_at</p>
 
 
   </div>
@@ -920,9 +868,7 @@ Returns the value of attribute last_received_at
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns the value of attribute last_transmitted_at
-</p>
+    <p>Returns the value of attribute last_transmitted_at</p>
 
 
   </div>
@@ -962,9 +908,7 @@ Returns the value of attribute last_transmitted_at
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns the value of attribute socket
-</p>
+    <p>Returns the value of attribute socket</p>
 
 
   </div>
@@ -1004,9 +948,7 @@ Returns the value of attribute socket
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns the value of attribute version
-</p>
+    <p>Returns the value of attribute version</p>
 
 
   </div>
@@ -1050,13 +992,11 @@ Returns the value of attribute version
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Closes the <span class='object_link'><a href="#socket-instance_method" title="OnStomp::Connections::Base#socket (method)">#socket</a></span>. If <tt>blocking</tt> is true, the socket will be
-closed immediately, otherwies the socket will remain open until
-<span class='object_link'><a href="#io_process_write-instance_method" title="OnStomp::Connections::Base#io_process_write (method)">#io_process_write</a></span> has finished writing all of its buffered data. Once
-this method has been invoked, <span class='object_link'><a href="#write_frame_nonblock-instance_method" title="OnStomp::Connections::Base#write_frame_nonblock (method)">#write_frame_nonblock</a></span> will not enqueue any
-additional frames for writing.
-</p>
+    <p>Closes the <span class='object_link'><a href="#socket-instance_method" title="OnStomp::Connections::Base#socket (method)">#socket</a></span>. If +blocking+ is true, the socket will be closed
+immediately, otherwies the socket will remain open until <span class='object_link'><a href="#io_process_write-instance_method" title="OnStomp::Connections::Base#io_process_write (method)">#io_process_write</a></span>
+has finished writing all of its buffered data. Once this method has been
+invoked, <span class='object_link'><a href="#write_frame_nonblock-instance_method" title="OnStomp::Connections::Base#write_frame_nonblock (method)">#write_frame_nonblock</a></span> will not enqueue any additional frames
+for writing.</p>
 
 
   </div>
@@ -1118,13 +1058,11 @@ additional frames for writing.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Performs any necessary configuration of the connection from the CONNECTED
-frame sent by the broker and a <tt>Hash</tt> of pending callbacks. This
-method is called after the protocol negotiation has taken place between
-client and broker, and the connection that receives it will be the
-connection used by the client for the duration of the session.
-</p>
+    <p>Performs any necessary configuration of the connection from the CONNECTED
+frame sent by the broker and a +Hash+ of pending callbacks. This method
+is called after the protocol negotiation has taken place between client
+and broker, and the connection that receives it will be the connection
+used by the client for the duration of the session.</p>
 
 
   </div>
@@ -1189,11 +1127,9 @@ connection used by the client for the duration of the session.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Exchanges the CONNECT/CONNECTED frame handshake with the broker and returns
+    <p>Exchanges the CONNECT/CONNECTED frame handshake with the broker and returns
 the version detected along with the received CONNECTED frame. The supplied
-list of headers will be merged into the CONNECT frame sent to the broker.
-</p>
+list of headers will be merged into the CONNECT frame sent to the broker.</p>
 
 
   </div>
@@ -1295,9 +1231,7 @@ list of headers will be merged into the CONNECT frame sent to the broker.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns true if the socket has not been closed, false otherwise.
-</p>
+    <p>Returns true if the socket has not been closed, false otherwise.</p>
 
 
   </div>
@@ -1347,10 +1281,8 @@ Returns true if the socket has not been closed, false otherwise.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Flushes the write buffer by invoking <span class='object_link'><a href="#io_process_write-instance_method" title="OnStomp::Connections::Base#io_process_write (method)">#io_process_write</a></span> until the buffer
-is empty.
-</p>
+    <p>Flushes the write buffer by invoking <span class='object_link'><a href="#io_process_write-instance_method" title="OnStomp::Connections::Base#io_process_write (method)">#io_process_write</a></span> until the
+buffer is empty.</p>
 
 
   </div>
@@ -1387,10 +1319,8 @@ is empty.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Makes a single call to <span class='object_link'><a href="#io_process_write-instance_method" title="OnStomp::Connections::Base#io_process_write (method)">#io_process_write</a></span> and a single call to
-<span class='object_link'><a href="#io_process_read-instance_method" title="OnStomp::Connections::Base#io_process_read (method)">#io_process_read</a></span>
-</p>
+    <p>Makes a single call to <span class='object_link'><a href="#io_process_write-instance_method" title="OnStomp::Connections::Base#io_process_write (method)">#io_process_write</a></span> and a single call to
+<span class='object_link'><a href="#io_process_read-instance_method" title="OnStomp::Connections::Base#io_process_read (method)">#io_process_read</a></span></p>
 
 
   </div>
@@ -1435,12 +1365,10 @@ Makes a single call to <span class='object_link'><a href="#io_process_write-inst
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Reads serialized frame data from the socket if we&#8217;re connected and
-and the socket is ready for reading.  The received data will be pushed to
-the end of a read buffer, which is then sent to the connection&#8217;s
-<span class='object_link'><a href="Serializers.html" title="OnStomp::Connections::Serializers (module)">serializer</a></span> for processing.
-</p>
+    <p>Reads serialized frame data from the socket if we're connected and
+and the socket is ready for reading.  The received data will be pushed
+to the end of a read buffer, which is then sent to the connection's
+<span class='object_link'><a href="Serializers.html" title="OnStomp::Connections::Serializers (module)">serializer</a></span> for processing.</p>
 
 
   </div>
@@ -1511,15 +1439,13 @@ the end of a read buffer, which is then sent to the connection&#8217;s
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Writes serialized frame data to the socket if the write buffer is not empty
-and socket is ready for writing. Once a complete frame has been written,
-this method will call <span class='object_link'><a href="../Client.html#dispatch_transmitted-instance_method" title="OnStomp::Client#dispatch_transmitted (method)">OnStomp::Client#dispatch_transmitted</a></span> to notify the
-client that the frame has been sent to the broker. If a complete frame
-cannot be written without blocking, the unsent data is sent to the head of
-the write buffer to be processed first the next time this method is
-invoked.
-</p>
+    <p>Writes serialized frame data to the socket if the write buffer is not
+empty and socket is ready for writing. Once a complete frame has
+been written, this method will call <span class='object_link'><a href="../Client.html#dispatch_transmitted-instance_method" title="OnStomp::Client#dispatch_transmitted (method)">OnStomp::Client#dispatch_transmitted</a></span>
+to notify the client that the frame has been sent to the broker. If a
+complete frame cannot be written without blocking, the unsent data is
+sent to the head of the write buffer to be processed first the next time
+this method is invoked.</p>
 
 
   </div>
@@ -1614,9 +1540,7 @@ invoked.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Adds data and frame pair to the end of the write buffer
-</p>
+    <p>Adds data and frame pair to the end of the write buffer</p>
 
 
   </div>
@@ -1683,9 +1607,7 @@ Adds data and frame pair to the end of the write buffer
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Removes the first data and frame pair from the write buffer
-</p>
+    <p>Removes the first data and frame pair from the write buffer</p>
 
 
   </div>
@@ -1748,9 +1670,7 @@ Removes the first data and frame pair from the write buffer
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Adds the remains of data and frame pair to the head of the write buffer
-</p>
+    <p>Adds the remains of data and frame pair to the head of the write buffer</p>
 
 
   </div>
@@ -1813,10 +1733,8 @@ Adds the remains of data and frame pair to the head of the write buffer
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Serializes the given frame and adds the data to the connections internal
-write buffer
-</p>
+    <p>Serializes the given frame and adds the data to the connections internal
+write buffer</p>
 
 
   </div>
@@ -1866,7 +1784,7 @@ write buffer
 </div>
     
     <div id="footer">
-  Generated on Mon Apr  4 14:41:58 2011 by 
+  Generated on Mon Apr  4 16:26:38 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>

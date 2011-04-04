@@ -87,10 +87,8 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>
-This class encapsulates a client connection to a message broker through the
-Stomp protocol.
-</p>
+    <p>This class encapsulates a client connection to a message broker through the
+Stomp protocol.</p>
 
 
   </div>
@@ -149,9 +147,7 @@ Stomp protocol.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Connection object specific to the established STOMP protocol version.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Connection object specific to the established STOMP protocol version.</p>
 </div></span>
   
 </li>
@@ -176,9 +172,7 @@ Connection object specific to the established STOMP protocol version.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-The client-side heartbeat settings to allow for this connection.
-</p>
+    <span class="summary_desc"><div class='inline'><p>The client-side heartbeat settings to allow for this connection.</p>
 </div></span>
   
 </li>
@@ -203,9 +197,7 @@ The client-side heartbeat settings to allow for this connection.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-The host header value to send to the broker when connecting.
-</p>
+    <span class="summary_desc"><div class='inline'><p>The host header value to send to the broker when connecting.</p>
 </div></span>
   
 </li>
@@ -230,9 +222,7 @@ The host header value to send to the broker when connecting.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-The login header value to send to the broker when connecting.
-</p>
+    <span class="summary_desc"><div class='inline'><p>The login header value to send to the broker when connecting.</p>
 </div></span>
   
 </li>
@@ -257,9 +247,7 @@ The login header value to send to the broker when connecting.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-The passcode header value to send to the broker when connecting.
-</p>
+    <span class="summary_desc"><div class='inline'><p>The passcode header value to send to the broker when connecting.</p>
 </div></span>
   
 </li>
@@ -284,9 +272,7 @@ The passcode header value to send to the broker when connecting.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-SSL options for the connection.
-</p>
+    <span class="summary_desc"><div class='inline'><p>SSL options for the connection.</p>
 </div></span>
   
 </li>
@@ -311,9 +297,7 @@ SSL options for the connection.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-The <tt>URI</tt> reference to the STOMP broker.
-</p>
+    <span class="summary_desc"><div class='inline'><p>The +URI+ reference to the STOMP broker.</p>
 </div></span>
   
 </li>
@@ -338,9 +322,7 @@ The <tt>URI</tt> reference to the STOMP broker.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-The protocol versions to allow for this connection.
-</p>
+    <span class="summary_desc"><div class='inline'><p>The protocol versions to allow for this connection.</p>
 </div></span>
   
 </li>
@@ -373,10 +355,8 @@ The protocol versions to allow for this connection.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Called by <span class='object_link'><a href="#connection-instance_method" title="OnStomp::Client#connection (method)">#connection</a></span> when a frame has been read from the socket
-connection to the STOMP broker.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Called by <span class='object_link'><a href="#connection-instance_method" title="OnStomp::Client#connection (method)">#connection</a></span> when a frame has been read from the socket
+connection to the STOMP broker.</p>
 </div></span>
   
 </li>
@@ -398,10 +378,8 @@ connection to the STOMP broker.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Called by <span class='object_link'><a href="#connection-instance_method" title="OnStomp::Client#connection (method)">#connection</a></span> when a frame has been written to the socket
-connection to the STOMP broker.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Called by <span class='object_link'><a href="#connection-instance_method" title="OnStomp::Client#connection (method)">#connection</a></span> when a frame has been written to the socket
+connection to the STOMP broker.</p>
 </div></span>
   
 </li>
@@ -423,9 +401,7 @@ connection to the STOMP broker.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Ultimately sends a <span class='object_link'><a href="Components/Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span> to the STOMP broker.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Ultimately sends a <span class='object_link'><a href="Components/Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span> to the STOMP broker.</p>
 </div></span>
   
 </li>
@@ -458,11 +434,9 @@ Ultimately sends a <span class='object_link'><a href="Components/Frame.html" tit
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Creates an alias chain for <span class='object_link'><a href="#new-class_method" title="OnStomp::Client.new (method)">new</a></span> so that if a failover: URI
-or an array of URIs are passed to the constructor, a
-<span class='object_link'><a href="Failover/Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client is built instead.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Creates an alias chain for <span class='object_link'><a href="#new-class_method" title="OnStomp::Client.new (method)">new</a></span> so that if
+a failover: URI or an array of URIs are passed to the constructor,
+a <span class='object_link'><a href="Failover/Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client is built instead.</p>
 </div></span>
   
 </li>
@@ -493,9 +467,7 @@ or an array of URIs are passed to the constructor, a
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Forces the connection between broker and client closed.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Forces the connection between broker and client closed.</p>
 </div></span>
   
 </li>
@@ -519,9 +491,7 @@ Forces the connection between broker and client closed.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Connects to the STOMP broker referenced by <span class='object_link'><a href="#uri-instance_method" title="OnStomp::Client#uri (method)">#uri</a></span>.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Connects to the STOMP broker referenced by <span class='object_link'><a href="#uri-instance_method" title="OnStomp::Client#uri (method)">#uri</a></span>.</p>
 </div></span>
   
 </li>
@@ -543,9 +513,7 @@ Connects to the STOMP broker referenced by <span class='object_link'><a href="#u
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns true if a connection to the broker exists and itself is connected.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns true if a connection to the broker exists and itself is connected.</p>
 </div></span>
   
 </li>
@@ -569,10 +537,8 @@ Returns true if a connection to the broker exists and itself is connected.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Sends a DISCONNECT frame to the broker and blocks until the connection has
-been closed.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Sends a DISCONNECT frame to the broker and blocks until the connection
+has been closed.</p>
 </div></span>
   
 </li>
@@ -596,9 +562,7 @@ been closed.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Creates a new client for the specified uri and optional hash of options.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Creates a new client for the specified uri and optional hash of options.</p>
 </div></span>
   
 </li>
@@ -684,9 +648,7 @@ Creates a new client for the specified uri and optional hash of options.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Creates a new client for the specified uri and optional hash of options.
-</p>
+    <p>Creates a new client for the specified uri and optional hash of options.</p>
 
 
   </div>
@@ -773,9 +735,7 @@ Creates a new client for the specified uri and optional hash of options.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Connection object specific to the established STOMP protocol version
-</p>
+    <p>Connection object specific to the established STOMP protocol version</p>
 
 
   </div>
@@ -828,9 +788,7 @@ Connection object specific to the established STOMP protocol version
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-The client-side heartbeat settings to allow for this connection
-</p>
+    <p>The client-side heartbeat settings to allow for this connection</p>
 
 
   </div>
@@ -879,11 +837,9 @@ The client-side heartbeat settings to allow for this connection
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-The host header value to send to the broker when connecting. This allows
-the client to inform the server which host it wishes to connect with when
-multiple brokers may share an IP address through virtual hosting.
-</p>
+    <p>The host header value to send to the broker when connecting. This allows
+the client to inform the server which host it wishes to connect with
+when multiple brokers may share an IP address through virtual hosting.</p>
 
 
   </div>
@@ -932,9 +888,7 @@ multiple brokers may share an IP address through virtual hosting.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-The login header value to send to the broker when connecting.
-</p>
+    <p>The login header value to send to the broker when connecting.</p>
 
 
   </div>
@@ -983,9 +937,7 @@ The login header value to send to the broker when connecting.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-The passcode header value to send to the broker when connecting.
-</p>
+    <p>The passcode header value to send to the broker when connecting.</p>
 
 
   </div>
@@ -1034,9 +986,7 @@ The passcode header value to send to the broker when connecting.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-SSL options for the connection
-</p>
+    <p>SSL options for the connection</p>
 
 
   </div>
@@ -1089,9 +1039,7 @@ SSL options for the connection
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-The <tt>URI</tt> reference to the STOMP broker
-</p>
+    <p>The +URI+ reference to the STOMP broker</p>
 
 
   </div>
@@ -1144,9 +1092,7 @@ The <tt>URI</tt> reference to the STOMP broker
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-The protocol versions to allow for this connection
-</p>
+    <p>The protocol versions to allow for this connection</p>
 
 
   </div>
@@ -1203,11 +1149,9 @@ The protocol versions to allow for this connection
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Creates an alias chain for <span class='object_link'><a href="#new-class_method" title="OnStomp::Client.new (method)">new</a></span> so that if a failover: URI
-or an array of URIs are passed to the constructor, a
-<span class='object_link'><a href="Failover/Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client is built instead.
-</p>
+    <p>Creates an alias chain for <span class='object_link'><a href="#new-class_method" title="OnStomp::Client.new (method)">new</a></span> so that if
+a failover: URI or an array of URIs are passed to the constructor,
+a <span class='object_link'><a href="Failover/Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client is built instead.</p>
 
 
   </div>
@@ -1274,17 +1218,13 @@ or an array of URIs are passed to the constructor, a
     
   <div class="note notetag">
     <strong>Note:</strong> 
-    <div class='inline'><p>
-Use of this method may result in frames never being sent to the broker.
-This method should only be used if <span class='object_link'><a href="#disconnect-instance_method" title="OnStomp::Client#disconnect (method)">#disconnect</a></span> is not an option and the
-connection needs to be terminated immediately.
-</p>
+    <div class='inline'><p>Use of this method may result in frames never being sent to the
+broker. This method should only be used if <span class='object_link'><a href="#disconnect-instance_method" title="OnStomp::Client#disconnect (method)">#disconnect</a></span> is not an
+option and the connection needs to be terminated immediately.</p>
 </div>
   </div>
 
-<p>
-Forces the connection between broker and client closed.
-</p>
+<p>Forces the connection between broker and client closed.</p>
 
 
   </div>
@@ -1342,10 +1282,8 @@ Forces the connection between broker and client closed.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Connects to the STOMP broker referenced by <span class='object_link'><a href="#uri-instance_method" title="OnStomp::Client#uri (method)">#uri</a></span>. Includes optional
-headers in the CONNECT frame, if specified.
-</p>
+    <p>Connects to the STOMP broker referenced by <span class='object_link'><a href="#uri-instance_method" title="OnStomp::Client#uri (method)">#uri</a></span>. Includes optional
+headers in the CONNECT frame, if specified.</p>
 
 
   </div>
@@ -1422,9 +1360,7 @@ headers in the CONNECT frame, if specified.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns true if a connection to the broker exists and itself is connected.
-</p>
+    <p>Returns true if a connection to the broker exists and itself is connected.</p>
 
 
   </div>
@@ -1478,11 +1414,9 @@ Returns true if a connection to the broker exists and itself is connected.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Sends a DISCONNECT frame to the broker and blocks until the connection has
-been closed. This method ensures that all frames not yet sent to the broker
-will get processed barring any IO exceptions.
-</p>
+    <p>Sends a DISCONNECT frame to the broker and blocks until the connection
+has been closed. This method ensures that all frames not yet sent to
+the broker will get processed barring any IO exceptions.</p>
 
 
   </div>
@@ -1516,9 +1450,7 @@ will get processed barring any IO exceptions.
       
       
         &mdash;
-        <div class='inline'><p>
-transmitted DISCONNECT frame
-</p>
+        <div class='inline'><p>transmitted DISCONNECT frame</p>
 </div>
       
     </li>
@@ -1561,10 +1493,8 @@ transmitted DISCONNECT frame
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Called by <span class='object_link'><a href="#connection-instance_method" title="OnStomp::Client#connection (method)">#connection</a></span> when a frame has been read from the socket
-connection to the STOMP broker.
-</p>
+    <p>Called by <span class='object_link'><a href="#connection-instance_method" title="OnStomp::Client#connection (method)">#connection</a></span> when a frame has been read from the socket
+connection to the STOMP broker.</p>
 
 
   </div>
@@ -1603,10 +1533,8 @@ connection to the STOMP broker.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Called by <span class='object_link'><a href="#connection-instance_method" title="OnStomp::Client#connection (method)">#connection</a></span> when a frame has been written to the socket
-connection to the STOMP broker.
-</p>
+    <p>Called by <span class='object_link'><a href="#connection-instance_method" title="OnStomp::Client#connection (method)">#connection</a></span> when a frame has been written to the socket
+connection to the STOMP broker.</p>
 
 
   </div>
@@ -1643,11 +1571,9 @@ connection to the STOMP broker.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Ultimately sends a <span class='object_link'><a href="Components/Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span> to the STOMP broker.
+    <p>Ultimately sends a <span class='object_link'><a href="Components/Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span> to the STOMP broker.
 This method should not be invoked directly. Use the frame methods provided
-by the Interfaces:FrameMethod interface.
-</p>
+by the Interfaces:FrameMethod interface.</p>
 
 
   </div>
@@ -1701,7 +1627,7 @@ by the Interfaces:FrameMethod interface.
 </div>
     
     <div id="footer">
-  Generated on Mon Apr  4 14:41:57 2011 by 
+  Generated on Mon Apr  4 16:26:37 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>

@@ -85,9 +85,9 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>
-A URI class for representing URIs with a &#8216;failover&#8217; scheme.
-</p>
+    <p>A URI class for representing URIs with a 'failover' scheme.
+We don't need to worry about hooking into Ruby's URI parsing jazz since
+we have full control over when failover URIs will be created.</p>
 
 
   </div>
@@ -99,13 +99,11 @@ A URI class for representing URIs with a &#8216;failover&#8217; scheme.
   
     <dl class="constants">
       
-        <dt id="FAILOVER_OPAQUE_REG-constant" class="">FAILOVER_OPAQUE_REG =
+        <dt id="FAILOVER_REG-constant" class="">FAILOVER_REG =
           <div class="docstring">
   <div class="discussion">
-    <p>
-Matches the internal URIs and query contained in the <tt>opaque</tt> part
-of a failover: URI
-</p>
+    <p>Matches a failover URI string, grouping the list of real URIs and
+any query parameters for the failover URI.</p>
 
 
   </div>
@@ -114,7 +112,7 @@ of a failover: URI
   
 </div>
         </dt>
-        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\(([^\)]+)\)(?:\?(.*))?</span><span class='regexp_end'>/</span></span></pre></dd>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^failover:(?:\/\/)?\(?([^\)]+)\)?(?:\?(.*))?</span><span class='regexp_end'>/</span></span></pre></dd>
       
     </dl>
   
@@ -150,9 +148,7 @@ of a failover: URI
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns the value of attribute failover_uris.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute failover_uris.</p>
 </div></span>
   
 </li>
@@ -161,6 +157,38 @@ Returns the value of attribute failover_uris.
   </ul>
 
 
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse-class_method" title="parse (class method)">+ (Object) <strong>parse</strong>(uri_str) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Parses a failover URI string or an array of URIs into a
+<span class='object_link'><a href="" title="OnStomp::Failover::URI::FAILOVER (class)">FAILOVER</a></span> object.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
   
     <h2>
       Instance Method Summary
@@ -172,7 +200,7 @@ Returns the value of attribute failover_uris.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">- (FAILOVER) <strong>initialize</strong>(*args) </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (FAILOVER) <strong>initialize</strong>(uris, query) </a>
     
 
     
@@ -187,9 +215,29 @@ Returns the value of attribute failover_uris.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-A new instance of FAILOVER.
-</p>
+    <span class="summary_desc"><div class='inline'><p>A new instance of FAILOVER.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_s-instance_method" title="#to_s (instance method)">- (String) <strong>to_s</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Converts a failover URI into a string.</p>
 </div></span>
   
 </li>
@@ -215,15 +263,13 @@ A new instance of FAILOVER.
     <div class="method_details first">
   <p class="signature first" id="initialize-instance_method">
   
-    - (<tt><span class='object_link'><a href="" title="OnStomp::Failover::URI::FAILOVER (class)">FAILOVER</a></span></tt>) <strong>initialize</strong>(*args) 
+    - (<tt><span class='object_link'><a href="" title="OnStomp::Failover::URI::FAILOVER (class)">FAILOVER</a></span></tt>) <strong>initialize</strong>(uris, query) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-A new instance of FAILOVER
-</p>
+    <p>A new instance of FAILOVER</p>
 
 
   </div>
@@ -236,17 +282,21 @@ A new instance of FAILOVER
       <pre class="lines">
 
 
-12
-13
 14
-15</pre>
+15
+16
+17
+18
+19</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/uri.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/uri.rb', line 14</span>
 
-<span class='kw'>def</span> <span class='id initialize'>initialize</span><span class='lparen'>(</span><span class='op'>*</span><span class='id args'>args</span><span class='rparen'>)</span>
-  <span class='kw'>super</span>
-  <span class='id _split_opaque_'>_split_opaque_</span>
+<span class='kw'>def</span> <span class='id initialize'>initialize</span> <span class='id uris'>uris</span><span class='comma'>,</span> <span class='id query'>query</span>
+  <span class='ivar'>@failover_uris</span> <span class='op'>=</span> <span class='id uris'>uris</span><span class='period'>.</span><span class='id map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id u'>u</span><span class='op'>|</span>
+    <span class='id u'>u</span><span class='period'>.</span><span class='id is_a?'>is_a?</span><span class='lparen'>(</span><span class='op'>::</span><span class='const'>URI</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id u'>u</span> <span class='op'>:</span> <span class='op'>::</span><span class='const'>URI</span><span class='period'>.</span><span class='id parse'>parse</span><span class='lparen'>(</span><span class='id u'>u</span><span class='period'>.</span><span class='id strip'>strip</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='kw'>super</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>failover</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>(</span><span class='embexpr_beg'>#{</span><span class='id uris'>uris</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>,</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id query'>query</span><span class='comma'>,</span> <span class='kw'>nil</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -270,9 +320,7 @@ A new instance of FAILOVER
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns the value of attribute failover_uris
-</p>
+    <p>Returns the value of attribute failover_uris</p>
 
 
   </div>
@@ -285,12 +333,12 @@ Returns the value of attribute failover_uris
       <pre class="lines">
 
 
-11
-12
-13</pre>
+13
+14
+15</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/uri.rb', line 11</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/uri.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='id failover_uris'>failover_uris</span>
   <span class='ivar'>@failover_uris</span>
@@ -303,10 +351,232 @@ Returns the value of attribute failover_uris
   </div>
 
 
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="parse-class_method">
+  
+    
+      <span class="overload">+ (<tt><span class='object_link'><a href="" title="OnStomp::Failover::URI::FAILOVER (class)">FAILOVER</a></span></tt>) <strong>parse</strong>(str) </span>
+    
+      <span class="overload">+ (<tt><span class='object_link'><a href="" title="OnStomp::Failover::URI::FAILOVER (class)">FAILOVER</a></span></tt>) <strong>parse</strong>(uri_arr) </span>
+    
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong> 
+    <div class='inline'><p>If you are using the +open-uri+ extension with +failover+, you
+MUST use the +failover:(uri1,uri2,..)+ form because +open-uri+
+relies on +URI.parse+ to convert strings into +URI+ objects.</p>
+</div>
+  </div>
+
+<p>Parses a failover URI string or an array of URIs into a
+<span class='object_link'><a href="" title="OnStomp::Failover::URI::FAILOVER (class)">OnStomp::Failover::URI::FAILOVER</a></span> object. Ruby's URI parser works
+fine with +failover:(uri1,uri2,..)?params=..+ style URIs, but chokes
+on +failover://uri1,uri2,..+ forms. This method gives us a bit more
+flexibility.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <h3>Overloads:</h3>
+  <ul class="overload">
+    
+      
+      <li class="overload_item">
+        <span class="signature">+ (<tt><span class='object_link'><a href="" title="OnStomp::Failover::URI::FAILOVER (class)">FAILOVER</a></span></tt>) <strong>parse</strong>(str) </span>
+        <div class="docstring">
+  <div class="discussion">
+    
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>str</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="OnStomp::Failover::URI::FAILOVER (class)">FAILOVER</a></span></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div>
+      </li>
+    
+      
+      <li class="overload_item">
+        <span class="signature">+ (<tt><span class='object_link'><a href="" title="OnStomp::Failover::URI::FAILOVER (class)">FAILOVER</a></span></tt>) <strong>parse</strong>(uri_arr) </span>
+        <div class="docstring">
+  <div class="discussion">
+    
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array&lt;String or <span class='object_link'><a href="../URI.html" title="OnStomp::Failover::URI (module)">URI</a></span>&gt;</tt>)</span>
+      
+      
+        <span class='name'>uri_arr</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="OnStomp::Failover::URI::FAILOVER (class)">FAILOVER</a></span></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div>
+      </li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+44
+45
+46
+47
+48
+49
+50
+51
+52</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/uri.rb', line 44</span>
+
+<span class='kw'>def</span> <span class='id parse'>parse</span> <span class='id uri_str'>uri_str</span>
+  <span class='kw'>if</span> <span class='id uri_str'>uri_str</span><span class='period'>.</span><span class='id is_a?'>is_a?</span> <span class='const'>Array</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id new'>new</span> <span class='id uri_str'>uri_str</span><span class='comma'>,</span> <span class='kw'>nil</span>
+  <span class='kw'>elsif</span> <span class='id uri_str'>uri_str</span> <span class='op'>=~</span> <span class='const'>FAILOVER_REG</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id new'>new</span> <span class='backref'>$1</span><span class='period'>.</span><span class='id split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>,</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='backref'>$2</span>
+  <span class='kw'>else</span>
+    <span class='id raise'>raise</span> <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>Failover</span><span class='op'>::</span><span class='const'>InvalidFailoverURIError</span><span class='comma'>,</span> <span class='id uri_str'>uri_str</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="to_s-instance_method">
+  
+    - (<tt>String</tt>) <strong>to_s</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>Converts a failover URI into a string. Ruby's Generic URIs don't seem
+to allow mixing opaques and queries.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+24
+25
+26
+27</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/uri.rb', line 24</span>
+
+<span class='kw'>def</span> <span class='id to_s'>to_s</span>
+  <span class='id base'>base</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id scheme'>scheme</span><span class='rbrace'>}</span><span class='tstring_content'>:</span><span class='embexpr_beg'>#{</span><span class='id opaque'>opaque</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id query'>query</span><span class='period'>.</span><span class='id nil?'>nil?</span> <span class='op'>||</span> <span class='id query'>query</span><span class='period'>.</span><span class='id empty?'>empty?</span> <span class='op'>?</span> <span class='id base'>base</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id base'>base</span><span class='rbrace'>}</span><span class='tstring_content'>?</span><span class='embexpr_beg'>#{</span><span class='id query'>query</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
 </div>
     
     <div id="footer">
-  Generated on Mon Apr  4 14:41:58 2011 by 
+  Generated on Mon Apr  4 16:26:38 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>

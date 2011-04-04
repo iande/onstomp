@@ -85,13 +85,11 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>
-Bundles supported frames within a transaction. The transaction only applies
-to SEND, BEGIN, COMMIT, ABORT, ACK, and NACK frames, all others are passed
-on to the broker unmodified. A given transaction scope can be used to wrap
-multiple transactions as once <span class='object_link'><a href="#abort-instance_method" title="OnStomp::Components::Scopes::TransactionScope#abort (method)">#abort</a></span> or <span class='object_link'><a href="#commit-instance_method" title="OnStomp::Components::Scopes::TransactionScope#commit (method)">#commit</a></span> has been called, a call
-to <span class='object_link'><a href="#begin-instance_method" title="OnStomp::Components::Scopes::TransactionScope#begin (method)">#begin</a></span> will generate a new transaction id.
-</p>
+    <p>Bundles supported frames within a transaction. The transaction only applies
+to SEND, BEGIN, COMMIT, ABORT, ACK, and NACK frames, all others are
+passed on to the broker unmodified. A given transaction scope can be used
+to wrap multiple transactions as once <span class='object_link'><a href="#abort-instance_method" title="OnStomp::Components::Scopes::TransactionScope#abort (method)">#abort</a></span> or <span class='object_link'><a href="#commit-instance_method" title="OnStomp::Components::Scopes::TransactionScope#commit (method)">#commit</a></span> has been called,
+a call to <span class='object_link'><a href="#begin-instance_method" title="OnStomp::Components::Scopes::TransactionScope#begin (method)">#begin</a></span> will generate a new transaction id.</p>
 
 
   </div>
@@ -126,9 +124,7 @@ to <span class='object_link'><a href="#begin-instance_method" title="OnStomp::Co
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-The client this transaction belongs to.
-</p>
+    <span class="summary_desc"><div class='inline'><p>The client this transaction belongs to.</p>
 </div></span>
   
 </li>
@@ -153,11 +149,9 @@ The client this transaction belongs to.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-A reference to <tt>self</tt> to trick <span class='object_link'><a href="../../Interfaces/FrameMethods.html" title="OnStomp::Interfaces::FrameMethods (module)">Interfaces::FrameMethods</a></span>
-into creating frames on this object instead of the client&#8217;s actual
-<span class='object_link'><a href="../../Client.html#connection-instance_method" title="OnStomp::Client#connection (method)">connection</a></span>.
-</p>
+    <span class="summary_desc"><div class='inline'><p>A reference to +self+ to trick <span class='object_link'><a href="../../Interfaces/FrameMethods.html" title="OnStomp::Interfaces::FrameMethods (module)">Interfaces::FrameMethods</a></span> into
+creating frames on this object instead of the client's actual
+<span class='object_link'><a href="../../Client.html#connection-instance_method" title="OnStomp::Client#connection (method)">connection</a></span>.</p>
 </div></span>
   
 </li>
@@ -182,9 +176,7 @@ into creating frames on this object instead of the client&#8217;s actual
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-The id of the current transaction.
-</p>
+    <span class="summary_desc"><div class='inline'><p>The id of the current transaction.</p>
 </div></span>
   
 </li>
@@ -219,10 +211,8 @@ The id of the current transaction.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Overrides the standard <span class='object_link'><a href="../../Interfaces/FrameMethods.html#abort-instance_method" title="OnStomp::Interfaces::FrameMethods#abort (method)">Interfaces::FrameMethods#abort</a></span> method to
-maintain the state of the transaction.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Overrides the standard <span class='object_link'><a href="../../Interfaces/FrameMethods.html#abort-instance_method" title="OnStomp::Interfaces::FrameMethods#abort (method)">Interfaces::FrameMethods#abort</a></span> method
+to maintain the state of the transaction.</p>
 </div></span>
   
 </li>
@@ -244,12 +234,10 @@ maintain the state of the transaction.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Overrides the <span class='object_link'><a href="../../Connections/Stomp_1_0.html#ack_frame-instance_method" title="OnStomp::Connections::Stomp_1_0#ack_frame (method)">ack_frame</a></span> method
-of the client&#8217;s <span class='object_link'><a href="../../Client.html#connection-instance_method" title="OnStomp::Client#connection (method)">connection</a></span>, setting a
-<tt>transaction</tt> header to match the current transaction if it has been
-started.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Overrides the <span class='object_link'><a href="../../Connections/Stomp_1_0.html#ack_frame-instance_method" title="OnStomp::Connections::Stomp_1_0#ack_frame (method)">ack_frame</a></span> method
+of the client's <span class='object_link'><a href="../../Client.html#connection-instance_method" title="OnStomp::Client#connection (method)">connection</a></span>, setting a
++transaction+ header to match the current transaction if it has been
+started.</p>
 </div></span>
   
 </li>
@@ -273,10 +261,8 @@ started.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Overrides the standard <span class='object_link'><a href="../../Interfaces/FrameMethods.html#begin-instance_method" title="OnStomp::Interfaces::FrameMethods#begin (method)">Interfaces::FrameMethods#begin</a></span> method to
-maintain the state of the transaction.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Overrides the standard <span class='object_link'><a href="../../Interfaces/FrameMethods.html#begin-instance_method" title="OnStomp::Interfaces::FrameMethods#begin (method)">Interfaces::FrameMethods#begin</a></span> method
+to maintain the state of the transaction.</p>
 </div></span>
   
 </li>
@@ -300,10 +286,8 @@ maintain the state of the transaction.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Overrides the standard <span class='object_link'><a href="../../Interfaces/FrameMethods.html#commit-instance_method" title="OnStomp::Interfaces::FrameMethods#commit (method)">Interfaces::FrameMethods#commit</a></span> method to
-maintain the state of the transaction.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Overrides the standard <span class='object_link'><a href="../../Interfaces/FrameMethods.html#commit-instance_method" title="OnStomp::Interfaces::FrameMethods#commit (method)">Interfaces::FrameMethods#commit</a></span> method
+to maintain the state of the transaction.</p>
 </div></span>
   
 </li>
@@ -327,9 +311,7 @@ maintain the state of the transaction.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-A new instance of TransactionScope.
-</p>
+    <span class="summary_desc"><div class='inline'><p>A new instance of TransactionScope.</p>
 </div></span>
   
 </li>
@@ -351,11 +333,9 @@ A new instance of TransactionScope.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-If the name of the missing method ends with <tt>_frame</tt>, the method is
-passed along to the client&#8217;s <span class='object_link'><a href="../../Client.html#connection-instance_method" title="OnStomp::Client#connection (method)">connection</a></span>
-so that it might build the appropriate (non-transactional) frame.
-</p>
+    <span class="summary_desc"><div class='inline'><p>If the name of the missing method ends with +_frame+, the method is passed
+along to the client's <span class='object_link'><a href="../../Client.html#connection-instance_method" title="OnStomp::Client#connection (method)">connection</a></span> so that it
+might build the appropriate (non-transactional) frame.</p>
 </div></span>
   
 </li>
@@ -377,12 +357,10 @@ so that it might build the appropriate (non-transactional) frame.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Overrides the <span class='object_link'><a href="../../Connections/Stomp_1_1.html#nack_frame-instance_method" title="OnStomp::Connections::Stomp_1_1#nack_frame (method)">nack_frame</a></span>
-method of the <span class='object_link'><a href="../../Client.html#connection-instance_method" title="OnStomp::Client#connection (method)">client&#8217;s connection</a></span>,
-setting a <tt>transaction</tt> header to match the current transaction if
-it has been started.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Overrides the <span class='object_link'><a href="../../Connections/Stomp_1_1.html#nack_frame-instance_method" title="OnStomp::Connections::Stomp_1_1#nack_frame (method)">nack_frame</a></span> method
+of the <span class='object_link'><a href="../../Client.html#connection-instance_method" title="OnStomp::Client#connection (method)">client's connection</a></span>, setting a
++transaction+ header to match the current transaction if it has been
+started.</p>
 </div></span>
   
 </li>
@@ -404,9 +382,7 @@ it has been started.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Evaluates a block within this transaction scope.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Evaluates a block within this transaction scope.</p>
 </div></span>
   
 </li>
@@ -428,12 +404,10 @@ Evaluates a block within this transaction scope.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Overrides the <span class='object_link'><a href="../../Connections/Stomp_1.html#send_frame-instance_method" title="OnStomp::Connections::Stomp_1#send_frame (method)">send_frame</a></span> method
-of the <span class='object_link'><a href="../../Client.html#connection-instance_method" title="OnStomp::Client#connection (method)">client&#8217;s connection</a></span>, setting a
-<tt>transaction</tt> header to match the current transaction if it has been
-started.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Overrides the <span class='object_link'><a href="../../Connections/Stomp_1.html#send_frame-instance_method" title="OnStomp::Connections::Stomp_1#send_frame (method)">send_frame</a></span> method
+of the <span class='object_link'><a href="../../Client.html#connection-instance_method" title="OnStomp::Client#connection (method)">client's connection</a></span>, setting a
++transaction+ header to match the current transaction if it has been
+started.</p>
 </div></span>
   
 </li>
@@ -455,10 +429,8 @@ started.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Wraps <span class='object_link'><a href="../../Client.html#transmit-instance_method" title="OnStomp::Client#transmit (method)">OnStomp::Client#transmit</a></span> to support the
-<span class='object_link'><a href="../../Interfaces/FrameMethods.html" title="OnStomp::Interfaces::FrameMethods (module)">Interfaces::FrameMethods</a></span> mixin.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Wraps <span class='object_link'><a href="../../Client.html#transmit-instance_method" title="OnStomp::Client#transmit (method)">OnStomp::Client#transmit</a></span> to support the
+<span class='object_link'><a href="../../Interfaces/FrameMethods.html" title="OnStomp::Interfaces::FrameMethods (module)">Interfaces::FrameMethods</a></span> mixin.</p>
 </div></span>
   
 </li>
@@ -489,9 +461,7 @@ Wraps <span class='object_link'><a href="../../Client.html#transmit-instance_met
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-A new instance of TransactionScope
-</p>
+    <p>A new instance of TransactionScope</p>
 
 
   </div>
@@ -542,11 +512,9 @@ A new instance of TransactionScope
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-If the name of the missing method ends with <tt>_frame</tt>, the method is
-passed along to the client&#8217;s <span class='object_link'><a href="../../Client.html#connection-instance_method" title="OnStomp::Client#connection (method)">connection</a></span>
-so that it might build the appropriate (non-transactional) frame.
-</p>
+    <p>If the name of the missing method ends with +_frame+, the method is passed
+along to the client's <span class='object_link'><a href="../../Client.html#connection-instance_method" title="OnStomp::Client#connection (method)">connection</a></span> so that it
+might build the appropriate (non-transactional) frame.</p>
 
 
   </div>
@@ -576,9 +544,8 @@ so that it might build the appropriate (non-transactional) frame.
       
       
         &mdash;
-        <div class='inline'><p>
-if the connection does not support the requested frame command.
-</p>
+        <div class='inline'><p>if the connection does not
+support the requested frame command.</p>
 </div>
       
     </li>
@@ -591,9 +558,7 @@ if the connection does not support the requested frame command.
       
       
         &mdash;
-        <div class='inline'><p>
-if the method name does not end in <tt>_frame</tt>
-</p>
+        <div class='inline'><p>if the method name does not end in +_frame+</p>
 </div>
       
     </li>
@@ -646,9 +611,7 @@ if the method name does not end in <tt>_frame</tt>
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-The client this transaction belongs to
-</p>
+    <p>The client this transaction belongs to</p>
 
 
   </div>
@@ -701,11 +664,9 @@ The client this transaction belongs to
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-A reference to <tt>self</tt> to trick <span class='object_link'><a href="../../Interfaces/FrameMethods.html" title="OnStomp::Interfaces::FrameMethods (module)">Interfaces::FrameMethods</a></span>
-into creating frames on this object instead of the client&#8217;s actual
-<span class='object_link'><a href="../../Client.html#connection-instance_method" title="OnStomp::Client#connection (method)">connection</a></span>.
-</p>
+    <p>A reference to +self+ to trick <span class='object_link'><a href="../../Interfaces/FrameMethods.html" title="OnStomp::Interfaces::FrameMethods (module)">Interfaces::FrameMethods</a></span> into
+creating frames on this object instead of the client's actual
+<span class='object_link'><a href="../../Client.html#connection-instance_method" title="OnStomp::Client#connection (method)">connection</a></span>.</p>
 
 
   </div>
@@ -758,11 +719,9 @@ into creating frames on this object instead of the client&#8217;s actual
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-The id of the current transaction. This may be <tt>nil</tt> if the
-transaction has not been started with <span class='object_link'><a href="#begin-instance_method" title="OnStomp::Components::Scopes::TransactionScope#begin (method)">#begin</a></span> or if the transaction has
-been completed by a call to either <span class='object_link'><a href="#abort-instance_method" title="OnStomp::Components::Scopes::TransactionScope#abort (method)">#abort</a></span> or <span class='object_link'><a href="#commit-instance_method" title="OnStomp::Components::Scopes::TransactionScope#commit (method)">#commit</a></span>.
-</p>
+    <p>The id of the current transaction. This may be +nil+ if the transaction
+has not been started with <span class='object_link'><a href="#begin-instance_method" title="OnStomp::Components::Scopes::TransactionScope#begin (method)">#begin</a></span> or if the transaction has been completed
+by a call to either <span class='object_link'><a href="#abort-instance_method" title="OnStomp::Components::Scopes::TransactionScope#abort (method)">#abort</a></span> or <span class='object_link'><a href="#commit-instance_method" title="OnStomp::Components::Scopes::TransactionScope#commit (method)">#commit</a></span>.</p>
 
 
   </div>
@@ -823,14 +782,12 @@ been completed by a call to either <span class='object_link'><a href="#abort-ins
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Overrides the standard <span class='object_link'><a href="../../Interfaces/FrameMethods.html#abort-instance_method" title="OnStomp::Interfaces::FrameMethods#abort (method)">Interfaces::FrameMethods#abort</a></span> method to
-maintain the state of the transaction. Unlike
+    <p>Overrides the standard <span class='object_link'><a href="../../Interfaces/FrameMethods.html#abort-instance_method" title="OnStomp::Interfaces::FrameMethods#abort (method)">Interfaces::FrameMethods#abort</a></span> method
+to maintain the state of the transaction. Unlike
 <span class='object_link'><a href="../../Interfaces/FrameMethods.html#abort-instance_method" title="OnStomp::Interfaces::FrameMethods#abort (method)">Interfaces::FrameMethods#abort</a></span>, no transaction ID parameter is
 required when <span class='object_link'><a href="#abort-instance_method" title="OnStomp::Components::Scopes::TransactionScope#abort (method)">#abort</a></span> is called on a
 <span class='object_link'><a href="" title="OnStomp::Components::Scopes::TransactionScope (class)">OnStomp::Components::Scopes::TransactionScope</a></span>. If a transaction ID is
-provided, it will be ignored.
-</p>
+provided, it will be ignored.</p>
 
 
   </div>
@@ -849,9 +806,7 @@ provided, it will be ignored.
       
       
         &mdash;
-        <div class='inline'><p>
-optional headers to include in the frame
-</p>
+        <div class='inline'><p>optional headers to include in the frame</p>
 </div>
       
     </li>
@@ -868,9 +823,7 @@ optional headers to include in the frame
       
       
         &mdash;
-        <div class='inline'><p>
-ABORT frame
-</p>
+        <div class='inline'><p>ABORT frame</p>
 </div>
       
     </li>
@@ -928,12 +881,10 @@ ABORT frame
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Overrides the <span class='object_link'><a href="../../Connections/Stomp_1_0.html#ack_frame-instance_method" title="OnStomp::Connections::Stomp_1_0#ack_frame (method)">ack_frame</a></span> method
-of the client&#8217;s <span class='object_link'><a href="../../Client.html#connection-instance_method" title="OnStomp::Client#connection (method)">connection</a></span>, setting a
-<tt>transaction</tt> header to match the current transaction if it has been
-started.
-</p>
+    <p>Overrides the <span class='object_link'><a href="../../Connections/Stomp_1_0.html#ack_frame-instance_method" title="OnStomp::Connections::Stomp_1_0#ack_frame (method)">ack_frame</a></span> method
+of the client's <span class='object_link'><a href="../../Client.html#connection-instance_method" title="OnStomp::Client#connection (method)">connection</a></span>, setting a
++transaction+ header to match the current transaction if it has been
+started.</p>
 
 
   </div>
@@ -952,9 +903,7 @@ started.
       
       
         &mdash;
-        <div class='inline'><p>
-arguments to connection&#8217;s <tt>ack_frame</tt> method
-</p>
+        <div class='inline'><p>arguments to connection's +ack_frame+ method</p>
 </div>
       
     </li>
@@ -971,9 +920,7 @@ arguments to connection&#8217;s <tt>ack_frame</tt> method
       
       
         &mdash;
-        <div class='inline'><p>
-ACK frame
-</p>
+        <div class='inline'><p>ACK frame</p>
 </div>
       
     </li>
@@ -1018,14 +965,12 @@ ACK frame
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Overrides the standard <span class='object_link'><a href="../../Interfaces/FrameMethods.html#begin-instance_method" title="OnStomp::Interfaces::FrameMethods#begin (method)">Interfaces::FrameMethods#begin</a></span> method to
-maintain the state of the transaction. Unlike
+    <p>Overrides the standard <span class='object_link'><a href="../../Interfaces/FrameMethods.html#begin-instance_method" title="OnStomp::Interfaces::FrameMethods#begin (method)">Interfaces::FrameMethods#begin</a></span> method
+to maintain the state of the transaction. Unlike
 <span class='object_link'><a href="../../Interfaces/FrameMethods.html#begin-instance_method" title="OnStomp::Interfaces::FrameMethods#begin (method)">Interfaces::FrameMethods#begin</a></span>, no transaction ID parameter is
 required when <span class='object_link'><a href="#begin-instance_method" title="OnStomp::Components::Scopes::TransactionScope#begin (method)">#begin</a></span> is called on a
 <span class='object_link'><a href="" title="OnStomp::Components::Scopes::TransactionScope (class)">OnStomp::Components::Scopes::TransactionScope</a></span>. If a transaction ID is
-provided, it will be used, otherwise one will be automatically generated.
-</p>
+provided, it will be used, otherwise one will be automatically generated.</p>
 
 
   </div>
@@ -1044,9 +989,7 @@ provided, it will be used, otherwise one will be automatically generated.
       
       
         &mdash;
-        <div class='inline'><p>
-optional headers to include in the frame
-</p>
+        <div class='inline'><p>optional headers to include in the frame</p>
 </div>
       
     </li>
@@ -1063,9 +1006,7 @@ optional headers to include in the frame
       
       
         &mdash;
-        <div class='inline'><p>
-BEGIN frame
-</p>
+        <div class='inline'><p>BEGIN frame</p>
 </div>
       
     </li>
@@ -1082,10 +1023,8 @@ BEGIN frame
       
       
         &mdash;
-        <div class='inline'><p>
-if <span class='object_link'><a href="#begin-instance_method" title="OnStomp::Components::Scopes::TransactionScope#begin (method)">#begin</a></span> has already been called and neither <span class='object_link'><a href="#abort-instance_method" title="OnStomp::Components::Scopes::TransactionScope#abort (method)">#abort</a></span> or <span class='object_link'><a href="#commit-instance_method" title="OnStomp::Components::Scopes::TransactionScope#commit (method)">#commit</a></span> have
-been called to complete the transaction.
-</p>
+        <div class='inline'><p>if <span class='object_link'><a href="#begin-instance_method" title="OnStomp::Components::Scopes::TransactionScope#begin (method)">#begin</a></span> has already been called and
+neither <span class='object_link'><a href="#abort-instance_method" title="OnStomp::Components::Scopes::TransactionScope#abort (method)">#abort</a></span> or <span class='object_link'><a href="#commit-instance_method" title="OnStomp::Components::Scopes::TransactionScope#commit (method)">#commit</a></span> have been called to complete the transaction.</p>
 </div>
       
     </li>
@@ -1134,14 +1073,12 @@ been called to complete the transaction.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Overrides the standard <span class='object_link'><a href="../../Interfaces/FrameMethods.html#commit-instance_method" title="OnStomp::Interfaces::FrameMethods#commit (method)">Interfaces::FrameMethods#commit</a></span> method to
-maintain the state of the transaction. Unlike
+    <p>Overrides the standard <span class='object_link'><a href="../../Interfaces/FrameMethods.html#commit-instance_method" title="OnStomp::Interfaces::FrameMethods#commit (method)">Interfaces::FrameMethods#commit</a></span> method
+to maintain the state of the transaction. Unlike
 <span class='object_link'><a href="../../Interfaces/FrameMethods.html#commit-instance_method" title="OnStomp::Interfaces::FrameMethods#commit (method)">Interfaces::FrameMethods#commit</a></span>, no transaction ID parameter is
 required when <span class='object_link'><a href="#commit-instance_method" title="OnStomp::Components::Scopes::TransactionScope#commit (method)">#commit</a></span> is called on a
 <span class='object_link'><a href="" title="OnStomp::Components::Scopes::TransactionScope (class)">OnStomp::Components::Scopes::TransactionScope</a></span>. If a transaction ID is
-provided, it will be ignored.
-</p>
+provided, it will be ignored.</p>
 
 
   </div>
@@ -1160,9 +1097,7 @@ provided, it will be ignored.
       
       
         &mdash;
-        <div class='inline'><p>
-optional headers to include in the frame
-</p>
+        <div class='inline'><p>optional headers to include in the frame</p>
 </div>
       
     </li>
@@ -1179,9 +1114,7 @@ optional headers to include in the frame
       
       
         &mdash;
-        <div class='inline'><p>
-COMMIT frame
-</p>
+        <div class='inline'><p>COMMIT frame</p>
 </div>
       
     </li>
@@ -1239,12 +1172,10 @@ COMMIT frame
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Overrides the <span class='object_link'><a href="../../Connections/Stomp_1_1.html#nack_frame-instance_method" title="OnStomp::Connections::Stomp_1_1#nack_frame (method)">nack_frame</a></span>
-method of the <span class='object_link'><a href="../../Client.html#connection-instance_method" title="OnStomp::Client#connection (method)">client&#8217;s connection</a></span>,
-setting a <tt>transaction</tt> header to match the current transaction if
-it has been started.
-</p>
+    <p>Overrides the <span class='object_link'><a href="../../Connections/Stomp_1_1.html#nack_frame-instance_method" title="OnStomp::Connections::Stomp_1_1#nack_frame (method)">nack_frame</a></span> method
+of the <span class='object_link'><a href="../../Client.html#connection-instance_method" title="OnStomp::Client#connection (method)">client's connection</a></span>, setting a
++transaction+ header to match the current transaction if it has been
+started.</p>
 
 
   </div>
@@ -1263,9 +1194,7 @@ it has been started.
       
       
         &mdash;
-        <div class='inline'><p>
-arguments to connection&#8217;s <tt>nack_frame</tt> method
-</p>
+        <div class='inline'><p>arguments to connection's +nack_frame+ method</p>
 </div>
       
     </li>
@@ -1282,9 +1211,7 @@ arguments to connection&#8217;s <tt>nack_frame</tt> method
       
       
         &mdash;
-        <div class='inline'><p>
-NACK frame
-</p>
+        <div class='inline'><p>NACK frame</p>
 </div>
       
     </li>
@@ -1325,19 +1252,19 @@ NACK frame
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Evaluates a block within this transaction scope. This method will transmit
+    <p>Evaluates a block within this transaction scope. This method will transmit
 a BEGIN frame to start the transaction (unless it was manually begun prior
 to calling <span class='object_link'><a href="#perform-instance_method" title="OnStomp::Components::Scopes::TransactionScope#perform (method)">#perform</a></span>), yield itself to the supplied block, and finally
 transmit a COMMIT frame to complete the transaction if no errors were
-raised within the block. If an error was raised within the block, an ABORT
-frame will be transmitted instead, rolling back the transaction and the
-exception will be re-raised. If a non-transactional frame is generated
-within the block, it will be transmitted as-is to the broker and will not
-be considered part of the transaction. Finally, if the <span class='object_link'><a href="#abort-instance_method" title="OnStomp::Components::Scopes::TransactionScope#abort (method)">#abort</a></span> or
-<span class='object_link'><a href="#commit-instance_method" title="OnStomp::Components::Scopes::TransactionScope#commit (method)">#commit</a></span> methods are called within the block, neither COMMIT nor ABORT
-frames will be automatically generated after the block&#8217;s execution.
-</p>
+raised within the block. If an error was raised within the block, an
+ABORT frame will be transmitted instead, rolling back the transaction and
+the exception will be re-raised.
+If a non-transactional frame is generated within the block, it will be
+transmitted as-is to the broker and will not be considered part of the
+transaction.
+Finally, if the <span class='object_link'><a href="#abort-instance_method" title="OnStomp::Components::Scopes::TransactionScope#abort (method)">#abort</a></span> or <span class='object_link'><a href="#commit-instance_method" title="OnStomp::Components::Scopes::TransactionScope#commit (method)">#commit</a></span> methods are called within the block,
+neither COMMIT nor ABORT frames will be automatically generated after
+the block's execution.</p>
 
 
   </div>
@@ -1354,9 +1281,7 @@ frames will be automatically generated after the block&#8217;s execution.
       
       
         &mdash;
-        <div class='inline'><p>
-block of frames to transmit transactionally
-</p>
+        <div class='inline'><p>block of frames to transmit transactionally</p>
 </div>
       
     </li>
@@ -1375,9 +1300,7 @@ block of frames to transmit transactionally
       
       
         &mdash;
-        <div class='inline'><p>
-<tt>self</tt>
-</p>
+        <div class='inline'><p>+self+</p>
 </div>
       
     </li>
@@ -1407,9 +1330,7 @@ block of frames to transmit transactionally
       
       
         &mdash;
-        <div class='inline'><p>
-if supplied block raises an exception
-</p>
+        <div class='inline'><p>if supplied block raises an exception</p>
 </div>
       
     </li>
@@ -1462,12 +1383,10 @@ if supplied block raises an exception
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Overrides the <span class='object_link'><a href="../../Connections/Stomp_1.html#send_frame-instance_method" title="OnStomp::Connections::Stomp_1#send_frame (method)">send_frame</a></span> method
-of the <span class='object_link'><a href="../../Client.html#connection-instance_method" title="OnStomp::Client#connection (method)">client&#8217;s connection</a></span>, setting a
-<tt>transaction</tt> header to match the current transaction if it has been
-started.
-</p>
+    <p>Overrides the <span class='object_link'><a href="../../Connections/Stomp_1.html#send_frame-instance_method" title="OnStomp::Connections::Stomp_1#send_frame (method)">send_frame</a></span> method
+of the <span class='object_link'><a href="../../Client.html#connection-instance_method" title="OnStomp::Client#connection (method)">client's connection</a></span>, setting a
++transaction+ header to match the current transaction if it has been
+started.</p>
 
 
   </div>
@@ -1486,9 +1405,7 @@ started.
       
       
         &mdash;
-        <div class='inline'><p>
-arguments to connection&#8217;s <tt>send_frame</tt> method
-</p>
+        <div class='inline'><p>arguments to connection's +send_frame+ method</p>
 </div>
       
     </li>
@@ -1505,9 +1422,7 @@ arguments to connection&#8217;s <tt>send_frame</tt> method
       
       
         &mdash;
-        <div class='inline'><p>
-SEND frame
-</p>
+        <div class='inline'><p>SEND frame</p>
 </div>
       
     </li>
@@ -1548,11 +1463,9 @@ SEND frame
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Wraps <span class='object_link'><a href="../../Client.html#transmit-instance_method" title="OnStomp::Client#transmit (method)">OnStomp::Client#transmit</a></span> to support the
+    <p>Wraps <span class='object_link'><a href="../../Client.html#transmit-instance_method" title="OnStomp::Client#transmit (method)">OnStomp::Client#transmit</a></span> to support the
 <span class='object_link'><a href="../../Interfaces/FrameMethods.html" title="OnStomp::Interfaces::FrameMethods (module)">Interfaces::FrameMethods</a></span> mixin. All arguments are directly
-passed on to the <span class='object_link'><a href="#client-instance_method" title="OnStomp::Components::Scopes::TransactionScope#client (method)">#client</a></span>.
-</p>
+passed on to the <span class='object_link'><a href="#client-instance_method" title="OnStomp::Components::Scopes::TransactionScope#client (method)">#client</a></span>.</p>
 
 
   </div>
@@ -1605,7 +1518,7 @@ passed on to the <span class='object_link'><a href="#client-instance_method" tit
 </div>
     
     <div id="footer">
-  Generated on Mon Apr  4 14:42:01 2011 by 
+  Generated on Mon Apr  4 16:26:40 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>

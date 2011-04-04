@@ -68,9 +68,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>
-Primary namespace for the <tt>onstomp</tt> gem
-</p>
+    <p>Primary namespace for the +onstomp+ gem</p>
 
 
   </div>
@@ -97,10 +95,8 @@ Primary namespace for the <tt>onstomp</tt> gem
         <dt id="ENUMERATOR_KLASS-constant" class="">ENUMERATOR_KLASS =
           <div class="docstring">
   <div class="discussion">
-    <p>
-Class to use for creating enumerator objects, which depends upon the
-version of Ruby being used.
-</p>
+    <p>Class to use for creating enumerator objects, which depends upon the
+version of Ruby being used.</p>
 
 
   </div>
@@ -114,9 +110,7 @@ version of Ruby being used.
         <dt id="MAJOR-constant" class="">MAJOR =
           <div class="docstring">
   <div class="discussion">
-    <p>
-Major / API version
-</p>
+    <p>Major / API version</p>
 
 
   </div>
@@ -130,9 +124,7 @@ Major / API version
         <dt id="MINOR-constant" class="">MINOR =
           <div class="docstring">
   <div class="discussion">
-    <p>
-Minor / feature version
-</p>
+    <p>Minor / feature version</p>
 
 
   </div>
@@ -146,9 +138,7 @@ Minor / feature version
         <dt id="PATCH-constant" class="">PATCH =
           <div class="docstring">
   <div class="discussion">
-    <p>
-Patch version
-</p>
+    <p>Patch version</p>
 
 
   </div>
@@ -162,9 +152,7 @@ Patch version
         <dt id="VERSION-constant" class="">VERSION =
           <div class="docstring">
   <div class="discussion">
-    <p>
-Complete version
-</p>
+    <p>Complete version</p>
 
 
   </div>
@@ -206,9 +194,7 @@ Complete version
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Creates a new connection and immediately connects it to the broker.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Creates a new connection and immediately connects it to the broker.</p>
 </div></span>
   
 </li>
@@ -230,9 +216,7 @@ Creates a new connection and immediately connects it to the broker.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Converts a string to the Ruby constant it names.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Converts a string to the Ruby constant it names.</p>
 </div></span>
   
 </li>
@@ -254,9 +238,7 @@ Converts a string to the Ruby constant it names.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Duplicates an existing hash while transforming its keys to symbols.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Duplicates an existing hash while transforming its keys to symbols.</p>
 </div></span>
   
 </li>
@@ -278,9 +260,7 @@ Duplicates an existing hash while transforming its keys to symbols.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Generates the next serial number in a thread-safe manner.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Generates the next serial number in a thread-safe manner.</p>
 </div></span>
   
 </li>
@@ -308,9 +288,7 @@ Generates the next serial number in a thread-safe manner.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Creates a new connection and immediately connects it to the broker.
-</p>
+    <p>Creates a new connection and immediately connects it to the broker.</p>
 
 
   </div>
@@ -358,11 +336,8 @@ Creates a new connection and immediately connects it to the broker.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Converts a string to the Ruby constant it names. If the <tt>klass</tt>
-parameter is a kind of <tt>Module</tt>, this method will return
-<tt>klass</tt> directly.
-</p>
+    <p>Converts a string to the Ruby constant it names. If the +klass+ parameter
+is a kind of +Module+, this method will return +klass+ directly.</p>
 
 
   </div>
@@ -372,7 +347,8 @@ parameter is a kind of <tt>Module</tt>, this method will return
   <div class="examples">
     <h3>Examples:</h3>
     
-      <h4><div class='inline'></div></h4>
+      <h4><div class='inline'>
+</div></h4>
       <pre class="example code">OnStomp.constantize('OnStomp::Frame') #=&gt; OnStomp::Frame
 OnStomp.constantize('This::Constant::DoesNotExist) #=&gt; raises NameError
 OnStomp.constantize(Symbol) #=&gt; Symbol </pre>
@@ -447,12 +423,10 @@ OnStomp.constantize(Symbol) #=&gt; Symbol </pre>
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Duplicates an existing hash while transforming its keys to symbols. The
-keys must implement the <tt>to_sym</tt> method, otherwise an exception will
+    <p>Duplicates an existing hash while transforming its keys to symbols.
+The keys must implement the +to_sym+ method, otherwise an exception will
 be raised. This method is used internally to convert hashes keyed with
-Strings.
-</p>
+Strings.</p>
 
 
   </div>
@@ -462,7 +436,8 @@ Strings.
   <div class="examples">
     <h3>Examples:</h3>
     
-      <h4><div class='inline'></div></h4>
+      <h4><div class='inline'>
+</div></h4>
       <pre class="example code"><span class='id hash'>hash</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>10</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>key2</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='int'>3</span><span class='comma'>,</span> <span class='int'>5</span><span class='comma'>,</span> <span class='int'>8</span><span class='comma'>,</span> <span class='int'>13</span><span class='comma'>,</span> <span class='int'>21</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='symbol'>:other</span> <span class='op'>=&gt;</span> <span class='symbol'>:value</span> <span class='rbrace'>}</span>
 <span class='const'>OnStomp</span><span class='period'>.</span><span class='id keys_to_sym'>keys_to_sym</span><span class='lparen'>(</span><span class='id hash'>hash</span><span class='rparen'>)</span> <span class='comment'>#=&gt; { :'10' =&gt; nil, :key2 =&gt; [3, 5, 8, 13, 21], :other =&gt; :value }
 </span><span class='id hash'>hash</span> <span class='comment'>#=&gt; { '10' =&gt; nil, 'key2' =&gt; [3, 5, 8, 13, 21], :other =&gt; :value }</span></pre>
@@ -481,9 +456,7 @@ Strings.
       
       
         &mdash;
-        <div class='inline'><p>
-The hash to convert. It&#8217;s keys must respond to <tt>to_sym</tt>.
-</p>
+        <div class='inline'><p>The hash to convert. It's keys must respond to +to_sym+.</p>
 </div>
       
     </li>
@@ -539,11 +512,9 @@ The hash to convert. It&#8217;s keys must respond to <tt>to_sym</tt>.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Generates the next serial number in a thread-safe manner. This method
-merely initializes an instance variable to 0 if it has not been set, then
-increments this value and returns its string representation.
-</p>
+    <p>Generates the next serial number in a thread-safe manner. This method
+merely initializes an instance variable to 0 if it has not been set,
+then increments this value and returns its string representation.</p>
 
 
   </div>
@@ -584,7 +555,7 @@ increments this value and returns its string representation.
 </div>
     
     <div id="footer">
-  Generated on Mon Apr  4 14:41:57 2011 by 
+  Generated on Mon Apr  4 16:26:37 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>

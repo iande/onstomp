@@ -85,13 +85,11 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>
-A failover client that wraps multiple <span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">clients</a></span> and
-maintains a connection to one of these clients. Frames are sent to the
-currently connected client. If the connection is lost, a failover client
-will automatically reconnect to another client in the pool, re-transmit any
-necessary frames and resume operation.
-</p>
+    <p>A failover client that wraps multiple <span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">clients</a></span> and maintains
+a connection to one of these clients. Frames are sent to the currently
+connected client. If the connection is lost, a failover client will
+automatically reconnect to another client in the pool, re-transmit any
+necessary frames and resume operation.</p>
 
 
   </div>
@@ -138,9 +136,7 @@ necessary frames and resume operation.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns the value of attribute active_client.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute active_client.</p>
 </div></span>
   
 </li>
@@ -165,9 +161,7 @@ Returns the value of attribute active_client.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-The class to use when instantiating a new frame buffer.
-</p>
+    <span class="summary_desc"><div class='inline'><p>The class to use when instantiating a new frame buffer.</p>
 </div></span>
   
 </li>
@@ -192,9 +186,7 @@ The class to use when instantiating a new frame buffer.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns the value of attribute client_pool.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute client_pool.</p>
 </div></span>
   
 </li>
@@ -219,9 +211,7 @@ Returns the value of attribute client_pool.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns the value of attribute connection.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute connection.</p>
 </div></span>
   
 </li>
@@ -246,9 +236,7 @@ Returns the value of attribute connection.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns the value of attribute frame_buffer.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute frame_buffer.</p>
 </div></span>
   
 </li>
@@ -273,9 +261,7 @@ Returns the value of attribute frame_buffer.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-The class to use when instantiating a new <span class='object_link'><a href="#client_pool-instance_method" title="OnStomp::Failover::Client#client_pool (method)">#client_pool</a></span>.
-</p>
+    <span class="summary_desc"><div class='inline'><p>The class to use when instantiating a new <span class='object_link'><a href="#client_pool-instance_method" title="OnStomp::Failover::Client#client_pool (method)">#client_pool</a></span>.</p>
 </div></span>
   
 </li>
@@ -300,10 +286,8 @@ The class to use when instantiating a new <span class='object_link'><a href="#cl
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Whether or not to randomize the <span class='object_link'><a href="#client_pool-instance_method" title="OnStomp::Failover::Client#client_pool (method)">#client_pool</a></span> before connecting through
-any of its <span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">clients</a></span>.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Whether or not to randomize the <span class='object_link'><a href="#client_pool-instance_method" title="OnStomp::Failover::Client#client_pool (method)">#client_pool</a></span> before connecting through
+any of its <span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">clients</a></span>.</p>
 </div></span>
   
 </li>
@@ -328,9 +312,8 @@ any of its <span class='object_link'><a href="../Client.html" title="OnStomp::Cl
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-The maximum number of times to retry connecting during a reconnect loop.
-</p>
+    <span class="summary_desc"><div class='inline'><p>The maximum number of times to retry connecting during a reconnect
+loop.</p>
 </div></span>
   
 </li>
@@ -355,9 +338,7 @@ The maximum number of times to retry connecting during a reconnect loop.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-The delay in seconds to wait between connection retries.
-</p>
+    <span class="summary_desc"><div class='inline'><p>The delay in seconds to wait between connection retries.</p>
 </div></span>
   
 </li>
@@ -382,9 +363,7 @@ The delay in seconds to wait between connection retries.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns the value of attribute uri.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute uri.</p>
 </div></span>
   
 </li>
@@ -417,9 +396,7 @@ Returns the value of attribute uri.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Connects to one of the clients in the <span class='object_link'><a href="#client_pool-instance_method" title="OnStomp::Failover::Client#client_pool (method)">#client_pool</a></span>.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Connects to one of the clients in the <span class='object_link'><a href="#client_pool-instance_method" title="OnStomp::Failover::Client#client_pool (method)">#client_pool</a></span>.</p>
 </div></span>
   
 </li>
@@ -441,10 +418,8 @@ Connects to one of the clients in the <span class='object_link'><a href="#client
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns true if there is an <span class='object_link'><a href="#active_client-instance_method" title="OnStomp::Failover::Client#active_client (method)">#active_client</a></span> and it is
-<span class='object_link'><a href="../Client.html#connected%3F-instance_method" title="OnStomp::Client#connected? (method)">connected</a></span>.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns true if there is an <span class='object_link'><a href="#active_client-instance_method" title="OnStomp::Failover::Client#active_client (method)">#active_client</a></span> and it is
+<span class='object_link'><a href="../Client.html#connected%3F-instance_method" title="OnStomp::Client#connected? (method)">connected</a></span>.</p>
 </div></span>
   
 </li>
@@ -466,10 +441,8 @@ Returns true if there is an <span class='object_link'><a href="#active_client-in
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Ensures that a connection is properly established, then invokes
-<span class='object_link'><a href="../Client.html#disconnect-instance_method" title="OnStomp::Client#disconnect (method)">disconnect</a></span> on the <span class='object_link'><a href="#active_client-instance_method" title="OnStomp::Failover::Client#active_client (method)">#active_client</a></span>.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Ensures that a connection is properly established, then invokes
+<span class='object_link'><a href="../Client.html#disconnect-instance_method" title="OnStomp::Client#disconnect (method)">disconnect</a></span> on the <span class='object_link'><a href="#active_client-instance_method" title="OnStomp::Failover::Client#active_client (method)">#active_client</a></span>.</p>
 </div></span>
   
 </li>
@@ -493,9 +466,7 @@ Ensures that a connection is properly established, then invokes
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-A new instance of Client.
-</p>
+    <span class="summary_desc"><div class='inline'><p>A new instance of Client.</p>
 </div></span>
   
 </li>
@@ -517,9 +488,7 @@ A new instance of Client.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Transmits a frame to the <span class='object_link'><a href="#active_client-instance_method" title="OnStomp::Failover::Client#active_client (method)">#active_client</a></span> if one exists.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Transmits a frame to the <span class='object_link'><a href="#active_client-instance_method" title="OnStomp::Failover::Client#active_client (method)">#active_client</a></span> if one exists.</p>
 </div></span>
   
 </li>
@@ -580,9 +549,7 @@ Transmits a frame to the <span class='object_link'><a href="#active_client-insta
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-A new instance of Client
-</p>
+    <p>A new instance of Client</p>
 
 
   </div>
@@ -604,20 +571,14 @@ A new instance of Client
 43
 44
 45
-46
-47
-48
-49</pre>
+46</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/onstomp/failover/client.rb', line 37</span>
 
 <span class='kw'>def</span> <span class='id initialize'>initialize</span><span class='lparen'>(</span><span class='id uris'>uris</span><span class='comma'>,</span> <span class='id options'>options</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
-  <span class='kw'>if</span> <span class='id uris'>uris</span><span class='period'>.</span><span class='id is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span>
-    <span class='id uris'>uris</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>failover:(</span><span class='embexpr_beg'>#{</span><span class='id uris'>uris</span><span class='period'>.</span><span class='id map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id u'>u</span><span class='op'>|</span> <span class='id u'>u</span><span class='period'>.</span><span class='id to_s'>to_s</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>,</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
-  <span class='kw'>end</span>
+  <span class='ivar'>@uri</span> <span class='op'>=</span> <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>Failover</span><span class='op'>::</span><span class='const'>URI</span><span class='op'>::</span><span class='const'>FAILOVER</span><span class='period'>.</span><span class='id parse'>parse</span> <span class='id uris'>uris</span>
   <span class='ivar'>@client_mutex</span> <span class='op'>=</span> <span class='const'>Mutex</span><span class='period'>.</span><span class='id new'>new</span>
-  <span class='ivar'>@uri</span> <span class='op'>=</span> <span class='const'>URI</span><span class='period'>.</span><span class='id parse'>parse</span><span class='lparen'>(</span><span class='id uris'>uris</span><span class='rparen'>)</span>
   <span class='id configure_configurable'>configure_configurable</span> <span class='id options'>options</span>
   <span class='id create_client_pool'>create_client_pool</span>
   <span class='ivar'>@active_client</span> <span class='op'>=</span> <span class='kw'>nil</span>
@@ -647,9 +608,7 @@ A new instance of Client
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns the value of attribute active_client
-</p>
+    <p>Returns the value of attribute active_client</p>
 
 
   </div>
@@ -689,10 +648,8 @@ Returns the value of attribute active_client
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-The class to use when instantiating a new frame buffer. Defaults to
-<span class='object_link'><a href="Buffers/Written.html" title="OnStomp::Failover::Buffers::Written (class)">Buffers::Written</a></span>
-</p>
+    <p>The class to use when instantiating a new frame buffer.
+Defaults to <span class='object_link'><a href="Buffers/Written.html" title="OnStomp::Failover::Buffers::Written (class)">Buffers::Written</a></span></p>
 
 
   </div>
@@ -741,9 +698,7 @@ The class to use when instantiating a new frame buffer. Defaults to
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns the value of attribute client_pool
-</p>
+    <p>Returns the value of attribute client_pool</p>
 
 
   </div>
@@ -783,9 +738,7 @@ Returns the value of attribute client_pool
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns the value of attribute connection
-</p>
+    <p>Returns the value of attribute connection</p>
 
 
   </div>
@@ -825,9 +778,7 @@ Returns the value of attribute connection
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns the value of attribute frame_buffer
-</p>
+    <p>Returns the value of attribute frame_buffer</p>
 
 
   </div>
@@ -867,10 +818,8 @@ Returns the value of attribute frame_buffer
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-The class to use when instantiating a new <span class='object_link'><a href="#client_pool-instance_method" title="OnStomp::Failover::Client#client_pool (method)">#client_pool</a></span>. Defaults to
-<span class='object_link'><a href="Pools/RoundRobin.html" title="OnStomp::Failover::Pools::RoundRobin (class)">Pools::RoundRobin</a></span>
-</p>
+    <p>The class to use when instantiating a new <span class='object_link'><a href="#client_pool-instance_method" title="OnStomp::Failover::Client#client_pool (method)">#client_pool</a></span>.
+Defaults to <span class='object_link'><a href="Pools/RoundRobin.html" title="OnStomp::Failover::Pools::RoundRobin (class)">Pools::RoundRobin</a></span></p>
 
 
   </div>
@@ -919,10 +868,8 @@ The class to use when instantiating a new <span class='object_link'><a href="#cl
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Whether or not to randomize the <span class='object_link'><a href="#client_pool-instance_method" title="OnStomp::Failover::Client#client_pool (method)">#client_pool</a></span> before connecting through
-any of its <span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">clients</a></span>. Defaults to <tt>false</tt>
-</p>
+    <p>Whether or not to randomize the <span class='object_link'><a href="#client_pool-instance_method" title="OnStomp::Failover::Client#client_pool (method)">#client_pool</a></span> before connecting through
+any of its <span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">clients</a></span>. Defaults to +false+</p>
 
 
   </div>
@@ -971,11 +918,9 @@ any of its <span class='object_link'><a href="../Client.html" title="OnStomp::Cl
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-The maximum number of times to retry connecting during a reconnect loop. A
-non-positive number will force the failover client to try to reconnect
-indefinitely. Defaults to <tt>0</tt>
-</p>
+    <p>The maximum number of times to retry connecting during a reconnect
+loop. A non-positive number will force the failover client to try to
+reconnect indefinitely. Defaults to +0+</p>
 
 
   </div>
@@ -1024,10 +969,8 @@ indefinitely. Defaults to <tt>0</tt>
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-The delay in seconds to wait between connection retries. Defaults to
-<tt>10</tt>.
-</p>
+    <p>The delay in seconds to wait between connection retries.
+Defaults to +10+.</p>
 
 
   </div>
@@ -1076,9 +1019,7 @@ The delay in seconds to wait between connection retries. Defaults to
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns the value of attribute uri
-</p>
+    <p>Returns the value of attribute uri</p>
 
 
   </div>
@@ -1122,9 +1063,7 @@ Returns the value of attribute uri
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Connects to one of the clients in the <span class='object_link'><a href="#client_pool-instance_method" title="OnStomp::Failover::Client#client_pool (method)">#client_pool</a></span>
-</p>
+    <p>Connects to one of the clients in the <span class='object_link'><a href="#client_pool-instance_method" title="OnStomp::Failover::Client#client_pool (method)">#client_pool</a></span></p>
 
 
   </div>
@@ -1150,16 +1089,16 @@ Connects to one of the clients in the <span class='object_link'><a href="#client
       <pre class="lines">
 
 
+63
+64
+65
 66
 67
 68
-69
-70
-71
-72</pre>
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/client.rb', line 66</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/client.rb', line 63</span>
 
 <span class='kw'>def</span> <span class='id connect'>connect</span>
   <span class='ivar'>@disconnecting</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -1182,10 +1121,8 @@ Connects to one of the clients in the <span class='object_link'><a href="#client
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns true if there is an <span class='object_link'><a href="#active_client-instance_method" title="OnStomp::Failover::Client#active_client (method)">#active_client</a></span> and it is
-<span class='object_link'><a href="../Client.html#connected%3F-instance_method" title="OnStomp::Client#connected? (method)">connected</a></span>.
-</p>
+    <p>Returns true if there is an <span class='object_link'><a href="#active_client-instance_method" title="OnStomp::Failover::Client#active_client (method)">#active_client</a></span> and it is
+<span class='object_link'><a href="../Client.html#connected%3F-instance_method" title="OnStomp::Client#connected? (method)">connected</a></span>.</p>
 
 
   </div>
@@ -1211,12 +1148,12 @@ Returns true if there is an <span class='object_link'><a href="#active_client-in
       <pre class="lines">
 
 
-54
-55
-56</pre>
+51
+52
+53</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/client.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/client.rb', line 51</span>
 
 <span class='kw'>def</span> <span class='id connected?'>connected?</span>
   <span class='id active_client'>active_client</span> <span class='op'>&amp;&amp;</span> <span class='id active_client'>active_client</span><span class='period'>.</span><span class='id connected?'>connected?</span>
@@ -1235,10 +1172,8 @@ Returns true if there is an <span class='object_link'><a href="#active_client-in
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Ensures that a connection is properly established, then invokes
-<span class='object_link'><a href="../Client.html#disconnect-instance_method" title="OnStomp::Client#disconnect (method)">disconnect</a></span> on the <span class='object_link'><a href="#active_client-instance_method" title="OnStomp::Failover::Client#active_client (method)">#active_client</a></span>
-</p>
+    <p>Ensures that a connection is properly established, then invokes
+<span class='object_link'><a href="../Client.html#disconnect-instance_method" title="OnStomp::Client#disconnect (method)">disconnect</a></span> on the <span class='object_link'><a href="#active_client-instance_method" title="OnStomp::Failover::Client#active_client (method)">#active_client</a></span></p>
 
 
   </div>
@@ -1251,17 +1186,17 @@ Ensures that a connection is properly established, then invokes
       <pre class="lines">
 
 
+73
+74
+75
 76
 77
 78
 79
-80
-81
-82
-83</pre>
+80</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/client.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/client.rb', line 73</span>
 
 <span class='kw'>def</span> <span class='id disconnect'>disconnect</span> <span class='op'>*</span><span class='id args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id block'>block</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id active_client'>active_client</span>
@@ -1285,9 +1220,7 @@ Ensures that a connection is properly established, then invokes
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Transmits a frame to the <span class='object_link'><a href="#active_client-instance_method" title="OnStomp::Failover::Client#active_client (method)">#active_client</a></span> if one exists.
-</p>
+    <p>Transmits a frame to the <span class='object_link'><a href="#active_client-instance_method" title="OnStomp::Failover::Client#active_client (method)">#active_client</a></span> if one exists.</p>
 
 
   </div>
@@ -1313,12 +1246,12 @@ Transmits a frame to the <span class='object_link'><a href="#active_client-insta
       <pre class="lines">
 
 
-60
-61
-62</pre>
+57
+58
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/client.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/client.rb', line 57</span>
 
 <span class='kw'>def</span> <span class='id transmit'>transmit</span> <span class='id frame'>frame</span><span class='comma'>,</span> <span class='id cbs'>cbs</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='id active_client'>active_client</span> <span class='op'>&amp;&amp;</span> <span class='id active_client'>active_client</span><span class='period'>.</span><span class='id transmit'>transmit</span><span class='lparen'>(</span><span class='id frame'>frame</span><span class='comma'>,</span> <span class='id cbs'>cbs</span><span class='rparen'>)</span>
@@ -1333,7 +1266,7 @@ Transmits a frame to the <span class='object_link'><a href="#active_client-insta
 </div>
     
     <div id="footer">
-  Generated on Mon Apr  4 14:41:58 2011 by 
+  Generated on Mon Apr  4 16:26:38 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>

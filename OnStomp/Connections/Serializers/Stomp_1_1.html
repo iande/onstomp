@@ -85,9 +85,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>
-Frame serializer / parser for STOMP 1.1 connections.
-</p>
+    <p>Frame serializer / parser for STOMP 1.1 connections.</p>
 
 
   </div>
@@ -102,10 +100,8 @@ Frame serializer / parser for STOMP 1.1 connections.
         <dt id="CHARACTER_ESCAPES-constant" class="">CHARACTER_ESCAPES =
           <div class="docstring">
   <div class="discussion">
-    <p>
-Mapping of characters to their appropriate escape sequences. This is used
-when escaping headers for frames being written to the stream.
-</p>
+    <p>Mapping of characters to their appropriate escape sequences. This
+is used when escaping headers for frames being written to the stream.</p>
 
 
   </div>
@@ -119,10 +115,8 @@ when escaping headers for frames being written to the stream.
         <dt id="ESCAPE_SEQUENCES-constant" class="">ESCAPE_SEQUENCES =
           <div class="docstring">
   <div class="discussion">
-    <p>
-Mapping of escape sequences to their appropriate characters. This is used
-when unescaping headers being read from the stream.
-</p>
+    <p>Mapping of escape sequences to their appropriate characters. This
+is used when unescaping headers being read from the stream.</p>
 
 
   </div>
@@ -166,9 +160,7 @@ when unescaping headers being read from the stream.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Encodes the given string to &#8216;UTF-8&#8217;.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Encodes the given string to 'UTF-8'.</p>
 </div></span>
   
 </li>
@@ -190,10 +182,8 @@ Encodes the given string to &#8216;UTF-8&#8217;.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Escapes a header name or value by replacing special characters with their
-appropriate escape sequences.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Escapes a header name or value by replacing special characters with
+their appropriate escape sequences.</p>
 </div></span>
   
 </li>
@@ -215,9 +205,7 @@ appropriate escape sequences.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Forces the encoding of the given frame&#8217;s body to match its charset.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Forces the encoding of the given frame's body to match its charset.</p>
 </div></span>
   
 </li>
@@ -239,9 +227,7 @@ Forces the encoding of the given frame&#8217;s body to match its charset.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Forces the encoding of the given string to &#8216;UTF-8&#8217;.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Forces the encoding of the given string to 'UTF-8'.</p>
 </div></span>
   
 </li>
@@ -263,9 +249,7 @@ Forces the encoding of the given string to &#8216;UTF-8&#8217;.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Converts a <span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span> to a string.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Converts a <span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span> to a string.</p>
 </div></span>
   
 </li>
@@ -289,9 +273,7 @@ Converts a <span class='object_link'><a href="../../Components/Frame.html" title
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Creates a new serializer and calls <span class='object_link'><a href="Stomp_1.html#reset_parser-instance_method" title="OnStomp::Connections::Serializers::Stomp_1#reset_parser (method)">OnStomp::Connections::Serializers::Stomp_1#reset_parser</a></span>.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Creates a new serializer and calls <span class='object_link'><a href="Stomp_1.html#reset_parser-instance_method" title="OnStomp::Connections::Serializers::Stomp_1#reset_parser (method)">OnStomp::Connections::Serializers::Stomp_1#reset_parser</a></span>.</p>
 </div></span>
   
 </li>
@@ -313,10 +295,8 @@ Creates a new serializer and calls <span class='object_link'><a href="Stomp_1.ht
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Set an appropriate <tt>content-type</tt> header with <tt>charset</tt>
-parameter for frames with a text body.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Set an appropriate +content-type+ header with +charset+ parameter for
+frames with a text body.</p>
 </div></span>
   
 </li>
@@ -338,10 +318,8 @@ parameter for frames with a text body.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Forces the frame&#8217;s body to match the charset specified in its
-<tt>content-type</tt> header, if applicable.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Forces the frame's body to match the charset specified in its +content-type+
+header, if applicable.</p>
 </div></span>
   
 </li>
@@ -363,11 +341,8 @@ Forces the frame&#8217;s body to match the charset specified in its
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Splits a header line into a header name / header value pair at the first
-&#8217;:&#8217; character <span class='object_link'><a href="#unescape_header-instance_method" title="OnStomp::Connections::Serializers::Stomp_1_1#unescape_header (method)">unescapes</a></span> them, and returns
-the pair.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Splits a header line into a header name / header value pair at the first
+':' character <span class='object_link'><a href="#unescape_header-instance_method" title="OnStomp::Connections::Serializers::Stomp_1_1#unescape_header (method)">unescapes</a></span> them, and returns the pair.</p>
 </div></span>
   
 </li>
@@ -389,10 +364,8 @@ the pair.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Unescapes a header name or pair parsed from the read buffer by converting
-known escape sequences into their special characters.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Unescapes a header name or pair parsed from the read buffer by converting
+known escape sequences into their special characters.</p>
 </div></span>
   
 </li>
@@ -423,9 +396,7 @@ known escape sequences into their special characters.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Creates a new serializer and calls <span class='object_link'><a href="Stomp_1.html#reset_parser-instance_method" title="OnStomp::Connections::Serializers::Stomp_1#reset_parser (method)">OnStomp::Connections::Serializers::Stomp_1#reset_parser</a></span>
-</p>
+    <p>Creates a new serializer and calls <span class='object_link'><a href="Stomp_1.html#reset_parser-instance_method" title="OnStomp::Connections::Serializers::Stomp_1#reset_parser (method)">OnStomp::Connections::Serializers::Stomp_1#reset_parser</a></span></p>
 
 
   </div>
@@ -472,15 +443,11 @@ Creates a new serializer and calls <span class='object_link'><a href="Stomp_1.ht
     
   <div class="note notetag">
     <strong>Note:</strong> 
-    <div class='inline'><p>
-No-op for Ruby 1.8.x
-</p>
+    <div class='inline'><p>No-op for Ruby 1.8.x</p>
 </div>
   </div>
 
-<p>
-Encodes the given string to &#8216;UTF-8&#8217;
-</p>
+<p>Encodes the given string to 'UTF-8'</p>
 
 
   </div>
@@ -541,11 +508,9 @@ Encodes the given string to &#8216;UTF-8&#8217;
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Escapes a header name or value by replacing special characters with their
-appropriate escape sequences. The header will also be encoded to
-&#8216;UTF-8&#8217; when using Ruby 1.9+
-</p>
+    <p>Escapes a header name or value by replacing special characters with
+their appropriate escape sequences. The header will also be encoded to
+'UTF-8' when using Ruby 1.9+</p>
 
 
   </div>
@@ -564,9 +529,7 @@ appropriate escape sequences. The header will also be encoded to
       
       
         &mdash;
-        <div class='inline'><p>
-header name or value
-</p>
+        <div class='inline'><p>header name or value</p>
 </div>
       
     </li>
@@ -619,15 +582,11 @@ header name or value
     
   <div class="note notetag">
     <strong>Note:</strong> 
-    <div class='inline'><p>
-No-op for Ruby 1.8.x
-</p>
+    <div class='inline'><p>No-op for Ruby 1.8.x</p>
 </div>
   </div>
 
-<p>
-Forces the encoding of the given frame&#8217;s body to match its charset.
-</p>
+<p>Forces the encoding of the given frame's body to match its charset.</p>
 
 
   </div>
@@ -691,15 +650,11 @@ Forces the encoding of the given frame&#8217;s body to match its charset.
     
   <div class="note notetag">
     <strong>Note:</strong> 
-    <div class='inline'><p>
-No-op for Ruby 1.8.x
-</p>
+    <div class='inline'><p>No-op for Ruby 1.8.x</p>
 </div>
   </div>
 
-<p>
-Forces the encoding of the given string to &#8216;UTF-8&#8217;
-</p>
+<p>Forces the encoding of the given string to 'UTF-8'</p>
 
 
   </div>
@@ -760,9 +715,7 @@ Forces the encoding of the given string to &#8216;UTF-8&#8217;
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Converts a <span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span> to a string
-</p>
+    <p>Converts a <span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span> to a string</p>
 
 
   </div>
@@ -834,16 +787,12 @@ Converts a <span class='object_link'><a href="../../Components/Frame.html" title
     
   <div class="note notetag">
     <strong>Note:</strong> 
-    <div class='inline'><p>
-No-op for Ruby 1.8.x
-</p>
+    <div class='inline'><p>No-op for Ruby 1.8.x</p>
 </div>
   </div>
 
-<p>
-Set an appropriate <tt>content-type</tt> header with <tt>charset</tt>
-parameter for frames with a text body
-</p>
+<p>Set an appropriate +content-type+ header with +charset+ parameter for
+frames with a text body</p>
 
 
   </div>
@@ -904,10 +853,8 @@ parameter for frames with a text body
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Forces the frame&#8217;s body to match the charset specified in its
-<tt>content-type</tt> header, if applicable.
-</p>
+    <p>Forces the frame's body to match the charset specified in its +content-type+
+header, if applicable.</p>
 
 
   </div>
@@ -959,11 +906,8 @@ Forces the frame&#8217;s body to match the charset specified in its
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Splits a header line into a header name / header value pair at the first
-&#8217;:&#8217; character <span class='object_link'><a href="#unescape_header-instance_method" title="OnStomp::Connections::Serializers::Stomp_1_1#unescape_header (method)">unescapes</a></span> them, and returns
-the pair.
-</p>
+    <p>Splits a header line into a header name / header value pair at the first
+':' character <span class='object_link'><a href="#unescape_header-instance_method" title="OnStomp::Connections::Serializers::Stomp_1_1#unescape_header (method)">unescapes</a></span> them, and returns the pair.</p>
 
 
   </div>
@@ -982,9 +926,7 @@ the pair.
       
       
         &mdash;
-        <div class='inline'><p>
-header line to split
-</p>
+        <div class='inline'><p>header line to split</p>
 </div>
       
     </li>
@@ -1014,9 +956,8 @@ header line to split
       
       
         &mdash;
-        <div class='inline'><p>
-if the header line lacks a &#8217;:&#8217; character
-</p>
+        <div class='inline'><p>if the header line
+lacks a ':' character</p>
 </div>
       
     </li>
@@ -1063,12 +1004,10 @@ if the header line lacks a &#8217;:&#8217; character
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Unescapes a header name or pair parsed from the read buffer by converting
+    <p>Unescapes a header name or pair parsed from the read buffer by converting
 known escape sequences into their special characters. The header string
-will have a &#8216;UTF-8&#8217; encoding forced upon it when using Ruby
-1.9+, as per the STOMP 1.1 spec.
-</p>
+will have a 'UTF-8' encoding forced upon it when using Ruby 1.9+, as per
+the STOMP 1.1 spec.</p>
 
 
   </div>
@@ -1087,9 +1026,7 @@ will have a &#8216;UTF-8&#8217; encoding forced upon it when using Ruby
       
       
         &mdash;
-        <div class='inline'><p>
-header name or value
-</p>
+        <div class='inline'><p>header name or value</p>
 </div>
       
     </li>
@@ -1119,9 +1056,7 @@ header name or value
       
       
         &mdash;
-        <div class='inline'><p>
-if an unknown escape sequence is present in the header name or value
-</p>
+        <div class='inline'><p>if an unknown escape sequence is present in the header name or value</p>
 </div>
       
     </li>
@@ -1158,7 +1093,7 @@ if an unknown escape sequence is present in the header name or value
 </div>
     
     <div id="footer">
-  Generated on Mon Apr  4 14:42:01 2011 by 
+  Generated on Mon Apr  4 16:26:40 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>

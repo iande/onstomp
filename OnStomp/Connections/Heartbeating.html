@@ -70,9 +70,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>
-Mixin for connections to include heartbeating functionality.
-</p>
+    <p>Mixin for connections to include heartbeating functionality.</p>
 
 
   </div>
@@ -103,10 +101,8 @@ Mixin for connections to include heartbeating functionality.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-A pair of integers indicating the maximum number of milliseconds the client
-and broker can go without transmitting data respectively.
-</p>
+    <span class="summary_desc"><div class='inline'><p>A pair of integers indicating the maximum number of milliseconds the
+client and broker can go without transmitting data respectively.</p>
 </div></span>
   
 </li>
@@ -139,10 +135,8 @@ and broker can go without transmitting data respectively.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns true if broker-side heartbeating is disabled, or 
-<span class='object_link'><a href="#duration_since_received-instance_method" title="OnStomp::Connections::Heartbeating#duration_since_received (method)">#duration_since_received</a></span> has not exceeded <span class='object_link'><a href="#heartbeat_broker_limit-instance_method" title="OnStomp::Connections::Heartbeating#heartbeat_broker_limit (method)">#heartbeat_broker_limit</a></span>.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns true if broker-side heartbeating is disabled, or
+<span class='object_link'><a href="#duration_since_received-instance_method" title="OnStomp::Connections::Heartbeating#duration_since_received (method)">#duration_since_received</a></span> has not exceeded <span class='object_link'><a href="#heartbeat_broker_limit-instance_method" title="OnStomp::Connections::Heartbeating#heartbeat_broker_limit (method)">#heartbeat_broker_limit</a></span>.</p>
 </div></span>
   
 </li>
@@ -164,10 +158,8 @@ Returns true if broker-side heartbeating is disabled, or
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns true if client-side heartbeating is disabled, or 
-<span class='object_link'><a href="#duration_since_transmitted-instance_method" title="OnStomp::Connections::Heartbeating#duration_since_transmitted (method)">#duration_since_transmitted</a></span> has not exceeded <span class='object_link'><a href="#heartbeat_client_limit-instance_method" title="OnStomp::Connections::Heartbeating#heartbeat_client_limit (method)">#heartbeat_client_limit</a></span>.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns true if client-side heartbeating is disabled, or
+<span class='object_link'><a href="#duration_since_transmitted-instance_method" title="OnStomp::Connections::Heartbeating#duration_since_transmitted (method)">#duration_since_transmitted</a></span> has not exceeded <span class='object_link'><a href="#heartbeat_client_limit-instance_method" title="OnStomp::Connections::Heartbeating#heartbeat_client_limit (method)">#heartbeat_client_limit</a></span>.</p>
 </div></span>
   
 </li>
@@ -189,10 +181,8 @@ Returns true if client-side heartbeating is disabled, or
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Configures heartbeating strategy by taking the maximum timeout for clients
-and brokers.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Configures heartbeating strategy by taking the maximum timeout
+for clients and brokers.</p>
 </div></span>
   
 </li>
@@ -214,10 +204,8 @@ and brokers.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Number of milliseconds since data was last received from the broker or
-<tt>nil</tt> if no data has been received when the method is called.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Number of milliseconds since data was last received from the broker or
++nil+ if no data has been received when the method is called.</p>
 </div></span>
   
 </li>
@@ -239,10 +227,8 @@ Number of milliseconds since data was last received from the broker or
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Number of milliseconds since data was last transmitted to the broker or
-<tt>nil</tt> if no data has been transmitted when the method is called.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Number of milliseconds since data was last transmitted to the broker or
++nil+ if no data has been transmitted when the method is called.</p>
 </div></span>
   
 </li>
@@ -264,10 +250,8 @@ Number of milliseconds since data was last transmitted to the broker or
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Maximum number of milliseconds allowed between bytes being sent from the
-broker, or 0 if there is no limit.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Maximum number of milliseconds allowed between bytes being sent from
+the broker, or 0 if there is no limit.</p>
 </div></span>
   
 </li>
@@ -289,10 +273,8 @@ broker, or 0 if there is no limit.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Maximum number of milliseconds allowed between bytes being sent by the
-client, or 0 if there is no limit.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Maximum number of milliseconds allowed between bytes being sent by
+the client, or 0 if there is no limit.</p>
 </div></span>
   
 </li>
@@ -314,10 +296,8 @@ client, or 0 if there is no limit.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns true if both the client and broker are transmitting data in
-accordance with the heartbeating strategy.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns true if both the client and broker are transmitting data in
+accordance with the heartbeating strategy.</p>
 </div></span>
   
 </li>
@@ -342,11 +322,9 @@ accordance with the heartbeating strategy.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-A pair of integers indicating the maximum number of milliseconds the client
-and broker can go without transmitting data respectively. If either value
-is 0, the respective heartbeating is not enabled.
-</p>
+    <p>A pair of integers indicating the maximum number of milliseconds the
+client and broker can go without transmitting data respectively. If
+either value is 0, the respective heartbeating is not enabled.</p>
 
 
   </div>
@@ -403,10 +381,8 @@ is 0, the respective heartbeating is not enabled.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns true if broker-side heartbeating is disabled, or 
-<span class='object_link'><a href="#duration_since_received-instance_method" title="OnStomp::Connections::Heartbeating#duration_since_received (method)">#duration_since_received</a></span> has not exceeded <span class='object_link'><a href="#heartbeat_broker_limit-instance_method" title="OnStomp::Connections::Heartbeating#heartbeat_broker_limit (method)">#heartbeat_broker_limit</a></span>
-</p>
+    <p>Returns true if broker-side heartbeating is disabled, or
+<span class='object_link'><a href="#duration_since_received-instance_method" title="OnStomp::Connections::Heartbeating#duration_since_received (method)">#duration_since_received</a></span> has not exceeded <span class='object_link'><a href="#heartbeat_broker_limit-instance_method" title="OnStomp::Connections::Heartbeating#heartbeat_broker_limit (method)">#heartbeat_broker_limit</a></span></p>
 
 
   </div>
@@ -456,10 +432,8 @@ Returns true if broker-side heartbeating is disabled, or
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns true if client-side heartbeating is disabled, or 
-<span class='object_link'><a href="#duration_since_transmitted-instance_method" title="OnStomp::Connections::Heartbeating#duration_since_transmitted (method)">#duration_since_transmitted</a></span> has not exceeded <span class='object_link'><a href="#heartbeat_client_limit-instance_method" title="OnStomp::Connections::Heartbeating#heartbeat_client_limit (method)">#heartbeat_client_limit</a></span>
-</p>
+    <p>Returns true if client-side heartbeating is disabled, or
+<span class='object_link'><a href="#duration_since_transmitted-instance_method" title="OnStomp::Connections::Heartbeating#duration_since_transmitted (method)">#duration_since_transmitted</a></span> has not exceeded <span class='object_link'><a href="#heartbeat_client_limit-instance_method" title="OnStomp::Connections::Heartbeating#heartbeat_client_limit (method)">#heartbeat_client_limit</a></span></p>
 
 
   </div>
@@ -509,11 +483,9 @@ Returns true if client-side heartbeating is disabled, or
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Configures heartbeating strategy by taking the maximum timeout for clients
-and brokers.  If either pair contains a zero, the respective beating is
-disabled.
-</p>
+    <p>Configures heartbeating strategy by taking the maximum timeout
+for clients and brokers.  If either pair contains a zero, the respective
+beating is disabled.</p>
 
 
   </div>
@@ -582,10 +554,8 @@ disabled.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Number of milliseconds since data was last received from the broker or
-<tt>nil</tt> if no data has been received when the method is called.
-</p>
+    <p>Number of milliseconds since data was last received from the broker or
++nil+ if no data has been received when the method is called.</p>
 
 
   </div>
@@ -635,10 +605,8 @@ Number of milliseconds since data was last received from the broker or
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Number of milliseconds since data was last transmitted to the broker or
-<tt>nil</tt> if no data has been transmitted when the method is called.
-</p>
+    <p>Number of milliseconds since data was last transmitted to the broker or
++nil+ if no data has been transmitted when the method is called.</p>
 
 
   </div>
@@ -688,12 +656,10 @@ Number of milliseconds since data was last transmitted to the broker or
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Maximum number of milliseconds allowed between bytes being sent from the
-broker, or 0 if there is no limit. This method will add a 10% margin of
-error to the timeout determined from heartbeat negotiation to allow a
-little slack before a connection is deemed dead.
-</p>
+    <p>Maximum number of milliseconds allowed between bytes being sent from
+the broker, or 0 if there is no limit. This method will add a 10% margin
+of error to the timeout determined from heartbeat negotiation to allow a
+little slack before a connection is deemed dead.</p>
 
 
   </div>
@@ -749,12 +715,10 @@ little slack before a connection is deemed dead.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Maximum number of milliseconds allowed between bytes being sent by the
-client, or 0 if there is no limit. This method will add a 10% margin of
-error to the timeout determined from heartbeat negotiation to allow a
-little slack before a connection is deemed dead.
-</p>
+    <p>Maximum number of milliseconds allowed between bytes being sent by
+the client, or 0 if there is no limit. This method will add a 10% margin
+of error to the timeout determined from heartbeat negotiation to allow a
+little slack before a connection is deemed dead.</p>
 
 
   </div>
@@ -810,12 +774,9 @@ little slack before a connection is deemed dead.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns true if both the client and broker are transmitting data in
+    <p>Returns true if both the client and broker are transmitting data in
 accordance with the heartbeating strategy. If this method returns false,
-the connection is effectively dead and should be
-<span class='object_link'><a href="Base.html#close-instance_method" title="OnStomp::Connections::Base#close (method)">closed</a></span>
-</p>
+the connection is effectively dead and should be <span class='object_link'><a href="Base.html#close-instance_method" title="OnStomp::Connections::Base#close (method)">closed</a></span></p>
 
 
   </div>
@@ -861,7 +822,7 @@ the connection is effectively dead and should be
 </div>
     
     <div id="footer">
-  Generated on Mon Apr  4 14:41:59 2011 by 
+  Generated on Mon Apr  4 16:26:39 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>

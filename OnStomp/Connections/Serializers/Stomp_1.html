@@ -70,12 +70,9 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>
-Classes that mix this in must define <tt>split_header</tt> and
-<tt>prepare_parsed_frame</tt> The method <tt>frame_to_string_base</tt> is
-provided as a factoring out of the common tasks of serializing a frame for
-STOMP 1.0 and STOMP 1.1.
-</p>
+    <p>Classes that mix this in must define +split_header+ and +prepare_parsed_frame+
+The method +frame_to_string_base+ is provided as a factoring out of the
+common tasks of serializing a frame for STOMP 1.0 and STOMP 1.1.</p>
 
 
   </div>
@@ -109,10 +106,8 @@ STOMP 1.0 and STOMP 1.1.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Takes a buffer of strings and constructs all the
-<span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frames</a></span> it can from the data.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Takes a buffer of strings and constructs all the
+<span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frames</a></span> it can from the data.</p>
 </div></span>
   
 </li>
@@ -134,9 +129,7 @@ Takes a buffer of strings and constructs all the
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Called when a frame&#8217;s body has been fully read from the buffer.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Called when a frame's body has been fully read from the buffer.</p>
 </div></span>
   
 </li>
@@ -158,9 +151,7 @@ Called when a frame&#8217;s body has been fully read from the buffer.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Called when a frame&#8217;s command has been fully read from the buffer.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Called when a frame's command has been fully read from the buffer.</p>
 </div></span>
   
 </li>
@@ -182,9 +173,7 @@ Called when a frame&#8217;s command has been fully read from the buffer.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Called when a header line has been fully read from the buffer.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Called when a header line has been fully read from the buffer.</p>
 </div></span>
   
 </li>
@@ -206,9 +195,7 @@ Called when a header line has been fully read from the buffer.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Takes the result of <tt>frame_to_string</tt> and passes it along.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Takes the result of +frame_to_string+ and passes it along.</p>
 </div></span>
   
 </li>
@@ -230,10 +217,8 @@ Takes the result of <tt>frame_to_string</tt> and passes it along.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-The common elements of serializing a <span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span> as
-a string in STOMP 1.0 and STOMP 1.1 protocols.
-</p>
+    <span class="summary_desc"><div class='inline'><p>The common elements of serializing a <span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span>
+as a string in STOMP 1.0 and STOMP 1.1 protocols.</p>
 </div></span>
   
 </li>
@@ -255,9 +240,7 @@ a string in STOMP 1.0 and STOMP 1.1 protocols.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Parses a <span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span> body from the buffer.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Parses a <span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span> body from the buffer.</p>
 </div></span>
   
 </li>
@@ -279,9 +262,7 @@ Parses a <span class='object_link'><a href="../../Components/Frame.html" title="
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Parses a <span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span> command from the buffer.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Parses a <span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span> command from the buffer.</p>
 </div></span>
   
 </li>
@@ -303,9 +284,7 @@ Parses a <span class='object_link'><a href="../../Components/Frame.html" title="
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Parses a <span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span> header line from the buffer.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Parses a <span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span> header line from the buffer.</p>
 </div></span>
   
 </li>
@@ -327,11 +306,9 @@ Parses a <span class='object_link'><a href="../../Components/Frame.html" title="
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Adds the substring <tt>&lt;a href=&quot;http://0...idx&quot;&gt;data&lt;/a&gt;</tt> to the
-parser&#8217;s accumulator, unshifts the remaining data back onto the
-buffer, and calls <tt>meth</tt> with the parser&#8217;s accumulated string.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Adds the substring +data[0...idx]+ to the parser's accumulator,
+unshifts the remaining data back onto the buffer, and calls +meth+
+with the parser's accumulated string.</p>
 </div></span>
   
 </li>
@@ -353,9 +330,7 @@ buffer, and calls <tt>meth</tt> with the parser&#8217;s accumulated string.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Resets the parser that converts byte strings to <span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frames</a></span>.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Resets the parser that converts byte strings to <span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frames</a></span>.</p>
 </div></span>
   
 </li>
@@ -382,24 +357,20 @@ Resets the parser that converts byte strings to <span class='object_link'><a hre
     
   <div class="note notetag">
     <strong>Note:</strong> 
-    <div class='inline'><p>
-It is NOT safe to invoke this method from multiple threads as-is.
-</p>
+    <div class='inline'><p>It is NOT safe to invoke this method from multiple threads as-is.</p>
 </div>
   </div>
 
-<p>
-Takes a buffer of strings and constructs all the
-<span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frames</a></span> it can from the data. The parser builds
-a &#8220;current frame&#8221; and updates it with attributes as they are
-parsed from the buffer. It is only safe to invoke this method from a single
-thread as no synchronization is being performed. This will work fine with
-the <span class='object_link'><a href="../../Components/ThreadedProcessor.html" title="OnStomp::Components::ThreadedProcessor (class)">threaded</a></span> processor as it
-performs its calls all within a single thread, but if you wish to develop
-your own processor that can call
+<p>Takes a buffer of strings and constructs all the
+<span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frames</a></span> it can from the data. The parser
+builds a "current frame" and updates it with attributes as they are
+parsed from the buffer. It is only safe to invoke this method from a
+single thread as no synchronization is being performed. This will work
+fine with the <span class='object_link'><a href="../../Components/ThreadedProcessor.html" title="OnStomp::Components::ThreadedProcessor (class)">threaded</a></span> processor
+as it performs its calls all within a single thread, but if you wish
+to develop your own processor that can call
 <span class='object_link'><a href="../Base.html#io_process_read-instance_method" title="OnStomp::Connections::Base#io_process_read (method)">Base#io_process_read</a></span> across separate threads, you
-will have to implement your own synchronization strategy.
-</p>
+will have to implement your own synchronization strategy.</p>
 
 
   </div>
@@ -465,12 +436,10 @@ will have to implement your own synchronization strategy.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Called when a frame&#8217;s body has been fully read from the buffer. This
-method will set the frame&#8217;s <span class='object_link'><a href="../../Components/Frame.html#body-instance_method" title="OnStomp::Components::Frame#body (method)">body</a></span>
-attribute, call <tt>prepare_parsed_frame</tt> with the &#8220;current
-frame&#8221;, and tell the parser to move on to the next state.
-</p>
+    <p>Called when a frame's body has been fully read from the buffer. This
+method will set the frame's <span class='object_link'><a href="../../Components/Frame.html#body-instance_method" title="OnStomp::Components::Frame#body (method)">body</a></span>
+attribute, call +prepare_parsed_frame+ with the "current frame",
+and tell the parser to move on to the next state.</p>
 
 
   </div>
@@ -526,12 +495,10 @@ frame&#8221;, and tell the parser to move on to the next state.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Called when a frame&#8217;s command has been fully read from the buffer.
-This method will create a new &#8220;current frame&#8221;, set its
+    <p>Called when a frame's command has been fully read from the buffer. This
+method will create a new "current frame", set its
 <span class='object_link'><a href="../../Components/Frame.html#command-instance_method" title="OnStomp::Components::Frame#command (method)">command</a></span> attribute, and tell the parser
-to move on to the next state.
-</p>
+to move on to the next state.</p>
 
 
   </div>
@@ -595,13 +562,11 @@ to move on to the next state.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Called when a header line has been fully read from the buffer. This method
-will split the header line into a name/value pair,
-<span class='object_link'><a href="../../Components/FrameHeaders.html#append-instance_method" title="OnStomp::Components::FrameHeaders#append (method)">append</a></span> the header to the
-&#8220;current frame&#8221; and tell the parser to move on to the next
-state
-</p>
+    <p>Called when a header line has been fully read from the buffer. This
+method will split the header line into a name/value pair,
+<span class='object_link'><a href="../../Components/FrameHeaders.html#append-instance_method" title="OnStomp::Components::FrameHeaders#append (method)">append</a></span> the
+header to the "current frame" and tell the parser to move on to the next
+state</p>
 
 
   </div>
@@ -663,11 +628,9 @@ state
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Takes the result of <tt>frame_to_string</tt> and passes it along. Ruby
-1.8.7 treats strings as a collection of bytes, so we don&#8217;t need to do
-any further work.
-</p>
+    <p>Takes the result of +frame_to_string+ and passes it along. Ruby 1.8.7
+treats strings as a collection of bytes, so we don't need to do any
+further work.</p>
 
 
   </div>
@@ -713,10 +676,8 @@ any further work.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-The common elements of serializing a <span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span> as
-a string in STOMP 1.0 and STOMP 1.1 protocols.
-</p>
+    <p>The common elements of serializing a <span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span>
+as a string in STOMP 1.0 and STOMP 1.1 protocols.</p>
 
 
   </div>
@@ -777,9 +738,7 @@ a string in STOMP 1.0 and STOMP 1.1 protocols.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Parses a <span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span> body from the buffer
-</p>
+    <p>Parses a <span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span> body from the buffer</p>
 
 
   </div>
@@ -855,9 +814,7 @@ Parses a <span class='object_link'><a href="../../Components/Frame.html" title="
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Parses a <span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span> command from the buffer
-</p>
+    <p>Parses a <span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span> command from the buffer</p>
 
 
   </div>
@@ -921,9 +878,7 @@ Parses a <span class='object_link'><a href="../../Components/Frame.html" title="
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Parses a <span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span> header line from the buffer
-</p>
+    <p>Parses a <span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span> header line from the buffer</p>
 
 
   </div>
@@ -987,11 +942,9 @@ Parses a <span class='object_link'><a href="../../Components/Frame.html" title="
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Adds the substring <tt>&lt;a href=&quot;http://0...idx&quot;&gt;data&lt;/a&gt;</tt> to the
-parser&#8217;s accumulator, unshifts the remaining data back onto the
-buffer, and calls <tt>meth</tt> with the parser&#8217;s accumulated string.
-</p>
+    <p>Adds the substring +data[0...idx]+ to the parser's accumulator,
+unshifts the remaining data back onto the buffer, and calls +meth+
+with the parser's accumulated string.</p>
 
 
   </div>
@@ -1082,9 +1035,7 @@ buffer, and calls <tt>meth</tt> with the parser&#8217;s accumulated string.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Resets the parser that converts byte strings to <span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frames</a></span>
-</p>
+    <p>Resets the parser that converts byte strings to <span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frames</a></span></p>
 
 
   </div>
@@ -1121,7 +1072,7 @@ Resets the parser that converts byte strings to <span class='object_link'><a hre
 </div>
     
     <div id="footer">
-  Generated on Mon Apr  4 14:42:00 2011 by 
+  Generated on Mon Apr  4 16:26:40 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>

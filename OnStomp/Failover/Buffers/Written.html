@@ -81,11 +81,10 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>
-A buffer that ensures frames are at least written to a <span class='object_link'><a href="../../Client.html" title="OnStomp::Client (class)">client</a></span>&#8217;s <span class='object_link'><a href="../../Connections/Base.html" title="OnStomp::Connections::Base (class)">connection</a></span> and replays the
-ones that were not when the <span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client
-reconnects.
-</p>
+    <p>A buffer that ensures frames are at least written to a
+<span class='object_link'><a href="../../Client.html" title="OnStomp::Client (class)">client</a></span>'s <span class='object_link'><a href="../../Connections/Base.html" title="OnStomp::Connections::Base (class)">connection</a></span> and
+replays the ones that were not when the
+<span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client reconnects.</p>
 
 
   </div>
@@ -119,10 +118,8 @@ reconnects.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Adds a frame to a buffer so that it may be replayed if the
-<span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client re-connects.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Adds a frame to a buffer so that it may be replayed if the
+<span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client re-connects.</p>
 </div></span>
   
 </li>
@@ -144,10 +141,8 @@ Adds a frame to a buffer so that it may be replayed if the
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Records the start of a transaction so that it may be replayed if the
-<span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client re-connects.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Records the start of a transaction so that it may be replayed if the
+<span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client re-connects.</p>
 </div></span>
   
 </li>
@@ -169,11 +164,9 @@ Records the start of a transaction so that it may be replayed if the
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Removes a frame that is not part of a transaction from the buffer after it
-has been written the broker socket so that it will not be replayed when the
-<span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client re-connects.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Removes a frame that is not part of a transaction from the buffer
+after it has been written the broker socket so that it will not be
+replayed when the <span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client re-connects.</p>
 </div></span>
   
 </li>
@@ -195,12 +188,10 @@ has been written the broker socket so that it will not be replayed when the
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Removes the matching SUBSCRIBE frame from the buffer after the UNSUBSCRIBE
-has been added to the connection&#8217;s write buffer so that it will not
-be replayed when the <span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client
-re-connects.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Removes the matching SUBSCRIBE frame from the buffer after the
+UNSUBSCRIBE has been added to the connection's write buffer
+so that it will not be replayed when the
+<span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client re-connects.</p>
 </div></span>
   
 </li>
@@ -222,11 +213,9 @@ re-connects.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Removes the recorded transaction from the buffer after it has been written
-the broker socket so that it will not be replayed when the
-<span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client re-connects.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Removes the recorded transaction from the buffer after it has been
+written the broker socket so that it will not be replayed when the
+<span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client re-connects.</p>
 </div></span>
   
 </li>
@@ -250,9 +239,7 @@ the broker socket so that it will not be replayed when the
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-A new instance of Written.
-</p>
+    <span class="summary_desc"><div class='inline'><p>A new instance of Written.</p>
 </div></span>
   
 </li>
@@ -274,10 +261,8 @@ A new instance of Written.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Called when the <span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client triggers
-<tt>on_failover_connected</tt> to start replaying any frames in the buffer.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Called when the <span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client triggers
++on_failover_connected+ to start replaying any frames in the buffer.</p>
 </div></span>
   
 </li>
@@ -298,9 +283,7 @@ Called when the <span class='object_link'><a href="../Client.html" title="OnStom
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-A new instance of Written
-</p>
+    <p>A new instance of Written</p>
 
 
   </div>
@@ -384,10 +367,8 @@ A new instance of Written
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Adds a frame to a buffer so that it may be replayed if the
-<span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client re-connects
-</p>
+    <p>Adds a frame to a buffer so that it may be replayed if the
+<span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client re-connects</p>
 
 
   </div>
@@ -432,10 +413,8 @@ Adds a frame to a buffer so that it may be replayed if the
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Records the start of a transaction so that it may be replayed if the
-<span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client re-connects
-</p>
+    <p>Records the start of a transaction so that it may be replayed if the
+<span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client re-connects</p>
 
 
   </div>
@@ -474,11 +453,9 @@ Records the start of a transaction so that it may be replayed if the
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Removes a frame that is not part of a transaction from the buffer after it
-has been written the broker socket so that it will not be replayed when the
-<span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client re-connects
-</p>
+    <p>Removes a frame that is not part of a transaction from the buffer
+after it has been written the broker socket so that it will not be
+replayed when the <span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client re-connects</p>
 
 
   </div>
@@ -519,12 +496,10 @@ has been written the broker socket so that it will not be replayed when the
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Removes the matching SUBSCRIBE frame from the buffer after the UNSUBSCRIBE
-has been added to the connection&#8217;s write buffer so that it will not
-be replayed when the <span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client
-re-connects
-</p>
+    <p>Removes the matching SUBSCRIBE frame from the buffer after the
+UNSUBSCRIBE has been added to the connection's write buffer
+so that it will not be replayed when the
+<span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client re-connects</p>
 
 
   </div>
@@ -565,11 +540,9 @@ re-connects
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Removes the recorded transaction from the buffer after it has been written
-the broker socket so that it will not be replayed when the
-<span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client re-connects
-</p>
+    <p>Removes the recorded transaction from the buffer after it has been
+written the broker socket so that it will not be replayed when the
+<span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client re-connects</p>
 
 
   </div>
@@ -616,10 +589,8 @@ the broker socket so that it will not be replayed when the
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Called when the <span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client triggers
-<tt>on_failover_connected</tt> to start replaying any frames in the buffer.
-</p>
+    <p>Called when the <span class='object_link'><a href="../Client.html" title="OnStomp::Failover::Client (class)">failover</a></span> client triggers
++on_failover_connected+ to start replaying any frames in the buffer.</p>
 
 
   </div>
@@ -664,7 +635,7 @@ Called when the <span class='object_link'><a href="../Client.html" title="OnStom
 </div>
     
     <div id="footer">
-  Generated on Mon Apr  4 14:42:00 2011 by 
+  Generated on Mon Apr  4 16:26:39 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>

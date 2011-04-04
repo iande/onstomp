@@ -81,9 +81,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>
-A generic encapsulation of a frame as specified by the Stomp protocol.
-</p>
+    <p>A generic encapsulation of a frame as specified by the Stomp protocol.</p>
 
 
   </div>
@@ -98,24 +96,11 @@ A generic encapsulation of a frame as specified by the Stomp protocol.
         <dt id="CONTENT_TYPE_REG-constant" class="">CONTENT_TYPE_REG =
           <div class="docstring">
   <div class="discussion">
-    <p>
-Regex to match content-type header value. Eg: given &#8220;text/plain;
-&#8230; ;charset=ISO-8859-1 &#8230;&#8221;, then
-</p>
-<ul>
-<li><p>
-$1 => type    (&#8216;text&#8217;)
-</p>
-</li>
-<li><p>
-$2 => subtype (&#8216;plain&#8217;)
-</p>
-</li>
-<li><p>
-$3 => charset (&#8216;ISO-8859-1&#8217;)
-</p>
-</li>
-</ul>
+    <p>Regex to match content-type header value.
+Eg: given "text/plain; ... ;charset=ISO-8859-1 ...", then
+* $1 => type    ('text')
+* $2 => subtype ('plain')
+* $3 => charset ('ISO-8859-1')</p>
 
 
   </div>
@@ -152,9 +137,7 @@ $3 => charset (&#8216;ISO-8859-1&#8217;)
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns the value of attribute body.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute body.</p>
 </div></span>
   
 </li>
@@ -179,9 +162,7 @@ Returns the value of attribute body.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns the value of attribute command.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute command.</p>
 </div></span>
   
 </li>
@@ -206,9 +187,7 @@ Returns the value of attribute command.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns the value of attribute headers.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute headers.</p>
 </div></span>
   
 </li>
@@ -241,9 +220,7 @@ Returns the value of attribute headers.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Gets the header value paired with the supplied name.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Gets the header value paired with the supplied name.</p>
 </div></span>
   
 </li>
@@ -265,9 +242,7 @@ Gets the header value paired with the supplied name.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Sets the header value paired with the supplied name.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Sets the header value paired with the supplied name.</p>
 </div></span>
   
 </li>
@@ -291,10 +266,8 @@ Sets the header value paired with the supplied name.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns true if all given header names exist and none of their values are
-empty strings.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns true if all given header names exist and none of their values are
+empty strings.</p>
 </div></span>
   
 </li>
@@ -316,9 +289,7 @@ empty strings.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns the byte-length of this frame&#8217;s body.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the byte-length of this frame's body.</p>
 </div></span>
   
 </li>
@@ -340,10 +311,8 @@ Returns the byte-length of this frame&#8217;s body.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-If a <tt>content-length</tt> header is set, returns it after converting it
-to an integer.
-</p>
+    <span class="summary_desc"><div class='inline'><p>If a +content-length+ header is set, returns it after converting it to
+an integer.</p>
 </div></span>
   
 </li>
@@ -365,10 +334,8 @@ to an integer.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-If a <tt>content-type</tt> header is set, splits it into three parts: type,
-subtype and charset.
-</p>
+    <span class="summary_desc"><div class='inline'><p>If a +content-type+ header is set, splits it into three parts: type,
+subtype and charset.</p>
 </div></span>
   
 </li>
@@ -390,10 +357,8 @@ subtype and charset.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Sets this frame&#8217;s <tt>content-length</tt> header to match the
-byte-length of its body, if the body has been set.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Sets this frame's +content-length+ header to match the byte-length of
+its body, if the body has been set.</p>
 </div></span>
   
 </li>
@@ -415,10 +380,8 @@ byte-length of its body, if the body has been set.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns true if the given header name exists and its value is not an empty
-string.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns true if the given header name exists and its value is not an
+empty string.</p>
 </div></span>
   
 </li>
@@ -440,10 +403,7 @@ string.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns the heart-beat configuration specified in this frame&#8217;s
-headers.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the heart-beat configuration specified in this frame's headers.</p>
 </div></span>
   
 </li>
@@ -467,9 +427,7 @@ headers.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Creates a new frame.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Creates a new frame.</p>
 </div></span>
   
 </li>
@@ -490,12 +448,9 @@ Creates a new frame.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Creates a new frame. The frame will be initialized with the optional
-<tt>command</tt> name, a <span class='object_link'><a href="FrameHeaders.html" title="OnStomp::Components::FrameHeaders (class)">headers</a></span>
-collection initialized with the optional <tt>headers</tt> hash, and an
-optional body.
-</p>
+    <p>Creates a new frame. The frame will be initialized with the optional
++command+ name, a <span class='object_link'><a href="FrameHeaders.html" title="OnStomp::Components::FrameHeaders (class)">headers</a></span> collection initialized
+with the optional +headers+ hash, and an optional body.</p>
 
 
   </div>
@@ -544,9 +499,7 @@ optional body.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns the value of attribute body
-</p>
+    <p>Returns the value of attribute body</p>
 
 
   </div>
@@ -586,9 +539,7 @@ Returns the value of attribute body
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns the value of attribute command
-</p>
+    <p>Returns the value of attribute command</p>
 
 
   </div>
@@ -628,9 +579,7 @@ Returns the value of attribute command
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns the value of attribute headers
-</p>
+    <p>Returns the value of attribute headers</p>
 
 
   </div>
@@ -674,10 +623,8 @@ Returns the value of attribute headers
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Gets the header value paired with the supplied name.  This is a convenient
-shortcut for `frame.headers[name]`.
-</p>
+    <p>Gets the header value paired with the supplied name.  This is a convenient
+shortcut for <code>frame.headers[name]</code>.</p>
 
 
   </div>
@@ -687,7 +634,8 @@ shortcut for `frame.headers[name]`.
   <div class="examples">
     <h3>Examples:</h3>
     
-      <h4><div class='inline'></div></h4>
+      <h4><div class='inline'>
+</div></h4>
       <pre class="example code"><span class='id frame'>frame</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>content-type</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='comment'>#=&gt; 'text/plain'</span></pre>
     
   </div>
@@ -704,9 +652,7 @@ shortcut for `frame.headers[name]`.
       
       
         &mdash;
-        <div class='inline'><p>
-the header name associated with the desired value
-</p>
+        <div class='inline'><p>the header name associated with the desired value</p>
 </div>
       
     </li>
@@ -723,9 +669,7 @@ the header name associated with the desired value
       
       
         &mdash;
-        <div class='inline'><p>
-the value associated with the requested header name
-</p>
+        <div class='inline'><p>the value associated with the requested header name</p>
 </div>
       
     </li>
@@ -765,10 +709,8 @@ the value associated with the requested header name
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Sets the header value paired with the supplied name.  This is a convenient
-shortcut for `frame.headers[name] = val`.
-</p>
+    <p>Sets the header value paired with the supplied name.  This is a convenient
+shortcut for <code>frame.headers[name] = val</code>.</p>
 
 
   </div>
@@ -778,7 +720,8 @@ shortcut for `frame.headers[name] = val`.
   <div class="examples">
     <h3>Examples:</h3>
     
-      <h4><div class='inline'></div></h4>
+      <h4><div class='inline'>
+</div></h4>
       <pre class="example code"><span class='id frame'>frame</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>content-type</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>text/plain</span><span class='tstring_end'>'</span></span> <span class='comment'>#=&gt; 'text/plain'
 </span><span class='id frame'>frame</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>other header</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='int'>42</span> <span class='comment'>#=&gt; '42'</span></pre>
     
@@ -796,9 +739,7 @@ shortcut for `frame.headers[name] = val`.
       
       
         &mdash;
-        <div class='inline'><p>
-the header name to associate with the supplied value
-</p>
+        <div class='inline'><p>the header name to associate with the supplied value</p>
 </div>
       
     </li>
@@ -813,9 +754,7 @@ the header name to associate with the supplied value
       
       
         &mdash;
-        <div class='inline'><p>
-the value to associate with the supplied header name
-</p>
+        <div class='inline'><p>the value to associate with the supplied header name</p>
 </div>
       
     </li>
@@ -832,10 +771,7 @@ the value to associate with the supplied header name
       
       
         &mdash;
-        <div class='inline'><p>
-the supplied value as a string, or `nil` if `nil` was supplied as the
-value.
-</p>
+        <div class='inline'><p>the supplied value as a string, or <code>nil</code> if <code>nil</code> was supplied as the value.</p>
 </div>
       
     </li>
@@ -879,10 +815,8 @@ value.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns true if all given header names exist and none of their values are
-empty strings.
-</p>
+    <p>Returns true if all given header names exist and none of their values are
+empty strings.</p>
 
 
   </div>
@@ -932,9 +866,7 @@ empty strings.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns the byte-length of this frame&#8217;s body
-</p>
+    <p>Returns the byte-length of this frame's body</p>
 
 
   </div>
@@ -980,10 +912,8 @@ Returns the byte-length of this frame&#8217;s body
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-If a <tt>content-length</tt> header is set, returns it after converting it
-to an integer.
-</p>
+    <p>If a +content-length+ header is set, returns it after converting it to
+an integer.</p>
 
 
   </div>
@@ -1033,14 +963,11 @@ to an integer.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-If a <tt>content-type</tt> header is set, splits it into three parts: type,
-subtype and charset. If any component of the <tt>content-type</tt> is
-missing, its value will be <tt>nil</tt> in the returned triple. If the
-<tt>content-type</tt> header is not set or does not match
-<span class='object_link'><a href="#CONTENT_TYPE_REG-constant" title="OnStomp::Components::Frame::CONTENT_TYPE_REG (constant)">CONTENT_TYPE_REG</a></span> all values in the triple
-will be <tt>nil</tt>.
-</p>
+    <p>If a +content-type+ header is set, splits it into three parts: type,
+subtype and charset. If any component of the +content-type+ is missing,
+its value will be +nil+ in the returned triple. If the +content-type+
+header is not set or does not match <span class='object_link'><a href="#CONTENT_TYPE_REG-constant" title="OnStomp::Components::Frame::CONTENT_TYPE_REG (constant)">CONTENT_TYPE_REG</a></span>
+all values in the triple will be +nil+.</p>
 
 
   </div>
@@ -1090,10 +1017,8 @@ will be <tt>nil</tt>.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Sets this frame&#8217;s <tt>content-length</tt> header to match the
-byte-length of its body, if the body has been set.
-</p>
+    <p>Sets this frame's +content-length+ header to match the byte-length of
+its body, if the body has been set.</p>
 
 
   </div>
@@ -1143,10 +1068,8 @@ byte-length of its body, if the body has been set.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns true if the given header name exists and its value is not an empty
-string.
-</p>
+    <p>Returns true if the given header name exists and its value is not an
+empty string.</p>
 
 
   </div>
@@ -1218,12 +1141,10 @@ string.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns the heart-beat configuration specified in this frame&#8217;s
-headers. If a <tt>heart-beat</tt> header is not set, [0, 0] will be
-returned. Otherwise, the header value will be split on &#8217;,&#8217; and
-each component will be converted to a non-negative integer.
-</p>
+    <p>Returns the heart-beat configuration specified in this frame's headers.
+If a +heart-beat+ header is not set, [0, 0] will be returned. Otherwise,
+the header value will be split on ',' and each component will be converted
+to a non-negative integer.</p>
 
 
   </div>
@@ -1240,9 +1161,8 @@ each component will be converted to a non-negative integer.
       
       
         &mdash;
-        <div class='inline'><p>
-pair of non-negative integers that specify connection heart-beat settings
-</p>
+        <div class='inline'><p>pair of non-negative integers that specify
+connection heart-beat settings</p>
 </div>
       
     </li>
@@ -1281,7 +1201,7 @@ pair of non-negative integers that specify connection heart-beat settings
 </div>
     
     <div id="footer">
-  Generated on Mon Apr  4 14:41:58 2011 by 
+  Generated on Mon Apr  4 16:26:38 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>

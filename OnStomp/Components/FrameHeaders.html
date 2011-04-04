@@ -85,13 +85,11 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>
-A specialized container for storing header name / value pairs for a
-<span class='object_link'><a href="Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span>.  This container behaves much like a
-<tt>Hash</tt>, but is specialized for the Stomp protocol.  Header names are
-always converted into <tt>String</tt>s through the use of <tt>to_s</tt> and may
-have more than one value associated with them.
-</p>
+    <p>A specialized container for storing header name / value pairs for a
+<span class='object_link'><a href="Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span>.  This container behaves much like a +Hash+, but
+is specialized for the Stomp protocol.  Header names are always converted
+into +String+s through the use of +to_s+ and may have more than one value
+associated with them.</p>
 
 
   </div>
@@ -123,9 +121,7 @@ have more than one value associated with them.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns the value of attribute names.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute names.</p>
 </div></span>
   
 </li>
@@ -158,9 +154,7 @@ Returns the value of attribute names.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Gets the principle header value paired with the supplied header name.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Gets the principle header value paired with the supplied header name.</p>
 </div></span>
   
 </li>
@@ -182,9 +176,7 @@ Gets the principle header value paired with the supplied header name.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Sets the header value paired with the supplied header name.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Sets the header value paired with the supplied header name.</p>
 </div></span>
   
 </li>
@@ -206,9 +198,7 @@ Sets the header value paired with the supplied header name.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Retrieves all header values associated with the supplied header name.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves all header values associated with the supplied header name.</p>
 </div></span>
   
 </li>
@@ -230,9 +220,7 @@ Retrieves all header values associated with the supplied header name.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Appends a header value to the specified header name.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Appends a header value to the specified header name.</p>
 </div></span>
   
 </li>
@@ -254,10 +242,8 @@ Appends a header value to the specified header name.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Deletes all of the header values associated with the header name and
-removes the header name itself.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Deletes all of the header values associated with the header name and
+removes the header name itself.</p>
 </div></span>
   
 </li>
@@ -279,10 +265,8 @@ removes the header name itself.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Iterates over header name / value pairs, yielding them as a pair of strings
-to the supplied block.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Iterates over header name / value pairs, yielding them as a pair
+of strings to the supplied block.</p>
 </div></span>
   
 </li>
@@ -306,10 +290,8 @@ to the supplied block.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Creates a new headers collection, initialized with the optional hash
-parameter.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Creates a new headers collection, initialized with the optional hash
+parameter.</p>
 </div></span>
   
 </li>
@@ -331,9 +313,7 @@ parameter.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Merges a hash into this collection of headers.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Merges a hash into this collection of headers.</p>
 </div></span>
   
 </li>
@@ -355,10 +335,8 @@ Merges a hash into this collection of headers.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns true if a header value has been set for the supplied header, and
-the value is neither <tt>nil</tt> nor an empty string.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns true if a header value has been set for the supplied header, and
+the value is neither +nil+ nor an empty string.</p>
 </div></span>
   
 </li>
@@ -380,9 +358,7 @@ the value is neither <tt>nil</tt> nor an empty string.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Reverse merges a hash into this collection of headers.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Reverse merges a hash into this collection of headers.</p>
 </div></span>
   
 </li>
@@ -404,9 +380,7 @@ Reverse merges a hash into this collection of headers.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns true if a header value has been set for the supplied header name.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns true if a header value has been set for the supplied header name.</p>
 </div></span>
   
 </li>
@@ -428,10 +402,8 @@ Returns true if a header value has been set for the supplied header name.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns a new <tt>Hash</tt> object associating symbolized header names and
-their principle values.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns a new +Hash+ object associating symbolized header names and their
+principle values.</p>
 </div></span>
   
 </li>
@@ -453,10 +425,8 @@ their principle values.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Creates a new headers collection, initialized with the optional hash
-parameter.
-</p>
+    <p>Creates a new headers collection, initialized with the optional hash
+parameter.</p>
 
 
   </div>
@@ -529,9 +499,7 @@ parameter.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns the value of attribute names
-</p>
+    <p>Returns the value of attribute names</p>
 
 
   </div>
@@ -571,12 +539,10 @@ Returns the value of attribute names
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Gets the principle header value paired with the supplied header name. The
-name will be converted to a Symbol, so must respond to the <tt>to_sym</tt>
-method.  The Stomp 1.1 protocol specifies that in the event of a repeated
-header name, the first value encountered serves as the principle value.
-</p>
+    <p>Gets the principle header value paired with the supplied header name. The name will
+be converted to a Symbol, so must respond to the +to_sym+ method.  The
+Stomp 1.1 protocol specifies that in the event of a repeated header name,
+the first value encountered serves as the principle value.</p>
 
 
   </div>
@@ -586,7 +552,8 @@ header name, the first value encountered serves as the principle value.
   <div class="examples">
     <h3>Examples:</h3>
     
-      <h4><div class='inline'></div></h4>
+      <h4><div class='inline'>
+</div></h4>
       <pre class="example code"><span class='id headers'>headers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>content-type</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='comment'>#=&gt; 'text/plain'</span></pre>
     
   </div>
@@ -603,10 +570,7 @@ header name, the first value encountered serves as the principle value.
       
       
         &mdash;
-        <div class='inline'><p>
-the header name paired with the desired value (will be converted using
-<tt>to_sym</tt>)
-</p>
+        <div class='inline'><p>the header name paired with the desired value (will be converted using +to_sym+)</p>
 </div>
       
     </li>
@@ -623,9 +587,7 @@ the header name paired with the desired value (will be converted using
       
       
         &mdash;
-        <div class='inline'><p>
-the value associated with the requested header name
-</p>
+        <div class='inline'><p>the value associated with the requested header name</p>
 </div>
       
     </li>
@@ -638,9 +600,7 @@ the value associated with the requested header name
       
       
         &mdash;
-        <div class='inline'><p>
-if no value has been set for the associated header name
-</p>
+        <div class='inline'><p>if no value has been set for the associated header name</p>
 </div>
       
     </li>
@@ -679,13 +639,10 @@ if no value has been set for the associated header name
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Sets the header value paired with the supplied header name.  The name  will
-be converted to a Symbol and must respond to <tt>to_sym</tt>; meanwhile,
-the value will be converted to a String so must respond to <tt>to_s</tt>.
-Setting a header value in this fashion will overwrite any repeated header
-values.
-</p>
+    <p>Sets the header value paired with the supplied header name.  The name
+will be converted to a Symbol and must respond to +to_sym+; meanwhile,
+the value will be converted to a String so must respond to +to_s+.
+Setting a header value in this fashion will overwrite any repeated header values.</p>
 
 
   </div>
@@ -695,7 +652,8 @@ values.
   <div class="examples">
     <h3>Examples:</h3>
     
-      <h4><div class='inline'></div></h4>
+      <h4><div class='inline'>
+</div></h4>
       <pre class="example code"><span class='id headers'>headers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>content-type</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>image/png</span><span class='tstring_end'>'</span></span> <span class='comment'>#=&gt; 'image/png'
 </span><span class='id headers'>headers</span><span class='lbracket'>[</span><span class='symbol'>:content-type</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>nil</span> <span class='comment'>#=&gt; ''
 </span><span class='id headers'>headers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>content-type</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='comment'>#=&gt; ''</span></pre>
@@ -714,10 +672,7 @@ values.
       
       
         &mdash;
-        <div class='inline'><p>
-the header name to associate with the supplied value (will be converted
-using <tt>to_sym</tt>)
-</p>
+        <div class='inline'><p>the header name to associate with the supplied value (will be converted using +to_sym+)</p>
 </div>
       
     </li>
@@ -732,10 +687,7 @@ using <tt>to_sym</tt>)
       
       
         &mdash;
-        <div class='inline'><p>
-the value to pair with the supplied name (will be converted using
-<tt>to_s</tt>)
-</p>
+        <div class='inline'><p>the value to pair with the supplied name (will be converted using +to_s+)</p>
 </div>
       
     </li>
@@ -752,9 +704,7 @@ the value to pair with the supplied name (will be converted using
       
       
         &mdash;
-        <div class='inline'><p>
-the supplied value as a string.
-</p>
+        <div class='inline'><p>the supplied value as a string.</p>
 </div>
       
     </li>
@@ -799,13 +749,12 @@ the supplied value as a string.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Retrieves all header values associated with the supplied header name. In
-general, this will be an array containing only the principle header value;
-however, in the event a frame contained repeated header names, this method
-will return all of the associated values.  The first element of the array
-will be the principle value of the supplied header name.
-</p>
+    <p>Retrieves all header values associated with the supplied header name.
+In general, this will be an array containing only the principle header
+value; however, in the event a frame contained repeated header names,
+this method will return all of the associated values.  The first
+element of the array will be the principle value of the supplied
+header name.</p>
 
 
   </div>
@@ -815,7 +764,8 @@ will be the principle value of the supplied header name.
   <div class="examples">
     <h3>Examples:</h3>
     
-      <h4><div class='inline'></div></h4>
+      <h4><div class='inline'>
+</div></h4>
       <pre class="example code"><span class='id headers'>headers</span><span class='period'>.</span><span class='id all_values'>all_values</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>content-type</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; [ 'text/plain' ]
 </span><span class='id headers'>headers</span><span class='period'>.</span><span class='id all_values'>all_values</span><span class='lparen'>(</span><span class='symbol'>:repeated_header</span><span class='rparen'>)</span> <span class='comment'>#=&gt; [ 'principle value', '13', 'other value']
 </span><span class='id headers'>headers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>name</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id headers'>headers</span><span class='period'>.</span><span class='id all_values'>all_values</span><span class='lparen'>(</span><span class='symbol'>:name</span><span class='rparen'>)</span><span class='period'>.</span><span class='id first'>first</span> <span class='comment'>#=&gt; true</span></pre>
@@ -834,10 +784,7 @@ will be the principle value of the supplied header name.
       
       
         &mdash;
-        <div class='inline'><p>
-the header name associated with the desired values (will be converted using
-<tt>to_sym</tt>)
-</p>
+        <div class='inline'><p>the header name associated with the desired values (will be converted using +to_sym+)</p>
 </div>
       
     </li>
@@ -854,9 +801,7 @@ the header name associated with the desired values (will be converted using
       
       
         &mdash;
-        <div class='inline'><p>
-the array of values associated with the header name.
-</p>
+        <div class='inline'><p>the array of values associated with the header name.</p>
 </div>
       
     </li>
@@ -893,12 +838,10 @@ the array of values associated with the header name.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Appends a header value to the specified header name.  If the specified
-header name is not known, the supplied value will also become the principle
-value.  This method is used internally when constructing frames sent by the
-broker to capture repeated header names.
-</p>
+    <p>Appends a header value to the specified header name.  If the specified
+header name is not known, the supplied value will also become the
+principle value.  This method is used internally when constructing
+frames sent by the broker to capture repeated header names.</p>
 
 
   </div>
@@ -908,7 +851,8 @@ broker to capture repeated header names.
   <div class="examples">
     <h3>Examples:</h3>
     
-      <h4><div class='inline'></div></h4>
+      <h4><div class='inline'>
+</div></h4>
       <pre class="example code"><span class='id headers'>headers</span><span class='period'>.</span><span class='id append'>append</span><span class='lparen'>(</span><span class='symbol'>:new header</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>first value</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; 'first value'
 </span><span class='id headers'>headers</span><span class='period'>.</span><span class='id append'>append</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>new header</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span> <span class='comment'>#=&gt; ''
 </span><span class='id headers'>headers</span><span class='period'>.</span><span class='id append'>append</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>new header</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='int'>13</span><span class='rparen'>)</span> <span class='comment'>#=&gt; '13'
@@ -929,10 +873,7 @@ broker to capture repeated header names.
       
       
         &mdash;
-        <div class='inline'><p>
-the header name to associate with the supplied value (will be converted
-using <tt>to_s</tt>)
-</p>
+        <div class='inline'><p>the header name to associate with the supplied value (will be converted using +to_s+)</p>
 </div>
       
     </li>
@@ -947,10 +888,7 @@ using <tt>to_s</tt>)
       
       
         &mdash;
-        <div class='inline'><p>
-the header value to associate with the supplied name (will be converted
-using <tt>to_s</tt>)
-</p>
+        <div class='inline'><p>the header value to associate with the supplied name (will be converted using +to_s+)</p>
 </div>
       
     </li>
@@ -967,9 +905,7 @@ using <tt>to_s</tt>)
       
       
         &mdash;
-        <div class='inline'><p>
-the supplied value as a string.
-</p>
+        <div class='inline'><p>the supplied value as a string.</p>
 </div>
       
     </li>
@@ -1020,11 +956,9 @@ the supplied value as a string.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Deletes all of the header values associated with the header name and
-removes the header name itself.  This is analogous to the <tt>delete</tt>
-method found in Hash objects.
-</p>
+    <p>Deletes all of the header values associated with the header name and
+removes the header name itself.  This is analogous to the +delete+
+method found in Hash objects.</p>
 
 
   </div>
@@ -1034,7 +968,8 @@ method found in Hash objects.
   <div class="examples">
     <h3>Examples:</h3>
     
-      <h4><div class='inline'></div></h4>
+      <h4><div class='inline'>
+</div></h4>
       <pre class="example code"><span class='id headers'>headers</span><span class='period'>.</span><span class='id delete'>delete</span><span class='lparen'>(</span><span class='symbol'>:content-type</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; [ 'text/html' ]
 </span><span class='id headers'>headers</span><span class='period'>.</span><span class='id delete'>delete</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>no such header</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; nil</span></pre>
     
@@ -1052,10 +987,7 @@ method found in Hash objects.
       
       
         &mdash;
-        <div class='inline'><p>
-the header name to remove from this collection (will be converted using
-<tt>to_sym</tt>)
-</p>
+        <div class='inline'><p>the header name to remove from this collection (will be converted using +to_sym+)</p>
 </div>
       
     </li>
@@ -1072,10 +1004,7 @@ the header name to remove from this collection (will be converted using
       
       
         &mdash;
-        <div class='inline'><p>
-the array of values associated with the deleted header, or <tt>nil</tt> if
-the header name did not exist
-</p>
+        <div class='inline'><p>the array of values associated with the deleted header, or +nil+ if the header name did not exist</p>
 </div>
       
     </li>
@@ -1120,10 +1049,8 @@ the header name did not exist
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Iterates over header name / value pairs, yielding them as a pair of strings
-to the supplied block.
-</p>
+    <p>Iterates over header name / value pairs, yielding them as a pair
+of strings to the supplied block.</p>
 
 
   </div>
@@ -1212,16 +1139,12 @@ to the supplied block.
     
   <div class="note notetag">
     <strong>Note:</strong> 
-    <div class='inline'><p>
-With Ruby 1.8.7, the order of hash keys may not be preserved
-</p>
+    <div class='inline'><p>With Ruby 1.8.7, the order of hash keys may not be preserved</p>
 </div>
   </div>
 
-<p>
-Merges a hash into this collection of headers. All of the keys used in the
-hash must be convertable to Symbols through <tt>to_sym</tt>.
-</p>
+<p>Merges a hash into this collection of headers. All of the keys used
+in the hash must be convertable to Symbols through +to_sym+.</p>
 
 
   </div>
@@ -1273,10 +1196,8 @@ hash must be convertable to Symbols through <tt>to_sym</tt>.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns true if a header value has been set for the supplied header, and
-the value is neither <tt>nil</tt> nor an empty string.
-</p>
+    <p>Returns true if a header value has been set for the supplied header, and
+the value is neither +nil+ nor an empty string.</p>
 
 
   </div>
@@ -1286,7 +1207,8 @@ the value is neither <tt>nil</tt> nor an empty string.
   <div class="examples">
     <h3>Examples:</h3>
     
-      <h4><div class='inline'></div></h4>
+      <h4><div class='inline'>
+</div></h4>
       <pre class="example code"><span class='id header'>header</span><span class='lbracket'>[</span><span class='symbol'>:test1</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>set</span><span class='tstring_end'>'</span></span>
 <span class='id header'>header</span><span class='lbracket'>[</span><span class='symbol'>:test2</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span>
 <span class='id header'>header</span><span class='period'>.</span><span class='id present?'>present?</span> <span class='symbol'>:test1</span> <span class='comment'>#=&gt; true
@@ -1306,9 +1228,7 @@ the value is neither <tt>nil</tt> nor an empty string.
       
       
         &mdash;
-        <div class='inline'><p>
-the header name to test
-</p>
+        <div class='inline'><p>the header name to test</p>
 </div>
       
     </li>
@@ -1363,18 +1283,14 @@ the header name to test
     
   <div class="note notetag">
     <strong>Note:</strong> 
-    <div class='inline'><p>
-With Ruby 1.8.7, the order of hash keys may not be preserved
-</p>
+    <div class='inline'><p>With Ruby 1.8.7, the order of hash keys may not be preserved</p>
 </div>
   </div>
 
-<p>
-Reverse merges a hash into this collection of headers. The hash keys and
-values are included only if the headers collection does not already have a
-matching key. All of the keys used in the hash must be convertable to
-Symbols through <tt>to_sym</tt>.
-</p>
+<p>Reverse merges a hash into this collection of headers. The hash keys and
+values are included only if the headers collection does not already have
+a matching key. All of the keys used
+in the hash must be convertable to Symbols through +to_sym+.</p>
 
 
   </div>
@@ -1430,9 +1346,7 @@ Symbols through <tt>to_sym</tt>.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns true if a header value has been set for the supplied header name.
-</p>
+    <p>Returns true if a header value has been set for the supplied header name.</p>
 
 
   </div>
@@ -1442,7 +1356,8 @@ Returns true if a header value has been set for the supplied header name.
   <div class="examples">
     <h3>Examples:</h3>
     
-      <h4><div class='inline'></div></h4>
+      <h4><div class='inline'>
+</div></h4>
       <pre class="example code"><span class='id header'>header</span><span class='period'>.</span><span class='id set?'>set?</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>content-type</span><span class='tstring_end'>'</span></span> <span class='comment'>#=&gt; true</span></pre>
     
   </div>
@@ -1459,9 +1374,7 @@ Returns true if a header value has been set for the supplied header name.
       
       
         &mdash;
-        <div class='inline'><p>
-the header name to test
-</p>
+        <div class='inline'><p>the header name to test</p>
 </div>
       
     </li>
@@ -1511,10 +1424,8 @@ the header name to test
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns a new <tt>Hash</tt> object associating symbolized header names and
-their principle values.
-</p>
+    <p>Returns a new +Hash+ object associating symbolized header names and their
+principle values.</p>
 
 
   </div>
@@ -1560,7 +1471,7 @@ their principle values.
 </div>
     
     <div id="footer">
-  Generated on Mon Apr  4 14:42:00 2011 by 
+  Generated on Mon Apr  4 16:26:39 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>

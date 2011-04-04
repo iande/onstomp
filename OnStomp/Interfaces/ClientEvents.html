@@ -74,32 +74,13 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>
-Mixin for <span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">client</a></span> events There are a few special event
-methods that will be passed on to the client&#8217;s connection, they are:
-</p>
-<ul>
-<li><p>
-<tt>on_connection_established</tt> =>
-<span class='object_link'><a href="ConnectionEvents.html#on_established-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_established (method)">OnStomp::Interfaces::ConnectionEvents#on_established</a></span>
-</p>
-</li>
-<li><p>
-<tt>on_connection_died</tt> =>
-<span class='object_link'><a href="ConnectionEvents.html#on_died-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_died (method)">OnStomp::Interfaces::ConnectionEvents#on_died</a></span>
-</p>
-</li>
-<li><p>
-<tt>on_connection_terminated</tt> =>
-<span class='object_link'><a href="ConnectionEvents.html#on_terminated-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_terminated (method)">OnStomp::Interfaces::ConnectionEvents#on_terminated</a></span>
-</p>
-</li>
-<li><p>
-<tt>on_connection_closed</tt> =>
-<span class='object_link'><a href="ConnectionEvents.html#on_closed-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_closed (method)">OnStomp::Interfaces::ConnectionEvents#on_closed</a></span>
-</p>
-</li>
-</ul>
+    <p>Mixin for <span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">client</a></span> events
+There are a few special event methods that will be passed on
+to the client's connection, they are:
+* +on_connection_established+ => <span class='object_link'><a href="ConnectionEvents.html#on_established-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_established (method)">OnStomp::Interfaces::ConnectionEvents#on_established</a></span>
+* +on_connection_died+ => <span class='object_link'><a href="ConnectionEvents.html#on_died-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_died (method)">OnStomp::Interfaces::ConnectionEvents#on_died</a></span>
+* +on_connection_terminated+ => <span class='object_link'><a href="ConnectionEvents.html#on_terminated-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_terminated (method)">OnStomp::Interfaces::ConnectionEvents#on_terminated</a></span>
+* +on_connection_closed+ => <span class='object_link'><a href="ConnectionEvents.html#on_closed-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_closed (method)">OnStomp::Interfaces::ConnectionEvents#on_closed</a></span></p>
 
 
   </div>
@@ -137,9 +118,7 @@ methods that will be passed on to the client&#8217;s connection, they are:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when an ABORT frame is transmitted.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when an ABORT frame is transmitted.</p>
 </div></span>
   
 </li>
@@ -161,9 +140,7 @@ Binds a callback to be invoked when an ABORT frame is transmitted.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when an ACK frame is transmitted.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when an ACK frame is transmitted.</p>
 </div></span>
   
 </li>
@@ -185,9 +162,7 @@ Binds a callback to be invoked when an ACK frame is transmitted.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when a BEGIN frame is transmitted.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a BEGIN frame is transmitted.</p>
 </div></span>
   
 </li>
@@ -209,9 +184,7 @@ Binds a callback to be invoked when a BEGIN frame is transmitted.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when a client heartbeat is transmitted.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a client heartbeat is transmitted.</p>
 </div></span>
   
 </li>
@@ -233,9 +206,7 @@ Binds a callback to be invoked when a client heartbeat is transmitted.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when a COMMIT frame is transmitted.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a COMMIT frame is transmitted.</p>
 </div></span>
   
 </li>
@@ -257,9 +228,7 @@ Binds a callback to be invoked when a COMMIT frame is transmitted.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when a DISCONNECT frame is transmitted.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a DISCONNECT frame is transmitted.</p>
 </div></span>
   
 </li>
@@ -281,9 +250,7 @@ Binds a callback to be invoked when a DISCONNECT frame is transmitted.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when a NACK frame is transmitted.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a NACK frame is transmitted.</p>
 </div></span>
   
 </li>
@@ -305,9 +272,7 @@ Binds a callback to be invoked when a NACK frame is transmitted.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when a SEND frame is transmitted.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a SEND frame is transmitted.</p>
 </div></span>
   
 </li>
@@ -329,9 +294,7 @@ Binds a callback to be invoked when a SEND frame is transmitted.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when a SUBSCRIBE frame is transmitted.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a SUBSCRIBE frame is transmitted.</p>
 </div></span>
   
 </li>
@@ -353,9 +316,7 @@ Binds a callback to be invoked when a SUBSCRIBE frame is transmitted.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when an UNSUBSCRIBE frame is transmitted.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when an UNSUBSCRIBE frame is transmitted.</p>
 </div></span>
   
 </li>
@@ -377,9 +338,7 @@ Binds a callback to be invoked when an UNSUBSCRIBE frame is transmitted.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when an ABORT frame is transmitted.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when an ABORT frame is transmitted.</p>
 </div></span>
   
 </li>
@@ -401,9 +360,7 @@ Binds a callback to be invoked when an ABORT frame is transmitted.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when an ACK frame is transmitted.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when an ACK frame is transmitted.</p>
 </div></span>
   
 </li>
@@ -425,9 +382,7 @@ Binds a callback to be invoked when an ACK frame is transmitted.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when a BEGIN frame is transmitted.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a BEGIN frame is transmitted.</p>
 </div></span>
   
 </li>
@@ -449,9 +404,7 @@ Binds a callback to be invoked when a BEGIN frame is transmitted.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when a client heartbeat is transmitted.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a client heartbeat is transmitted.</p>
 </div></span>
   
 </li>
@@ -473,9 +426,7 @@ Binds a callback to be invoked when a client heartbeat is transmitted.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when a COMMIT frame is transmitted.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a COMMIT frame is transmitted.</p>
 </div></span>
   
 </li>
@@ -497,10 +448,8 @@ Binds a callback to be invoked when a COMMIT frame is transmitted.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Can&#8217;t get <tt>before</tt> because the CONNECT frame isn&#8217;t
-transmitted by the client.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Can't get +before+ because the CONNECT frame isn't transmitted by
+the client.</p>
 </div></span>
   
 </li>
@@ -522,9 +471,7 @@ transmitted by the client.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when a DISCONNECT frame is transmitted.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a DISCONNECT frame is transmitted.</p>
 </div></span>
   
 </li>
@@ -546,9 +493,7 @@ Binds a callback to be invoked when a DISCONNECT frame is transmitted.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when a NACK frame is transmitted.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a NACK frame is transmitted.</p>
 </div></span>
   
 </li>
@@ -570,9 +515,7 @@ Binds a callback to be invoked when a NACK frame is transmitted.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when a SEND frame is transmitted.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a SEND frame is transmitted.</p>
 </div></span>
   
 </li>
@@ -594,9 +537,7 @@ Binds a callback to be invoked when a SEND frame is transmitted.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when a SUBSCRIBE frame is transmitted.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a SUBSCRIBE frame is transmitted.</p>
 </div></span>
   
 </li>
@@ -618,9 +559,7 @@ Binds a callback to be invoked when a SUBSCRIBE frame is transmitted.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when an UNSUBSCRIBE frame is transmitted.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when an UNSUBSCRIBE frame is transmitted.</p>
 </div></span>
   
 </li>
@@ -651,9 +590,7 @@ Binds a callback to be invoked when an UNSUBSCRIBE frame is transmitted.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when a broker heartbeat is received.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a broker heartbeat is received.</p>
 </div></span>
   
 </li>
@@ -675,9 +612,7 @@ Binds a callback to be invoked when a broker heartbeat is received.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when an ERROR frame is received.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when an ERROR frame is received.</p>
 </div></span>
   
 </li>
@@ -699,9 +634,7 @@ Binds a callback to be invoked when an ERROR frame is received.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when a MESSAGE frame is received.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a MESSAGE frame is received.</p>
 </div></span>
   
 </li>
@@ -723,9 +656,7 @@ Binds a callback to be invoked when a MESSAGE frame is received.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when a RECEIPT frame is received.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a RECEIPT frame is received.</p>
 </div></span>
   
 </li>
@@ -747,9 +678,7 @@ Binds a callback to be invoked when a RECEIPT frame is received.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when a broker heartbeat is received.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a broker heartbeat is received.</p>
 </div></span>
   
 </li>
@@ -771,9 +700,7 @@ Binds a callback to be invoked when a broker heartbeat is received.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when an ERROR frame is received.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when an ERROR frame is received.</p>
 </div></span>
   
 </li>
@@ -795,9 +722,7 @@ Binds a callback to be invoked when an ERROR frame is received.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when a MESSAGE frame is received.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a MESSAGE frame is received.</p>
 </div></span>
   
 </li>
@@ -819,9 +744,7 @@ Binds a callback to be invoked when a MESSAGE frame is received.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when a RECEIPT frame is received.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a RECEIPT frame is received.</p>
 </div></span>
   
 </li>
@@ -852,9 +775,7 @@ Binds a callback to be invoked when a RECEIPT frame is received.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when any frame is received.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when any frame is received.</p>
 </div></span>
   
 </li>
@@ -876,9 +797,7 @@ Binds a callback to be invoked when any frame is received.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when any frame is transmitted.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when any frame is transmitted.</p>
 </div></span>
   
 </li>
@@ -900,9 +819,7 @@ Binds a callback to be invoked when any frame is transmitted.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when any frame is received.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when any frame is received.</p>
 </div></span>
   
 </li>
@@ -924,9 +841,7 @@ Binds a callback to be invoked when any frame is received.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Binds a callback to be invoked when any frame is transmitted.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when any frame is transmitted.</p>
 </div></span>
   
 </li>
@@ -957,11 +872,9 @@ Binds a callback to be invoked when any frame is transmitted.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Returns a hash of event bindings that should be set on a
-<span class='object_link'><a href="../Connections/Base.html" title="OnStomp::Connections::Base (class)">connection</a></span>, but were set on the client because
-the connection does not exist yet.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Returns a hash of event bindings that should be set on a
+<span class='object_link'><a href="../Connections/Base.html" title="OnStomp::Connections::Base (class)">connection</a></span>, but were set on the client
+because the connection does not exist yet.</p>
 </div></span>
   
 </li>
@@ -983,10 +896,8 @@ the connection does not exist yet.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Triggers the :after_receiving event and the <tt>on</tt> prefixed frame
-specific event (eg: <tt>:on_message</tt>).
-</p>
+    <span class="summary_desc"><div class='inline'><p>Triggers the :after_receiving event and the
++on+ prefixed frame specific event (eg: +:on_message+).</p>
 </div></span>
   
 </li>
@@ -1008,10 +919,8 @@ specific event (eg: <tt>:on_message</tt>).
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Triggers the :after_transmitting event and the <tt>on</tt> prefixed frame
-specific event (eg: <tt>:on_send</tt>).
-</p>
+    <span class="summary_desc"><div class='inline'><p>Triggers the :after_transmitting event and the
++on+ prefixed frame specific event (eg: +:on_send+).</p>
 </div></span>
   
 </li>
@@ -1033,10 +942,8 @@ specific event (eg: <tt>:on_send</tt>).
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Triggers the :before_receiving event and the <tt>before</tt> prefixed frame
-specific event (eg: <tt>:before_error</tt>).
-</p>
+    <span class="summary_desc"><div class='inline'><p>Triggers the :before_receiving event and the
++before+ prefixed frame specific event (eg: +:before_error+).</p>
 </div></span>
   
 </li>
@@ -1058,10 +965,8 @@ specific event (eg: <tt>:before_error</tt>).
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Triggers the :before_transmitting event and the <tt>before</tt> prefixed
-frame specific event (eg: <tt>:before_disconnect</tt>).
-</p>
+    <span class="summary_desc"><div class='inline'><p>Triggers the :before_transmitting event and the
++before+ prefixed frame specific event (eg: +:before_disconnect+).</p>
 </div></span>
   
 </li>
@@ -1083,10 +988,8 @@ frame specific event (eg: <tt>:before_disconnect</tt>).
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-Triggers an event named by the supplied frame, prefixed with the supplied
-prefix.
-</p>
+    <span class="summary_desc"><div class='inline'><p>Triggers an event named by the supplied frame, prefixed with the supplied
+prefix.</p>
 </div></span>
   
 </li>
@@ -1120,9 +1023,7 @@ prefix.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when any frame is received
-</p>
+    <p>Binds a callback to be invoked when any frame is received</p>
 
 
   </div>
@@ -1139,9 +1040,7 @@ Binds a callback to be invoked when any frame is received
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -1200,9 +1099,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when any frame is transmitted
-</p>
+    <p>Binds a callback to be invoked when any frame is transmitted</p>
 
 
   </div>
@@ -1219,9 +1116,7 @@ Binds a callback to be invoked when any frame is transmitted
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -1280,9 +1175,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when an ABORT frame is transmitted
-</p>
+    <p>Binds a callback to be invoked when an ABORT frame is transmitted</p>
 
 
   </div>
@@ -1299,9 +1192,7 @@ Binds a callback to be invoked when an ABORT frame is transmitted
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -1360,9 +1251,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when an ACK frame is transmitted
-</p>
+    <p>Binds a callback to be invoked when an ACK frame is transmitted</p>
 
 
   </div>
@@ -1379,9 +1268,7 @@ Binds a callback to be invoked when an ACK frame is transmitted
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -1440,9 +1327,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when a BEGIN frame is transmitted
-</p>
+    <p>Binds a callback to be invoked when a BEGIN frame is transmitted</p>
 
 
   </div>
@@ -1459,9 +1344,7 @@ Binds a callback to be invoked when a BEGIN frame is transmitted
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -1520,9 +1403,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when a broker heartbeat is received
-</p>
+    <p>Binds a callback to be invoked when a broker heartbeat is received</p>
 
 
   </div>
@@ -1539,9 +1420,7 @@ Binds a callback to be invoked when a broker heartbeat is received
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -1600,9 +1479,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when a client heartbeat is transmitted
-</p>
+    <p>Binds a callback to be invoked when a client heartbeat is transmitted</p>
 
 
   </div>
@@ -1619,9 +1496,7 @@ Binds a callback to be invoked when a client heartbeat is transmitted
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -1680,9 +1555,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when a COMMIT frame is transmitted
-</p>
+    <p>Binds a callback to be invoked when a COMMIT frame is transmitted</p>
 
 
   </div>
@@ -1699,9 +1572,7 @@ Binds a callback to be invoked when a COMMIT frame is transmitted
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -1760,9 +1631,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when a DISCONNECT frame is transmitted
-</p>
+    <p>Binds a callback to be invoked when a DISCONNECT frame is transmitted</p>
 
 
   </div>
@@ -1779,9 +1648,7 @@ Binds a callback to be invoked when a DISCONNECT frame is transmitted
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -1840,9 +1707,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when an ERROR frame is received
-</p>
+    <p>Binds a callback to be invoked when an ERROR frame is received</p>
 
 
   </div>
@@ -1859,9 +1724,7 @@ Binds a callback to be invoked when an ERROR frame is received
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -1920,9 +1783,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when a MESSAGE frame is received
-</p>
+    <p>Binds a callback to be invoked when a MESSAGE frame is received</p>
 
 
   </div>
@@ -1939,9 +1800,7 @@ Binds a callback to be invoked when a MESSAGE frame is received
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -2000,9 +1859,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when a NACK frame is transmitted
-</p>
+    <p>Binds a callback to be invoked when a NACK frame is transmitted</p>
 
 
   </div>
@@ -2019,9 +1876,7 @@ Binds a callback to be invoked when a NACK frame is transmitted
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -2080,9 +1935,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when a RECEIPT frame is received
-</p>
+    <p>Binds a callback to be invoked when a RECEIPT frame is received</p>
 
 
   </div>
@@ -2099,9 +1952,7 @@ Binds a callback to be invoked when a RECEIPT frame is received
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -2160,9 +2011,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when any frame is received
-</p>
+    <p>Binds a callback to be invoked when any frame is received</p>
 
 
   </div>
@@ -2179,9 +2028,7 @@ Binds a callback to be invoked when any frame is received
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -2240,9 +2087,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when a SEND frame is transmitted
-</p>
+    <p>Binds a callback to be invoked when a SEND frame is transmitted</p>
 
 
   </div>
@@ -2259,9 +2104,7 @@ Binds a callback to be invoked when a SEND frame is transmitted
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -2320,9 +2163,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when a SUBSCRIBE frame is transmitted
-</p>
+    <p>Binds a callback to be invoked when a SUBSCRIBE frame is transmitted</p>
 
 
   </div>
@@ -2339,9 +2180,7 @@ Binds a callback to be invoked when a SUBSCRIBE frame is transmitted
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -2400,9 +2239,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when any frame is transmitted
-</p>
+    <p>Binds a callback to be invoked when any frame is transmitted</p>
 
 
   </div>
@@ -2419,9 +2256,7 @@ Binds a callback to be invoked when any frame is transmitted
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -2480,9 +2315,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when an UNSUBSCRIBE frame is transmitted
-</p>
+    <p>Binds a callback to be invoked when an UNSUBSCRIBE frame is transmitted</p>
 
 
   </div>
@@ -2499,9 +2332,7 @@ Binds a callback to be invoked when an UNSUBSCRIBE frame is transmitted
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -2560,9 +2391,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when an ABORT frame is transmitted
-</p>
+    <p>Binds a callback to be invoked when an ABORT frame is transmitted</p>
 
 
   </div>
@@ -2579,9 +2408,7 @@ Binds a callback to be invoked when an ABORT frame is transmitted
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -2640,9 +2467,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when an ACK frame is transmitted
-</p>
+    <p>Binds a callback to be invoked when an ACK frame is transmitted</p>
 
 
   </div>
@@ -2659,9 +2484,7 @@ Binds a callback to be invoked when an ACK frame is transmitted
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -2720,9 +2543,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when a BEGIN frame is transmitted
-</p>
+    <p>Binds a callback to be invoked when a BEGIN frame is transmitted</p>
 
 
   </div>
@@ -2739,9 +2560,7 @@ Binds a callback to be invoked when a BEGIN frame is transmitted
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -2800,9 +2619,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when a broker heartbeat is received
-</p>
+    <p>Binds a callback to be invoked when a broker heartbeat is received</p>
 
 
   </div>
@@ -2819,9 +2636,7 @@ Binds a callback to be invoked when a broker heartbeat is received
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -2880,9 +2695,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when a client heartbeat is transmitted
-</p>
+    <p>Binds a callback to be invoked when a client heartbeat is transmitted</p>
 
 
   </div>
@@ -2899,9 +2712,7 @@ Binds a callback to be invoked when a client heartbeat is transmitted
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -2960,9 +2771,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when a COMMIT frame is transmitted
-</p>
+    <p>Binds a callback to be invoked when a COMMIT frame is transmitted</p>
 
 
   </div>
@@ -2979,9 +2788,7 @@ Binds a callback to be invoked when a COMMIT frame is transmitted
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -3040,10 +2847,8 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Can&#8217;t get <tt>before</tt> because the CONNECT frame isn&#8217;t
-transmitted by the client.
-</p>
+    <p>Can't get +before+ because the CONNECT frame isn't transmitted by
+the client.</p>
 
 
   </div>
@@ -3076,9 +2881,7 @@ transmitted by the client.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when a DISCONNECT frame is transmitted
-</p>
+    <p>Binds a callback to be invoked when a DISCONNECT frame is transmitted</p>
 
 
   </div>
@@ -3095,9 +2898,7 @@ Binds a callback to be invoked when a DISCONNECT frame is transmitted
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -3156,9 +2957,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when an ERROR frame is received
-</p>
+    <p>Binds a callback to be invoked when an ERROR frame is received</p>
 
 
   </div>
@@ -3175,9 +2974,7 @@ Binds a callback to be invoked when an ERROR frame is received
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -3236,9 +3033,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when a MESSAGE frame is received
-</p>
+    <p>Binds a callback to be invoked when a MESSAGE frame is received</p>
 
 
   </div>
@@ -3255,9 +3050,7 @@ Binds a callback to be invoked when a MESSAGE frame is received
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -3316,9 +3109,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when a NACK frame is transmitted
-</p>
+    <p>Binds a callback to be invoked when a NACK frame is transmitted</p>
 
 
   </div>
@@ -3335,9 +3126,7 @@ Binds a callback to be invoked when a NACK frame is transmitted
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -3396,9 +3185,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when a RECEIPT frame is received
-</p>
+    <p>Binds a callback to be invoked when a RECEIPT frame is received</p>
 
 
   </div>
@@ -3415,9 +3202,7 @@ Binds a callback to be invoked when a RECEIPT frame is received
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -3476,9 +3261,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when a SEND frame is transmitted
-</p>
+    <p>Binds a callback to be invoked when a SEND frame is transmitted</p>
 
 
   </div>
@@ -3495,9 +3278,7 @@ Binds a callback to be invoked when a SEND frame is transmitted
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -3556,9 +3337,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when a SUBSCRIBE frame is transmitted
-</p>
+    <p>Binds a callback to be invoked when a SUBSCRIBE frame is transmitted</p>
 
 
   </div>
@@ -3575,9 +3354,7 @@ Binds a callback to be invoked when a SUBSCRIBE frame is transmitted
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -3636,9 +3413,7 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Binds a callback to be invoked when an UNSUBSCRIBE frame is transmitted
-</p>
+    <p>Binds a callback to be invoked when an UNSUBSCRIBE frame is transmitted</p>
 
 
   </div>
@@ -3655,9 +3430,7 @@ Binds a callback to be invoked when an UNSUBSCRIBE frame is transmitted
       
       
         &mdash;
-        <div class='inline'><p>
-callback invoked when event is triggered
-</p>
+        <div class='inline'><p>callback invoked when event is triggered</p>
 </div>
       
     </li>
@@ -3716,11 +3489,9 @@ callback invoked when event is triggered
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Returns a hash of event bindings that should be set on a
-<span class='object_link'><a href="../Connections/Base.html" title="OnStomp::Connections::Base (class)">connection</a></span>, but were set on the client because
-the connection does not exist yet.
-</p>
+    <p>Returns a hash of event bindings that should be set on a
+<span class='object_link'><a href="../Connections/Base.html" title="OnStomp::Connections::Base (class)">connection</a></span>, but were set on the client
+because the connection does not exist yet.</p>
 
 
   </div>
@@ -3770,10 +3541,8 @@ the connection does not exist yet.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Triggers the :after_receiving event and the <tt>on</tt> prefixed frame
-specific event (eg: <tt>:on_message</tt>)
-</p>
+    <p>Triggers the :after_receiving event and the
++on+ prefixed frame specific event (eg: +:on_message+)</p>
 
 
   </div>
@@ -3827,10 +3596,8 @@ specific event (eg: <tt>:on_message</tt>)
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Triggers the :after_transmitting event and the <tt>on</tt> prefixed frame
-specific event (eg: <tt>:on_send</tt>).
-</p>
+    <p>Triggers the :after_transmitting event and the
++on+ prefixed frame specific event (eg: +:on_send+).</p>
 
 
   </div>
@@ -3884,10 +3651,8 @@ specific event (eg: <tt>:on_send</tt>).
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Triggers the :before_receiving event and the <tt>before</tt> prefixed frame
-specific event (eg: <tt>:before_error</tt>).
-</p>
+    <p>Triggers the :before_receiving event and the
++before+ prefixed frame specific event (eg: +:before_error+).</p>
 
 
   </div>
@@ -3941,10 +3706,8 @@ specific event (eg: <tt>:before_error</tt>).
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Triggers the :before_transmitting event and the <tt>before</tt> prefixed
-frame specific event (eg: <tt>:before_disconnect</tt>).
-</p>
+    <p>Triggers the :before_transmitting event and the
++before+ prefixed frame specific event (eg: +:before_disconnect+).</p>
 
 
   </div>
@@ -3998,11 +3761,9 @@ frame specific event (eg: <tt>:before_disconnect</tt>).
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Triggers an event named by the supplied frame, prefixed with the supplied
-prefix. If the supplied frame is a &#8216;heart-beat&#8217;, origin will be
-used to dispatch appropriate heart-beat event (client_beat or broker_beat)
-</p>
+    <p>Triggers an event named by the supplied frame, prefixed with the supplied
+prefix. If the supplied frame is a 'heart-beat', origin will be used to
+dispatch appropriate heart-beat event (client_beat or broker_beat)</p>
 
 
   </div>
@@ -4021,9 +3782,7 @@ used to dispatch appropriate heart-beat event (client_beat or broker_beat)
       
       
         &mdash;
-        <div class='inline'><p>
-the frame trigger this event
-</p>
+        <div class='inline'><p>the frame trigger this event</p>
 </div>
       
     </li>
@@ -4038,9 +3797,7 @@ the frame trigger this event
       
       
         &mdash;
-        <div class='inline'><p>
-the prefix for the event name
-</p>
+        <div class='inline'><p>the prefix for the event name</p>
 </div>
       
     </li>
@@ -4088,7 +3845,7 @@ the prefix for the event name
 </div>
     
     <div id="footer">
-  Generated on Mon Apr  4 14:41:59 2011 by 
+  Generated on Mon Apr  4 16:26:39 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>
