@@ -26,7 +26,7 @@ class OnStomp::Components::Frame
   #
   # @param [Object] name the header name associated with the desired value
   # @return [String] the value associated with the requested header name
-  # @see OnStomp::Headers#[]
+  # @see OnStomp::Components::FrameHeaders#[]
   # @example
   #   frame['content-type'] #=> 'text/plain'
   def [](name); @headers[name]; end
@@ -37,7 +37,7 @@ class OnStomp::Components::Frame
   # @param [Object] name the header name to associate with the supplied value
   # @param [Object] val the value to associate with the supplied header name
   # @return [String] the supplied value as a string, or `nil` if `nil` was supplied as the value.
-  # @see OnStomp::Headers#[]=
+  # @see OnStomp::Components::FrameHeaders#[]=
   # @example
   #   frame['content-type'] = 'text/plain' #=> 'text/plain'
   #   frame['other header'] = 42 #=> '42'

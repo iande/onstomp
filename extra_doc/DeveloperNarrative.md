@@ -65,16 +65,59 @@ values are only strings:
 If the object passed as a header value cannot be converted to a string an
 error will be raised.
 
-A frame's {OnStomp::Components::Frame#body body} will often be an empty
-string or `nil`. The only frames that support non-empty bodies are SEND,
-MESSAGE, and ERROR.
+For most kinds of frames, the {OnStomp::Components::Frame#body body} attribute
+will often be an empty string or `nil`. The only frames that support
+non-empty bodies are SEND, MESSAGE, and ERROR.
 
 ## Events
 
+### Frame-centric Events
+
+Event triggering sequence for client generated frames:
+
+1. `client.send ...` is invoked and a SEND frame is created
+1. The event `before_transmitting` is triggered for the SEND frame
+1. The event `before_send` is triggered for the SEND frame
+1. The SEND frame is added to the {OnStomp::Connections::Base connection}'s
+   write buffer
+1. Some amount of time passes
+1. The SEND frame is serialized and fully written to the broker.
+1. The event `after_transmitting` is triggered for the SEND frame
+1. The event `on_send` is triggered for the SEND frame
+
+Event triggering sequence for broker generated frames:
+
+1. The broker writes a MESSAGE frame to the TCP/IP socket
+1. Some amount of time passes
+1. The client fully reads and de-serializes the MESSAGE frame
+1. The event `before_receiving` is triggered for the MESSAGE frame
+1. The event `before_message` is triggered for the MESSAGE frame
+1. The event `after_receiving` is triggered for the MESSAGE frame
+1. The event `on_message` is triggered for the MESSAGE frame
+
+### Connection-centric Events
+
+Event trigger sequence for connection events:
+
+1. An IO error occurs while the connection is reading or writing
+1. The connection closes its socket
+1. The connection triggers :on\_terminated
+1. The connection triggers :on\_closed
+
 ## Subscription and Receipt Management
+
+### Subscription Manager
+
+### Receipt Manager
 
 ## URI Based Configuration
 
 ## Processors
 
 ## Connections & Serializers
+
+### Connections
+
+### Serializers
+
+
