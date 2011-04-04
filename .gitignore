@@ -4,3 +4,7 @@ pkg/*
 .bundle
 .yardoc
 nbproject
+doc
+coverage
+turbulence
+Gemfile.lock

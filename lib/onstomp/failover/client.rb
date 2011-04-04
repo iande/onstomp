@@ -35,11 +35,8 @@ class OnStomp::Failover::Client
   attr_reader :uri, :client_pool, :active_client, :frame_buffer, :connection
   
   def initialize(uris, options={})
-    if uris.is_a?(Array)
-      uris = "failover:(#{uris.map { |u| u.to_s }.join(',')})"
-    end
+    @uri = OnStomp::Failover::URI::FAILOVER.parse uris
     @client_mutex = Mutex.new
-    @uri = URI.parse(uris)
     configure_configurable options
     create_client_pool
     @active_client = nil

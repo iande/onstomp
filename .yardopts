@@ -1,5 +1,6 @@
 --no-private
 --title "OnStomp Documentation"
 --readme README.md
---files LICENSE.md,CHANGELOG.md,DeveloperNarrative.md,UserNarrative.md
+--files LICENSE.md,CHANGELOG.md,extra_doc/*
+-m markdown
 lib/**/*.rb

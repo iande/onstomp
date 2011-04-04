@@ -3,27 +3,52 @@
 # Namespace for failover related URI classes.
 module OnStomp::Failover::URI
   # A URI class for representing URIs with a 'failover' scheme.
+  # We don't need to worry about hooking into Ruby's URI parsing jazz since
+  # we have full control over when failover URIs will be created.
   class FAILOVER < OnStomp::Components::URI::STOMP
-    # Matches the internal URIs and query contained in
-    # the +opaque+ part of a failover: URI
-    FAILOVER_OPAQUE_REG = /^\(([^\)]+)\)(?:\?(.*))?/
+    # Matches a failover URI string, grouping the list of real URIs and
+    # any query parameters for the failover URI.
+    FAILOVER_REG = /^failover:(?:\/\/)?\(?([^\)]+)\)?(?:\?(.*))?/
     
     attr_reader :failover_uris
-    def initialize(*args)
-      super
-      _split_opaque_
+    def initialize uris, query
+      @failover_uris = uris.map do |u|
+        u.is_a?(::URI) ? u : ::URI.parse(u.strip)
+      end
+      super 'failover', nil, nil, nil, nil, '', "(#{uris.join(',')})", query, nil
     end
     
-    private
-    def _split_opaque_
-      if opaque =~ FAILOVER_OPAQUE_REG
-        furis, fquery = $1, $2
-        @failover_uris = furis.split(',').map { |u| ::URI.parse(u.strip) }
-        self.set_opaque nil
-        self.set_path ''
-        self.set_query fquery
-      else
-        raise OnStomp::Failover::InvalidFailoverURIError, self.to_s
+    # Converts a failover URI into a string. Ruby's Generic URIs don't seem
+    # to allow mixing opaques and queries.
+    # @return [String]
+    def to_s
+      base = "#{scheme}:#{opaque}"
+      query.nil? || query.empty? ? base : "#{base}?#{query}"
+    end
+    
+    class << self
+      # Parses a failover URI string or an array of URIs into a
+      # {OnStomp::Failover::URI::FAILOVER} object. Ruby's URI parser works
+      # fine with +failover:(uri1,uri2,..)?params=..+ style URIs, but chokes
+      # on +failover://uri1,uri2,..+ forms. This method gives us a bit more
+      # flexibility.
+      # @note If you are using the +open-uri+ extension with +failover+, you
+      #   MUST use the +failover:(uri1,uri2,..)+ form because +open-uri+
+      #   relies on +URI.parse+ to convert strings into +URI+ objects.
+      # @overload parse(str)
+      #   @param [String] str
+      #   @return [FAILOVER]
+      # @overload parse(uri_arr)
+      #   @param [Array<String or URI>] uri_arr
+      #   @return [FAILOVER]
+      def parse uri_str
+        if uri_str.is_a? Array
+          self.new uri_str, nil
+        elsif uri_str =~ FAILOVER_REG
+          self.new $1.split(','), $2
+        else
+          raise OnStomp::Failover::InvalidFailoverURIError, uri_str
+        end
       end
     end
   end
