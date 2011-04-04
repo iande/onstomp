@@ -69,6 +69,8 @@ class OnStomp::Failover::Buffers::Receipts
     end
   end
   
+  # Removes frames that neither transactional nor SUBSCRIBEs from the buffer
+  # by looking the buffered frames up by their +receipt+ header.
   def debuffer_frame r, *_
     orig = @buffer_mutex.synchronize do
       @buffer.detect { |f| f[:receipt] == r[:'receipt-id'] }
@@ -78,7 +80,7 @@ class OnStomp::Failover::Buffers::Receipts
       if ['COMMIT', 'ABORT'].include? orig.command
         debuffer_transaction orig
       # Otherwise, if this isn't part of a transaction, debuffer the
-      # particular frame
+      # particular frame (if it's not a SUBSCRIBE)
       elsif orig.command != 'SUBSCRIBE' && !orig.header?(:transaction)
         @buffer_mutex.synchronize { @buffer.delete orig }
       end
