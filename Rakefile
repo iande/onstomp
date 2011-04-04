@@ -18,8 +18,6 @@ task :ghpages do
   require 'tmpdir'
   stashed = false
   tmp_doc = Dir.mktmpdir 'onstomp_docs'
-  prior_docs = []
-  new_docs = []
   puts "Generating yard docs in temp dir #{tmp_doc}"
   `rake yard OPTS="--output-dir #{tmp_doc}"`
   `git diff-files --quiet`
@@ -31,12 +29,13 @@ task :ghpages do
   end
   sh "git checkout gh-pages"
   sh "git pull origin gh-pages"
-  prior_docs = `git ls-files`.split("\n")
-  rm_rf [ Dir.glob("*.html"), "OnStomp", "js", "css" ]
+  rm_rf [ Dir.glob("*.html"), "OnStomp", "js", "css" ].flatten
   cp_r "#{tmp_doc}/.", '.'
   new_docs = Dir.glob("#{tmp_doc}/**/*").map { |f| f.sub(tmp_doc + '/','') }
   rm_rf tmp_doc
-  removed_docs = prior_docs - new_docs
+  removed_docs = `git status --porcelain --untracked-files=no|grep "^ D "`.split("\n").map do |line|
+    line[3..-1]
+  end
   puts "Adding changed documentation"
   `git add #{new_docs.join(' ')}`
   unless removed_docs.empty?
