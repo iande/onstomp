@@ -179,7 +179,11 @@ Records the start of a transaction so that it may be replayed if the
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Removes frames that neither transactional nor SUBSCRIBEs from the buffer by
+looking the buffered frames up by their <tt>receipt</tt> header.
+</p>
+</div></span>
   
 </li>
 
@@ -475,14 +479,24 @@ Records the start of a transaction so that it may be replayed if the
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Removes frames that neither transactional nor SUBSCRIBEs from the buffer by
+looking the buffered frames up by their <tt>receipt</tt> header.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-72
-73
 74
 75
 76
@@ -495,10 +509,12 @@ Records the start of a transaction so that it may be replayed if the
 83
 84
 85
-86</pre>
+86
+87
+88</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/buffers/receipts.rb', line 72</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/buffers/receipts.rb', line 74</span>
 
 <span class='kw'>def</span> <span class='id debuffer_frame'>debuffer_frame</span> <span class='id r'>r</span><span class='comma'>,</span> <span class='op'>*</span><span class='id _'>_</span>
   <span class='id orig'>orig</span> <span class='op'>=</span> <span class='ivar'>@buffer_mutex</span><span class='period'>.</span><span class='id synchronize'>synchronize</span> <span class='kw'>do</span>
@@ -509,7 +525,7 @@ Records the start of a transaction so that it may be replayed if the
 </span>    <span class='kw'>if</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>COMMIT</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>ABORT</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id include?'>include?</span> <span class='id orig'>orig</span><span class='period'>.</span><span class='id command'>command</span>
       <span class='id debuffer_transaction'>debuffer_transaction</span> <span class='id orig'>orig</span>
     <span class='comment'># Otherwise, if this isn't part of a transaction, debuffer the
-</span>    <span class='comment'># particular frame
+</span>    <span class='comment'># particular frame (if it's not a SUBSCRIBE)
 </span>    <span class='kw'>elsif</span> <span class='id orig'>orig</span><span class='period'>.</span><span class='id command'>command</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>SUBSCRIBE</span><span class='tstring_end'>'</span></span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id orig'>orig</span><span class='period'>.</span><span class='id header?'>header?</span><span class='lparen'>(</span><span class='symbol'>:transaction</span><span class='rparen'>)</span>
       <span class='ivar'>@buffer_mutex</span><span class='period'>.</span><span class='id synchronize'>synchronize</span> <span class='lbrace'>{</span> <span class='ivar'>@buffer</span><span class='period'>.</span><span class='id delete'>delete</span> <span class='id orig'>orig</span> <span class='rbrace'>}</span>
     <span class='kw'>end</span>
@@ -642,18 +658,18 @@ Called when the <span class='object_link'><a href="../Client.html" title="OnStom
       <pre class="lines">
 
 
-90
-91
 92
 93
 94
 95
 96
 97
-98</pre>
+98
+99
+100</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/buffers/receipts.rb', line 90</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/buffers/receipts.rb', line 92</span>
 
 <span class='kw'>def</span> <span class='id replay'>replay</span> <span class='id fail'>fail</span><span class='comma'>,</span> <span class='id client'>client</span><span class='comma'>,</span> <span class='op'>*</span><span class='id _'>_</span>
   <span class='id replay_frames'>replay_frames</span> <span class='op'>=</span> <span class='ivar'>@buffer_mutex</span><span class='period'>.</span><span class='id synchronize'>synchronize</span> <span class='kw'>do</span>
@@ -674,7 +690,7 @@ Called when the <span class='object_link'><a href="../Client.html" title="OnStom
 </div>
     
     <div id="footer">
-  Generated on Mon Apr  4 14:12:05 2011 by 
+  Generated on Mon Apr  4 14:42:00 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>
