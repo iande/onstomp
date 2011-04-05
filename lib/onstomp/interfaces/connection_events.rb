@@ -6,6 +6,7 @@ module OnStomp::Interfaces::ConnectionEvents
   
   # @group Connection State Events
 
+  # @api gem:1 STOMP:1.0,1.1
   # Binds a callback to be invoked when a connection has been fully
   # established between broker and client.
   # @yield [client, connection] callback invoked when event is triggered
@@ -13,6 +14,7 @@ module OnStomp::Interfaces::ConnectionEvents
   # @yieldparam [OnStomp::Connections::Base] connection that triggered
   #   the event (in general the same as +client.connection+)
   create_event_methods :established, :on
+  # @api gem:1 STOMP:1.1
   # Binds a callback to be invoked when a connection has been died due to
   # insufficient data transfer.
   # @note Only applies to STOMP 1.1 connections with heartbeating enabled.
@@ -21,6 +23,7 @@ module OnStomp::Interfaces::ConnectionEvents
   # @yieldparam [OnStomp::Connections::Base] connection that triggered
   #   the event (in general the same as +client.connection+)
   create_event_methods :died, :on
+  # @api gem:1 STOMP:1.0,1.1
   # Binds a callback to be invoked when a connection has been terminated
   # (eg: closed unexpectedly due to an exception)
   # @yield [client, connection] callback invoked when event is triggered
@@ -28,6 +31,7 @@ module OnStomp::Interfaces::ConnectionEvents
   # @yieldparam [OnStomp::Connections::Base] connection that triggered
   #   the event (in general the same as +client.connection+)
   create_event_methods :terminated, :on
+  # @api gem:1 STOMP:1.0,1.1
   # Binds a callback to be invoked when a connection has been closed, either
   # through a graceful disconnect or unexpectedly.
   # @note If connection is closed unexpectedly, {#on_died} is triggered first,

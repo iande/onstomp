@@ -12,55 +12,68 @@ module OnStomp::Interfaces::ClientEvents
 
   # @group Client Frame Event Bindings
   
+  # @api gem:1 STOMP:1.0,1.1
   # Can't get `before` because the CONNECT frame isn't transmitted by
   # the client.
+  # @yield [frame, client] callback invoked when event is triggered
+  # @yieldparam [OnStomp::Components::Frame] frame
+  # @yieldparam [OnStomp::Client] client
   create_event_methods :connect, :on
-  
+  # @api gem:1 STOMP:1.0,1.1
   # Binds a callback to be invoked when an ACK frame is transmitted
   # @yield [frame, client] callback invoked when event is triggered
   # @yieldparam [OnStomp::Components::Frame] frame
   # @yieldparam [OnStomp::Client] client
   create_event_methods :ack, :before, :on
+  # @api gem:1 STOMP:1.1
   # Binds a callback to be invoked when a NACK frame is transmitted
   # @yield [frame, client] callback invoked when event is triggered
   # @yieldparam [OnStomp::Components::Frame] frame
   # @yieldparam [OnStomp::Client] client
   create_event_methods :nack, :before, :on
+  # @api gem:1 STOMP:1.0,1.1
   # Binds a callback to be invoked when a BEGIN frame is transmitted
   # @yield [frame, client] callback invoked when event is triggered
   # @yieldparam [OnStomp::Components::Frame] frame
   # @yieldparam [OnStomp::Client] client
   create_event_methods :begin, :before, :on
+  # @api gem:1 STOMP:1.0,1.1
   # Binds a callback to be invoked when an ABORT frame is transmitted
   # @yield [frame, client] callback invoked when event is triggered
   # @yieldparam [OnStomp::Components::Frame] frame
   # @yieldparam [OnStomp::Client] client
   create_event_methods :abort, :before, :on
+  # @api gem:1 STOMP:1.0,1.1
   # Binds a callback to be invoked when a COMMIT frame is transmitted
   # @yield [frame, client] callback invoked when event is triggered
   # @yieldparam [OnStomp::Components::Frame] frame
   # @yieldparam [OnStomp::Client] client
   create_event_methods :commit, :before, :on
+  # @api gem:1 STOMP:1.0,1.1
   # Binds a callback to be invoked when a SEND frame is transmitted
   # @yield [frame, client] callback invoked when event is triggered
   # @yieldparam [OnStomp::Components::Frame] frame
   # @yieldparam [OnStomp::Client] client
   create_event_methods :send, :before, :on
+  # @api gem:1 STOMP:1.0,1.1
   # Binds a callback to be invoked when a SUBSCRIBE frame is transmitted
   # @yield [frame, client] callback invoked when event is triggered
   # @yieldparam [OnStomp::Components::Frame] frame
   # @yieldparam [OnStomp::Client] client
   create_event_methods :subscribe, :before, :on
+  # @api gem:1 STOMP:1.0,1.1
   # Binds a callback to be invoked when an UNSUBSCRIBE frame is transmitted
   # @yield [frame, client] callback invoked when event is triggered
   # @yieldparam [OnStomp::Components::Frame] frame
   # @yieldparam [OnStomp::Client] client
   create_event_methods :unsubscribe, :before, :on
+  # @api gem:1 STOMP:1.0,1.1
   # Binds a callback to be invoked when a DISCONNECT frame is transmitted
   # @yield [frame, client] callback invoked when event is triggered
   # @yieldparam [OnStomp::Components::Frame] frame
   # @yieldparam [OnStomp::Client] client
   create_event_methods :disconnect, :before, :on
+  # @api gem:1 STOMP:1.1
   # Binds a callback to be invoked when a client heartbeat is transmitted
   # @yield [frame, client] callback invoked when event is triggered
   # @yieldparam [OnStomp::Components::Frame] frame
@@ -68,22 +81,26 @@ module OnStomp::Interfaces::ClientEvents
   create_event_methods :client_beat, :before, :on
   
   # @group Broker Frame Event Bindings
-  
+
+  # @api gem:1 STOMP:1.0,1.1
   # Binds a callback to be invoked when an ERROR frame is received
   # @yield [frame, client] callback invoked when event is triggered
   # @yieldparam [OnStomp::Components::Frame] frame
   # @yieldparam [OnStomp::Client] client
   create_event_methods :error, :before, :on
+  # @api gem:1 STOMP:1.0,1.1
   # Binds a callback to be invoked when a MESSAGE frame is received
   # @yield [frame, client] callback invoked when event is triggered
   # @yieldparam [OnStomp::Components::Frame] frame
   # @yieldparam [OnStomp::Client] client
   create_event_methods :message, :before, :on
+  # @api gem:1 STOMP:1.0,1.1
   # Binds a callback to be invoked when a RECEIPT frame is received
   # @yield [frame, client] callback invoked when event is triggered
   # @yieldparam [OnStomp::Components::Frame] frame
   # @yieldparam [OnStomp::Client] client
   create_event_methods :receipt, :before, :on
+  # @api gem:1 STOMP:1.1
   # Binds a callback to be invoked when a broker heartbeat is received
   # @yield [frame, client] callback invoked when event is triggered
   # @yieldparam [OnStomp::Components::Frame] frame
@@ -92,11 +109,13 @@ module OnStomp::Interfaces::ClientEvents
 
   # @group Frame Exchange Event Bindings
   
+  # @api gem:1 STOMP:1.0,1.1
   # Binds a callback to be invoked when any frame is transmitted
   # @yield [frame, client] callback invoked when event is triggered
   # @yieldparam [OnStomp::Components::Frame] frame
   # @yieldparam [OnStomp::Client] client
   create_event_methods :transmitting, :before, :after
+  # @api gem:1 STOMP:1.0,1.1
   # Binds a callback to be invoked when any frame is received
   # @yield [frame, client] callback invoked when event is triggered
   # @yieldparam [OnStomp::Components::Frame] frame

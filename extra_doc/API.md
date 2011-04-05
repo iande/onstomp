@@ -25,18 +25,18 @@
     <tr>
       <td>{OnStomp::Interfaces::FrameMethods#ack ack}</td>
       <td>
-        <code>ack(message_id, headers={})</code>
-      </td>
-      <td style="background-color: #bfb;">true</td>
-      <td style="background-color: #fbb;">false</td>
-    </tr>
-    <tr>
-      <td>{OnStomp::Interfaces::FrameMethods#ack ack}</td>
-      <td>
         <code>ack(message_frame, headers={})</code>
       </td>
       <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::FrameMethods#ack ack}</td>
+      <td>
+        <code>ack(message_id, headers={})</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #fbb;">false</td>
     </tr>
     <tr>
       <td>{OnStomp::Interfaces::FrameMethods#ack ack}</td>
@@ -47,11 +47,155 @@
       <td style="background-color: #bfb;">true</td>
     </tr>
     <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#after_receiving after_receiving}</td>
+      <td>
+        <code>create_event_methods :receiving, :before, :after</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#after_transmitting after_transmitting}</td>
+      <td>
+        <code>create_event_methods :transmitting, :before, :after</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
       <td>{OnStomp::Interfaces::FrameMethods#beat beat}</td>
       <td>
         <code>beat( )</code>
       </td>
       <td style="background-color: #fbb;">false</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#before_abort before_abort}</td>
+      <td>
+        <code>create_event_methods :abort, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#before_ack before_ack}</td>
+      <td>
+        <code>create_event_methods :ack, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#before_begin before_begin}</td>
+      <td>
+        <code>create_event_methods :begin, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#before_broker_beat before_broker_beat}</td>
+      <td>
+        <code>create_event_methods :broker_beat, :before, :on</code>
+      </td>
+      <td style="background-color: #fbb;">false</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#before_client_beat before_client_beat}</td>
+      <td>
+        <code>create_event_methods :client_beat, :before, :on</code>
+      </td>
+      <td style="background-color: #fbb;">false</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#before_commit before_commit}</td>
+      <td>
+        <code>create_event_methods :commit, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#before_disconnect before_disconnect}</td>
+      <td>
+        <code>create_event_methods :disconnect, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#before_error before_error}</td>
+      <td>
+        <code>create_event_methods :error, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#before_message before_message}</td>
+      <td>
+        <code>create_event_methods :message, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#before_nack before_nack}</td>
+      <td>
+        <code>create_event_methods :nack, :before, :on</code>
+      </td>
+      <td style="background-color: #fbb;">false</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#before_receipt before_receipt}</td>
+      <td>
+        <code>create_event_methods :receipt, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#before_receiving before_receiving}</td>
+      <td>
+        <code>create_event_methods :receiving, :before, :after</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#before_send before_send}</td>
+      <td>
+        <code>create_event_methods :send, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#before_subscribe before_subscribe}</td>
+      <td>
+        <code>create_event_methods :subscribe, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#before_transmitting before_transmitting}</td>
+      <td>
+        <code>create_event_methods :transmitting, :before, :after</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#before_unsubscribe before_unsubscribe}</td>
+      <td>
+        <code>create_event_methods :unsubscribe, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
     </tr>
     <tr>
@@ -95,17 +239,17 @@
       <td style="background-color: #bfb;">true</td>
     </tr>
     <tr>
-      <td>{OnStomp::Interfaces::FrameMethods#disconnect disconnect}</td>
+      <td>{OnStomp::Client#disconnect disconnect}</td>
       <td>
-        <code>disconnect(headers={})</code>
+        <code>disconnect_with_flush(headers={})</code>
       </td>
       <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
     </tr>
     <tr>
-      <td>{OnStomp::Client#disconnect disconnect}</td>
+      <td>{OnStomp::Interfaces::FrameMethods#disconnect disconnect}</td>
       <td>
-        <code>disconnect_with_flush(headers={})</code>
+        <code>disconnect(headers={})</code>
       </td>
       <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
@@ -129,7 +273,7 @@
     <tr>
       <td>{OnStomp::Interfaces::FrameMethods#nack nack}</td>
       <td>
-        <code>nack(message_frame, headers={})</code>
+        <code>nack(message_id, subscription_id, heders={})</code>
       </td>
       <td style="background-color: #fbb;">false</td>
       <td style="background-color: #bfb;">true</td>
@@ -137,9 +281,161 @@
     <tr>
       <td>{OnStomp::Interfaces::FrameMethods#nack nack}</td>
       <td>
-        <code>nack(message_id, subscription_id, heders={})</code>
+        <code>nack(message_frame, headers={})</code>
       </td>
       <td style="background-color: #fbb;">false</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#on_abort on_abort}</td>
+      <td>
+        <code>create_event_methods :abort, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#on_ack on_ack}</td>
+      <td>
+        <code>create_event_methods :ack, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#on_begin on_begin}</td>
+      <td>
+        <code>create_event_methods :begin, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#on_broker_beat on_broker_beat}</td>
+      <td>
+        <code>create_event_methods :broker_beat, :before, :on</code>
+      </td>
+      <td style="background-color: #fbb;">false</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#on_client_beat on_client_beat}</td>
+      <td>
+        <code>create_event_methods :client_beat, :before, :on</code>
+      </td>
+      <td style="background-color: #fbb;">false</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ConnectionEvents#on_closed on_closed}</td>
+      <td>
+        <code>create_event_methods :closed, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#on_commit on_commit}</td>
+      <td>
+        <code>create_event_methods :commit, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#on_connect on_connect}</td>
+      <td>
+        <code>create_event_methods :connect, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ConnectionEvents#on_died on_died}</td>
+      <td>
+        <code>create_event_methods :died, :on</code>
+      </td>
+      <td style="background-color: #fbb;">false</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#on_disconnect on_disconnect}</td>
+      <td>
+        <code>create_event_methods :disconnect, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#on_error on_error}</td>
+      <td>
+        <code>create_event_methods :error, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ConnectionEvents#on_established on_established}</td>
+      <td>
+        <code>create_event_methods :established, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#on_message on_message}</td>
+      <td>
+        <code>create_event_methods :message, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#on_nack on_nack}</td>
+      <td>
+        <code>create_event_methods :nack, :before, :on</code>
+      </td>
+      <td style="background-color: #fbb;">false</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#on_receipt on_receipt}</td>
+      <td>
+        <code>create_event_methods :receipt, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#on_send on_send}</td>
+      <td>
+        <code>create_event_methods :send, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#on_subscribe on_subscribe}</td>
+      <td>
+        <code>create_event_methods :subscribe, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ConnectionEvents#on_terminated on_terminated}</td>
+      <td>
+        <code>create_event_methods :terminated, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#on_unsubscribe on_unsubscribe}</td>
+      <td>
+        <code>create_event_methods :unsubscribe, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
     </tr>
     <tr>
@@ -177,7 +473,7 @@
     <tr>
       <td>{OnStomp::Interfaces::FrameMethods#unsubscribe unsubscribe}</td>
       <td>
-        <code>unsubscribe(subscribe_frame, headers={})</code>
+        <code>unsubscribe(id, headers={})</code>
       </td>
       <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
@@ -185,7 +481,7 @@
     <tr>
       <td>{OnStomp::Interfaces::FrameMethods#unsubscribe unsubscribe}</td>
       <td>
-        <code>unsubscribe(id, headers={})</code>
+        <code>unsubscribe(subscribe_frame, headers={})</code>
       </td>
       <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
