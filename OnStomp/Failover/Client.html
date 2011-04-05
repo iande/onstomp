@@ -1193,19 +1193,25 @@ Defaults to +10+.</p>
 77
 78
 79
-80</pre>
+80
+81
+82
+83</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/onstomp/failover/client.rb', line 73</span>
 
 <span class='kw'>def</span> <span class='id disconnect'>disconnect</span> <span class='op'>*</span><span class='id args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id block'>block</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id active_client'>active_client</span>
-  <span class='ivar'>@disconnecting</span> <span class='op'>=</span> <span class='kw'>true</span>
-  <span class='comment'># This is a bit problematic. If maximum retries is exceeded, this will
-</span>  <span class='comment'># just hang indefinitely.
-</span>  <span class='const'>Thread</span><span class='period'>.</span><span class='id pass'>pass</span> <span class='kw'>until</span> <span class='id connected?'>connected?</span>
-  <span class='id active_client'>active_client</span><span class='period'>.</span><span class='id disconnect'>disconnect</span> <span class='op'>*</span><span class='id args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id block'>block</span>
-<span class='kw'>end</span></pre>
+  <span class='comment'># If we're not connected, let `reconnect` handle it.
+</span>  <span class='comment'>#@disconnecting = [args, block]
+</span>  <span class='comment'>#if connected?
+</span>    <span class='ivar'>@client_mutex</span><span class='period'>.</span><span class='id synchronize'>synchronize</span> <span class='kw'>do</span>
+      <span class='ivar'>@disconnecting</span> <span class='op'>=</span> <span class='kw'>true</span>
+      <span class='id active_client'>active_client</span><span class='period'>.</span><span class='id disconnect'>disconnect</span> <span class='op'>*</span><span class='id args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id block'>block</span>
+    <span class='kw'>end</span>
+  <span class='comment'>#end
+</span><span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -1266,7 +1272,7 @@ Defaults to +10+.</p>
 </div>
     
     <div id="footer">
-  Generated on Tue Apr  5 13:36:46 2011 by 
+  Generated on Tue Apr  5 15:54:06 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>
