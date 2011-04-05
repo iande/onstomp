@@ -47,6 +47,7 @@ class OnStomp::Client
   # @return [Class]
   attr_configurable_processor :processor
   
+  # @api gem:1 STOMP:1.0,1.1
   # Creates a new client for the specified uri and optional hash of options.
   # @param [String,URI] uri
   # @param [{Symbol => Object}] options
@@ -61,6 +62,7 @@ class OnStomp::Client
     end
   end
   
+  # @api gem:1 STOMP:1.0,1.1
   # Connects to the STOMP broker referenced by {#uri}. Includes optional
   # headers in the CONNECT frame, if specified.
   # @param [{#to_sym => #to_s}] headers
@@ -75,6 +77,7 @@ class OnStomp::Client
   end
   alias :open :connect
   
+  # @api gem:1 STOMP:1.0,1.1
   # Sends a DISCONNECT frame to the broker and blocks until the connection
   # has been closed. This method ensures that all frames not yet sent to
   # the broker will get processed barring any IO exceptions.
@@ -89,12 +92,14 @@ class OnStomp::Client
   alias :disconnect_without_flush :disconnect
   alias :disconnect :disconnect_with_flush
   
+  # @api gem:1 STOMP:1.0,1.1
   # Returns true if a connection to the broker exists and itself is connected.
   # @return [true,false]
   def connected?
     connection && connection.connected?
   end
   
+  # @api gem:1 STOMP:1.0,1.1
   # Forces the connection between broker and client closed.
   # @note Use of this method may result in frames never being sent to the
   #   broker. This method should only be used if {#disconnect} is not an

@@ -1,0 +1,33 @@
+# OnStomp Generated Method APIs
+
+<% apis.each do |api| %>
+## OnStomp <%= api[:version] %> API (<%= api[:version] %>.0.0+)
+
+<table style="width:75%; border-collapse:collapse;">
+  <thead>
+    <tr>
+      <th style="text-align: left;">Method</th>
+      <th style="width: 50%; text-align: left;">Signature</th>
+    <% api[:protocols].each do |proto| %>
+      <th style="text-align: left;">STOMP <%= proto %></th>
+    <% end %>
+    </tr>
+  </thead>
+  <tfoot>
+  </tfoot>
+  <tbody>
+  <% api[:methods].each do |meth| %>
+    <tr>
+      <td>{<%= meth[:yard_link] %> <%= meth[:name]%>}</td>
+      <td>
+        <code><%= meth[:signature] %></code>
+      </td>
+    <% meth[:protocols].each do |proto| %>
+      <td style="background-color: #<%= proto ? 'bfb' : 'fbb' %>;"><%= proto %></td>
+    <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<% end %>
