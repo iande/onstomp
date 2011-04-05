@@ -68,18 +68,18 @@
     <tr>
       <td><span class='object_link'><a href="OnStomp/Interfaces/FrameMethods.html#ack-instance_method" title="OnStomp::Interfaces::FrameMethods#ack (method)">ack</a></span></td>
       <td>
-        <code>ack(message_id, headers={})</code>
-      </td>
-      <td style="background-color: #bfb;">true</td>
-      <td style="background-color: #fbb;">false</td>
-    </tr>
-    <tr>
-      <td><span class='object_link'><a href="OnStomp/Interfaces/FrameMethods.html#ack-instance_method" title="OnStomp::Interfaces::FrameMethods#ack (method)">ack</a></span></td>
-      <td>
         <code>ack(message_frame, headers={})</code>
       </td>
       <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/FrameMethods.html#ack-instance_method" title="OnStomp::Interfaces::FrameMethods#ack (method)">ack</a></span></td>
+      <td>
+        <code>ack(message_id, headers={})</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #fbb;">false</td>
     </tr>
     <tr>
       <td><span class='object_link'><a href="OnStomp/Interfaces/FrameMethods.html#ack-instance_method" title="OnStomp::Interfaces::FrameMethods#ack (method)">ack</a></span></td>
@@ -90,11 +90,155 @@
       <td style="background-color: #bfb;">true</td>
     </tr>
     <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#after_receiving-instance_method" title="OnStomp::Interfaces::ClientEvents#after_receiving (method)">after_receiving</a></span></td>
+      <td>
+        <code>create_event_methods :receiving, :before, :after</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#after_transmitting-instance_method" title="OnStomp::Interfaces::ClientEvents#after_transmitting (method)">after_transmitting</a></span></td>
+      <td>
+        <code>create_event_methods :transmitting, :before, :after</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
       <td><span class='object_link'><a href="OnStomp/Interfaces/FrameMethods.html#beat-instance_method" title="OnStomp::Interfaces::FrameMethods#beat (method)">beat</a></span></td>
       <td>
         <code>beat( )</code>
       </td>
       <td style="background-color: #fbb;">false</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#before_abort-instance_method" title="OnStomp::Interfaces::ClientEvents#before_abort (method)">before_abort</a></span></td>
+      <td>
+        <code>create_event_methods :abort, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#before_ack-instance_method" title="OnStomp::Interfaces::ClientEvents#before_ack (method)">before_ack</a></span></td>
+      <td>
+        <code>create_event_methods :ack, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#before_begin-instance_method" title="OnStomp::Interfaces::ClientEvents#before_begin (method)">before_begin</a></span></td>
+      <td>
+        <code>create_event_methods :begin, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#before_broker_beat-instance_method" title="OnStomp::Interfaces::ClientEvents#before_broker_beat (method)">before_broker_beat</a></span></td>
+      <td>
+        <code>create_event_methods :broker_beat, :before, :on</code>
+      </td>
+      <td style="background-color: #fbb;">false</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#before_client_beat-instance_method" title="OnStomp::Interfaces::ClientEvents#before_client_beat (method)">before_client_beat</a></span></td>
+      <td>
+        <code>create_event_methods :client_beat, :before, :on</code>
+      </td>
+      <td style="background-color: #fbb;">false</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#before_commit-instance_method" title="OnStomp::Interfaces::ClientEvents#before_commit (method)">before_commit</a></span></td>
+      <td>
+        <code>create_event_methods :commit, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#before_disconnect-instance_method" title="OnStomp::Interfaces::ClientEvents#before_disconnect (method)">before_disconnect</a></span></td>
+      <td>
+        <code>create_event_methods :disconnect, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#before_error-instance_method" title="OnStomp::Interfaces::ClientEvents#before_error (method)">before_error</a></span></td>
+      <td>
+        <code>create_event_methods :error, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#before_message-instance_method" title="OnStomp::Interfaces::ClientEvents#before_message (method)">before_message</a></span></td>
+      <td>
+        <code>create_event_methods :message, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#before_nack-instance_method" title="OnStomp::Interfaces::ClientEvents#before_nack (method)">before_nack</a></span></td>
+      <td>
+        <code>create_event_methods :nack, :before, :on</code>
+      </td>
+      <td style="background-color: #fbb;">false</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#before_receipt-instance_method" title="OnStomp::Interfaces::ClientEvents#before_receipt (method)">before_receipt</a></span></td>
+      <td>
+        <code>create_event_methods :receipt, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#before_receiving-instance_method" title="OnStomp::Interfaces::ClientEvents#before_receiving (method)">before_receiving</a></span></td>
+      <td>
+        <code>create_event_methods :receiving, :before, :after</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#before_send-instance_method" title="OnStomp::Interfaces::ClientEvents#before_send (method)">before_send</a></span></td>
+      <td>
+        <code>create_event_methods :send, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#before_subscribe-instance_method" title="OnStomp::Interfaces::ClientEvents#before_subscribe (method)">before_subscribe</a></span></td>
+      <td>
+        <code>create_event_methods :subscribe, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#before_transmitting-instance_method" title="OnStomp::Interfaces::ClientEvents#before_transmitting (method)">before_transmitting</a></span></td>
+      <td>
+        <code>create_event_methods :transmitting, :before, :after</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#before_unsubscribe-instance_method" title="OnStomp::Interfaces::ClientEvents#before_unsubscribe (method)">before_unsubscribe</a></span></td>
+      <td>
+        <code>create_event_methods :unsubscribe, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
     </tr>
     <tr>
@@ -138,17 +282,17 @@
       <td style="background-color: #bfb;">true</td>
     </tr>
     <tr>
-      <td><span class='object_link'><a href="OnStomp/Interfaces/FrameMethods.html#disconnect-instance_method" title="OnStomp::Interfaces::FrameMethods#disconnect (method)">disconnect</a></span></td>
+      <td><span class='object_link'><a href="OnStomp/Client.html#disconnect-instance_method" title="OnStomp::Client#disconnect (method)">disconnect</a></span></td>
       <td>
-        <code>disconnect(headers={})</code>
+        <code>disconnect_with_flush(headers={})</code>
       </td>
       <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
     </tr>
     <tr>
-      <td><span class='object_link'><a href="OnStomp/Client.html#disconnect-instance_method" title="OnStomp::Client#disconnect (method)">disconnect</a></span></td>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/FrameMethods.html#disconnect-instance_method" title="OnStomp::Interfaces::FrameMethods#disconnect (method)">disconnect</a></span></td>
       <td>
-        <code>disconnect_with_flush(headers={})</code>
+        <code>disconnect(headers={})</code>
       </td>
       <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
@@ -172,7 +316,7 @@
     <tr>
       <td><span class='object_link'><a href="OnStomp/Interfaces/FrameMethods.html#nack-instance_method" title="OnStomp::Interfaces::FrameMethods#nack (method)">nack</a></span></td>
       <td>
-        <code>nack(message_frame, headers={})</code>
+        <code>nack(message_id, subscription_id, heders={})</code>
       </td>
       <td style="background-color: #fbb;">false</td>
       <td style="background-color: #bfb;">true</td>
@@ -180,9 +324,161 @@
     <tr>
       <td><span class='object_link'><a href="OnStomp/Interfaces/FrameMethods.html#nack-instance_method" title="OnStomp::Interfaces::FrameMethods#nack (method)">nack</a></span></td>
       <td>
-        <code>nack(message_id, subscription_id, heders={})</code>
+        <code>nack(message_frame, headers={})</code>
       </td>
       <td style="background-color: #fbb;">false</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#on_abort-instance_method" title="OnStomp::Interfaces::ClientEvents#on_abort (method)">on_abort</a></span></td>
+      <td>
+        <code>create_event_methods :abort, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#on_ack-instance_method" title="OnStomp::Interfaces::ClientEvents#on_ack (method)">on_ack</a></span></td>
+      <td>
+        <code>create_event_methods :ack, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#on_begin-instance_method" title="OnStomp::Interfaces::ClientEvents#on_begin (method)">on_begin</a></span></td>
+      <td>
+        <code>create_event_methods :begin, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#on_broker_beat-instance_method" title="OnStomp::Interfaces::ClientEvents#on_broker_beat (method)">on_broker_beat</a></span></td>
+      <td>
+        <code>create_event_methods :broker_beat, :before, :on</code>
+      </td>
+      <td style="background-color: #fbb;">false</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#on_client_beat-instance_method" title="OnStomp::Interfaces::ClientEvents#on_client_beat (method)">on_client_beat</a></span></td>
+      <td>
+        <code>create_event_methods :client_beat, :before, :on</code>
+      </td>
+      <td style="background-color: #fbb;">false</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ConnectionEvents.html#on_closed-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_closed (method)">on_closed</a></span></td>
+      <td>
+        <code>create_event_methods :closed, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#on_commit-instance_method" title="OnStomp::Interfaces::ClientEvents#on_commit (method)">on_commit</a></span></td>
+      <td>
+        <code>create_event_methods :commit, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#on_connect-instance_method" title="OnStomp::Interfaces::ClientEvents#on_connect (method)">on_connect</a></span></td>
+      <td>
+        <code>create_event_methods :connect, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ConnectionEvents.html#on_died-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_died (method)">on_died</a></span></td>
+      <td>
+        <code>create_event_methods :died, :on</code>
+      </td>
+      <td style="background-color: #fbb;">false</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#on_disconnect-instance_method" title="OnStomp::Interfaces::ClientEvents#on_disconnect (method)">on_disconnect</a></span></td>
+      <td>
+        <code>create_event_methods :disconnect, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#on_error-instance_method" title="OnStomp::Interfaces::ClientEvents#on_error (method)">on_error</a></span></td>
+      <td>
+        <code>create_event_methods :error, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ConnectionEvents.html#on_established-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_established (method)">on_established</a></span></td>
+      <td>
+        <code>create_event_methods :established, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#on_message-instance_method" title="OnStomp::Interfaces::ClientEvents#on_message (method)">on_message</a></span></td>
+      <td>
+        <code>create_event_methods :message, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#on_nack-instance_method" title="OnStomp::Interfaces::ClientEvents#on_nack (method)">on_nack</a></span></td>
+      <td>
+        <code>create_event_methods :nack, :before, :on</code>
+      </td>
+      <td style="background-color: #fbb;">false</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#on_receipt-instance_method" title="OnStomp::Interfaces::ClientEvents#on_receipt (method)">on_receipt</a></span></td>
+      <td>
+        <code>create_event_methods :receipt, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#on_send-instance_method" title="OnStomp::Interfaces::ClientEvents#on_send (method)">on_send</a></span></td>
+      <td>
+        <code>create_event_methods :send, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#on_subscribe-instance_method" title="OnStomp::Interfaces::ClientEvents#on_subscribe (method)">on_subscribe</a></span></td>
+      <td>
+        <code>create_event_methods :subscribe, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ConnectionEvents.html#on_terminated-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_terminated (method)">on_terminated</a></span></td>
+      <td>
+        <code>create_event_methods :terminated, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#on_unsubscribe-instance_method" title="OnStomp::Interfaces::ClientEvents#on_unsubscribe (method)">on_unsubscribe</a></span></td>
+      <td>
+        <code>create_event_methods :unsubscribe, :before, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
     </tr>
     <tr>
@@ -220,7 +516,7 @@
     <tr>
       <td><span class='object_link'><a href="OnStomp/Interfaces/FrameMethods.html#unsubscribe-instance_method" title="OnStomp::Interfaces::FrameMethods#unsubscribe (method)">unsubscribe</a></span></td>
       <td>
-        <code>unsubscribe(subscribe_frame, headers={})</code>
+        <code>unsubscribe(id, headers={})</code>
       </td>
       <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
@@ -228,7 +524,7 @@
     <tr>
       <td><span class='object_link'><a href="OnStomp/Interfaces/FrameMethods.html#unsubscribe-instance_method" title="OnStomp::Interfaces::FrameMethods#unsubscribe (method)">unsubscribe</a></span></td>
       <td>
-        <code>unsubscribe(id, headers={})</code>
+        <code>unsubscribe(subscribe_frame, headers={})</code>
       </td>
       <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
@@ -241,7 +537,7 @@
 </div></div>
     
     <div id="footer">
-  Generated on Tue Apr  5 13:29:26 2011 by 
+  Generated on Tue Apr  5 13:36:45 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>

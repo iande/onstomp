@@ -313,15 +313,15 @@ installed once the connection is created.</p>
       <pre class="lines">
 
 
-56
-57
-58
-59
 60
-61</pre>
+61
+62
+63
+64
+65</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/connection_events.rb', line 56</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/connection_events.rb', line 60</span>
 
 <span class='kw'>def</span> <span class='id install_bindings_from_client'>install_bindings_from_client</span> <span class='id ev_hash'>ev_hash</span>
   <span class='id ev_hash'>ev_hash</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id ev'>ev</span><span class='comma'>,</span> <span class='id cbs'>cbs</span><span class='op'>|</span>
@@ -413,10 +413,10 @@ the event (in general the same as +client.connection+)</p>
       <pre class="lines">
 
 
-39</pre>
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/connection_events.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/connection_events.rb', line 43</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:closed</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -502,10 +502,10 @@ the event (in general the same as +client.connection+)</p>
       <pre class="lines">
 
 
-23</pre>
+25</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/connection_events.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/connection_events.rb', line 25</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:died</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -584,10 +584,10 @@ the event (in general the same as +client.connection+)</p>
       <pre class="lines">
 
 
-15</pre>
+16</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/connection_events.rb', line 15</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/connection_events.rb', line 16</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:established</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -666,10 +666,10 @@ the event (in general the same as +client.connection+)</p>
       <pre class="lines">
 
 
-30</pre>
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/connection_events.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/connection_events.rb', line 33</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:terminated</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -718,12 +718,12 @@ the event (in general the same as +client.connection+)</p>
       <pre class="lines">
 
 
-45
-46
-47</pre>
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/connection_events.rb', line 45</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/connection_events.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='id trigger_connection_event'>trigger_connection_event</span> <span class='id event'>event</span><span class='comma'>,</span> <span class='id msg'>msg</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span>
   <span class='id trigger_event'>trigger_event</span> <span class='symbol'>:on_</span><span class='embexpr_beg'>#{</span><span class='id event'>event</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id client'>client</span><span class='comma'>,</span> <span class='kw'>self</span><span class='comma'>,</span> <span class='id msg'>msg</span>
@@ -738,7 +738,7 @@ the event (in general the same as +client.connection+)</p>
 </div>
     
     <div id="footer">
-  Generated on Tue Apr  5 13:29:29 2011 by 
+  Generated on Tue Apr  5 13:36:47 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>

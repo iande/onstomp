@@ -435,7 +435,7 @@ to the client's connection, they are:
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#on_connect-instance_method" title="#on_connect (instance method)">- (Object) <strong>on_connect</strong> </a>
+      <a href="#on_connect-instance_method" title="#on_connect (instance method)">- (Object) <strong>on_connect</strong> {|frame, client| ... }</a>
     
 
     
@@ -1079,10 +1079,10 @@ prefix.</p>
       <pre class="lines">
 
 
-104</pre>
+123</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 104</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 123</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:receiving</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:after</span></pre>
     </td>
@@ -1155,10 +1155,10 @@ prefix.</p>
       <pre class="lines">
 
 
-99</pre>
+117</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 99</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 117</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:transmitting</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:after</span></pre>
     </td>
@@ -1231,10 +1231,10 @@ prefix.</p>
       <pre class="lines">
 
 
-38</pre>
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 45</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:abort</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -1307,10 +1307,10 @@ prefix.</p>
       <pre class="lines">
 
 
-23</pre>
+27</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 27</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:ack</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -1383,10 +1383,10 @@ prefix.</p>
       <pre class="lines">
 
 
-33</pre>
+39</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 33</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 39</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:begin</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -1459,10 +1459,10 @@ prefix.</p>
       <pre class="lines">
 
 
-91</pre>
+108</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 91</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 108</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:broker_beat</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -1535,10 +1535,10 @@ prefix.</p>
       <pre class="lines">
 
 
-68</pre>
+81</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 81</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:client_beat</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -1611,10 +1611,10 @@ prefix.</p>
       <pre class="lines">
 
 
-43</pre>
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 51</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:commit</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -1687,10 +1687,10 @@ prefix.</p>
       <pre class="lines">
 
 
-63</pre>
+75</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 75</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:disconnect</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -1763,10 +1763,10 @@ prefix.</p>
       <pre class="lines">
 
 
-76</pre>
+90</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 90</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:error</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -1839,10 +1839,10 @@ prefix.</p>
       <pre class="lines">
 
 
-81</pre>
+96</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 81</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 96</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:message</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -1915,10 +1915,10 @@ prefix.</p>
       <pre class="lines">
 
 
-28</pre>
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 33</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:nack</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -1991,10 +1991,10 @@ prefix.</p>
       <pre class="lines">
 
 
-86</pre>
+102</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 86</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 102</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:receipt</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -2067,10 +2067,10 @@ prefix.</p>
       <pre class="lines">
 
 
-104</pre>
+123</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 104</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 123</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:receiving</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:after</span></pre>
     </td>
@@ -2143,10 +2143,10 @@ prefix.</p>
       <pre class="lines">
 
 
-48</pre>
+57</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 57</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:send</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -2219,10 +2219,10 @@ prefix.</p>
       <pre class="lines">
 
 
-53</pre>
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 63</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:subscribe</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -2295,10 +2295,10 @@ prefix.</p>
       <pre class="lines">
 
 
-99</pre>
+117</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 99</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 117</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:transmitting</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:after</span></pre>
     </td>
@@ -2371,10 +2371,10 @@ prefix.</p>
       <pre class="lines">
 
 
-58</pre>
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 58</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 69</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:unsubscribe</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -2447,10 +2447,10 @@ prefix.</p>
       <pre class="lines">
 
 
-38</pre>
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 45</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:abort</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -2523,10 +2523,10 @@ prefix.</p>
       <pre class="lines">
 
 
-23</pre>
+27</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 27</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:ack</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -2599,10 +2599,10 @@ prefix.</p>
       <pre class="lines">
 
 
-33</pre>
+39</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 33</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 39</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:begin</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -2675,10 +2675,10 @@ prefix.</p>
       <pre class="lines">
 
 
-91</pre>
+108</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 91</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 108</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:broker_beat</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -2751,10 +2751,10 @@ prefix.</p>
       <pre class="lines">
 
 
-68</pre>
+81</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 81</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:client_beat</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -2827,10 +2827,10 @@ prefix.</p>
       <pre class="lines">
 
 
-43</pre>
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 51</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:commit</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -2841,7 +2841,7 @@ prefix.</p>
       <div class="method_details ">
   <p class="signature " id="on_connect-instance_method">
   
-    - (<tt>Object</tt>) <strong>on_connect</strong> 
+    - (<tt>Object</tt>) <strong>on_connect</strong> {|frame, client| ... }
   
 
   
@@ -2854,17 +2854,60 @@ the client.</p>
   </div>
 </div>
 <div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
   
+    <li>
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>callback invoked when event is triggered</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+        <span class='name'>frame</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>client</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-17</pre>
+21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 17</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 21</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:connect</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -2937,10 +2980,10 @@ the client.</p>
       <pre class="lines">
 
 
-63</pre>
+75</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 75</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:disconnect</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -3013,10 +3056,10 @@ the client.</p>
       <pre class="lines">
 
 
-76</pre>
+90</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 90</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:error</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -3089,10 +3132,10 @@ the client.</p>
       <pre class="lines">
 
 
-81</pre>
+96</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 81</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 96</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:message</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -3165,10 +3208,10 @@ the client.</p>
       <pre class="lines">
 
 
-28</pre>
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 33</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:nack</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -3241,10 +3284,10 @@ the client.</p>
       <pre class="lines">
 
 
-86</pre>
+102</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 86</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 102</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:receipt</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -3317,10 +3360,10 @@ the client.</p>
       <pre class="lines">
 
 
-48</pre>
+57</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 57</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:send</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -3393,10 +3436,10 @@ the client.</p>
       <pre class="lines">
 
 
-53</pre>
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 63</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:subscribe</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -3469,10 +3512,10 @@ the client.</p>
       <pre class="lines">
 
 
-58</pre>
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 58</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 69</span>
 
 <span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:unsubscribe</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
     </td>
@@ -3517,12 +3560,12 @@ because the connection does not exist yet.</p>
       <pre class="lines">
 
 
-125
-126
-127</pre>
+144
+145
+146</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 125</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 144</span>
 
 <span class='kw'>def</span> <span class='id pending_connection_events'>pending_connection_events</span>
   <span class='ivar'>@pending_connection_events</span> <span class='op'>||=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id new'>new</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id h'>h</span><span class='comma'>,</span><span class='id k'>k</span><span class='op'>|</span> <span class='id h'>h</span><span class='lbracket'>[</span><span class='id k'>k</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
@@ -3570,13 +3613,13 @@ because the connection does not exist yet.</p>
       <pre class="lines">
 
 
-152
-153
-154
-155</pre>
+171
+172
+173
+174</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 152</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 171</span>
 
 <span class='kw'>def</span> <span class='id trigger_after_receiving'>trigger_after_receiving</span> <span class='id f'>f</span>
   <span class='id trigger_event'>trigger_event</span> <span class='symbol'>:after_receiving</span><span class='comma'>,</span> <span class='id f'>f</span><span class='comma'>,</span> <span class='kw'>self</span>
@@ -3625,13 +3668,13 @@ because the connection does not exist yet.</p>
       <pre class="lines">
 
 
-168
-169
-170
-171</pre>
+187
+188
+189
+190</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 168</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 187</span>
 
 <span class='kw'>def</span> <span class='id trigger_after_transmitting'>trigger_after_transmitting</span> <span class='id f'>f</span>
   <span class='id trigger_event'>trigger_event</span> <span class='symbol'>:after_transmitting</span><span class='comma'>,</span> <span class='id f'>f</span><span class='comma'>,</span> <span class='kw'>self</span>
@@ -3680,13 +3723,13 @@ because the connection does not exist yet.</p>
       <pre class="lines">
 
 
-144
-145
-146
-147</pre>
+163
+164
+165
+166</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 144</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 163</span>
 
 <span class='kw'>def</span> <span class='id trigger_before_receiving'>trigger_before_receiving</span> <span class='id f'>f</span>
   <span class='id trigger_event'>trigger_event</span> <span class='symbol'>:before_receiving</span><span class='comma'>,</span> <span class='id f'>f</span><span class='comma'>,</span> <span class='kw'>self</span>
@@ -3735,13 +3778,13 @@ because the connection does not exist yet.</p>
       <pre class="lines">
 
 
-160
-161
-162
-163</pre>
+179
+180
+181
+182</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 160</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 179</span>
 
 <span class='kw'>def</span> <span class='id trigger_before_transmitting'>trigger_before_transmitting</span> <span class='id f'>f</span>
   <span class='id trigger_event'>trigger_event</span> <span class='symbol'>:before_transmitting</span><span class='comma'>,</span> <span class='id f'>f</span><span class='comma'>,</span> <span class='kw'>self</span>
@@ -3821,14 +3864,14 @@ dispatch appropriate heart-beat event (client_beat or broker_beat)</p>
       <pre class="lines">
 
 
-135
-136
-137
-138
-139</pre>
+154
+155
+156
+157
+158</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 135</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 154</span>
 
 <span class='kw'>def</span> <span class='id trigger_frame_event'>trigger_frame_event</span> <span class='id f'>f</span><span class='comma'>,</span> <span class='id pref'>pref</span><span class='comma'>,</span> <span class='id origin'>origin</span>
   <span class='id e'>e</span> <span class='op'>=</span> <span class='id f'>f</span><span class='period'>.</span><span class='id command'>command</span> <span class='op'>?</span> <span class='symbol'>:#{</span><span class='id pref'>pref</span><span class='rbrace'>}</span><span class='tstring_content'>_</span><span class='embexpr_beg'>#{</span><span class='id f'>f</span><span class='period'>.</span><span class='id command'>command</span><span class='period'>.</span><span class='id downcase'>downcase</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span>
@@ -3845,7 +3888,7 @@ dispatch appropriate heart-beat event (client_beat or broker_beat)</p>
 </div>
     
     <div id="footer">
-  Generated on Tue Apr  5 13:29:28 2011 by 
+  Generated on Tue Apr  5 13:36:47 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>
