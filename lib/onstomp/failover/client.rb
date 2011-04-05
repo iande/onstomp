@@ -72,11 +72,14 @@ class OnStomp::Failover::Client
   # {OnStomp::Client#disconnect disconnect} on the {#active_client}
   def disconnect *args, &block
     return unless active_client
-    @disconnecting = true
-    # This is a bit problematic. If maximum retries is exceeded, this will
-    # just hang indefinitely.
-    Thread.pass until connected?
-    active_client.disconnect *args, &block
+    # If we're not connected, let `reconnect` handle it.
+    #@disconnecting = [args, block]
+    #if connected?
+      @client_mutex.synchronize do
+        @disconnecting = true
+        active_client.disconnect *args, &block
+      end
+    #end
   end
   
   private
@@ -99,6 +102,10 @@ class OnStomp::Failover::Client
       end
       connected?.tap do |b|
         b && trigger_failover_event(:connected, :on, active_client)
+        #if @disconnecting.is_a?(Array)
+        #  args, block = @disconnect
+        #  active_client.disconnect *args, &block
+        #end
       end # <--- Until here
     end
   end

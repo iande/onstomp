@@ -5,9 +5,13 @@
 class TestBroker
   class StopThread < StandardError; end
   
-  attr_reader :messages, :sessions
+  attr_reader :messages, :sessions, :mau_dib
+  attr_reader :frames_received, :frames_transmitted
+  attr_accessor :session_class
   
   def initialize(port=61613)
+    @frames_received = []
+    @frames_transmitted = []
     @sessions = []
     @messages = Hash.new { |h,k| h[k] = [] }
     @subscribes = Hash.new { |h,k| h[k] = [] }
@@ -21,14 +25,9 @@ class TestBroker
     end
     @session_class = Session10
   end
-  
-  def kill_sessions
-    @session_mutex.synchronize do
-      @sessions.each do |s|
-        s.kill
-      end
-      @sessions.clear
-    end
+    
+  def kill_on_command command
+    @mau_dib = command
   end
   
   def enqueue_message s
@@ -88,14 +87,15 @@ class TestBroker
     @listener = Thread.new do
       begin
         loop do
-          sess = @session_class.new(self, @socket.accept)
+          sock = @socket.accept
           @session_mutex.synchronize do
-            @sessions << sess
+            @sessions << @session_class.new(self, sock)
           end
         end
       rescue StopThread
       rescue Exception
         $stdout.puts "Listener failed: #{$!}"
+        $stdout.puts $!.backtrace
         stop
       end
     end
@@ -123,22 +123,25 @@ class TestBroker
       @socket = sock
       init_events
       init_connection
-      # CONNECT/CONNECTED handshake
-      connect_frame = connected_frame = nil
+      connect_frame = nil
       @connection.io_process_read do |f|
         connect_frame ||= f
       end until connect_frame
-      
-      transmit OnStomp::Components::Frame.new('CONNECTED')
-      @connection.io_process_write do |f|
-        connected_frame ||= f
-      end until connected_frame
-      @processor.start
+      reply_to_connect connect_frame
     end
     
     def init_connection
       @connection = OnStomp::Connections::Stomp_1_0.new(socket, self)
       @processor = OnStomp::Components::ThreadedProcessor.new self
+    end
+    
+    def reply_to_connect connect_frame
+      connected_frame = nil
+      transmit OnStomp::Components::Frame.new('CONNECTED')
+      @connection.io_process_write do |f|
+        connected_frame ||= f
+      end until connected_frame
+      @processor.start
     end
     
     def connected?
@@ -165,7 +168,15 @@ class TestBroker
         @connection.close
       end
       
+      after_transmitting do |f,_|
+        @server.frames_transmitted << f
+      end
+      
       before_receiving do |f,_|
+        @server.frames_received << f
+        if @server.mau_dib && f.command == @server.mau_dib
+          kill
+        end
         if f.header? :receipt
           transmit OnStomp::Components::Frame.new('RECEIPT',
             :'receipt-id' => f[:receipt])
@@ -213,10 +224,19 @@ class TestBroker
     def init_events
       super
     end
-
-    def init_connection
-      @connection = OnStomp::Connections::Stomp_1_1.new(socket, self)
-      @processor = OnStomp::Components::ThreadedProcessor.new self
+    
+    def heartbeats; [3000, 10000]; end
+    
+    def reply_to_connect connect_frame
+      connected_frame = nil
+      transmit OnStomp::Components::Frame.new('CONNECTED',
+        :version => '1.1', :'heart-beat' => heartbeats)
+      @connection.io_process_write do |f|
+        connected_frame ||= f
+      end until connected_frame
+      @connection = OnStomp::Connections::Stomp_1_1.new(@connection.socket, self)
+      @connection.configure connect_frame, {}
+      @processor.start
     end
   end
   
@@ -233,8 +253,8 @@ class TestSSLBroker < TestBroker
   }
   
   def initialize(port=61612, certs=:default)
-    @port = port
-    @tcp_socket = TCPServer.new(@port)
+    super(port)
+    @tcp_socket = @socket
     @ssl_context = OpenSSL::SSL::SSLContext.new
     @ssl_context.verify_mode = OpenSSL::SSL::VERIFY_NONE
     cert_files = SSL_CERT_FILES[certs]
@@ -243,9 +263,5 @@ class TestSSLBroker < TestBroker
     @socket = OpenSSL::SSL::SSLServer.new(@tcp_socket, @ssl_context)
     @socket.start_immediately = true
     @session = nil
-    @version = '1.1'
-    @session_class = StompSession
-    @sent_frames = []
-    @received_frames = []
   end
 end
