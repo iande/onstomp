@@ -340,7 +340,18 @@ a transaction.</p>
   </div>
 </div>
 <div class="tags">
-  <h3>Parameters:</h3>
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'>
+</div></h4>
+      <pre class="example code"><span class='id client'>client</span><span class='period'>.</span><span class='id begin'>begin</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>t-1234</span><span class='tstring_end'>'</span></span>
+<span class='id client'>client</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>hello transaction!</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:transaction</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>t-1234</span><span class='tstring_end'>'</span></span>
+<span class='id client'>client</span><span class='period'>.</span><span class='id abort'>abort</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>t-1234</span><span class='tstring_end'>'</span></span></pre>
+    
+  </div>
+<h3>Parameters:</h3>
 <ul class="param">
   
     <li>
@@ -377,6 +388,29 @@ the frame</p>
     </li>
   
 </ul>
+
+  
+    
+    
+    
+    
+    <h3>Options Hash (<tt>headers</tt>):</h3>
+    <ul class="option">
+      
+        <li>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="name">:receipt</span>
+          <span class="default">
+            
+          </span>
+          &mdash; <div class='inline'><p>A receipt ID for the frame, this
+will be matched by the :'receipt-id' header in the broker's RECEIPT
+response.</p>
+</div>
+        </tr>
+      
+    </ul>
+  
 <h3>Returns:</h3>
 <ul class="return">
   
@@ -428,12 +462,12 @@ ABORT frames</p>
       <pre class="lines">
 
 
-100
-101
-102</pre>
+194
+195
+196</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/frame_methods.rb', line 100</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/frame_methods.rb', line 194</span>
 
 <span class='kw'>def</span> <span class='id abort'>abort</span> <span class='id tx_id'>tx_id</span><span class='comma'>,</span> <span class='id headers'>headers</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='id transmit'>transmit</span> <span class='id connection'>connection</span><span class='period'>.</span><span class='id abort_frame'>abort_frame</span><span class='lparen'>(</span><span class='id tx_id'>tx_id</span><span class='comma'>,</span> <span class='id headers'>headers</span><span class='rparen'>)</span>
@@ -451,7 +485,7 @@ ABORT frames</p>
     
       <span class="overload">- (<tt>Object</tt>) <strong>ack</strong>(message_id, headers = {}) </span>
     
-      <span class="overload">- (<tt>Object</tt>) <strong>ack</strong>(message_id, subscription_id, heders = {}) </span>
+      <span class="overload">- (<tt>Object</tt>) <strong>ack</strong>(message_id, subscription_id, headers = {}) </span>
     
   
 
@@ -487,7 +521,20 @@ with STOMP 1.0 and 1.1 connections.</p>
   </div>
 </div>
 <div class="tags">
-  <h3>Parameters:</h3>
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'>
+</div></h4>
+      <pre class="example code"><span class='id client'>client</span><span class='period'>.</span><span class='id subscribe'>subscribe</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:ack</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>client</span><span class='tstring_end'>'</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id m'>m</span><span class='op'>|</span>
+  <span class='kw'>if</span> <span class='id m'>m</span><span class='lbracket'>[</span><span class='symbol'>:x-of-interest-to-me</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>hells yes</span><span class='tstring_end'>'</span></span>
+    <span class='id client'>client</span><span class='period'>.</span><span class='id ack'>ack</span> <span class='id m'>m</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    
+  </div>
+<h3>Parameters:</h3>
 <ul class="param">
   
     <li>
@@ -535,7 +582,7 @@ the frame</p>
     
   <div class="note notetag">
     <strong>Note:</strong> 
-    <div class='inline'><p>This form will raise an +ArgumentError+ with STOMP 1.1 connections
+    <div class='inline'><p>This form will raise an <code>ArgumentError</code> with STOMP 1.1 connections
 as a subscription ID is also required to ACK a received MESSAGE.</p>
 </div>
   </div>
@@ -546,7 +593,20 @@ as a subscription ID is also required to ACK a received MESSAGE.</p>
   </div>
 </div>
 <div class="tags">
-  <h3>Parameters:</h3>
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'>
+</div></h4>
+      <pre class="example code"><span class='id client'>client</span><span class='period'>.</span><span class='id subscribe'>subscribe</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:ack</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>client</span><span class='tstring_end'>'</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id m'>m</span><span class='op'>|</span>
+  <span class='kw'>if</span> <span class='id m'>m</span><span class='lbracket'>[</span><span class='symbol'>:x-of-interest-to-me</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>hells yes</span><span class='tstring_end'>'</span></span>
+    <span class='id client'>client</span><span class='period'>.</span><span class='id ack'>ack</span> <span class='id m'>m</span><span class='lbracket'>[</span><span class='symbol'>:message-id</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    
+  </div>
+<h3>Parameters:</h3>
 <ul class="param">
   
     <li>
@@ -588,7 +648,7 @@ the frame</p>
     
       
       <li class="overload_item">
-        <span class="signature">- (<tt>Object</tt>) <strong>ack</strong>(message_id, subscription_id, heders = {}) </span>
+        <span class="signature">- (<tt>Object</tt>) <strong>ack</strong>(message_id, subscription_id, headers = {}) </span>
         <div class="docstring">
   <div class="discussion">
     
@@ -605,7 +665,20 @@ not possible to provide the actual MESSAGE frame.</p>
   </div>
 </div>
 <div class="tags">
-  <h3>Parameters:</h3>
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'>
+</div></h4>
+      <pre class="example code"><span class='id client'>client</span><span class='period'>.</span><span class='id subscribe'>subscribe</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:ack</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>client</span><span class='tstring_end'>'</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id m'>m</span><span class='op'>|</span>
+  <span class='kw'>if</span> <span class='id m'>m</span><span class='lbracket'>[</span><span class='symbol'>:x-of-interest-to-me</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>hells yes</span><span class='tstring_end'>'</span></span>
+    <span class='id client'>client</span><span class='period'>.</span><span class='id ack'>ack</span> <span class='id m'>m</span><span class='lbracket'>[</span><span class='symbol'>:message-id</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id m'>m</span><span class='lbracket'>[</span><span class='symbol'>:subscription</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    
+  </div>
+<h3>Parameters:</h3>
 <ul class="param">
   
     <li>
@@ -634,7 +707,7 @@ acknowledge.</p>
       
       
         &mdash;
-        <div class='inline'><p>+subscription+ header of MESSAGE frame to
+        <div class='inline'><p><code>subscription</code> header of MESSAGE frame to
 acknowledge.</p>
 </div>
       
@@ -662,6 +735,29 @@ the frame</p>
       </li>
     
   </ul>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <span class='name'>headers</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a customizable set of options</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
 <h3>Returns:</h3>
 <ul class="return">
   
@@ -711,12 +807,12 @@ ACK frames</p>
       <pre class="lines">
 
 
-157
-158
-159</pre>
+294
+295
+296</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/frame_methods.rb', line 157</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/frame_methods.rb', line 294</span>
 
 <span class='kw'>def</span> <span class='id ack'>ack</span> <span class='op'>*</span><span class='id args'>args</span>
   <span class='id transmit'>transmit</span> <span class='id connection'>connection</span><span class='period'>.</span><span class='id ack_frame'>ack_frame</span><span class='lparen'>(</span><span class='op'>*</span><span class='id args'>args</span><span class='rparen'>)</span>
@@ -741,7 +837,19 @@ ACK frames</p>
   </div>
 </div>
 <div class="tags">
-  <h3>Returns:</h3>
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'>
+</div></h4>
+      <pre class="example code"><span class='comment'># If it's been a while since you've sent any data to the broker:
+</span><span class='id client'>client</span><span class='period'>.</span><span class='id beat'>beat</span>
+<span class='comment'># Now the broker knows you're still listening, nay hanging on its every
+</span><span class='comment'># every word.</span></pre>
+    
+  </div>
+<h3>Returns:</h3>
 <ul class="return">
   
     <li>
@@ -783,12 +891,12 @@ heartbeat frames</p>
       <pre class="lines">
 
 
-187
-188
-189</pre>
+348
+349
+350</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/frame_methods.rb', line 187</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/frame_methods.rb', line 348</span>
 
 <span class='kw'>def</span> <span class='id beat'>beat</span>
   <span class='id transmit'>transmit</span> <span class='id connection'>connection</span><span class='period'>.</span><span class='id heartbeat_frame'>heartbeat_frame</span>
@@ -814,7 +922,18 @@ a transaction.</p>
   </div>
 </div>
 <div class="tags">
-  <h3>Parameters:</h3>
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'>
+</div></h4>
+      <pre class="example code"><span class='id client'>client</span><span class='period'>.</span><span class='id begin'>begin</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>t-1234</span><span class='tstring_end'>'</span></span>
+<span class='id client'>client</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>hello transaction!</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:transaction</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>t-1234</span><span class='tstring_end'>'</span></span>
+<span class='id client'>client</span><span class='period'>.</span><span class='id commit'>commit</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>t-1234</span><span class='tstring_end'>'</span></span></pre>
+    
+  </div>
+<h3>Parameters:</h3>
 <ul class="param">
   
     <li>
@@ -851,6 +970,29 @@ the frame</p>
     </li>
   
 </ul>
+
+  
+    
+    
+    
+    
+    <h3>Options Hash (<tt>headers</tt>):</h3>
+    <ul class="option">
+      
+        <li>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="name">:receipt</span>
+          <span class="default">
+            
+          </span>
+          &mdash; <div class='inline'><p>A receipt ID for the frame, this
+will be matched by the :'receipt-id' header in the broker's RECEIPT
+response.</p>
+</div>
+        </tr>
+      
+    </ul>
+  
 <h3>Returns:</h3>
 <ul class="return">
   
@@ -902,12 +1044,12 @@ BEGIN frames</p>
       <pre class="lines">
 
 
-86
-87
-88</pre>
+172
+173
+174</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/frame_methods.rb', line 86</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/frame_methods.rb', line 172</span>
 
 <span class='kw'>def</span> <span class='kw'>begin</span> <span class='id tx_id'>tx_id</span><span class='comma'>,</span> <span class='id headers'>headers</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='id transmit'>transmit</span> <span class='id connection'>connection</span><span class='period'>.</span><span class='id begin_frame'>begin_frame</span><span class='lparen'>(</span><span class='id tx_id'>tx_id</span><span class='comma'>,</span> <span class='id headers'>headers</span><span class='rparen'>)</span>
@@ -933,7 +1075,18 @@ a transaction.</p>
   </div>
 </div>
 <div class="tags">
-  <h3>Parameters:</h3>
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'>
+</div></h4>
+      <pre class="example code"><span class='id client'>client</span><span class='period'>.</span><span class='id begin'>begin</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>t-1234</span><span class='tstring_end'>'</span></span>
+<span class='id client'>client</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>hello transaction!</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:transaction</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>t-1234</span><span class='tstring_end'>'</span></span>
+<span class='id client'>client</span><span class='period'>.</span><span class='id commit'>commit</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>t-1234</span><span class='tstring_end'>'</span></span></pre>
+    
+  </div>
+<h3>Parameters:</h3>
 <ul class="param">
   
     <li>
@@ -970,6 +1123,29 @@ the frame</p>
     </li>
   
 </ul>
+
+  
+    
+    
+    
+    
+    <h3>Options Hash (<tt>headers</tt>):</h3>
+    <ul class="option">
+      
+        <li>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="name">:receipt</span>
+          <span class="default">
+            
+          </span>
+          &mdash; <div class='inline'><p>A receipt ID for the frame, this
+will be matched by the :'receipt-id' header in the broker's RECEIPT
+response.</p>
+</div>
+        </tr>
+      
+    </ul>
+  
 <h3>Returns:</h3>
 <ul class="return">
   
@@ -1021,12 +1197,12 @@ COMMIT frames</p>
       <pre class="lines">
 
 
-114
-115
-116</pre>
+216
+217
+218</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/frame_methods.rb', line 114</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/frame_methods.rb', line 216</span>
 
 <span class='kw'>def</span> <span class='id commit'>commit</span> <span class='id tx_id'>tx_id</span><span class='comma'>,</span> <span class='id headers'>headers</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='id transmit'>transmit</span> <span class='id connection'>connection</span><span class='period'>.</span><span class='id commit_frame'>commit_frame</span><span class='lparen'>(</span><span class='id tx_id'>tx_id</span><span class='comma'>,</span> <span class='id headers'>headers</span><span class='rparen'>)</span>
@@ -1052,7 +1228,18 @@ the STOMP session.</p>
   </div>
 </div>
 <div class="tags">
-  <h3>Parameters:</h3>
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'>
+</div></h4>
+      <pre class="example code"><span class='id client'>client</span><span class='period'>.</span><span class='id connect'>connect</span>
+<span class='id client'>client</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>a quick message</span><span class='tstring_end'>'</span></span>
+<span class='id client'>client</span><span class='period'>.</span><span class='id disconnect'>disconnect</span></pre>
+    
+  </div>
+<h3>Parameters:</h3>
 <ul class="param">
   
     <li>
@@ -1074,6 +1261,27 @@ the frame</p>
     </li>
   
 </ul>
+
+  
+    
+    
+    <h3>Options Hash (<tt>headers</tt>):</h3>
+    <ul class="option">
+      
+        <li>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="name">:receipt</span>
+          <span class="default">
+            
+          </span>
+          &mdash; <div class='inline'><p>A receipt ID for the frame, this
+will be matched by the :'receipt-id' header in the broker's RECEIPT
+response.</p>
+</div>
+        </tr>
+      
+    </ul>
+  
 <h3>Returns:</h3>
 <ul class="return">
   
@@ -1116,12 +1324,12 @@ DISCONNECT frames</p>
       <pre class="lines">
 
 
-125
-126
-127</pre>
+235
+236
+237</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/frame_methods.rb', line 125</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/frame_methods.rb', line 235</span>
 
 <span class='kw'>def</span> <span class='id disconnect'>disconnect</span> <span class='id headers'>headers</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='id transmit'>transmit</span> <span class='id connection'>connection</span><span class='period'>.</span><span class='id disconnect_frame'>disconnect_frame</span> <span class='id headers'>headers</span>
@@ -1165,7 +1373,20 @@ DISCONNECT frames</p>
   </div>
 </div>
 <div class="tags">
-  <h3>Parameters:</h3>
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'>
+</div></h4>
+      <pre class="example code"><span class='id client'>client</span><span class='period'>.</span><span class='id subscribe'>subscribe</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:ack</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>client</span><span class='tstring_end'>'</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id m'>m</span><span class='op'>|</span>
+  <span class='kw'>if</span> <span class='id m'>m</span><span class='lbracket'>[</span><span class='symbol'>:x-of-interest-to-me</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>hells no!</span><span class='tstring_end'>'</span></span>
+    <span class='id client'>client</span><span class='period'>.</span><span class='id nack'>nack</span> <span class='id m'>m</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    
+  </div>
+<h3>Parameters:</h3>
 <ul class="param">
   
     <li>
@@ -1216,7 +1437,20 @@ the frame</p>
   </div>
 </div>
 <div class="tags">
-  <h3>Parameters:</h3>
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'>
+</div></h4>
+      <pre class="example code"><span class='id client'>client</span><span class='period'>.</span><span class='id subscribe'>subscribe</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/test</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:ack</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>client</span><span class='tstring_end'>'</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id m'>m</span><span class='op'>|</span>
+  <span class='kw'>if</span> <span class='id m'>m</span><span class='lbracket'>[</span><span class='symbol'>:x-of-interest-to-me</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>hells no!</span><span class='tstring_end'>'</span></span>
+    <span class='id client'>client</span><span class='period'>.</span><span class='id nack'>nack</span> <span class='id m'>m</span><span class='lbracket'>[</span><span class='symbol'>:message-id</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id m'>m</span><span class='lbracket'>[</span><span class='symbol'>:subscription</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    
+  </div>
+<h3>Parameters:</h3>
 <ul class="param">
   
     <li>
@@ -1245,7 +1479,7 @@ un-acknowledge.</p>
       
       
         &mdash;
-        <div class='inline'><p>+subscription+ header of MESSAGE frame to
+        <div class='inline'><p><code>subscription</code> header of MESSAGE frame to
 un-acknowledge.</p>
 </div>
       
@@ -1273,6 +1507,29 @@ the frame</p>
       </li>
     
   </ul>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <span class='name'>headers</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a customizable set of options</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
 <h3>Returns:</h3>
 <ul class="return">
   
@@ -1322,12 +1579,12 @@ NACK frames</p>
       <pre class="lines">
 
 
-179
-180
-181</pre>
+334
+335
+336</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/frame_methods.rb', line 179</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/frame_methods.rb', line 334</span>
 
 <span class='kw'>def</span> <span class='id nack'>nack</span> <span class='op'>*</span><span class='id args'>args</span>
   <span class='id transmit'>transmit</span> <span class='id connection'>connection</span><span class='period'>.</span><span class='id nack_frame'>nack_frame</span><span class='lparen'>(</span><span class='op'>*</span><span class='id args'>args</span><span class='rparen'>)</span>
@@ -1356,7 +1613,26 @@ NACK frames</p>
   </div>
 </div>
 <div class="tags">
-  <h3>Parameters:</h3>
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'>
+</div></h4>
+      <pre class="example code"><span class='comment'># Transmit a simple SEND frame to the broker
+</span><span class='id client'>client</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/example</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Hello STOMP</span><span class='tstring_end'>'</span></span>
+
+<span class='comment'># Everything's better with umlauts.
+</span><span class='id client'>client</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/topic/example</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hëllo Wörld</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='symbol'>:content-type</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>text/plain;charset=UTF-8</span><span class='tstring_end'>'</span></span>
+
+<span class='comment'># Get a receipt for the SEND frame
+</span><span class='id client'>client</span><span class='period'>.</span><span class='id send'>send</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/example</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Did you get that thing I sent you?</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id r'>r</span><span class='op'>|</span>
+  <span class='id puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The broker received our SEND frame</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    
+  </div>
+<h3>Parameters:</h3>
 <ul class="param">
   
     <li>
@@ -1408,6 +1684,69 @@ the frame</p>
     </li>
   
 </ul>
+
+  
+    
+    
+    
+    
+    
+    
+    <h3>Options Hash (<tt>headers</tt>):</h3>
+    <ul class="option">
+      
+        <li>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="name">:'content-type'</span>
+          <span class="default">
+            
+          </span>
+          &mdash; <div class='inline'><p>The content type of the SEND
+frame's body. If the body is text (ie: has a non-binary <code>encoding</code>)
+<code>onstomp</code> will set the :'content-type' header to 'text/plain' if it
+has not been set. See <a href="../../file.Encodings.html" title="Encodings">Encodings</a> for more
+details.</p>
+</div>
+        </tr>
+      
+        <li>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="name">:receipt</span>
+          <span class="default">
+            
+          </span>
+          &mdash; <div class='inline'><p>A receipt ID for the frame, this
+will be matched by the :'receipt-id' header in the broker's RECEIPT
+response.</p>
+</div>
+        </tr>
+      
+        <li>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="name">:transaction</span>
+          <span class="default">
+            
+          </span>
+          &mdash; <div class='inline'><p>The ID of an existing transaction
+to add this frame to.</p>
+</div>
+        </tr>
+      
+        <li>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="name">:'content-length'</span>
+          <span class="default">
+            
+          </span>
+          &mdash; <div class='inline'><p>If you set this header, it
+will be overwritten, so save your fingers from a few keystrokes by not
+setting it.  All SEND frames generated by <code>onstomp</code> will have a
+:'content-length' header.</p>
+</div>
+        </tr>
+      
+    </ul>
+  
 <h3>Yields:</h3>
 <ul class="yield">
   
@@ -1487,12 +1826,12 @@ SEND frames</p>
       <pre class="lines">
 
 
-17
-18
-19</pre>
+59
+60
+61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/frame_methods.rb', line 17</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/frame_methods.rb', line 59</span>
 
 <span class='kw'>def</span> <span class='id send'>send</span> <span class='id dest'>dest</span><span class='comma'>,</span> <span class='id body'>body</span><span class='comma'>,</span> <span class='id headers'>headers</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id cb'>cb</span>
   <span class='id transmit'>transmit</span> <span class='id connection'>connection</span><span class='period'>.</span><span class='id send_frame'>send_frame</span><span class='lparen'>(</span><span class='id dest'>dest</span><span class='comma'>,</span> <span class='id body'>body</span><span class='comma'>,</span> <span class='id headers'>headers</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='symbol'>:receipt</span> <span class='op'>=&gt;</span> <span class='id cb'>cb</span>
@@ -1534,7 +1873,25 @@ STOMP 1.1 connections support:
   </div>
 </div>
 <div class="tags">
-  <h3>Parameters:</h3>
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'>
+</div></h4>
+      <pre class="example code"><span class='comment'># A basic subscription
+</span><span class='id client'>client</span><span class='period'>.</span><span class='id subscribe'>subscribe</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/example</span><span class='tstring_end'>'</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id m'>m</span><span class='op'>|</span>
+  <span class='id puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Got a MESSAGE: </span><span class='embexpr_beg'>#{</span><span class='id m'>m</span><span class='period'>.</span><span class='id body'>body</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+
+<span class='comment'># ACK our MESSAGE frames
+</span><span class='id client'>client</span><span class='period'>.</span><span class='id subscribe'>subscribe</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/queue/example</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:ack</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>client</span><span class='tstring_end'>'</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id m'>m</span><span class='op'>|</span>
+  <span class='id client'>client</span><span class='period'>.</span><span class='id ack'>ack</span> <span class='id m'>m</span>
+  <span class='id puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Got (and ACK'd) a MESSAGE: </span><span class='embexpr_beg'>#{</span><span class='id m'>m</span><span class='period'>.</span><span class='id body'>body</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    
+  </div>
+<h3>Parameters:</h3>
 <ul class="param">
   
     <li>
@@ -1571,6 +1928,70 @@ the frame</p>
     </li>
   
 </ul>
+
+  
+    
+    
+    
+    
+    <h3>Options Hash (<tt>headers</tt>):</h3>
+    <ul class="option">
+      
+        <li>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="name">:id</span>
+          <span class="default">
+            
+          </span>
+          &mdash; <div class='inline'><p>A unique ID for the subscription. If you
+do not set this header, an subscription ID will be automatically
+generated ensuring that all <code>onstomp</code> SUBSCRIBE frames have an ID.</p>
+</div>
+        </tr>
+      
+        <li>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="name">:ack</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>'auto'</tt>
+            
+          </span>
+          &mdash; <div class='inline'><p>The ack mode to use with this
+subscription. A value of 'auto' means MESSAGE frames are assumed
+received and no ACK frame is necessary. A value of 'client' or
+'client-individual' means all MESSAGE frames should be acknowledged
+with an ACK (or un-acknowledged with a NACK.)</p>
+</div>
+        </tr>
+      
+        <li>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="name">:selector</span>
+          <span class="default">
+            
+          </span>
+          &mdash; <div class='inline'><p>A SQL style filter to use against
+MESSAGE frames (the form and availability of this will vary by
+broker.)</p>
+</div>
+        </tr>
+      
+        <li>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="name">:receipt</span>
+          <span class="default">
+            
+          </span>
+          &mdash; <div class='inline'><p>A receipt ID for the frame, this
+will be matched by the :'receipt-id' header in the broker's RECEIPT
+response.</p>
+</div>
+        </tr>
+      
+    </ul>
+  
 <h3>Yields:</h3>
 <ul class="yield">
   
@@ -1662,12 +2083,12 @@ SUBSCRIBE frames</p>
       <pre class="lines">
 
 
-53
-54
-55</pre>
+121
+122
+123</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/frame_methods.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/frame_methods.rb', line 121</span>
 
 <span class='kw'>def</span> <span class='id subscribe'>subscribe</span> <span class='id dest'>dest</span><span class='comma'>,</span> <span class='id headers'>headers</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id cb'>cb</span>
   <span class='id transmit'>transmit</span> <span class='id connection'>connection</span><span class='period'>.</span><span class='id subscribe_frame'>subscribe_frame</span><span class='lparen'>(</span><span class='id dest'>dest</span><span class='comma'>,</span> <span class='id headers'>headers</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='symbol'>:subscribe</span> <span class='op'>=&gt;</span> <span class='id cb'>cb</span>
@@ -1711,7 +2132,17 @@ SUBSCRIBE frames</p>
   </div>
 </div>
 <div class="tags">
-  <h3>Parameters:</h3>
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'>
+</div></h4>
+      <pre class="example code">sub = client.subscribe('/queue/test') { |m| ... }
+client.unsubscribe sub</pre>
+    
+  </div>
+<h3>Parameters:</h3>
 <ul class="param">
   
     <li>
@@ -1757,7 +2188,17 @@ the UNSUBSCRIBE frame</p>
   </div>
 </div>
 <div class="tags">
-  <h3>Parameters:</h3>
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'>
+</div></h4>
+      <pre class="example code">client.subscribe('/queue/test', :id =&gt; 's-1234') { |m| ... }
+client.unsubscribe 's-1234'</pre>
+    
+  </div>
+<h3>Parameters:</h3>
 <ul class="param">
   
     <li>
@@ -1793,6 +2234,50 @@ the UNSUBSCRIBE frame</p>
       </li>
     
   </ul>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <span class='name'>headers</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>a customizable set of options</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    <h3>Options Hash (<tt>headers</tt>):</h3>
+    <ul class="option">
+      
+        <li>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="name">:receipt</span>
+          <span class="default">
+            
+          </span>
+          &mdash; <div class='inline'><p>A receipt ID for the frame, this
+will be matched by the :'receipt-id' header in the broker's RECEIPT
+response.</p>
+</div>
+        </tr>
+      
+    </ul>
+  
 <h3>Returns:</h3>
 <ul class="return">
   
@@ -1842,12 +2327,12 @@ UNSUBSCRIBE frames</p>
       <pre class="lines">
 
 
-72
-73
-74</pre>
+150
+151
+152</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/frame_methods.rb', line 72</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/frame_methods.rb', line 150</span>
 
 <span class='kw'>def</span> <span class='id unsubscribe'>unsubscribe</span> <span class='id frame_or_id'>frame_or_id</span><span class='comma'>,</span> <span class='id headers'>headers</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='id transmit'>transmit</span> <span class='id connection'>connection</span><span class='period'>.</span><span class='id unsubscribe_frame'>unsubscribe_frame</span><span class='lparen'>(</span><span class='id frame_or_id'>frame_or_id</span><span class='comma'>,</span> <span class='id headers'>headers</span><span class='rparen'>)</span>
@@ -1862,7 +2347,7 @@ UNSUBSCRIBE frames</p>
 </div>
     
     <div id="footer">
-  Generated on Mon Apr  4 16:26:39 2011 by 
+  Generated on Tue Apr  5 13:29:28 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>

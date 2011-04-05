@@ -449,8 +449,8 @@ empty string.</p>
 </p><div class="docstring">
   <div class="discussion">
     <p>Creates a new frame. The frame will be initialized with the optional
-+command+ name, a <span class='object_link'><a href="FrameHeaders.html" title="OnStomp::Components::FrameHeaders (class)">headers</a></span> collection initialized
-with the optional +headers+ hash, and an optional body.</p>
+<code>command</code> name, a <span class='object_link'><a href="FrameHeaders.html" title="OnStomp::Components::FrameHeaders (class)">headers</a></span> collection initialized
+with the optional <code>headers</code> hash, and an optional body.</p>
 
 
   </div>
@@ -679,7 +679,7 @@ shortcut for <code>frame.headers[name]</code>.</p>
   <h3>See Also:</h3>
   <ul class="see">
     
-      <li>Headers#[]</li>
+      <li><span class='object_link'><a href="FrameHeaders.html#%5B%5D-instance_method" title="OnStomp::Components::FrameHeaders#[] (method)">OnStomp::Components::FrameHeaders#[]</a></span></li>
     
   </ul>
 
@@ -781,7 +781,7 @@ shortcut for <code>frame.headers[name] = val</code>.</p>
   <h3>See Also:</h3>
   <ul class="see">
     
-      <li>Headers#[]=</li>
+      <li><span class='object_link'><a href="FrameHeaders.html#%5B%5D%3D-instance_method" title="OnStomp::Components::FrameHeaders#[]= (method)">OnStomp::Components::FrameHeaders#[]=</a></span></li>
     
   </ul>
 
@@ -965,9 +965,9 @@ an integer.</p>
   <div class="discussion">
     <p>If a +content-type+ header is set, splits it into three parts: type,
 subtype and charset. If any component of the +content-type+ is missing,
-its value will be +nil+ in the returned triple. If the +content-type+
+its value will be <code>nil</code> in the returned triple. If the +content-type+
 header is not set or does not match <span class='object_link'><a href="#CONTENT_TYPE_REG-constant" title="OnStomp::Components::Frame::CONTENT_TYPE_REG (constant)">CONTENT_TYPE_REG</a></span>
-all values in the triple will be +nil+.</p>
+all values in the triple will be <code>nil</code>.</p>
 
 
   </div>
@@ -1201,7 +1201,7 @@ connection heart-beat settings</p>
 </div>
     
     <div id="footer">
-  Generated on Mon Apr  4 16:26:38 2011 by 
+  Generated on Tue Apr  5 13:29:27 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>

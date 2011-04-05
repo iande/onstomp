@@ -70,8 +70,8 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>Classes that mix this in must define +split_header+ and +prepare_parsed_frame+
-The method +frame_to_string_base+ is provided as a factoring out of the
+    <p>Classes that mix this in must define <code>split_header</code> and <code>prepare_parsed_frame</code>
+The method <code>frame_to_string_base</code> is provided as a factoring out of the
 common tasks of serializing a frame for STOMP 1.0 and STOMP 1.1.</p>
 
 
@@ -195,7 +195,7 @@ common tasks of serializing a frame for STOMP 1.0 and STOMP 1.1.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Takes the result of +frame_to_string+ and passes it along.</p>
+    <span class="summary_desc"><div class='inline'><p>Takes the result of <code>frame_to_string</code> and passes it along.</p>
 </div></span>
   
 </li>
@@ -307,7 +307,7 @@ as a string in STOMP 1.0 and STOMP 1.1 protocols.</p>
 
   
     <span class="summary_desc"><div class='inline'><p>Adds the substring +data[0...idx]+ to the parser's accumulator,
-unshifts the remaining data back onto the buffer, and calls +meth+
+unshifts the remaining data back onto the buffer, and calls <code>meth</code>
 with the parser's accumulated string.</p>
 </div></span>
   
@@ -438,7 +438,7 @@ will have to implement your own synchronization strategy.</p>
   <div class="discussion">
     <p>Called when a frame's body has been fully read from the buffer. This
 method will set the frame's <span class='object_link'><a href="../../Components/Frame.html#body-instance_method" title="OnStomp::Components::Frame#body (method)">body</a></span>
-attribute, call +prepare_parsed_frame+ with the "current frame",
+attribute, call <code>prepare_parsed_frame</code> with the "current frame",
 and tell the parser to move on to the next state.</p>
 
 
@@ -628,7 +628,7 @@ state</p>
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>Takes the result of +frame_to_string+ and passes it along. Ruby 1.8.7
+    <p>Takes the result of <code>frame_to_string</code> and passes it along. Ruby 1.8.7
 treats strings as a collection of bytes, so we don't need to do any
 further work.</p>
 
@@ -943,7 +943,7 @@ as a string in STOMP 1.0 and STOMP 1.1 protocols.</p>
 </p><div class="docstring">
   <div class="discussion">
     <p>Adds the substring +data[0...idx]+ to the parser's accumulator,
-unshifts the remaining data back onto the buffer, and calls +meth+
+unshifts the remaining data back onto the buffer, and calls <code>meth</code>
 with the parser's accumulated string.</p>
 
 
@@ -1072,7 +1072,7 @@ with the parser's accumulated string.</p>
 </div>
     
     <div id="footer">
-  Generated on Mon Apr  4 16:26:40 2011 by 
+  Generated on Tue Apr  5 13:29:29 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>

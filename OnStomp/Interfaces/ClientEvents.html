@@ -77,10 +77,10 @@
     <p>Mixin for <span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">client</a></span> events
 There are a few special event methods that will be passed on
 to the client's connection, they are:
-* +on_connection_established+ => <span class='object_link'><a href="ConnectionEvents.html#on_established-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_established (method)">OnStomp::Interfaces::ConnectionEvents#on_established</a></span>
-* +on_connection_died+ => <span class='object_link'><a href="ConnectionEvents.html#on_died-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_died (method)">OnStomp::Interfaces::ConnectionEvents#on_died</a></span>
-* +on_connection_terminated+ => <span class='object_link'><a href="ConnectionEvents.html#on_terminated-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_terminated (method)">OnStomp::Interfaces::ConnectionEvents#on_terminated</a></span>
-* +on_connection_closed+ => <span class='object_link'><a href="ConnectionEvents.html#on_closed-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_closed (method)">OnStomp::Interfaces::ConnectionEvents#on_closed</a></span></p>
+* <code>on_connection_established</code> => <span class='object_link'><a href="ConnectionEvents.html#on_established-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_established (method)">OnStomp::Interfaces::ConnectionEvents#on_established</a></span>
+* <code>on_connection_died</code> => <span class='object_link'><a href="ConnectionEvents.html#on_died-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_died (method)">OnStomp::Interfaces::ConnectionEvents#on_died</a></span>
+* <code>on_connection_terminated</code> => <span class='object_link'><a href="ConnectionEvents.html#on_terminated-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_terminated (method)">OnStomp::Interfaces::ConnectionEvents#on_terminated</a></span>
+* <code>on_connection_closed</code> => <span class='object_link'><a href="ConnectionEvents.html#on_closed-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_closed (method)">OnStomp::Interfaces::ConnectionEvents#on_closed</a></span></p>
 
 
   </div>
@@ -448,7 +448,7 @@ to the client's connection, they are:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Can't get +before+ because the CONNECT frame isn't transmitted by
+    <span class="summary_desc"><div class='inline'><p>Can't get <code>before</code> because the CONNECT frame isn't transmitted by
 the client.</p>
 </div></span>
   
@@ -897,7 +897,7 @@ because the connection does not exist yet.</p>
 
   
     <span class="summary_desc"><div class='inline'><p>Triggers the :after_receiving event and the
-+on+ prefixed frame specific event (eg: +:on_message+).</p>
+<code>on</code> prefixed frame specific event (eg: +:on_message+).</p>
 </div></span>
   
 </li>
@@ -920,7 +920,7 @@ because the connection does not exist yet.</p>
 
   
     <span class="summary_desc"><div class='inline'><p>Triggers the :after_transmitting event and the
-+on+ prefixed frame specific event (eg: +:on_send+).</p>
+<code>on</code> prefixed frame specific event (eg: +:on_send+).</p>
 </div></span>
   
 </li>
@@ -943,7 +943,7 @@ because the connection does not exist yet.</p>
 
   
     <span class="summary_desc"><div class='inline'><p>Triggers the :before_receiving event and the
-+before+ prefixed frame specific event (eg: +:before_error+).</p>
+<code>before</code> prefixed frame specific event (eg: +:before_error+).</p>
 </div></span>
   
 </li>
@@ -966,7 +966,7 @@ because the connection does not exist yet.</p>
 
   
     <span class="summary_desc"><div class='inline'><p>Triggers the :before_transmitting event and the
-+before+ prefixed frame specific event (eg: +:before_disconnect+).</p>
+<code>before</code> prefixed frame specific event (eg: +:before_disconnect+).</p>
 </div></span>
   
 </li>
@@ -2847,7 +2847,7 @@ prefix.</p>
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>Can't get +before+ because the CONNECT frame isn't transmitted by
+    <p>Can't get <code>before</code> because the CONNECT frame isn't transmitted by
 the client.</p>
 
 
@@ -3542,7 +3542,7 @@ because the connection does not exist yet.</p>
 </p><div class="docstring">
   <div class="discussion">
     <p>Triggers the :after_receiving event and the
-+on+ prefixed frame specific event (eg: +:on_message+)</p>
+<code>on</code> prefixed frame specific event (eg: +:on_message+)</p>
 
 
   </div>
@@ -3597,7 +3597,7 @@ because the connection does not exist yet.</p>
 </p><div class="docstring">
   <div class="discussion">
     <p>Triggers the :after_transmitting event and the
-+on+ prefixed frame specific event (eg: +:on_send+).</p>
+<code>on</code> prefixed frame specific event (eg: +:on_send+).</p>
 
 
   </div>
@@ -3652,7 +3652,7 @@ because the connection does not exist yet.</p>
 </p><div class="docstring">
   <div class="discussion">
     <p>Triggers the :before_receiving event and the
-+before+ prefixed frame specific event (eg: +:before_error+).</p>
+<code>before</code> prefixed frame specific event (eg: +:before_error+).</p>
 
 
   </div>
@@ -3707,7 +3707,7 @@ because the connection does not exist yet.</p>
 </p><div class="docstring">
   <div class="discussion">
     <p>Triggers the :before_transmitting event and the
-+before+ prefixed frame specific event (eg: +:before_disconnect+).</p>
+<code>before</code> prefixed frame specific event (eg: +:before_disconnect+).</p>
 
 
   </div>
@@ -3845,7 +3845,7 @@ dispatch appropriate heart-beat event (client_beat or broker_beat)</p>
 </div>
     
     <div id="footer">
-  Generated on Mon Apr  4 16:26:39 2011 by 
+  Generated on Tue Apr  5 13:29:28 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>

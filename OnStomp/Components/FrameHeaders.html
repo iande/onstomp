@@ -86,9 +86,9 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     <p>A specialized container for storing header name / value pairs for a
-<span class='object_link'><a href="Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span>.  This container behaves much like a +Hash+, but
+<span class='object_link'><a href="Frame.html" title="OnStomp::Components::Frame (class)">frame</a></span>.  This container behaves much like a <code>Hash</code>, but
 is specialized for the Stomp protocol.  Header names are always converted
-into +String+s through the use of +to_s+ and may have more than one value
+into <code>String</code>s through the use of <code>to_s</code> and may have more than one value
 associated with them.</p>
 
 
@@ -336,7 +336,7 @@ parameter.</p>
 
   
     <span class="summary_desc"><div class='inline'><p>Returns true if a header value has been set for the supplied header, and
-the value is neither +nil+ nor an empty string.</p>
+the value is neither <code>nil</code> nor an empty string.</p>
 </div></span>
   
 </li>
@@ -402,7 +402,7 @@ the value is neither +nil+ nor an empty string.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns a new +Hash+ object associating symbolized header names and their
+    <span class="summary_desc"><div class='inline'><p>Returns a new <code>Hash</code> object associating symbolized header names and their
 principle values.</p>
 </div></span>
   
@@ -540,7 +540,7 @@ parameter.</p>
 </p><div class="docstring">
   <div class="discussion">
     <p>Gets the principle header value paired with the supplied header name. The name will
-be converted to a Symbol, so must respond to the +to_sym+ method.  The
+be converted to a Symbol, so must respond to the <code>to_sym</code> method.  The
 Stomp 1.1 protocol specifies that in the event of a repeated header name,
 the first value encountered serves as the principle value.</p>
 
@@ -570,7 +570,7 @@ the first value encountered serves as the principle value.</p>
       
       
         &mdash;
-        <div class='inline'><p>the header name paired with the desired value (will be converted using +to_sym+)</p>
+        <div class='inline'><p>the header name paired with the desired value (will be converted using <code>to_sym</code>)</p>
 </div>
       
     </li>
@@ -640,8 +640,8 @@ the first value encountered serves as the principle value.</p>
 </p><div class="docstring">
   <div class="discussion">
     <p>Sets the header value paired with the supplied header name.  The name
-will be converted to a Symbol and must respond to +to_sym+; meanwhile,
-the value will be converted to a String so must respond to +to_s+.
+will be converted to a Symbol and must respond to <code>to_sym</code>; meanwhile,
+the value will be converted to a String so must respond to <code>to_s</code>.
 Setting a header value in this fashion will overwrite any repeated header values.</p>
 
 
@@ -672,7 +672,7 @@ Setting a header value in this fashion will overwrite any repeated header values
       
       
         &mdash;
-        <div class='inline'><p>the header name to associate with the supplied value (will be converted using +to_sym+)</p>
+        <div class='inline'><p>the header name to associate with the supplied value (will be converted using <code>to_sym</code>)</p>
 </div>
       
     </li>
@@ -687,7 +687,7 @@ Setting a header value in this fashion will overwrite any repeated header values
       
       
         &mdash;
-        <div class='inline'><p>the value to pair with the supplied name (will be converted using +to_s+)</p>
+        <div class='inline'><p>the value to pair with the supplied name (will be converted using <code>to_s</code>)</p>
 </div>
       
     </li>
@@ -784,7 +784,7 @@ header name.</p>
       
       
         &mdash;
-        <div class='inline'><p>the header name associated with the desired values (will be converted using +to_sym+)</p>
+        <div class='inline'><p>the header name associated with the desired values (will be converted using <code>to_sym</code>)</p>
 </div>
       
     </li>
@@ -873,7 +873,7 @@ frames sent by the broker to capture repeated header names.</p>
       
       
         &mdash;
-        <div class='inline'><p>the header name to associate with the supplied value (will be converted using +to_s+)</p>
+        <div class='inline'><p>the header name to associate with the supplied value (will be converted using <code>to_s</code>)</p>
 </div>
       
     </li>
@@ -888,7 +888,7 @@ frames sent by the broker to capture repeated header names.</p>
       
       
         &mdash;
-        <div class='inline'><p>the header value to associate with the supplied name (will be converted using +to_s+)</p>
+        <div class='inline'><p>the header value to associate with the supplied name (will be converted using <code>to_s</code>)</p>
 </div>
       
     </li>
@@ -957,7 +957,7 @@ frames sent by the broker to capture repeated header names.</p>
 </p><div class="docstring">
   <div class="discussion">
     <p>Deletes all of the header values associated with the header name and
-removes the header name itself.  This is analogous to the +delete+
+removes the header name itself.  This is analogous to the <code>delete</code>
 method found in Hash objects.</p>
 
 
@@ -987,7 +987,7 @@ method found in Hash objects.</p>
       
       
         &mdash;
-        <div class='inline'><p>the header name to remove from this collection (will be converted using +to_sym+)</p>
+        <div class='inline'><p>the header name to remove from this collection (will be converted using <code>to_sym</code>)</p>
 </div>
       
     </li>
@@ -1004,7 +1004,7 @@ method found in Hash objects.</p>
       
       
         &mdash;
-        <div class='inline'><p>the array of values associated with the deleted header, or +nil+ if the header name did not exist</p>
+        <div class='inline'><p>the array of values associated with the deleted header, or <code>nil</code> if the header name did not exist</p>
 </div>
       
     </li>
@@ -1144,7 +1144,7 @@ of strings to the supplied block.</p>
   </div>
 
 <p>Merges a hash into this collection of headers. All of the keys used
-in the hash must be convertable to Symbols through +to_sym+.</p>
+in the hash must be convertable to Symbols through <code>to_sym</code>.</p>
 
 
   </div>
@@ -1197,7 +1197,7 @@ in the hash must be convertable to Symbols through +to_sym+.</p>
 </p><div class="docstring">
   <div class="discussion">
     <p>Returns true if a header value has been set for the supplied header, and
-the value is neither +nil+ nor an empty string.</p>
+the value is neither <code>nil</code> nor an empty string.</p>
 
 
   </div>
@@ -1290,7 +1290,7 @@ the value is neither +nil+ nor an empty string.</p>
 <p>Reverse merges a hash into this collection of headers. The hash keys and
 values are included only if the headers collection does not already have
 a matching key. All of the keys used
-in the hash must be convertable to Symbols through +to_sym+.</p>
+in the hash must be convertable to Symbols through <code>to_sym</code>.</p>
 
 
   </div>
@@ -1424,7 +1424,7 @@ in the hash must be convertable to Symbols through +to_sym+.</p>
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>Returns a new +Hash+ object associating symbolized header names and their
+    <p>Returns a new <code>Hash</code> object associating symbolized header names and their
 principle values.</p>
 
 
@@ -1471,7 +1471,7 @@ principle values.</p>
 </div>
     
     <div id="footer">
-  Generated on Mon Apr  4 16:26:39 2011 by 
+  Generated on Tue Apr  5 13:29:29 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>

@@ -80,26 +80,26 @@ a set of <span class='object_link'><a href="OnStomp/Components/Frame.html#header
 that matches the corresponding STOMP command (eg: SEND, RECEIPT) with one
 exception: heart-beats. The STOMP 1.1 protocol supports "heart-beating" to
 let brokers and clients know that the connection is still active on the other
-end by sending bare line-feed (ie: +\n+) characters between frame exchanges.
+end by sending bare line-feed (ie: <code>\n</code>) characters between frame exchanges.
 As a result, calling <span class='object_link'><a href="OnStomp/Interfaces/FrameMethods.html#beat-instance_method" title="OnStomp::Interfaces::FrameMethods#beat (method)">beat</a></span> on a client
-will generate a frame whose command attribute is +nil+. This in turn lets the
+will generate a frame whose command attribute is <code>nil</code>. This in turn lets the
 serializer know that this isn't a true frame and it will convert it to
 +"\n"+ instead of performing the normal serialization operation.</p>
 
 <p>A frame's <span class='object_link'><a href="OnStomp/Components/FrameHeaders.html" title="OnStomp::Components::FrameHeaders (class)">headers</a></span> behave much like a
-standard Ruby +Hash+ but with a few important differences. First, the order
+standard Ruby <code>Hash</code> but with a few important differences. First, the order
 that header names were added is preserved. This is also true of Ruby 1.9+
 hashes but not those of Ruby 1.8.7, and as a result there is some code
 to maintain the ordering when running 1.8.7. Second, accessing headers
 is somewhat indifferent:</p>
 
-<pre class="code">frame[:some_header] = 'a value'
-frame[:some_header] == frame[&quot;some_header&quot;] == &quot;a value&quot;
-</pre>
+<pre class="code"><span class='id frame'>frame</span><span class='lbracket'>[</span><span class='symbol'>:some_header</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>a value</span><span class='tstring_end'>'</span></span>
+<span class='id frame'>frame</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>some_header</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='comment'>#=&gt; 'a value'
+</span></pre>
 
-<p>What actually happens is all header names are converted to +Symbol+s
-(by calling +obj.to_sym+) before any setting or getting takes place. Using
-an object as a header name that does not respond to +to_sym+ will raise an
+<p>What actually happens is all header names are converted to <code>Symbol</code>s
+(by calling <code>obj.to_sym</code>) before any setting or getting takes place. Using
+an object as a header name that does not respond to <code>to_sym</code> will raise an
 error. The final major difference between headers and hashes is that header
 values are only strings:</p>
 
@@ -110,23 +110,73 @@ values are only strings:</p>
 <p>If the object passed as a header value cannot be converted to a string an
 error will be raised.</p>
 
-<p>A frame's <span class='object_link'><a href="OnStomp/Components/Frame.html#body-instance_method" title="OnStomp::Components::Frame#body (method)">body</a></span> will often be an empty
-string or +nil+. The only frames that support non-empty bodies are SEND,
-MESSAGE, and ERROR.</p>
+<p>For most kinds of frames, the <span class='object_link'><a href="OnStomp/Components/Frame.html#body-instance_method" title="OnStomp::Components::Frame#body (method)">body</a></span> attribute
+will often be an empty string or <code>nil</code>. The only frames that support
+non-empty bodies are SEND, MESSAGE, and ERROR.</p>
 
 <h2>Events</h2>
 
+<h3>Frame-centric Events</h3>
+
+<p>Event triggering sequence for client generated frames:</p>
+
+<ol>
+<li><code>client.send ...</code> is invoked and a SEND frame is created</li>
+<li>The event <code>before_transmitting</code> is triggered for the SEND frame</li>
+<li>The event <code>before_send</code> is triggered for the SEND frame</li>
+<li>The SEND frame is added to the <span class='object_link'><a href="OnStomp/Connections/Base.html" title="OnStomp::Connections::Base (class)">connection</a></span>'s
+write buffer</li>
+<li>Some amount of time passes</li>
+<li>The SEND frame is serialized and fully written to the broker.</li>
+<li>The event <code>after_transmitting</code> is triggered for the SEND frame</li>
+<li>The event <code>on_send</code> is triggered for the SEND frame</li>
+</ol>
+
+
+<p>Event triggering sequence for broker generated frames:</p>
+
+<ol>
+<li>The broker writes a MESSAGE frame to the TCP/IP socket</li>
+<li>Some amount of time passes</li>
+<li>The client fully reads and de-serializes the MESSAGE frame</li>
+<li>The event <code>before_receiving</code> is triggered for the MESSAGE frame</li>
+<li>The event <code>before_message</code> is triggered for the MESSAGE frame</li>
+<li>The event <code>after_receiving</code> is triggered for the MESSAGE frame</li>
+<li>The event <code>on_message</code> is triggered for the MESSAGE frame</li>
+</ol>
+
+
+<h3>Connection-centric Events</h3>
+
+<p>Event trigger sequence for connection events:</p>
+
+<ol>
+<li>An IO error occurs while the connection is reading or writing</li>
+<li>The connection closes its socket</li>
+<li>The connection triggers :on_terminated</li>
+<li>The connection triggers :on_closed</li>
+</ol>
+
+
 <h2>Subscription and Receipt Management</h2>
+
+<h3>Subscription Manager</h3>
+
+<h3>Receipt Manager</h3>
 
 <h2>URI Based Configuration</h2>
 
 <h2>Processors</h2>
 
 <h2>Connections &amp; Serializers</h2>
+
+<h3>Connections</h3>
+
+<h3>Serializers</h3>
 </div></div>
     
     <div id="footer">
-  Generated on Mon Apr  4 16:26:37 2011 by 
+  Generated on Tue Apr  5 13:29:26 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>

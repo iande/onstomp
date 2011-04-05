@@ -297,7 +297,7 @@ Stomp protocol.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>The +URI+ reference to the STOMP broker.</p>
+    <span class="summary_desc"><div class='inline'><p>The <code>URI</code> reference to the STOMP broker.</p>
 </div></span>
   
 </li>
@@ -689,7 +689,6 @@ has been closed.</p>
       <pre class="lines">
 
 
-53
 54
 55
 56
@@ -698,10 +697,11 @@ has been closed.</p>
 59
 60
 61
-62</pre>
+62
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='id initialize'>initialize</span> <span class='id uri'>uri</span><span class='comma'>,</span> <span class='id options'>options</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='ivar'>@uri</span> <span class='op'>=</span> <span class='id uri'>uri</span><span class='period'>.</span><span class='id is_a?'>is_a?</span><span class='lparen'>(</span><span class='op'>::</span><span class='const'>URI</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id uri'>uri</span> <span class='op'>:</span> <span class='op'>::</span><span class='const'>URI</span><span class='period'>.</span><span class='id parse'>parse</span><span class='lparen'>(</span><span class='id uri'>uri</span><span class='rparen'>)</span>
@@ -1039,7 +1039,7 @@ when multiple brokers may share an IP address through virtual hosting.</p>
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>The +URI+ reference to the STOMP broker</p>
+    <p>The <code>URI</code> reference to the STOMP broker</p>
 
 
   </div>
@@ -1250,14 +1250,14 @@ option and the connection needs to be terminated immediately.</p>
       <pre class="lines">
 
 
-103
-104
-105
-106
-107</pre>
+108
+109
+110
+111
+112</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 103</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 108</span>
 
 <span class='kw'>def</span> <span class='id close!'>close!</span>
   <span class='id close'>close</span>
@@ -1326,17 +1326,17 @@ headers in the CONNECT frame, if specified.</p>
       <pre class="lines">
 
 
-68
-69
 70
 71
 72
 73
 74
-75</pre>
+75
+76
+77</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 70</span>
 
 <span class='kw'>def</span> <span class='id connect'>connect</span> <span class='id headers'>headers</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='ivar'>@connection</span> <span class='op'>=</span> <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>Connections</span><span class='period'>.</span><span class='id connect'>connect</span> <span class='kw'>self</span><span class='comma'>,</span> <span class='id headers'>headers</span><span class='comma'>,</span>
@@ -1386,12 +1386,12 @@ headers in the CONNECT frame, if specified.</p>
       <pre class="lines">
 
 
-94
-95
-96</pre>
+98
+99
+100</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 94</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 98</span>
 
 <span class='kw'>def</span> <span class='id connected?'>connected?</span>
   <span class='id connection'>connection</span> <span class='op'>&amp;&amp;</span> <span class='id connection'>connection</span><span class='period'>.</span><span class='id connected?'>connected?</span>
@@ -1463,15 +1463,15 @@ the broker will get processed barring any IO exceptions.</p>
       <pre class="lines">
 
 
-83
-84
-85
 86
 87
-88</pre>
+88
+89
+90
+91</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 83</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 86</span>
 
 <span class='kw'>def</span> <span class='id disconnect_with_flush'>disconnect_with_flush</span> <span class='id headers'>headers</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='id processor_inst'>processor_inst</span><span class='period'>.</span><span class='id prepare_to_close'>prepare_to_close</span>
@@ -1507,13 +1507,13 @@ connection to the STOMP broker.</p>
       <pre class="lines">
 
 
-125
-126
-127
-128</pre>
+130
+131
+132
+133</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 125</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 130</span>
 
 <span class='kw'>def</span> <span class='id dispatch_received'>dispatch_received</span> <span class='id frame'>frame</span>
   <span class='id trigger_before_receiving'>trigger_before_receiving</span> <span class='id frame'>frame</span>
@@ -1547,12 +1547,12 @@ connection to the STOMP broker.</p>
       <pre class="lines">
 
 
-132
-133
-134</pre>
+137
+138
+139</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 132</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 137</span>
 
 <span class='kw'>def</span> <span class='id dispatch_transmitted'>dispatch_transmitted</span> <span class='id frame'>frame</span>
   <span class='id trigger_after_transmitting'>trigger_after_transmitting</span> <span class='id frame'>frame</span>
@@ -1599,16 +1599,16 @@ by the Interfaces:FrameMethod interface.</p>
       <pre class="lines">
 
 
-115
-116
-117
-118
-119
 120
-121</pre>
+121
+122
+123
+124
+125
+126</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 115</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 120</span>
 
 <span class='kw'>def</span> <span class='id transmit'>transmit</span> <span class='id frame'>frame</span><span class='comma'>,</span> <span class='id cbs'>cbs</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='id frame'>frame</span><span class='period'>.</span><span class='id tap'>tap</span> <span class='kw'>do</span>
@@ -1627,7 +1627,7 @@ by the Interfaces:FrameMethod interface.</p>
 </div>
     
     <div id="footer">
-  Generated on Mon Apr  4 16:26:37 2011 by 
+  Generated on Tue Apr  5 13:29:27 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>

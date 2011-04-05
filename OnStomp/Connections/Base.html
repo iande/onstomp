@@ -320,7 +320,7 @@
 
   
     <span class="summary_desc"><div class='inline'><p>Performs any necessary configuration of the connection from the CONNECTED
-frame sent by the broker and a +Hash+ of pending callbacks.</p>
+frame sent by the broker and a <code>Hash</code> of pending callbacks.</p>
 </div></span>
   
 </li>
@@ -636,9 +636,9 @@ write buffer.</p>
 </p><div class="docstring">
   <div class="discussion">
     <p>Creates a new connection using the given <span class='object_link'><a href="#socket-instance_method" title="OnStomp::Connections::Base#socket (method)">#socket</a></span> object and
-<span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">client</a></span>. The <span class='object_link'><a href="#socket-instance_method" title="OnStomp::Connections::Base#socket (method)">#socket</a></span> object will generally be a +TCPSocket+
-or an +OpenSSL::SSL::SSLSocket+ and must support the methods +read_nonblock+
-+write_nonblock+, and +close+.</p>
+<span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">client</a></span>. The <span class='object_link'><a href="#socket-instance_method" title="OnStomp::Connections::Base#socket (method)">#socket</a></span> object will generally be a <code>TCPSocket</code>
+or an +OpenSSL::SSL::SSLSocket+ and must support the methods <code>read_nonblock</code>
+<code>write_nonblock</code>, and <code>close</code>.</p>
 
 
   </div>
@@ -992,7 +992,7 @@ or an +OpenSSL::SSL::SSLSocket+ and must support the methods +read_nonblock+
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>Closes the <span class='object_link'><a href="#socket-instance_method" title="OnStomp::Connections::Base#socket (method)">#socket</a></span>. If +blocking+ is true, the socket will be closed
+    <p>Closes the <span class='object_link'><a href="#socket-instance_method" title="OnStomp::Connections::Base#socket (method)">#socket</a></span>. If <code>blocking</code> is true, the socket will be closed
 immediately, otherwies the socket will remain open until <span class='object_link'><a href="#io_process_write-instance_method" title="OnStomp::Connections::Base#io_process_write (method)">#io_process_write</a></span>
 has finished writing all of its buffered data. Once this method has been
 invoked, <span class='object_link'><a href="#write_frame_nonblock-instance_method" title="OnStomp::Connections::Base#write_frame_nonblock (method)">#write_frame_nonblock</a></span> will not enqueue any additional frames
@@ -1059,7 +1059,7 @@ for writing.</p>
 </p><div class="docstring">
   <div class="discussion">
     <p>Performs any necessary configuration of the connection from the CONNECTED
-frame sent by the broker and a +Hash+ of pending callbacks. This method
+frame sent by the broker and a <code>Hash</code> of pending callbacks. This method
 is called after the protocol negotiation has taken place between client
 and broker, and the connection that receives it will be the connection
 used by the client for the duration of the session.</p>
@@ -1784,7 +1784,7 @@ write buffer</p>
 </div>
     
     <div id="footer">
-  Generated on Mon Apr  4 16:26:38 2011 by 
+  Generated on Tue Apr  5 13:29:27 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>
