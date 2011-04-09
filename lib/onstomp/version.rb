@@ -7,7 +7,7 @@ module OnStomp
   # Minor / feature version
   MINOR = 0
   # Patch version
-  PATCH = 1
+  PATCH = 2
   # Complete version
   VERSION = "#{MAJOR}.#{MINOR}.#{PATCH}"
 end
