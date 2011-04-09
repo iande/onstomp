@@ -8,9 +8,9 @@ class OnStomp::Failover::Pools::Base
   
   # Creates a new client pool by mapping an array of URIs into an array of
   # {OnStomp::Client clients}.
-  def initialize uris
-    @clients = uris.map do |u|
-      OnStomp::Client.new u
+  def initialize hosts
+    @clients = hosts.map do |h|
+      h.is_a?(OnStomp::Client) ? h : OnStomp::Client.new(h)
     end
   end
   

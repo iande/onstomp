@@ -32,13 +32,20 @@ class OnStomp::Failover::Client
   # @return [true,false]
   attr_configurable_bool :randomize, :default => false
   
-  attr_reader :uri, :client_pool, :active_client, :frame_buffer, :connection
+  attr_reader :uri, :hosts,
+    :client_pool, :active_client, :frame_buffer, :connection
   
   def initialize(uris, options={})
-    @uri = OnStomp::Failover::URI::FAILOVER.parse uris
+    if uris.is_a? Array
+      @uri = OnStomp::Failover::URI::FAILOVER.new [], nil
+      @hosts = uris
+    else
+      @uri = OnStomp::Failover::URI::FAILOVER.parse uris
+      @hosts = @uri.failover_uris
+    end
     @client_mutex = Mutex.new
     configure_configurable options
-    create_client_pool
+    create_client_pool hosts
     @active_client = nil
     @connection = nil
     @frame_buffer = buffer.new self
@@ -118,8 +125,8 @@ class OnStomp::Failover::Client
     sleep(retry_delay) if retry_delay > 0 && attempt > 1
   end
     
-  def create_client_pool
-    @client_pool = pool.new(uri.failover_uris)
+  def create_client_pool hosts
+    @client_pool = pool.new hosts
     on_connection_closed do |client, *_|
       unless @disconnecting
         trigger_failover_event(:lost, :on, active_client)

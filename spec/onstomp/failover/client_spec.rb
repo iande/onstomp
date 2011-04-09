@@ -13,6 +13,20 @@ module OnStomp::Failover
         c.stub(:active_client => active_client)
       end
     }
+    describe "initialize" do
+      it "should be initialized by string" do
+        c = Client.new('failover:(stomp:///,stomp+ssl:///)')
+        c.uri.to_s.should == 'failover:(stomp:///,stomp+ssl:///)'
+        c.hosts.should == ['stomp:///', 'stomp+ssl:///']
+      end
+      it "should be initialized by array" do
+        real_client = OnStomp::Client.new('stomp+ssl:///')
+        c = Client.new(['stomp:///', real_client])
+        c.uri.to_s.should == 'failover:()'
+        c.hosts.should == ['stomp:///', real_client]
+      end
+    end
+    
     describe ".connected?" do
       it "should be connected if it has an active client that's connected" do
         active_client.stub(:connected? => true)
@@ -67,7 +81,7 @@ module OnStomp::Failover
         # Get the hooks installed on our mocks
         active_client.stub(:connection => connection)
         client.stub(:client_pool => client_pool)
-        client.__send__ :create_client_pool
+        client.__send__ :create_client_pool, []
       end
       it "should do nothing special if there is no active client" do
         client.stub(:active_client => nil)

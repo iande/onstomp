@@ -12,9 +12,7 @@ module OnStomp::Failover::URI
     
     attr_reader :failover_uris
     def initialize uris, query
-      @failover_uris = uris.map do |u|
-        u.is_a?(::URI) ? u : ::URI.parse(u.strip)
-      end
+      @failover_uris = uris
       super 'failover', nil, nil, nil, nil, '', "(#{uris.join(',')})", query, nil
     end
     
@@ -42,12 +40,10 @@ module OnStomp::Failover::URI
       #   @param [Array<String or URI>] uri_arr
       #   @return [FAILOVER]
       def parse uri_str
-        if uri_str.is_a? Array
-          self.new uri_str, nil
-        elsif uri_str =~ FAILOVER_REG
+        if uri_str =~ FAILOVER_REG
           self.new $1.split(','), $2
         else
-          raise OnStomp::Failover::InvalidFailoverURIError, uri_str
+          raise OnStomp::Failover::InvalidFailoverURIError, uri_str.inspect
         end
       end
     end
