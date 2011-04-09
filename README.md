@@ -48,9 +48,9 @@ style API for working with message brokers.
 
 ## Further Reading
 
-* A {file:docs/UserNarrative.md User's Narrative}
-* A {file:docs/DeveloperNarrative.md Developers's Narrative}
-* A {file:docs/CHANGELOG.md History of Changes}
+* A {file:extra_doc/UserNarrative.md User's Narrative}
+* A {file:extra_doc/DeveloperNarrative.md Developers's Narrative}
+* A {file:extra_doc/CHANGELOG.md History of Changes}
 
 ## License
 
