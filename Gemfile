@@ -5,4 +5,5 @@ gemspec
 
 group :development do
   gem 'rdiscount'
+  gem 'erubis'
 end

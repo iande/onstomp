@@ -20,7 +20,7 @@
     <tr>
       <td>{<%= meth[:yard_link] %> <%= meth[:name]%>}</td>
       <td>
-        <code><%= meth[:signature] %></code>
+        <code><%= meth[:signature].gsub('{}', '&lt;optional hash&gt;') %></code>
       </td>
     <% meth[:protocols].each do |proto| %>
       <td style="background-color: #<%= proto ? 'bfb' : 'fbb' %>;"><%= proto %></td>
