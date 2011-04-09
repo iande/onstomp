@@ -12,7 +12,7 @@ module OnStomp::Components::URI
     def onstomp_socket_type; :tcp; end
   end
   
-  # A URI class for representing URIs with a 'stomp+ssl' scheme.
+  # A URI class for representing URIs with a `stomp+ssl` scheme.
   class STOMP_SSL < STOMP
     # The default port to use for these kinds of URI objects when none has
     # been specified.

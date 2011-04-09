@@ -3,7 +3,7 @@
 # Namespace for failover extensions.
 module OnStomp::Failover
   # Raised if the supplied failover: URI is not properly formatted as
-  # +failover:(uri,uri,...)?optionalParams=values+
+  # `failover:(uri,uri,...)?optionalParams=values`
   class InvalidFailoverURIError < OnStomp::OnStompError; end
   
   # Raised if the maximum number of retries is exceed when calling

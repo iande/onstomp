@@ -12,7 +12,7 @@ module OnStomp::Interfaces::ConnectionEvents
   # @yield [client, connection] callback invoked when event is triggered
   # @yieldparam [OnStomp::Client] client
   # @yieldparam [OnStomp::Connections::Base] connection that triggered
-  #   the event (in general the same as +client.connection+)
+  #   the event (in general the same as `client.connection`)
   create_event_methods :established, :on
   # @api gem:1 STOMP:1.1
   # Binds a callback to be invoked when a connection has been died due to
@@ -21,7 +21,7 @@ module OnStomp::Interfaces::ConnectionEvents
   # @yield [client, connection] callback invoked when event is triggered
   # @yieldparam [OnStomp::Client] client
   # @yieldparam [OnStomp::Connections::Base] connection that triggered
-  #   the event (in general the same as +client.connection+)
+  #   the event (in general the same as `client.connection`)
   create_event_methods :died, :on
   # @api gem:1 STOMP:1.0,1.1
   # Binds a callback to be invoked when a connection has been terminated
@@ -29,7 +29,7 @@ module OnStomp::Interfaces::ConnectionEvents
   # @yield [client, connection] callback invoked when event is triggered
   # @yieldparam [OnStomp::Client] client
   # @yieldparam [OnStomp::Connections::Base] connection that triggered
-  #   the event (in general the same as +client.connection+)
+  #   the event (in general the same as `client.connection`)
   create_event_methods :terminated, :on
   # @api gem:1 STOMP:1.0,1.1
   # Binds a callback to be invoked when a connection has been closed, either
@@ -39,7 +39,7 @@ module OnStomp::Interfaces::ConnectionEvents
   # @yield [client, connection] callback invoked when event is triggered
   # @yieldparam [OnStomp::Client] client
   # @yieldparam [OnStomp::Connections::Base] connection that triggered
-  #   the event (in general the same as +client.connection+)
+  #   the event (in general the same as `client.connection`)
   create_event_methods :closed, :on
   
   # @endgroup

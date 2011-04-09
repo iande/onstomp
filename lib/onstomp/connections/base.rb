@@ -14,7 +14,7 @@ class OnStomp::Connections::Base
   
   # Creates a new connection using the given {#socket} object and
   # {OnStomp::Client client}. The {#socket} object will generally be a `TCPSocket`
-  # or an +OpenSSL::SSL::SSLSocket+ and must support the methods `read_nonblock`
+  # or an `OpenSSL::SSL::SSLSocket` and must support the methods `read_nonblock`
   # `write_nonblock`, and `close`.
   # @param [TCPSocket,OpenSSL::SSL::SSLSocket] socket
   # @param [OnStomp::Client] client

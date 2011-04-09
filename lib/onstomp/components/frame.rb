@@ -43,16 +43,16 @@ class OnStomp::Components::Frame
   #   frame['other header'] = 42 #=> '42'
   def []=(name, val); @headers[name] = val; end
   
-  # If a +content-length+ header is set, returns it after converting it to
+  # If a `content-length` header is set, returns it after converting it to
   # an integer.
   # @return [Fixnum, nil]
   def content_length
     header?(:'content-length') ? @headers[:'content-length'].to_i : nil
   end
   
-  # If a +content-type+ header is set, splits it into three parts: type,
-  # subtype and charset. If any component of the +content-type+ is missing,
-  # its value will be `nil` in the returned triple. If the +content-type+
+  # If a `content-type` header is set, splits it into three parts: type,
+  # subtype and charset. If any component of the `content-type` is missing,
+  # its value will be `nil` in the returned triple. If the `content-type`
   # header is not set or does not match {OnStomp::Components::Frame::CONTENT_TYPE_REG}
   # all values in the triple will be `nil`.
   # @return [Array<String,nil>]
@@ -77,7 +77,7 @@ class OnStomp::Components::Frame
   alias :headers? :all_headers?
   
   # Returns the heart-beat configuration specified in this frame's headers.
-  # If a +heart-beat+ header is not set, [0, 0] will be returned. Otherwise,
+  # If a `heart-beat` header is not set, [0, 0] will be returned. Otherwise,
   # the header value will be split on ',' and each component will be converted
   # to a non-negative integer.
   # @return [[Fixnum,Fixnum]] pair of non-negative integers that specify
@@ -89,7 +89,7 @@ class OnStomp::Components::Frame
     end
   end
   
-  # Sets this frame's +content-length+ header to match the byte-length of
+  # Sets this frame's `content-length` header to match the byte-length of
   # its body, if the body has been set.
   # @return <Fixnum,nil>
   def force_content_length

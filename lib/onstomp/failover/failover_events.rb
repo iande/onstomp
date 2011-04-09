@@ -4,8 +4,8 @@
 module OnStomp::Failover::FailoverEvents
   include OnStomp::Interfaces::EventManager
   
-  # We do this one using +class << self+ instead of the +self.included+ hook
-  # because we need 'create_client_event_method+ immediately.
+  # We do this one using `class << self` instead of the `self.included` hook
+  # because we need `create_client_event_method` immediately.
   class << self
     # Creates a forwarded binding for client events.
     def create_client_event_method name

@@ -19,12 +19,12 @@ class OnStomp::Failover::Client
   # @return [Class]
   attr_configurable_buffer :buffer
   # The delay in seconds to wait between connection retries.
-  # Defaults to +10+.
+  # Defaults to `10`
   # @return [Fixnum]
   attr_configurable_int :retry_delay, :default => 10
   # The maximum number of times to retry connecting during a reconnect
   # loop. A non-positive number will force the failover client to try to
-  # reconnect indefinitely. Defaults to +0+
+  # reconnect indefinitely. Defaults to `0`
   # @return [Fixnum]
   attr_configurable_int :retry_attempts, :default => 0
   # Whether or not to randomize the {#client_pool} before connecting through

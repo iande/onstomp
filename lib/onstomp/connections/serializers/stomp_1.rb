@@ -71,7 +71,7 @@ module OnStomp::Connections::Serializers::Stomp_1
     end
   end
   
-  # Adds the substring +data[0...idx]+ to the parser's accumulator,
+  # Adds the substring `data[0...idx]` to the parser's accumulator,
   # unshifts the remaining data back onto the buffer, and calls `meth`
   # with the parser's accumulated string.
   # @param [Array<String>] buffer

@@ -158,7 +158,7 @@ module OnStomp::Interfaces::ClientEvents
   end
   
   # Triggers the :before_receiving event and the
-  # `before` prefixed frame specific event (eg: +:before_error+).
+  # `before` prefixed frame specific event (eg: `:before_error`).
   # @param [OnStomp::Components::Frame] f
   def trigger_before_receiving f
     trigger_event :before_receiving, f, self
@@ -166,7 +166,7 @@ module OnStomp::Interfaces::ClientEvents
   end
   
   # Triggers the :after_receiving event and the
-  # `on` prefixed frame specific event (eg: +:on_message+)
+  # `on` prefixed frame specific event (eg: `:on_message`)
   # @param [OnStomp::Components::Frame] f
   def trigger_after_receiving f
     trigger_event :after_receiving, f, self
@@ -174,7 +174,7 @@ module OnStomp::Interfaces::ClientEvents
   end
   
   # Triggers the :before_transmitting event and the
-  # `before` prefixed frame specific event (eg: +:before_disconnect+).
+  # `before` prefixed frame specific event (eg: `:before_disconnect`).
   # @param [OnStomp::Components::Frame] f
   def trigger_before_transmitting f
     trigger_event :before_transmitting, f, self
@@ -182,7 +182,7 @@ module OnStomp::Interfaces::ClientEvents
   end
   
   # Triggers the :after_transmitting event and the
-  # `on` prefixed frame specific event (eg: +:on_send+).
+  # `on` prefixed frame specific event (eg: `:on_send`).
   # @param [OnStomp::Components::Frame] f
   def trigger_after_transmitting f
     trigger_event :after_transmitting, f, self

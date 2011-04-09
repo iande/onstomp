@@ -64,7 +64,7 @@ class OnStomp::Connections::Serializers::Stomp_1_1
       unescape_header(str[(col+1)..-1]) ]
   end
   
-  # Forces the frame's body to match the charset specified in its +content-type+
+  # Forces the frame's body to match the charset specified in its `content-type`
   # header, if applicable.
   # @param [OnStomp::Components::Frame] frame
   def prepare_parsed_frame frame
@@ -94,7 +94,7 @@ class OnStomp::Connections::Serializers::Stomp_1_1
       f.body.force_encoding(charset)
       f
     end
-    # Set an appropriate +content-type+ header with `charset` parameter for
+    # Set an appropriate `content-type` header with `charset` parameter for
     # frames with a text body
     # @note No-op for Ruby 1.8.x
     # @param [OnStomp::Components::Frame] f
