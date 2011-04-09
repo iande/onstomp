@@ -160,7 +160,7 @@ Subclasses must define <code>next_client</code> or pool will not function.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Base) <strong>initialize</strong>(uris) </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Base) <strong>initialize</strong>(hosts) </a>
     
 
     
@@ -235,7 +235,7 @@ Subclasses must define <code>next_client</code> or pool will not function.</p>
     <div class="method_details first">
   <p class="signature first" id="initialize-instance_method">
   
-    - (<tt><span class='object_link'><a href="" title="OnStomp::Failover::Pools::Base (class)">Base</a></span></tt>) <strong>initialize</strong>(uris) 
+    - (<tt><span class='object_link'><a href="" title="OnStomp::Failover::Pools::Base (class)">Base</a></span></tt>) <strong>initialize</strong>(hosts) 
   
 
   
@@ -264,9 +264,9 @@ Subclasses must define <code>next_client</code> or pool will not function.</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/onstomp/failover/pools/base.rb', line 11</span>
 
-<span class='kw'>def</span> <span class='id initialize'>initialize</span> <span class='id uris'>uris</span>
-  <span class='ivar'>@clients</span> <span class='op'>=</span> <span class='id uris'>uris</span><span class='period'>.</span><span class='id map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id u'>u</span><span class='op'>|</span>
-    <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>Client</span><span class='period'>.</span><span class='id new'>new</span> <span class='id u'>u</span>
+<span class='kw'>def</span> <span class='id initialize'>initialize</span> <span class='id hosts'>hosts</span>
+  <span class='ivar'>@clients</span> <span class='op'>=</span> <span class='id hosts'>hosts</span><span class='period'>.</span><span class='id map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id h'>h</span><span class='op'>|</span>
+    <span class='id h'>h</span><span class='period'>.</span><span class='id is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>Client</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id h'>h</span> <span class='op'>:</span> <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>Client</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='id h'>h</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -522,7 +522,7 @@ if no block is provided.</p>
 </div>
     
     <div id="footer">
-  Generated on Tue Apr  5 15:54:07 2011 by 
+  Generated on Sat Apr  9 13:02:24 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>

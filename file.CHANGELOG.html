@@ -43,6 +43,34 @@
     
     <div id="content"><div id='filecontents'><h1>Changes</h1>
 
+<h2>1.0.2</h2>
+
+<ul>
+<li>allow failover clients to be constructed from regular OnStomp::Client
+instances, allowing fully configured SSL connections.</li>
+</ul>
+
+
+<h2>1.0.1</h2>
+
+<ul>
+<li>improved failover buffer handling</li>
+<li>added RECEIPT driven failover buffer handling - more reliable, but slower
+as it requests receipts for nearly all frames.</li>
+</ul>
+
+
+<h2>1.0.0</h2>
+
+<ul>
+<li>initial release</li>
+<li>support for STOMP 1.0 and STOMP 1.1 protocols</li>
+<li>fully featured client with event bindings and non-blocking IO</li>
+<li>experimental support for open-uri STOMP interface</li>
+<li>experimental support for failover/reliable connection handling</li>
+</ul>
+
+
 <h2>1.0pre - 2011-03-30</h2>
 
 <ul>
@@ -52,7 +80,7 @@
 </div></div>
     
     <div id="footer">
-  Generated on Tue Apr  5 15:54:05 2011 by 
+  Generated on Sat Apr  9 13:02:23 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>

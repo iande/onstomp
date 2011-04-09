@@ -285,17 +285,13 @@ any query parameters for the failover URI.</p>
 14
 15
 16
-17
-18
-19</pre>
+17</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/onstomp/failover/uri.rb', line 14</span>
 
 <span class='kw'>def</span> <span class='id initialize'>initialize</span> <span class='id uris'>uris</span><span class='comma'>,</span> <span class='id query'>query</span>
-  <span class='ivar'>@failover_uris</span> <span class='op'>=</span> <span class='id uris'>uris</span><span class='period'>.</span><span class='id map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id u'>u</span><span class='op'>|</span>
-    <span class='id u'>u</span><span class='period'>.</span><span class='id is_a?'>is_a?</span><span class='lparen'>(</span><span class='op'>::</span><span class='const'>URI</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id u'>u</span> <span class='op'>:</span> <span class='op'>::</span><span class='const'>URI</span><span class='period'>.</span><span class='id parse'>parse</span><span class='lparen'>(</span><span class='id u'>u</span><span class='period'>.</span><span class='id strip'>strip</span><span class='rparen'>)</span>
-  <span class='kw'>end</span>
+  <span class='ivar'>@failover_uris</span> <span class='op'>=</span> <span class='id uris'>uris</span>
   <span class='kw'>super</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>failover</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>(</span><span class='embexpr_beg'>#{</span><span class='id uris'>uris</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>,</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id query'>query</span><span class='comma'>,</span> <span class='kw'>nil</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -485,26 +481,22 @@ flexibility.</p>
       <pre class="lines">
 
 
+42
+43
 44
 45
 46
 47
-48
-49
-50
-51
-52</pre>
+48</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/uri.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/uri.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='id parse'>parse</span> <span class='id uri_str'>uri_str</span>
-  <span class='kw'>if</span> <span class='id uri_str'>uri_str</span><span class='period'>.</span><span class='id is_a?'>is_a?</span> <span class='const'>Array</span>
-    <span class='kw'>self</span><span class='period'>.</span><span class='id new'>new</span> <span class='id uri_str'>uri_str</span><span class='comma'>,</span> <span class='kw'>nil</span>
-  <span class='kw'>elsif</span> <span class='id uri_str'>uri_str</span> <span class='op'>=~</span> <span class='const'>FAILOVER_REG</span>
+  <span class='kw'>if</span> <span class='id uri_str'>uri_str</span> <span class='op'>=~</span> <span class='const'>FAILOVER_REG</span>
     <span class='kw'>self</span><span class='period'>.</span><span class='id new'>new</span> <span class='backref'>$1</span><span class='period'>.</span><span class='id split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>,</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='backref'>$2</span>
   <span class='kw'>else</span>
-    <span class='id raise'>raise</span> <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>Failover</span><span class='op'>::</span><span class='const'>InvalidFailoverURIError</span><span class='comma'>,</span> <span class='id uri_str'>uri_str</span>
+    <span class='id raise'>raise</span> <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>Failover</span><span class='op'>::</span><span class='const'>InvalidFailoverURIError</span><span class='comma'>,</span> <span class='id uri_str'>uri_str</span><span class='period'>.</span><span class='id inspect'>inspect</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -554,13 +546,13 @@ to allow mixing opaques and queries.</p>
       <pre class="lines">
 
 
+22
+23
 24
-25
-26
-27</pre>
+25</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/uri.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/uri.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id to_s'>to_s</span>
   <span class='id base'>base</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id scheme'>scheme</span><span class='rbrace'>}</span><span class='tstring_content'>:</span><span class='embexpr_beg'>#{</span><span class='id opaque'>opaque</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
@@ -576,7 +568,7 @@ to allow mixing opaques and queries.</p>
 </div>
     
     <div id="footer">
-  Generated on Tue Apr  5 15:54:06 2011 by 
+  Generated on Sat Apr  9 13:02:23 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>
