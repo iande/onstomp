@@ -481,11 +481,11 @@ ABORT frames</p>
   <p class="signature " id="ack-instance_method">
   
     
-      <span class="overload">- (<tt>Object</tt>) <strong>ack</strong>(message_frame, headers = {}) </span>
+      <span class="overload">- (<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>) <strong>ack</strong>(message_frame, headers = {}) </span>
     
-      <span class="overload">- (<tt>Object</tt>) <strong>ack</strong>(message_id, headers = {}) </span>
+      <span class="overload">- (<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>) <strong>ack</strong>(message_id, headers = {}) </span>
     
-      <span class="overload">- (<tt>Object</tt>) <strong>ack</strong>(message_id, subscription_id, headers = {}) </span>
+      <span class="overload">- (<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>) <strong>ack</strong>(message_id, subscription_id, headers = {}) </span>
     
   
 
@@ -504,7 +504,7 @@ ABORT frames</p>
     
       
       <li class="overload_item">
-        <span class="signature">- (<tt>Object</tt>) <strong>ack</strong>(message_frame, headers = {}) </span>
+        <span class="signature">- (<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>) <strong>ack</strong>(message_frame, headers = {}) </span>
         <div class="docstring">
   <div class="discussion">
     
@@ -515,7 +515,7 @@ with STOMP 1.0 and 1.1 connections.</p>
 </div>
   </div>
 
-
+<p>ACK frame</p>
 
 
   </div>
@@ -570,13 +570,30 @@ the frame</p>
     </li>
   
 </ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>ACK frame</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div>
       </li>
     
       
       <li class="overload_item">
-        <span class="signature">- (<tt>Object</tt>) <strong>ack</strong>(message_id, headers = {}) </span>
+        <span class="signature">- (<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>) <strong>ack</strong>(message_id, headers = {}) </span>
         <div class="docstring">
   <div class="discussion">
     
@@ -587,7 +604,7 @@ as a subscription ID is also required to ACK a received MESSAGE.</p>
 </div>
   </div>
 
-
+<p>ACK frame</p>
 
 
   </div>
@@ -619,7 +636,7 @@ as a subscription ID is also required to ACK a received MESSAGE.</p>
       
       
         &mdash;
-        <div class='inline'><p>+message-id+ header of MESSAGE frame to
+        <div class='inline'><p><code>message-id</code> header of MESSAGE frame to
 acknowledge.</p>
 </div>
       
@@ -642,13 +659,30 @@ the frame</p>
     </li>
   
 </ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>ACK frame</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div>
       </li>
     
       
       <li class="overload_item">
-        <span class="signature">- (<tt>Object</tt>) <strong>ack</strong>(message_id, subscription_id, headers = {}) </span>
+        <span class="signature">- (<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>) <strong>ack</strong>(message_id, subscription_id, headers = {}) </span>
         <div class="docstring">
   <div class="discussion">
     
@@ -659,7 +693,7 @@ not possible to provide the actual MESSAGE frame.</p>
 </div>
   </div>
 
-
+<p>ACK frame</p>
 
 
   </div>
@@ -691,7 +725,7 @@ not possible to provide the actual MESSAGE frame.</p>
       
       
         &mdash;
-        <div class='inline'><p>+message-id+ header of MESSAGE frame to
+        <div class='inline'><p><code>message-id</code> header of MESSAGE frame to
 acknowledge.</p>
 </div>
       
@@ -725,6 +759,23 @@ acknowledge.</p>
         &mdash;
         <div class='inline'><p>additional headers to include in
 the frame</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>ACK frame</p>
 </div>
       
     </li>
@@ -807,12 +858,12 @@ ACK frames</p>
       <pre class="lines">
 
 
-294
-295
-296</pre>
+297
+298
+299</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/frame_methods.rb', line 294</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/frame_methods.rb', line 297</span>
 
 <span class='kw'>def</span> <span class='id ack'>ack</span> <span class='op'>*</span><span class='id args'>args</span>
   <span class='id transmit'>transmit</span> <span class='id connection'>connection</span><span class='period'>.</span><span class='id ack_frame'>ack_frame</span><span class='lparen'>(</span><span class='op'>*</span><span class='id args'>args</span><span class='rparen'>)</span>
@@ -891,12 +942,12 @@ heartbeat frames</p>
       <pre class="lines">
 
 
-348
-349
-350</pre>
+353
+354
+355</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/frame_methods.rb', line 348</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/frame_methods.rb', line 353</span>
 
 <span class='kw'>def</span> <span class='id beat'>beat</span>
   <span class='id transmit'>transmit</span> <span class='id connection'>connection</span><span class='period'>.</span><span class='id heartbeat_frame'>heartbeat_frame</span>
@@ -1343,9 +1394,9 @@ DISCONNECT frames</p>
   <p class="signature " id="nack-instance_method">
   
     
-      <span class="overload">- (<tt>Object</tt>) <strong>nack</strong>(message_frame, headers = {}) </span>
+      <span class="overload">- (<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>) <strong>nack</strong>(message_frame, headers = {}) </span>
     
-      <span class="overload">- (<tt>Object</tt>) <strong>nack</strong>(message_id, subscription_id, heders = {}) </span>
+      <span class="overload">- (<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>) <strong>nack</strong>(message_id, subscription_id, heders = {}) </span>
     
   
 
@@ -1364,7 +1415,7 @@ DISCONNECT frames</p>
     
       
       <li class="overload_item">
-        <span class="signature">- (<tt>Object</tt>) <strong>nack</strong>(message_frame, headers = {}) </span>
+        <span class="signature">- (<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>) <strong>nack</strong>(message_frame, headers = {}) </span>
         <div class="docstring">
   <div class="discussion">
     <p>Generates a NACK frame for the given MESSAGE frame.</p>
@@ -1422,16 +1473,33 @@ the frame</p>
     </li>
   
 </ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>NACK frame</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div>
       </li>
     
       
       <li class="overload_item">
-        <span class="signature">- (<tt>Object</tt>) <strong>nack</strong>(message_id, subscription_id, heders = {}) </span>
+        <span class="signature">- (<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>) <strong>nack</strong>(message_id, subscription_id, heders = {}) </span>
         <div class="docstring">
   <div class="discussion">
-    
+    <p>NACK frame</p>
 
 
   </div>
@@ -1463,7 +1531,7 @@ the frame</p>
       
       
         &mdash;
-        <div class='inline'><p>+message-id+ header of MESSAGE frame to
+        <div class='inline'><p><code>message-id</code> header of MESSAGE frame to
 un-acknowledge.</p>
 </div>
       
@@ -1497,6 +1565,23 @@ un-acknowledge.</p>
         &mdash;
         <div class='inline'><p>additional headers to include in
 the frame</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>NACK frame</p>
 </div>
       
     </li>
@@ -1579,12 +1664,12 @@ NACK frames</p>
       <pre class="lines">
 
 
-334
-335
-336</pre>
+339
+340
+341</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/frame_methods.rb', line 334</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/frame_methods.rb', line 339</span>
 
 <span class='kw'>def</span> <span class='id nack'>nack</span> <span class='op'>*</span><span class='id args'>args</span>
   <span class='id transmit'>transmit</span> <span class='id connection'>connection</span><span class='period'>.</span><span class='id nack_frame'>nack_frame</span><span class='lparen'>(</span><span class='op'>*</span><span class='id args'>args</span><span class='rparen'>)</span>
@@ -1852,7 +1937,7 @@ SEND frames</p>
   <div class="discussion">
     <p>Transmits a SUBSCRIBE frame generated by the client's connection. Depending
 upon the connection, a subscription can be set to various MESSAGE
-acknowledgement modes by setting the +:ack+ header.
+acknowledgement modes by setting the <code>:ack</code> header.
 STOMP 1.0 and STOMP 1.1 connections support:
 * :ack => 'auto'
   The broker assumes that MESSAGE frames received through the
@@ -2347,9 +2432,9 @@ UNSUBSCRIBE frames</p>
 </div>
     
     <div id="footer">
-  Generated on Sat Apr  9 13:02:25 2011 by 
+  Generated on Sat Apr  9 13:23:48 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.5 (ruby-1.9.2).
+  0.6.7 (ruby-1.9.2).
 </div>
 
   </body>

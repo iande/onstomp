@@ -311,7 +311,7 @@ empty strings.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>If a +content-length+ header is set, returns it after converting it to
+    <span class="summary_desc"><div class='inline'><p>If a <code>content-length</code> header is set, returns it after converting it to
 an integer.</p>
 </div></span>
   
@@ -334,7 +334,7 @@ an integer.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>If a +content-type+ header is set, splits it into three parts: type,
+    <span class="summary_desc"><div class='inline'><p>If a <code>content-type</code> header is set, splits it into three parts: type,
 subtype and charset.</p>
 </div></span>
   
@@ -357,7 +357,7 @@ subtype and charset.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Sets this frame's +content-length+ header to match the byte-length of
+    <span class="summary_desc"><div class='inline'><p>Sets this frame's <code>content-length</code> header to match the byte-length of
 its body, if the body has been set.</p>
 </div></span>
   
@@ -912,7 +912,7 @@ empty strings.</p>
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>If a +content-length+ header is set, returns it after converting it to
+    <p>If a <code>content-length</code> header is set, returns it after converting it to
 an integer.</p>
 
 
@@ -963,9 +963,9 @@ an integer.</p>
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>If a +content-type+ header is set, splits it into three parts: type,
-subtype and charset. If any component of the +content-type+ is missing,
-its value will be <code>nil</code> in the returned triple. If the +content-type+
+    <p>If a <code>content-type</code> header is set, splits it into three parts: type,
+subtype and charset. If any component of the <code>content-type</code> is missing,
+its value will be <code>nil</code> in the returned triple. If the <code>content-type</code>
 header is not set or does not match <span class='object_link'><a href="#CONTENT_TYPE_REG-constant" title="OnStomp::Components::Frame::CONTENT_TYPE_REG (constant)">CONTENT_TYPE_REG</a></span>
 all values in the triple will be <code>nil</code>.</p>
 
@@ -1017,7 +1017,7 @@ all values in the triple will be <code>nil</code>.</p>
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>Sets this frame's +content-length+ header to match the byte-length of
+    <p>Sets this frame's <code>content-length</code> header to match the byte-length of
 its body, if the body has been set.</p>
 
 
@@ -1142,7 +1142,7 @@ empty string.</p>
 </p><div class="docstring">
   <div class="discussion">
     <p>Returns the heart-beat configuration specified in this frame's headers.
-If a +heart-beat+ header is not set, [0, 0] will be returned. Otherwise,
+If a <code>heart-beat</code> header is not set, [0, 0] will be returned. Otherwise,
 the header value will be split on ',' and each component will be converted
 to a non-negative integer.</p>
 
@@ -1201,9 +1201,9 @@ connection heart-beat settings</p>
 </div>
     
     <div id="footer">
-  Generated on Sat Apr  9 13:02:24 2011 by 
+  Generated on Sat Apr  9 13:23:47 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.5 (ruby-1.9.2).
+  0.6.7 (ruby-1.9.2).
 </div>
 
   </body>

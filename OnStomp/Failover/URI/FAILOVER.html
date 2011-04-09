@@ -367,16 +367,16 @@ any query parameters for the failover URI.</p>
     
   <div class="note notetag">
     <strong>Note:</strong> 
-    <div class='inline'><p>If you are using the +open-uri+ extension with <code>failover</code>, you
-MUST use the +failover:(uri1,uri2,..)+ form because +open-uri+
-relies on +URI.parse+ to convert strings into <code>URI</code> objects.</p>
+    <div class='inline'><p>If you are using the <code>open-uri</code> extension with <code>failover</code>, you
+MUST use the <code>failover:(uri1,uri2,..)</code> form because <code>open-uri</code>
+relies on <code>URI.parse</code> to convert strings into <code>URI</code> objects.</p>
 </div>
   </div>
 
 <p>Parses a failover URI string or an array of URIs into a
 <span class='object_link'><a href="" title="OnStomp::Failover::URI::FAILOVER (class)">OnStomp::Failover::URI::FAILOVER</a></span> object. Ruby's URI parser works
-fine with +failover:(uri1,uri2,..)?params=..+ style URIs, but chokes
-on +failover://uri1,uri2,..+ forms. This method gives us a bit more
+fine with <code>failover:(uri1,uri2,..)?params=..</code> style URIs, but chokes
+on <code>failover://uri1,uri2,..</code> forms. This method gives us a bit more
 flexibility.</p>
 
 
@@ -568,9 +568,9 @@ to allow mixing opaques and queries.</p>
 </div>
     
     <div id="footer">
-  Generated on Sat Apr  9 13:02:23 2011 by 
+  Generated on Sat Apr  9 13:23:47 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.5 (ruby-1.9.2).
+  0.6.7 (ruby-1.9.2).
 </div>
 
   </body>
