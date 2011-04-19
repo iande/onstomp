@@ -29,7 +29,6 @@ end
 
 RSpec::Matchers.define :be_a_transaction_scope do |tx_id|
   match do |actual|
-    $stdout.puts "Checking transaction? #{tx_id.inspect}"
     type_check = actual.is_a?(OnStomp::Components::Scopes::TransactionScope)
     tx_id ? type_check && actual.transaction == tx_id : type_check
   end

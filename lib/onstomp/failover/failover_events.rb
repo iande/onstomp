@@ -83,6 +83,11 @@ module OnStomp::Failover::FailoverEvents
   # @yieldparam [OnStomp::Failover::Client] failover
   # @yieldparam [OnStomp::Client] client
   create_event_methods :failover_connected, :on
+  # Binds a callback to be invoked when the maximum retries has been
+  # exceeded.
+  # @yield [failover] callback invoked when event is triggered
+  # @yieldparam [OnStomp::Failover::Client] failover
+  create_event_methods :failover_retries_exceeded, :on
   
   # Triggers a failover retry event
   def trigger_failover_retry pref, attempt

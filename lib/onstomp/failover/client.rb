@@ -50,6 +50,12 @@ class OnStomp::Failover::Client
     @connection = nil
     @frame_buffer = buffer.new self
     @disconnecting = false
+    @retry_thread = Thread.new do
+      until @disconnecting
+        Thread.stop
+        retry_connection unless @disconnecting
+      end
+    end
   end
   
   # Returns true if there is an {#active_client} and it is
@@ -69,7 +75,7 @@ class OnStomp::Failover::Client
   # @return [self]
   def connect
     @disconnecting = false
-    unless reconnect
+    unless retry_connection
       raise OnStomp::Failover::MaximumRetriesExceededError
     end
     self
@@ -79,18 +85,18 @@ class OnStomp::Failover::Client
   # {OnStomp::Client#disconnect disconnect} on the {#active_client}
   def disconnect *args, &block
     return unless active_client
-    # If we're not connected, let `reconnect` handle it.
-    #@disconnecting = [args, block]
-    #if connected?
-      @client_mutex.synchronize do
-        @disconnecting = true
-        active_client.disconnect *args, &block
-      end
-    #end
+    @client_mutex.synchronize do
+      @disconnecting = true
+      active_client.disconnect *args, &block
+    end
   end
   
   private
   def reconnect
+    @retry_thread.run
+  end
+  
+  def retry_connection
     @client_mutex.synchronize do
       attempt = 1
       until connected? || retry_exceeded?(attempt)
@@ -107,8 +113,12 @@ class OnStomp::Failover::Client
         trigger_failover_retry :after, attempt
         attempt += 1
       end
-      connected?.tap do |b|
-        b && trigger_failover_event(:connected, :on, active_client)
+      if connected?
+        trigger_failover_event(:connected, :on, active_client)
+        true
+      else
+        trigger_failover_event(:retries_exceeded, :on)
+        false
         #if @disconnecting.is_a?(Array)
         #  args, block = @disconnect
         #  active_client.disconnect *args, &block
@@ -128,9 +138,11 @@ class OnStomp::Failover::Client
   def create_client_pool hosts
     @client_pool = pool.new hosts
     on_connection_closed do |client, *_|
-      unless @disconnecting
-        trigger_failover_event(:lost, :on, active_client)
-        reconnect
+      if client == active_client
+        unless @disconnecting
+          trigger_failover_event(:lost, :on, active_client)
+          reconnect
+        end
       end
     end
   end

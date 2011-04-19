@@ -146,13 +146,13 @@ class OnStomp::Connections::Base
   # sent to the head of the write buffer to be processed first the next time
   # this method is invoked.
   def io_process_write
-    if @write_buffer.length > 0 && IO.select(nil, [socket], nil, 0.1)
-      to_shift = @write_buffer.length / 3
-      written = 0
-      while written < MAX_BYTES_PER_WRITE
-        data, frame = shift_write_buffer
-        break unless data && connected?
-        begin
+    begin
+      if @write_buffer.length > 0 && IO.select(nil, [socket], nil, 0.1)
+        to_shift = @write_buffer.length / 3
+        written = 0
+        while written < MAX_BYTES_PER_WRITE
+          data, frame = shift_write_buffer
+          break unless data && connected?
           w = socket.write_nonblock(data)
           written += w
           @last_transmitted_at = Time.now
@@ -162,16 +162,16 @@ class OnStomp::Connections::Base
             yield frame if block_given?
             client.dispatch_transmitted frame
           end
-        rescue Errno::EINTR, Errno::EAGAIN, Errno::EWOULDBLOCK
-          # writing will either block, or cannot otherwise be completed,
-          # put data back and try again some other day
-          unshift_write_buffer data, frame
-          break
-        rescue Exception
-          triggered_close $!.message, :terminated
-          raise
         end
       end
+    rescue Errno::EINTR, Errno::EAGAIN, Errno::EWOULDBLOCK
+      # writing will either block, or cannot otherwise be completed,
+      # put data back and try again some other day
+      unshift_write_buffer data, frame
+      break
+    rescue Exception
+      triggered_close $!.message, :terminated
+      raise
     end
     if @write_buffer.empty? && @closing
       triggered_close 'client disconnected'
@@ -183,23 +183,26 @@ class OnStomp::Connections::Base
   # to the end of a read buffer, which is then sent to the connection's
   # {OnStomp::Connections::Serializers serializer} for processing.
   def io_process_read
-    if connected? && IO.select([socket], nil, nil, 0.1)
-      begin
-        data = socket.read_nonblock(MAX_BYTES_PER_READ)
-        @read_buffer << data
-        @last_received_at = Time.now
-        serializer.bytes_to_frame(@read_buffer) do |frame|
-          yield frame if block_given?
-          client.dispatch_received frame
+    begin
+      if connected? && IO.select([socket], nil, nil, 0.1)
+        if data = socket.read_nonblock(MAX_BYTES_PER_READ)
+          @read_buffer << data
+          @last_received_at = Time.now
+          serializer.bytes_to_frame(@read_buffer) do |frame|
+            yield frame if block_given?
+            client.dispatch_received frame
+          end
+        else
+          triggered_close $!.message, :terminated
         end
-      rescue Errno::EINTR, Errno::EAGAIN, Errno::EWOULDBLOCK
-        # do not
-      rescue EOFError
-        triggered_close $!.message
-      rescue Exception
-        triggered_close $!.message, :terminated
-        raise
       end
+    rescue Errno::EINTR, Errno::EAGAIN, Errno::EWOULDBLOCK
+      # do not
+    rescue EOFError
+      triggered_close $!.message
+    rescue Exception
+      triggered_close $!.message, :terminated
+      raise
     end
   end
   
@@ -207,7 +210,7 @@ class OnStomp::Connections::Base
   def triggered_close msg, *evs
     @connection_up = false
     @closing = false
-    socket.close
+    socket.close rescue nil
     evs.each { |ev| trigger_connection_event ev, msg }
     trigger_connection_event :closed, msg
     @write_buffer.clear
