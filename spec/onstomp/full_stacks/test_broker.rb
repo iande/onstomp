@@ -7,7 +7,7 @@ class TestBroker
   
   attr_reader :messages, :sessions, :mau_dib
   attr_reader :frames_received, :frames_transmitted
-  attr_accessor :session_class
+  attr_accessor :session_class, :accept_delay
   
   def initialize(port=61613)
     @frames_received = []
@@ -24,6 +24,7 @@ class TestBroker
       $stdout.puts "Could not bind: #{ex}"
     end
     @session_class = Session10
+    @accept_delay = nil
   end
     
   def kill_on_command command
@@ -88,6 +89,7 @@ class TestBroker
       begin
         loop do
           sock = @socket.accept
+          @accept_delay && sleep(@accept_delay)
           @session_mutex.synchronize do
             @sessions << @session_class.new(self, sock)
           end
@@ -133,6 +135,12 @@ class TestBroker
     def init_connection
       @connection = OnStomp::Connections::Stomp_1_0.new(socket, self)
       @processor = OnStomp::Components::ThreadedProcessor.new self
+      @killing = false
+      @session_killer = Thread.new do
+        Thread.pass until @killing
+        @socket.close rescue nil
+        @processor.stop rescue nil
+      end
     end
     
     def reply_to_connect connect_frame
@@ -150,22 +158,19 @@ class TestBroker
     
     def init_events
       on_subscribe do |s,_|
-        #$stdout.puts "Got SUBSCRIBE: #{s.headers.to_hash.inspect}"
-        @server.subscribe s, self
+        @server.subscribe(s, self) unless @killing
       end
       
       on_unsubscribe do |u, _|
-        #$stdout.puts "Got UNSUBSCRIBE: #{u.headers.to_hash.inspect}"
-        @server.unsubscribe u, self
+        @server.unsubscribe(u, self) unless @killing
       end
       
       on_send do  |s,_|
-        #$stdout.puts "Got a SEND frame! #{s.body.inspect}"
-        @server.enqueue_message s
+        @server.enqueue_message(s) unless @killing
       end
       
       on_disconnect do |d,_|
-        @connection.close
+        #@connection.close
       end
       
       after_transmitting do |f,_|
@@ -173,13 +178,14 @@ class TestBroker
       end
       
       before_receiving do |f,_|
-        @server.frames_received << f
+        @server.frames_received << f unless @killing
         if @server.mau_dib && f.command == @server.mau_dib
           kill
-        end
-        if f.header? :receipt
-          transmit OnStomp::Components::Frame.new('RECEIPT',
-            :'receipt-id' => f[:receipt])
+        elsif !@killing
+          if f.header? :receipt
+            transmit OnStomp::Components::Frame.new('RECEIPT',
+              :'receipt-id' => f[:receipt])
+          end
         end
       end
     end
@@ -203,13 +209,12 @@ class TestBroker
     def join
       if @connection.connected?
         #@connection.close
-        @processor.join
+        @processor.join rescue nil
       end
     end
     
     def kill
-      @socket.close
-      @processor.stop
+      @killing = true
     end
     
     def stop

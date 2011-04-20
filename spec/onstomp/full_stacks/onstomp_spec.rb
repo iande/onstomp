@@ -3,6 +3,14 @@ require 'spec_helper'
 require File.expand_path('../test_broker', __FILE__)
 
 describe OnStomp::Client, "full stack test (stomp+ssl:)", :fullstack => true do
+  def encode_body body, encoding
+    if RUBY_VERSION >= '1.9'
+      body.encode(encoding)
+    else
+      body
+    end
+  end
+  
   describe "STOMP 1.0" do
     let(:broker) {
       TestBroker.new 10101
@@ -21,7 +29,7 @@ describe OnStomp::Client, "full stack test (stomp+ssl:)", :fullstack => true do
         client.send '/queue/test', 'my message body', {
           "this:is\na \\fun\\ header" => 'blather matter'
         }
-        client.send '/queue/test', "\x01\x02\x03\x04\x05\x06".encode('BINARY'),
+        client.send '/queue/test', encode_body("\x01\x02\x03\x04\x05\x06", 'BINARY'),
           :'content-type' => 'application/octet-stream'
         client.disconnect
         broker.join
@@ -48,7 +56,7 @@ describe OnStomp::Client, "full stack test (stomp+ssl:)", :fullstack => true do
         client.send '/queue/test', 'my message body', {
           "this:is\na \\fun\\ header" => 'blather matter'
         }
-        client.send '/queue/test', "\x01\x02\x03\x04\x05\x06".encode('BINARY'),
+        client.send '/queue/test', encode_body("\x01\x02\x03\x04\x05\x06", 'BINARY'),
           :'content-type' => 'application/octet-stream'
         client.disconnect
         broker.join
