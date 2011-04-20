@@ -70,7 +70,6 @@ class OnStomp::Connections::Base
   # @param [OnStomp::Client] client
   # @param [Array<Hash>] headers
   def connect client, *headers
-    @last_transmitted_at = Time.now
     write_frame_nonblock connect_frame(*headers)
     client_con = nil
     until client_con
@@ -142,6 +141,7 @@ class OnStomp::Connections::Base
   # @param [OnStomp::Components::Frame]
   def push_write_buffer data, frame
     @write_mutex.synchronize {
+      @last_write_activity = Time.now if @write_buffer.empty?
       @write_buffer << [data, frame] unless @closing
     }
   end
@@ -184,7 +184,7 @@ class OnStomp::Connections::Base
           raise
         end
         written += w
-        @last_transmitted_at = Time.now
+        @last_write_activity = @last_transmitted_at = Time.now
         if w < data.length
           unshift_write_buffer data[w..-1], frame
         else
@@ -229,6 +229,10 @@ class OnStomp::Connections::Base
   end
   
   private
+  def duration_since_write_activity
+    Time.now - @last_write_activity
+  end
+  
   # Returns true if the connection has buffered data to write and the
   # socket is ready to be written to. If checking the socket's state raises
   # an exception, the connection will be closed (triggering an
@@ -260,7 +264,7 @@ class OnStomp::Connections::Base
   # `write_timeout`
   def write_timeout_exceeded?
     @write_timeout && @write_buffer.length > 0 &&
-      duration_since_transmitted > (@write_timeout*1000)
+      duration_since_write_activity > @write_timeout
   end
   
   # Returns true if a `read_timeout` has been set and

@@ -136,7 +136,7 @@ module OnStomp::Components::Scopes
           :transaction => 't-1234')).and_return { |f| f }
         client.should_receive(:transmit).with(an_onstomp_frame('SEND',
           {:destination => '/queue/test', :transaction => 't-1234'},
-          'my body'), an_instance_of(Hash)).and_return { |f| f }
+          'my body'), an_instance_of(Hash)).and_return { |f,*_| f }
 
         scope.perform { |t| t.send("/queue/test", "my body") }
       end
@@ -146,7 +146,7 @@ module OnStomp::Components::Scopes
           :transaction => 't-1234')).and_return { |f| f }
         client.should_receive(:transmit).with(an_onstomp_frame('SEND',
           {:destination => '/queue/test', :transaction => 't-1234'},
-          'my body'), an_instance_of(Hash)).and_return { |f| f }
+          'my body'), an_instance_of(Hash)).and_return { |f,*_| f }
 
         scope.perform { |t| t.send("/queue/test", "my body") }
       end
@@ -157,7 +157,7 @@ module OnStomp::Components::Scopes
           :transaction => 't-1234')).and_return { |f| f }
         client.should_receive(:transmit).with(an_onstomp_frame('SEND',
           {:destination => '/queue/test', :transaction => 't-1234'},
-          'my body'), an_instance_of(Hash)).and_return { |f| f }
+          'my body'), an_instance_of(Hash)).and_return { |f,*_| f }
 
         scope.perform { |t| t.send("/queue/test", "my body"); t.commit }
       end
@@ -168,7 +168,7 @@ module OnStomp::Components::Scopes
           :transaction => 't-1234')).and_return { |f| f }
         client.should_receive(:transmit).with(an_onstomp_frame('SEND',
           {:destination => '/queue/test', :transaction => 't-1234'},
-          'my body'), an_instance_of(Hash)).and_return { |f| f }
+          'my body'), an_instance_of(Hash)).and_return { |f,*_| f }
 
         scope.perform { |t| t.send("/queue/test", "my body"); t.abort }
       end
@@ -179,7 +179,7 @@ module OnStomp::Components::Scopes
           :transaction => 't-1234')).and_return { |f| f }
         client.should_receive(:transmit).with(an_onstomp_frame('SEND',
           {:destination => '/queue/test', :transaction => 't-1234'},
-          'my body'), an_instance_of(Hash)).and_return { |f| f }
+          'my body'), an_instance_of(Hash)).and_return { |f,*_| f }
 
         lambda {
           scope.perform { |t|
@@ -195,7 +195,7 @@ module OnStomp::Components::Scopes
           :transaction => 't-1234')).and_return { |f| f }
         client.should_receive(:transmit).with(an_onstomp_frame('SEND',
           {:destination => '/queue/test', :transaction => 't-1234'},
-          'my body'), an_instance_of(Hash)).and_return { |f| f }
+          'my body'), an_instance_of(Hash)).and_return { |f,*_| f }
 
         lambda {
           scope.perform { |t|
@@ -212,7 +212,7 @@ module OnStomp::Components::Scopes
           :transaction => 't-1234')).and_return { |f| f }
         client.should_receive(:transmit).with(an_onstomp_frame('SEND',
           {:destination => '/queue/test', :transaction => 't-1234'},
-          'my body'), an_instance_of(Hash)).and_return { |f| f }
+          'my body'), an_instance_of(Hash)).and_return { |f,*_| f }
 
         lambda {
           scope.perform { |t|

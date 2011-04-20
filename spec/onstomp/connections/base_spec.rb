@@ -218,9 +218,11 @@ module OnStomp::Connections
       it "should trigger a blocked close if the write timeout is exceeded" do
         triggered = false
         connection.on_blocked { triggered = true }
+        connection.write_timeout = 10
+        Time.stub(:now => 31)
         connection.push_write_buffer 'FRAME_SERIALIZED', frame
+        Time.stub(:now => 77)
         IO.stub(:select => false)
-        connection.stub(:write_timeout_exceeded? => true)
         io.should_receive(:close)
         connection.io_process_write
         triggered.should be_true
@@ -399,14 +401,16 @@ module OnStomp::Connections
       end
       it "should not exceed the timeout if duration is less than timeout" do
         connection.write_timeout = 10
+        Time.stub(:now => 59)
         connection.push_write_buffer 'FRAME_SERIALIZED', frame
-        connection.stub(:duration_since_transmitted => 9000)
+        Time.stub(:now => 61)
         connection.__send__(:write_timeout_exceeded?).should be_false
       end
       it "should not exceed the timeout if duration is equal to timeout" do
         connection.write_timeout = 10
+        Time.stub(:now => 59)
         connection.push_write_buffer 'FRAME_SERIALIZED', frame
-        connection.stub(:duration_since_transmitted => 10000)
+        Time.stub(:now => 69)
         connection.__send__(:write_timeout_exceeded?).should be_false
       end
       it "should not exceed the timeout if the duratio is greater but there's no buffered data" do
@@ -415,9 +419,12 @@ module OnStomp::Connections
         connection.__send__(:write_timeout_exceeded?).should be_false
       end
       it "should exceed the timeout if buffered and duration is greater than timeout" do
+        Time.stub(:now => 59)
         connection.write_timeout = 10
         connection.push_write_buffer 'FRAME_SERIALIZED', frame
-        connection.stub(:duration_since_transmitted => 10001)
+        # This proves that not all calls to push_write_buffer reset the clock.
+        Time.stub(:now => 70)
+        connection.push_write_buffer 'FRAME_SERIALIZED', frame
         connection.__send__(:write_timeout_exceeded?).should be_true
       end
     end

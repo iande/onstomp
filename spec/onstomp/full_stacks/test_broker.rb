@@ -39,7 +39,6 @@ class TestBroker
       end
       msg[:'message-id'] = "msg-#{Time.now.to_f}"
       dest = msg[:destination]
-      #$stdout.puts "Enqueuing on #{dest}"
       if !@subscribes[dest].empty?
         session, subid = @subscribes[dest].first
         deliver_message msg, session, subid
@@ -47,7 +46,6 @@ class TestBroker
         @messages[dest] << msg
       end
     end
-    #$stdout.puts "Done enqueueing!"
   end
   
   def deliver_message msg, sess, subid
