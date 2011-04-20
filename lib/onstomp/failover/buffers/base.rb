@@ -11,6 +11,12 @@ class OnStomp::Failover::Buffers::Base
     @txs = {}
   end
   
+  # Returns the number of frames currently sitting in the buffer.
+  # @return [Fixnum]
+  def buffered
+    @buffer.length
+  end
+  
   private
   def add_to_buffer f, heads={}
     @buffer_mutex.synchronize do
