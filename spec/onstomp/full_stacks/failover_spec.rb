@@ -58,7 +58,7 @@ describe OnStomp::Failover, "full stack test", :fullstack => true, :failover => 
       end
       client.unsubscribe sub, :'x-onstomp-real-client' => client.active_client.uri
       client.commit 't-1234', :'x-onstomp-real-client' => client.active_client.uri
-      
+      #Thread.pass until client.connected?
       client.disconnect :'x-onstomp-real-client' => client.active_client.uri
       brokers.each(&:join)
       brokers.first.frames_received.map(&:command).should == ["CONNECT", "SEND", "BEGIN", "SEND", "SUBSCRIBE"]
@@ -96,7 +96,7 @@ describe OnStomp::Failover, "full stack test", :fullstack => true, :failover => 
       end
       client.unsubscribe sub, :'x-onstomp-real-client' => client.active_client.uri
       client.commit 't-1234', :'x-onstomp-real-client' => client.active_client.uri
-      
+      #Thread.pass until client.connected?
       client.disconnect :'x-onstomp-real-client' => client.active_client.uri
       brokers.each(&:join)
       brokers.first.frames_received.map(&:command).should == ["CONNECT", "SEND", "BEGIN", "SEND", "SUBSCRIBE"]

@@ -4,7 +4,7 @@ require File.expand_path('../test_broker', __FILE__)
 
 describe OnStomp::OpenURI, "full stack test", :fullstack => true, :openuri => true do
   let(:broker) {
-    TestBroker.new
+    TestBroker.new 10101
   }
   before(:each) do
     broker.start
@@ -15,7 +15,7 @@ describe OnStomp::OpenURI, "full stack test", :fullstack => true, :openuri => tr
   
   describe "opening URIs" do
     it "should deliver some SEND frames" do
-      open("stomp://localhost/queue/onstomp/open-uri/test") do |c|
+      open("stomp://localhost:10101/queue/onstomp/open-uri/test") do |c|
         c.send "Test Message 1"
         c.send "Another Test Message"
       end
@@ -25,7 +25,7 @@ describe OnStomp::OpenURI, "full stack test", :fullstack => true, :openuri => tr
     end
     
     it "should receive the some MESSAGE frames" do
-      open("stomp://localhost/queue/onstomp/open-uri/test") do |c|
+      open("stomp://localhost:10101/queue/onstomp/open-uri/test") do |c|
         c.send "Test Message 1"
         c.send "Another Test Message"
         c.send "Last Message"

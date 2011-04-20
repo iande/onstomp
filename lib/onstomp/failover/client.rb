@@ -53,7 +53,9 @@ class OnStomp::Failover::Client
     @retry_thread = Thread.new do
       until @disconnecting
         Thread.stop
-        retry_connection unless @disconnecting
+        @client_mutex.synchronize {
+          reconnect unless @disconnecting
+        }
       end
     end
   end
@@ -75,7 +77,7 @@ class OnStomp::Failover::Client
   # @return [self]
   def connect
     @disconnecting = false
-    unless retry_connection
+    unless @client_mutex.synchronize { reconnect }
       raise OnStomp::Failover::MaximumRetriesExceededError
     end
     self
@@ -84,47 +86,35 @@ class OnStomp::Failover::Client
   # Ensures that a connection is properly established, then invokes
   # {OnStomp::Client#disconnect disconnect} on the {#active_client}
   def disconnect *args, &block
-    return unless active_client
-    @client_mutex.synchronize do
-      @disconnecting = true
-      active_client.disconnect *args, &block
+    if active_client
+      Thread.pass until connected?
+      @client_mutex.synchronize do
+        @disconnecting = true
+        active_client.disconnect *args, &block
+      end
     end
   end
   
   private
   def reconnect
-    @retry_thread.run
-  end
-  
-  def retry_connection
-    @client_mutex.synchronize do
-      attempt = 1
-      until connected? || retry_exceeded?(attempt)
-        sleep_for_retry attempt
-        begin
-          trigger_failover_retry :before, attempt
-          @active_client = client_pool.next_client
-          # `reconnect` could be called again within the marked range.
-          active_client.connect # <--- From here
-          @connection = active_client.connection
-        rescue Exception
-          trigger_failover_event :connect_failure, :on, active_client, $!.message
-        end
-        trigger_failover_retry :after, attempt
-        attempt += 1
+    attempt = 1
+    until connected? || retry_exceeded?(attempt)
+      sleep_for_retry attempt
+      begin
+        trigger_failover_retry :before, attempt
+        @active_client = client_pool.next_client
+        # `reconnect` could be called again within the marked range.
+        active_client.connect # <--- From here
+        @connection = active_client.connection
+      rescue Exception
+        trigger_failover_event :connect_failure, :on, active_client, $!.message
       end
-      if connected?
-        trigger_failover_event(:connected, :on, active_client)
-        true
-      else
-        trigger_failover_event(:retries_exceeded, :on)
-        false
-        #if @disconnecting.is_a?(Array)
-        #  args, block = @disconnect
-        #  active_client.disconnect *args, &block
-        #end
-      end # <--- Until here
+      trigger_failover_retry :after, attempt
+      attempt += 1
     end
+    connected?.tap do |b|
+      b && trigger_failover_event(:connected, :on, active_client)
+    end # <--- Until here
   end
   
   def retry_exceeded? attempt
@@ -141,7 +131,10 @@ class OnStomp::Failover::Client
       if client == active_client
         unless @disconnecting
           trigger_failover_event(:lost, :on, active_client)
-          reconnect
+          # Wake up the reconnect thread. This ensures that subsequent
+          # connections are all spawned from the same source.
+          # Previously, we re-spawned here and that was rather problematic.
+          @retry_thread.run
         end
       end
     end

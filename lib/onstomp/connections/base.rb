@@ -153,7 +153,14 @@ class OnStomp::Connections::Base
         while written < MAX_BYTES_PER_WRITE
           data, frame = shift_write_buffer
           break unless data && connected?
-          w = socket.write_nonblock(data)
+          begin
+            w = socket.write_nonblock(data)
+          rescue Errno::EINTR, Errno::EAGAIN, Errno::EWOULDBLOCK
+            # writing will either block, or cannot otherwise be completed,
+            # put data back and try again some other day
+            unshift_write_buffer data, frame
+            break
+          end
           written += w
           @last_transmitted_at = Time.now
           if w < data.length
@@ -164,11 +171,6 @@ class OnStomp::Connections::Base
           end
         end
       end
-    rescue Errno::EINTR, Errno::EAGAIN, Errno::EWOULDBLOCK
-      # writing will either block, or cannot otherwise be completed,
-      # put data back and try again some other day
-      unshift_write_buffer data, frame
-      break
     rescue Exception
       triggered_close $!.message, :terminated
       raise
