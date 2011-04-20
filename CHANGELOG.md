@@ -1,5 +1,8 @@
 # Changes
 
+## 1.0.3
+* change how failover spawns new connections when failing over.
+
 ## 1.0.2
 * allow failover clients to be constructed from regular OnStomp::Client
   instances, allowing fully configured SSL connections.
