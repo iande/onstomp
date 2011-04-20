@@ -125,7 +125,7 @@ module OnStomp::Interfaces::ClientEvents
   # @endgroup
 
   # Helpers for setting up connection events through a client
-  [:established, :terminated, :died, :closed].each do |ev|
+  [:established, :terminated, :died, :closed, :blocked].each do |ev|
     module_eval <<-EOS
       def on_connection_#{ev}(&cb)
         if connection

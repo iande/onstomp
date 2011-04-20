@@ -70,6 +70,13 @@ module OnStomp::Interfaces::UriConfigurable
       attr_configurable(*args, &trans)
     end
     
+    # Creates readable and writeable attributes that are automatically
+    # converted into integers.
+    def attr_configurable_int *args, &block
+      trans = attr_configurable_wrap lambda { |v| v.to_i }, block
+      attr_configurable_single(*args, &trans)
+    end
+    
     # Creates a group readable and writeable attributes that can be set
     # by a URI query parameter sharing the same name, a property of a URI or
     # a default value. The value of this attribute will be transformed by

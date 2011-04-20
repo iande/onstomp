@@ -34,6 +34,8 @@ module OnStomp
         client.login.should == ''
         client.passcode.should == ''
         client.heartbeats.should == [0, 0]
+        client.write_timeout.should == 120
+        client.read_timeout.should == 120
         client.processor.should == OnStomp::Components::ThreadedProcessor
       end
       it "should be configurable by options" do
@@ -43,6 +45,8 @@ module OnStomp
         client_options[:login] = 'my login'
         client_options[:passcode] = 'sup3r s3cr3t'
         client_options[:processor] = processor_class
+        client_options[:write_timeout] = 50
+        client_options[:read_timeout] = 70
         client_options[:ssl] = { :cert_path => '/path/to/certs' }
         client.versions.should == ['1.1']
         client.heartbeats.should == [90, 110]
@@ -50,6 +54,8 @@ module OnStomp
         client.login.should == 'my login'
         client.passcode.should == 'sup3r s3cr3t'
         client.processor.should == processor_class
+        client.write_timeout.should == 50
+        client.read_timeout.should == 70
         client.ssl.should == { :cert_path => '/path/to/certs' }
       end
       it "should be configurable by query" do
@@ -59,11 +65,15 @@ module OnStomp
         client_uri << '&login=query%20login'
         client_uri << '&passcode=qu3ry%20s3cr3t'
         client_uri << '&processor=OnStomp::Connections'
+        client_uri << '&write_timeout=30'
+        client_uri << '&read_timeout=50'
         client.versions.should == ['1.0']
         client.heartbeats.should == [80, 210]
         client.host.should == 'query host'
         client.login.should == 'query login'
         client.passcode.should == 'qu3ry s3cr3t'
+        client.write_timeout.should == 30
+        client.read_timeout.should == 50
         client.processor.should == OnStomp::Connections
       end
       it "should be configurable through parts of the URI" do
@@ -106,7 +116,7 @@ module OnStomp
         OnStomp::Connections.should_receive(:connect).with(client, headers,
           { :'accept-version' => '1.1', :host => 'my host',
             :'heart-beat' => '30,110', :login => 'my login',
-            :passcode => 's3cr3t' }, pending_events).and_return(connection)
+            :passcode => 's3cr3t' }, pending_events, 30, 50).and_return(connection)
         processor.should_receive(:start)
         client.stub(:pending_connection_events => pending_events)
         client.versions = '1.1'
@@ -114,6 +124,8 @@ module OnStomp
         client.login = 'my login'
         client.passcode = 's3cr3t'
         client.heartbeats = [30,110]
+        client.read_timeout = 30
+        client.write_timeout = 50
         client.connect(headers)
         client.connection.should == connection
       end

@@ -47,6 +47,17 @@ class OnStomp::Client
   # @return [Class]
   attr_configurable_processor :processor
   
+  # The number of seconds to wait before a write-blocked connection is
+  # considered dead. Defaults to 120 seconds.
+  # @return [Fixnum]
+  attr_configurable_int :write_timeout, :default => 120
+  
+  # The number of seconds to wait before a connection that is read-blocked
+  # during the {OnStomp::Connections::Base#connect connect} phase is
+  # considered dead. Defaults to 120 seconds.
+  # @return [Fixnum]
+  attr_configurable_int :read_timeout, :default => 120
+  
   # @api gem:1 STOMP:1.0,1.1
   # Creates a new client for the specified uri and optional hash of options.
   # @param [String,URI] uri
@@ -71,7 +82,8 @@ class OnStomp::Client
     @connection = OnStomp::Connections.connect self, headers,
       { :'accept-version' => @versions.join(','), :host => @host,
         :'heart-beat' => @heartbeats.join(','), :login => @login,
-        :passcode => @passcode }, pending_connection_events
+        :passcode => @passcode }, pending_connection_events,
+      read_timeout, write_timeout
     processor_inst.start
     self
   end

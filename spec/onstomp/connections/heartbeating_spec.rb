@@ -65,30 +65,6 @@ module OnStomp::Connections
       end
     end
     
-    describe ".duration_since_transmitted" do
-      it "should be nil if last_transmitted_at is nil" do
-        connection.stub(:last_transmitted_at => nil)
-        connection.duration_since_transmitted.should be_nil
-      end
-      it "should be the difference between now and the last_transmitted_at in milliseconds" do
-        Time.stub(:now => 10)
-        connection.stub(:last_transmitted_at => 8.5)
-        connection.duration_since_transmitted.should == 1500
-      end
-    end
-    
-    describe ".duration_since_received" do
-      it "should be nil if last_received_at is nil" do
-        connection.stub(:last_received_at => nil)
-        connection.duration_since_received.should be_nil
-      end
-      it "should be the difference between now and the last_received_at in milliseconds" do
-        Time.stub(:now => 10)
-        connection.stub(:last_received_at => 6)
-        connection.duration_since_received.should == 4000
-      end
-    end
-    
     describe ".client_pulse?" do
       it "should be true if client heartbeating is disabled" do
         connection.stub(:heartbeat_client_limit => 0)

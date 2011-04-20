@@ -41,7 +41,9 @@ module OnStomp::Failover::URI
       #   @return [FAILOVER]
       def parse uri_str
         if uri_str =~ FAILOVER_REG
-          self.new $1.split(','), $2
+          uris = $1
+          query = $2
+          self.new uris.split(','), query
         else
           raise OnStomp::Failover::InvalidFailoverURIError, uri_str.inspect
         end

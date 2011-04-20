@@ -15,13 +15,6 @@ module OnStomp::Failover::FailoverConfigurable
   # clients.
   module ClassMethods
     # Creates readable and writeable attributes that are automatically
-    # converted into integers.
-    def attr_configurable_int *args, &block
-      trans = attr_configurable_wrap lambda { |v| v.to_i }, block
-      attr_configurable_single(*args, &trans)
-    end
-    
-    # Creates readable and writeable attributes that are automatically
     # converted into boolean values. Assigning the attributes any of
     # `true`, `'true'`, `'1'` or `1` will set the attribute to `true`, all
     # other values with be treated as `false`. This method will also alias

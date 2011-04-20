@@ -32,6 +32,14 @@ module OnStomp::Interfaces::ConnectionEvents
   #   the event (in general the same as `client.connection`)
   create_event_methods :terminated, :on
   # @api gem:1 STOMP:1.0,1.1
+  # Binds a callback to be invoked when a connection has been blocked
+  # on writing for more than the allowed duration, closing the connection.
+  # @yield [client, connection] callback invoked when event is triggered
+  # @yieldparam [OnStomp::Client] client
+  # @yieldparam [OnStomp::Connections::Base] connection that triggered
+  #   the event (in general the same as `client.connection`)
+  create_event_methods :blocked, :on
+  # @api gem:1 STOMP:1.0,1.1
   # Binds a callback to be invoked when a connection has been closed, either
   # through a graceful disconnect or unexpectedly.
   # @note If connection is closed unexpectedly, {#on_died} is triggered first,

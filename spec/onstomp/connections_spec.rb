@@ -24,12 +24,12 @@ module OnStomp
       let(:stomp_1_0_class) { mock('stomp 1.0 class') }
       let(:stomp_1_1_class) { mock('stomp 1.1 class') }
       let(:stomp_1_0) {
-        mock('stomp 1.0', :is_a? => false).tap do |m|
+        mock('stomp 1.0', :is_a? => false, :read_timeout => 30, :write_timeout => 20).tap do |m|
           m.stub(:is_a?).with(stomp_1_0_class).and_return(true)
         end
       }
       let(:stomp_1_1) {
-        mock('stomp 1.1', :is_a? => false).tap do |m|
+        mock('stomp 1.1', :is_a? => false, :read_timeout => 30, :write_timeout => 20).tap do |m|
           m.stub(:is_a?).with(stomp_1_1_class).and_return(true)
         end
       }
@@ -77,14 +77,20 @@ module OnStomp
         it "should create a 1.0 connection" do
           stomp_1_0.should_receive(:connect).and_return(['1.0', connected_frame])
           stomp_1_0.should_receive(:configure).with(connected_frame, pend_events)
-          Connections.connect client, user_headers, connect_headers, pend_events
+          stomp_1_0.should_receive(:read_timeout=).with(5)
+          stomp_1_0.should_receive(:write_timeout=).with(10)
+          Connections.connect client, user_headers, connect_headers, pend_events, 5, 10
         end
         it "should create a 1.1 connection" do
           stomp_1_0.should_receive(:connect).and_return(['1.1', connected_frame])
           stomp_1_0.should_receive(:socket).and_return(tcp_socket)
+          stomp_1_0.should_receive(:read_timeout=).with(10)
+          stomp_1_0.should_receive(:write_timeout=).with(5)
           stomp_1_1_class.should_receive(:new).with(tcp_socket, client).and_return(stomp_1_1)
           stomp_1_1.should_receive(:configure).with(connected_frame, pend_events)
-          Connections.connect client, user_headers, connect_headers, pend_events
+          stomp_1_1.should_receive(:read_timeout=).with(30)
+          stomp_1_1.should_receive(:write_timeout=).with(20)
+          Connections.connect client, user_headers, connect_headers, pend_events, 10, 5
         end
       end
       
@@ -105,7 +111,9 @@ module OnStomp
             ssl_context.should_receive(:"#{k}=").with(v)
           end
           ssl_socket.should_receive(:post_connection_check).with(ssl_options[:post_connection_check])
-          Connections.connect client, user_headers, connect_headers, pend_events
+          stomp_1_0.should_receive(:read_timeout=).with(5)
+          stomp_1_0.should_receive(:write_timeout=).with(10)
+          Connections.connect client, user_headers, connect_headers, pend_events, 5, 10
         end
         it "should create a 1.1 connection" do
           client.stub(:ssl => nil)
@@ -117,9 +125,13 @@ module OnStomp
           end
           ssl_socket.should_receive(:post_connection_check).with(client_uri.host)
           stomp_1_0.should_receive(:socket).and_return(ssl_socket)
+          stomp_1_0.should_receive(:read_timeout=).with(10)
+          stomp_1_0.should_receive(:write_timeout=).with(5)
           stomp_1_1_class.should_receive(:new).with(ssl_socket, client).and_return(stomp_1_1)
           stomp_1_1.should_receive(:configure).with(connected_frame, pend_events)
-          Connections.connect client, user_headers, connect_headers, pend_events
+          stomp_1_1.should_receive(:read_timeout=).with(30)
+          stomp_1_1.should_receive(:write_timeout=).with(20)
+          Connections.connect client, user_headers, connect_headers, pend_events, 10, 5
         end
       end
       
@@ -130,7 +142,7 @@ module OnStomp
           Connections.stub(:negotiate_connection).and_raise OnStomp::OnStompError
           stomp_1_0.should_receive(:close).with(true)
           lambda {
-            Connections.connect client, user_headers, connect_headers, pend_events
+            Connections.connect client, user_headers, connect_headers, pend_events, 5, 10
           }.should raise_error(OnStomp::OnStompError)
         end
       end

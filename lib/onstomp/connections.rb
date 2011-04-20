@@ -44,8 +44,8 @@ module OnStomp::Connections
   #   negotiated protocol version
   # @raise [OnStomp::OnStompError] if negotiating the connection raises an
   #   such an error.
-  def self.connect client, u_head, c_head, con_cbs
-    init_con = create_connection('1.0', nil, client)
+  def self.connect client, u_head, c_head, con_cbs, r_time, w_time
+    init_con = create_connection('1.0', nil, client, r_time, w_time)
     ver, connected = init_con.connect client, u_head, c_head
     begin
       negotiate_connection(ver, init_con, client).tap do |final_con|
@@ -61,21 +61,25 @@ module OnStomp::Connections
   private
   def self.negotiate_connection vers, con, client
     supports_protocol?(vers,con) ? con :
-      create_connection(vers, con.socket, client)
+      create_connection(vers, con.socket, client, con.read_timeout,
+        con.write_timeout)
   end
   
   def self.supports_protocol? ver, con
     con.is_a? PROTOCOL_VERSIONS[ver]
   end
   
-  def self.create_connection ver, sock, client
+  def self.create_connection ver, sock, client, rt, wt
     unless sock
       meth = client.ssl ? :ssl :
         client.uri.respond_to?(:onstomp_socket_type) ?
           client.uri.onstomp_socket_type : :tcp
       sock = __send__(:"create_socket_#{meth}", client)
     end
-    PROTOCOL_VERSIONS[ver].new sock, client
+    PROTOCOL_VERSIONS[ver].new(sock, client).tap do |con|
+      con.read_timeout = rt
+      con.write_timeout = wt
+    end
   end
   
   def self.create_socket_tcp client
