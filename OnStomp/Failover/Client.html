@@ -1294,10 +1294,10 @@ Defaults to <code>10</code></p>
 
 <span class='kw'>def</span> <span class='id disconnect'>disconnect</span> <span class='op'>*</span><span class='id args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id block'>block</span>
   <span class='kw'>if</span> <span class='id active_client'>active_client</span>
-    <span class='const'>Thread</span><span class='period'>.</span><span class='id pass'>pass</span> <span class='kw'>until</span> <span class='id connected?'>connected?</span>
+    <span class='const'>Thread</span><span class='period'>.</span><span class='id pass'>pass</span> <span class='kw'>until</span> <span class='id connected?'>connected?</span> <span class='op'>||</span> <span class='ivar'>@failed</span>
     <span class='ivar'>@client_mutex</span><span class='period'>.</span><span class='id synchronize'>synchronize</span> <span class='kw'>do</span>
       <span class='ivar'>@disconnecting</span> <span class='op'>=</span> <span class='kw'>true</span>
-      <span class='id active_client'>active_client</span><span class='period'>.</span><span class='id disconnect'>disconnect</span> <span class='op'>*</span><span class='id args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id block'>block</span>
+      <span class='id active_client'>active_client</span><span class='period'>.</span><span class='id disconnect'>disconnect</span> <span class='op'>*</span><span class='id args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id block'>block</span> <span class='kw'>if</span> <span class='id connected?'>connected?</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -1361,7 +1361,7 @@ Defaults to <code>10</code></p>
 </div>
     
     <div id="footer">
-  Generated on Wed Apr 20 20:20:59 2011 by 
+  Generated on Thu Apr 21 15:50:11 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.7 (ruby-1.9.2).
 </div>

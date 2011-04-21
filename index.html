@@ -91,11 +91,34 @@ in the hopes of increasing performance.</p>
 <p>The <code>stomp</code> gem is a good gem that works well, I just desired a different
 style API for working with message brokers.</p>
 
+<h2>Gotchas</h2>
+
+<p>Both Ruby 1.8.7 and JRuby (as of 1.6.1) do not provide non-blocking read
+or write methods for OpenSSL connections. While a gem named
+<a href="https://github.com/tarcieri/openssl-nonblock">openssl-nonblock</a> exists for
+Ruby &lt; 1.9.2, I have not personally used it and given that it's a C extension,
+it may not be compatible with JRuby's openssl gem.  When an OnStomp connection
+is created, the socket (SSL or TCP) is checked to see whether or not the methods
+<code>write_nonblock</code> and <code>read_nonblock</code> have been defined. If not, OnStomp will
+fall back on <code>write</code> for writing and <code>readpartial</code> for reading. While both of
+these methods will block, the use of <code>IO::select</code> should help mitigate their
+effects. I initially missed this detail, so if you're using an older version
+of OnStomp (pre 1.0.4) with Ruby 1.8.7 or JRuby, you either want to upgrade
+your gem or avoid <code>stomp+ssl://</code> URIs like the plague.</p>
+
+<p>The final "gotcha" is more of an advanced warning.  When JRuby's support
+for the Ruby 1.9 API stabilizes (and <code>read_nonblock</code> and <code>write_nonblock</code> are
+available for OpenSSL connections), I will be dropping support for Ruby 1.8.x
+entirely. This is probably a ways off yet, but when the time comes, I'll
+post obvious warnings and increment the gem's major version. OnStomp 1.x
+will always be compatible with Ruby 1.8.7+, OnStomp 2.x will be Ruby 1.9.x
+only.</p>
+
 <h2>Further Reading</h2>
 
 <ul>
 <li>A <a href="file.UserNarrative.html" title="User's Narrative">User's Narrative</a></li>
-<li>A <a href="file.DeveloperNarrative.html" title="Developers's Narrative">Developers's Narrative</a></li>
+<li>The <a href="file.API.html" title="OnStomp API Promise">OnStomp API Promise</a> (sort of)</li>
 <li>A <a href="file.CHANGELOG.html" title="History of Changes">History of Changes</a></li>
 </ul>
 
@@ -125,7 +148,7 @@ into working with non-blocking IO in Ruby</li>
 </div></div>
     
     <div id="footer">
-  Generated on Wed Apr 20 20:20:58 2011 by 
+  Generated on Thu Apr 21 15:50:10 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.7 (ruby-1.9.2).
 </div>
