@@ -487,14 +487,18 @@ flexibility.</p>
 45
 46
 47
-48</pre>
+48
+49
+50</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/onstomp/failover/uri.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='id parse'>parse</span> <span class='id uri_str'>uri_str</span>
   <span class='kw'>if</span> <span class='id uri_str'>uri_str</span> <span class='op'>=~</span> <span class='const'>FAILOVER_REG</span>
-    <span class='kw'>self</span><span class='period'>.</span><span class='id new'>new</span> <span class='backref'>$1</span><span class='period'>.</span><span class='id split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>,</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='backref'>$2</span>
+    <span class='id uris'>uris</span> <span class='op'>=</span> <span class='backref'>$1</span>
+    <span class='id query'>query</span> <span class='op'>=</span> <span class='backref'>$2</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id new'>new</span> <span class='id uris'>uris</span><span class='period'>.</span><span class='id split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>,</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id query'>query</span>
   <span class='kw'>else</span>
     <span class='id raise'>raise</span> <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>Failover</span><span class='op'>::</span><span class='const'>InvalidFailoverURIError</span><span class='comma'>,</span> <span class='id uri_str'>uri_str</span><span class='period'>.</span><span class='id inspect'>inspect</span>
   <span class='kw'>end</span>
@@ -568,7 +572,7 @@ to allow mixing opaques and queries.</p>
 </div>
     
     <div id="footer">
-  Generated on Sat Apr  9 13:48:10 2011 by 
+  Generated on Wed Apr 20 20:20:59 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.7 (ruby-1.9.2).
 </div>

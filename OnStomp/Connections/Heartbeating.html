@@ -136,7 +136,7 @@ client and broker can go without transmitting data respectively.</p>
 
   
     <span class="summary_desc"><div class='inline'><p>Returns true if broker-side heartbeating is disabled, or
-<span class='object_link'><a href="#duration_since_received-instance_method" title="OnStomp::Connections::Heartbeating#duration_since_received (method)">#duration_since_received</a></span> has not exceeded <span class='object_link'><a href="#heartbeat_broker_limit-instance_method" title="OnStomp::Connections::Heartbeating#heartbeat_broker_limit (method)">#heartbeat_broker_limit</a></span>.</p>
+<span class='object_link'><a href="Base.html#duration_since_received-instance_method" title="OnStomp::Connections::Base#duration_since_received (method)">Base#duration_since_received</a></span> has not exceeded <span class='object_link'><a href="#heartbeat_broker_limit-instance_method" title="OnStomp::Connections::Heartbeating#heartbeat_broker_limit (method)">#heartbeat_broker_limit</a></span>.</p>
 </div></span>
   
 </li>
@@ -159,7 +159,7 @@ client and broker can go without transmitting data respectively.</p>
 
   
     <span class="summary_desc"><div class='inline'><p>Returns true if client-side heartbeating is disabled, or
-<span class='object_link'><a href="#duration_since_transmitted-instance_method" title="OnStomp::Connections::Heartbeating#duration_since_transmitted (method)">#duration_since_transmitted</a></span> has not exceeded <span class='object_link'><a href="#heartbeat_client_limit-instance_method" title="OnStomp::Connections::Heartbeating#heartbeat_client_limit (method)">#heartbeat_client_limit</a></span>.</p>
+<span class='object_link'><a href="Base.html#duration_since_transmitted-instance_method" title="OnStomp::Connections::Base#duration_since_transmitted (method)">Base#duration_since_transmitted</a></span> has not exceeded <span class='object_link'><a href="#heartbeat_client_limit-instance_method" title="OnStomp::Connections::Heartbeating#heartbeat_client_limit (method)">#heartbeat_client_limit</a></span>.</p>
 </div></span>
   
 </li>
@@ -183,52 +183,6 @@ client and broker can go without transmitting data respectively.</p>
   
     <span class="summary_desc"><div class='inline'><p>Configures heartbeating strategy by taking the maximum timeout
 for clients and brokers.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#duration_since_received-instance_method" title="#duration_since_received (instance method)">- (Fixnum<sup>?</sup>) <strong>duration_since_received</strong> </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>Number of milliseconds since data was last received from the broker or
-<code>nil</code> if no data has been received when the method is called.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#duration_since_transmitted-instance_method" title="#duration_since_transmitted (instance method)">- (Fixnum<sup>?</sup>) <strong>duration_since_transmitted</strong> </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>Number of milliseconds since data was last transmitted to the broker or
-<code>nil</code> if no data has been transmitted when the method is called.</p>
 </div></span>
   
 </li>
@@ -382,7 +336,7 @@ either value is 0, the respective heartbeating is not enabled.</p>
 </p><div class="docstring">
   <div class="discussion">
     <p>Returns true if broker-side heartbeating is disabled, or
-<span class='object_link'><a href="#duration_since_received-instance_method" title="OnStomp::Connections::Heartbeating#duration_since_received (method)">#duration_since_received</a></span> has not exceeded <span class='object_link'><a href="#heartbeat_broker_limit-instance_method" title="OnStomp::Connections::Heartbeating#heartbeat_broker_limit (method)">#heartbeat_broker_limit</a></span></p>
+<span class='object_link'><a href="Base.html#duration_since_received-instance_method" title="OnStomp::Connections::Base#duration_since_received (method)">Base#duration_since_received</a></span> has not exceeded <span class='object_link'><a href="#heartbeat_broker_limit-instance_method" title="OnStomp::Connections::Heartbeating#heartbeat_broker_limit (method)">#heartbeat_broker_limit</a></span></p>
 
 
   </div>
@@ -408,12 +362,12 @@ either value is 0, the respective heartbeating is not enabled.</p>
       <pre class="lines">
 
 
-79
-80
-81</pre>
+65
+66
+67</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/heartbeating.rb', line 79</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/heartbeating.rb', line 65</span>
 
 <span class='kw'>def</span> <span class='id broker_pulse?'>broker_pulse?</span>
   <span class='id heartbeat_broker_limit'>heartbeat_broker_limit</span> <span class='op'>==</span> <span class='int'>0</span> <span class='op'>||</span> <span class='id duration_since_received'>duration_since_received</span> <span class='op'>&lt;=</span> <span class='id heartbeat_broker_limit'>heartbeat_broker_limit</span>
@@ -433,7 +387,7 @@ either value is 0, the respective heartbeating is not enabled.</p>
 </p><div class="docstring">
   <div class="discussion">
     <p>Returns true if client-side heartbeating is disabled, or
-<span class='object_link'><a href="#duration_since_transmitted-instance_method" title="OnStomp::Connections::Heartbeating#duration_since_transmitted (method)">#duration_since_transmitted</a></span> has not exceeded <span class='object_link'><a href="#heartbeat_client_limit-instance_method" title="OnStomp::Connections::Heartbeating#heartbeat_client_limit (method)">#heartbeat_client_limit</a></span></p>
+<span class='object_link'><a href="Base.html#duration_since_transmitted-instance_method" title="OnStomp::Connections::Base#duration_since_transmitted (method)">Base#duration_since_transmitted</a></span> has not exceeded <span class='object_link'><a href="#heartbeat_client_limit-instance_method" title="OnStomp::Connections::Heartbeating#heartbeat_client_limit (method)">#heartbeat_client_limit</a></span></p>
 
 
   </div>
@@ -459,12 +413,12 @@ either value is 0, the respective heartbeating is not enabled.</p>
       <pre class="lines">
 
 
-72
-73
-74</pre>
+58
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/heartbeating.rb', line 72</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/heartbeating.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id client_pulse?'>client_pulse?</span>
   <span class='id heartbeat_client_limit'>heartbeat_client_limit</span> <span class='op'>==</span> <span class='int'>0</span> <span class='op'>||</span> <span class='id duration_since_transmitted'>duration_since_transmitted</span> <span class='op'>&lt;=</span> <span class='id heartbeat_client_limit'>heartbeat_client_limit</span>
@@ -539,108 +493,6 @@ beating is disabled.</p>
   <span class='id s_x'>s_x</span><span class='comma'>,</span> <span class='id s_y'>s_y</span> <span class='op'>=</span> <span class='id broker_beats'>broker_beats</span>
   <span class='ivar'>@heartbeating</span> <span class='op'>=</span> <span class='lbracket'>[</span> <span class='lparen'>(</span><span class='id c_x'>c_x</span> <span class='op'>==</span> <span class='int'>0</span><span class='op'>||</span><span class='id s_y'>s_y</span> <span class='op'>==</span> <span class='int'>0</span> <span class='op'>?</span> <span class='int'>0</span> <span class='op'>:</span> <span class='lbracket'>[</span><span class='id c_x'>c_x</span><span class='comma'>,</span><span class='id s_y'>s_y</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id max'>max</span><span class='rparen'>)</span><span class='comma'>,</span> 
     <span class='lparen'>(</span><span class='id c_y'>c_y</span> <span class='op'>==</span> <span class='int'>0</span><span class='op'>||</span><span class='id s_x'>s_x</span> <span class='op'>==</span> <span class='int'>0</span> <span class='op'>?</span> <span class='int'>0</span> <span class='op'>:</span> <span class='lbracket'>[</span><span class='id c_y'>c_y</span><span class='comma'>,</span><span class='id s_x'>s_x</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id max'>max</span><span class='rparen'>)</span> <span class='rbracket'>]</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="duration_since_received-instance_method">
-  
-    - (<tt>Fixnum</tt><sup>?</sup>) <strong>duration_since_received</strong> 
-  
-
-  
-</p><div class="docstring">
-  <div class="discussion">
-    <p>Number of milliseconds since data was last received from the broker or
-<code>nil</code> if no data has been received when the method is called.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <h3>Returns:</h3>
-<ul class="return">
-  
-    <li>
-      
-        <span class='type'>(<tt>Fixnum</tt>, <tt>nil</tt>)</span>
-      
-      
-      
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-65
-66
-67</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/heartbeating.rb', line 65</span>
-
-<span class='kw'>def</span> <span class='id duration_since_received'>duration_since_received</span>
-  <span class='id last_received_at'>last_received_at</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='const'>Time</span><span class='period'>.</span><span class='id now'>now</span> <span class='op'>-</span> <span class='id last_received_at'>last_received_at</span><span class='rparen'>)</span><span class='op'>*</span><span class='int'>1000</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_i'>to_i</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="duration_since_transmitted-instance_method">
-  
-    - (<tt>Fixnum</tt><sup>?</sup>) <strong>duration_since_transmitted</strong> 
-  
-
-  
-</p><div class="docstring">
-  <div class="discussion">
-    <p>Number of milliseconds since data was last transmitted to the broker or
-<code>nil</code> if no data has been transmitted when the method is called.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <h3>Returns:</h3>
-<ul class="return">
-  
-    <li>
-      
-        <span class='type'>(<tt>Fixnum</tt>, <tt>nil</tt>)</span>
-      
-      
-      
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-58
-59
-60</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/heartbeating.rb', line 58</span>
-
-<span class='kw'>def</span> <span class='id duration_since_transmitted'>duration_since_transmitted</span>
-  <span class='id last_transmitted_at'>last_transmitted_at</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='const'>Time</span><span class='period'>.</span><span class='id now'>now</span> <span class='op'>-</span> <span class='id last_transmitted_at'>last_transmitted_at</span><span class='rparen'>)</span><span class='op'>*</span><span class='int'>1000</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_i'>to_i</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -822,7 +674,7 @@ the connection is effectively dead and should be <span class='object_link'><a hr
 </div>
     
     <div id="footer">
-  Generated on Sat Apr  9 13:48:11 2011 by 
+  Generated on Wed Apr 20 20:21:00 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.7 (ruby-1.9.2).
 </div>

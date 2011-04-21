@@ -256,6 +256,33 @@ Stomp protocol.</p>
       <li class="public ">
   <span class="summary_signature">
     
+      <a href="#read_timeout-instance_method" title="#read_timeout (instance method)">- (Fixnum) <strong>read_timeout</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>The number of seconds to wait before a connection that is read-blocked
+during the <span class='object_link'><a href="Connections/Base.html#connect-instance_method" title="OnStomp::Connections::Base#connect (method)">connect</a></span> phase is
+considered dead.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#ssl-instance_method" title="#ssl (instance method)">- (Symbol =&gt; Object) <strong>ssl</strong> </a>
     
 
@@ -323,6 +350,32 @@ Stomp protocol.</p>
 
   
     <span class="summary_desc"><div class='inline'><p>The protocol versions to allow for this connection.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#write_timeout-instance_method" title="#write_timeout (instance method)">- (Fixnum) <strong>write_timeout</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>The number of seconds to wait before a write-blocked connection is
+considered dead.</p>
 </div></span>
   
 </li>
@@ -689,19 +742,19 @@ has been closed.</p>
       <pre class="lines">
 
 
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63</pre>
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 65</span>
 
 <span class='kw'>def</span> <span class='id initialize'>initialize</span> <span class='id uri'>uri</span><span class='comma'>,</span> <span class='id options'>options</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='ivar'>@uri</span> <span class='op'>=</span> <span class='id uri'>uri</span><span class='period'>.</span><span class='id is_a?'>is_a?</span><span class='lparen'>(</span><span class='op'>::</span><span class='const'>URI</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id uri'>uri</span> <span class='op'>:</span> <span class='op'>::</span><span class='const'>URI</span><span class='period'>.</span><span class='id parse'>parse</span><span class='lparen'>(</span><span class='id uri'>uri</span><span class='rparen'>)</span>
@@ -975,6 +1028,57 @@ when multiple brokers may share an IP address through virtual hosting.</p>
 </div>
     
       
+      <span id="read_timeout=-instance_method"></span>
+      <span id="read_timeout-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="read_timeout-instance_method">
+  
+    - (<tt>Fixnum</tt>) <strong>read_timeout</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>The number of seconds to wait before a connection that is read-blocked
+during the <span class='object_link'><a href="Connections/Base.html#connect-instance_method" title="OnStomp::Connections::Base#connect (method)">connect</a></span> phase is
+considered dead. Defaults to 120 seconds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+59</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 59</span>
+
+<span class='id attr_configurable_int'>attr_configurable_int</span> <span class='symbol'>:read_timeout</span><span class='comma'>,</span> <span class='symbol'>:default</span> <span class='op'>=&gt;</span> <span class='int'>120</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
       <span id=""></span>
       <span id="ssl-instance_method"></span>
       <div class="method_details ">
@@ -1129,6 +1233,56 @@ when multiple brokers may share an IP address through virtual hosting.</p>
 </table>
 </div>
     
+      
+      <span id="write_timeout=-instance_method"></span>
+      <span id="write_timeout-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="write_timeout-instance_method">
+  
+    - (<tt>Fixnum</tt>) <strong>write_timeout</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>The number of seconds to wait before a write-blocked connection is
+considered dead. Defaults to 120 seconds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 53</span>
+
+<span class='id attr_configurable_int'>attr_configurable_int</span> <span class='symbol'>:write_timeout</span><span class='comma'>,</span> <span class='symbol'>:default</span> <span class='op'>=&gt;</span> <span class='int'>120</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
 
 
@@ -1250,14 +1404,14 @@ option and the connection needs to be terminated immediately.</p>
       <pre class="lines">
 
 
-108
-109
-110
-111
-112</pre>
+120
+121
+122
+123
+124</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 108</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 120</span>
 
 <span class='kw'>def</span> <span class='id close!'>close!</span>
   <span class='id close'>close</span>
@@ -1326,23 +1480,25 @@ headers in the CONNECT frame, if specified.</p>
       <pre class="lines">
 
 
-70
-71
-72
-73
-74
-75
-76
-77</pre>
+81
+82
+83
+84
+85
+86
+87
+88
+89</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 70</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 81</span>
 
 <span class='kw'>def</span> <span class='id connect'>connect</span> <span class='id headers'>headers</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='ivar'>@connection</span> <span class='op'>=</span> <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>Connections</span><span class='period'>.</span><span class='id connect'>connect</span> <span class='kw'>self</span><span class='comma'>,</span> <span class='id headers'>headers</span><span class='comma'>,</span>
     <span class='lbrace'>{</span> <span class='symbol'>:accept-version</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='ivar'>@versions</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>,</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='symbol'>:host</span> <span class='op'>=&gt;</span> <span class='ivar'>@host</span><span class='comma'>,</span>
       <span class='symbol'>:heart-beat</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='ivar'>@heartbeats</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>,</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='symbol'>:login</span> <span class='op'>=&gt;</span> <span class='ivar'>@login</span><span class='comma'>,</span>
-      <span class='symbol'>:passcode</span> <span class='op'>=&gt;</span> <span class='ivar'>@passcode</span> <span class='rbrace'>}</span><span class='comma'>,</span> <span class='id pending_connection_events'>pending_connection_events</span>
+      <span class='symbol'>:passcode</span> <span class='op'>=&gt;</span> <span class='ivar'>@passcode</span> <span class='rbrace'>}</span><span class='comma'>,</span> <span class='id pending_connection_events'>pending_connection_events</span><span class='comma'>,</span>
+    <span class='id read_timeout'>read_timeout</span><span class='comma'>,</span> <span class='id write_timeout'>write_timeout</span>
   <span class='id processor_inst'>processor_inst</span><span class='period'>.</span><span class='id start'>start</span>
   <span class='kw'>self</span>
 <span class='kw'>end</span></pre>
@@ -1386,12 +1542,12 @@ headers in the CONNECT frame, if specified.</p>
       <pre class="lines">
 
 
-98
-99
-100</pre>
+110
+111
+112</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 98</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 110</span>
 
 <span class='kw'>def</span> <span class='id connected?'>connected?</span>
   <span class='id connection'>connection</span> <span class='op'>&amp;&amp;</span> <span class='id connection'>connection</span><span class='period'>.</span><span class='id connected?'>connected?</span>
@@ -1463,15 +1619,15 @@ the broker will get processed barring any IO exceptions.</p>
       <pre class="lines">
 
 
-86
-87
-88
-89
-90
-91</pre>
+98
+99
+100
+101
+102
+103</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 86</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 98</span>
 
 <span class='kw'>def</span> <span class='id disconnect_with_flush'>disconnect_with_flush</span> <span class='id headers'>headers</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='id processor_inst'>processor_inst</span><span class='period'>.</span><span class='id prepare_to_close'>prepare_to_close</span>
@@ -1507,13 +1663,13 @@ connection to the STOMP broker.</p>
       <pre class="lines">
 
 
-130
-131
-132
-133</pre>
+142
+143
+144
+145</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 130</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 142</span>
 
 <span class='kw'>def</span> <span class='id dispatch_received'>dispatch_received</span> <span class='id frame'>frame</span>
   <span class='id trigger_before_receiving'>trigger_before_receiving</span> <span class='id frame'>frame</span>
@@ -1547,12 +1703,12 @@ connection to the STOMP broker.</p>
       <pre class="lines">
 
 
-137
-138
-139</pre>
+149
+150
+151</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 137</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 149</span>
 
 <span class='kw'>def</span> <span class='id dispatch_transmitted'>dispatch_transmitted</span> <span class='id frame'>frame</span>
   <span class='id trigger_after_transmitting'>trigger_after_transmitting</span> <span class='id frame'>frame</span>
@@ -1599,16 +1755,16 @@ by the Interfaces:FrameMethod interface.</p>
       <pre class="lines">
 
 
-120
-121
-122
-123
-124
-125
-126</pre>
+132
+133
+134
+135
+136
+137
+138</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 120</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/client.rb', line 132</span>
 
 <span class='kw'>def</span> <span class='id transmit'>transmit</span> <span class='id frame'>frame</span><span class='comma'>,</span> <span class='id cbs'>cbs</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='id frame'>frame</span><span class='period'>.</span><span class='id tap'>tap</span> <span class='kw'>do</span>
@@ -1627,7 +1783,7 @@ by the Interfaces:FrameMethod interface.</p>
 </div>
     
     <div id="footer">
-  Generated on Sat Apr  9 13:48:10 2011 by 
+  Generated on Wed Apr 20 20:20:58 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.7 (ruby-1.9.2).
 </div>

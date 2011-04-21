@@ -541,7 +541,7 @@ loop.</p>
   
   
   <h3 class="inherited">Methods included from <span class='object_link'><a href="FailoverEvents.html" title="OnStomp::Failover::FailoverEvents (module)">FailoverEvents</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="FailoverEvents.html#after_failover_retry-instance_method" title="OnStomp::Failover::FailoverEvents#after_failover_retry (method)">#after_failover_retry</a></span>, <span class='object_link'><a href="FailoverEvents.html#before_failover_retry-instance_method" title="OnStomp::Failover::FailoverEvents#before_failover_retry (method)">#before_failover_retry</a></span>, <span class='object_link'><a href="FailoverEvents.html#bind_client_event-instance_method" title="OnStomp::Failover::FailoverEvents#bind_client_event (method)">#bind_client_event</a></span>, <span class='object_link'><a href="FailoverEvents.html#create_client_event_method-class_method" title="OnStomp::Failover::FailoverEvents.create_client_event_method (method)">create_client_event_method</a></span>, <span class='object_link'><a href="FailoverEvents.html#on_connection_closed-instance_method" title="OnStomp::Failover::FailoverEvents#on_connection_closed (method)">#on_connection_closed</a></span>, <span class='object_link'><a href="FailoverEvents.html#on_connection_died-instance_method" title="OnStomp::Failover::FailoverEvents#on_connection_died (method)">#on_connection_died</a></span>, <span class='object_link'><a href="FailoverEvents.html#on_connection_established-instance_method" title="OnStomp::Failover::FailoverEvents#on_connection_established (method)">#on_connection_established</a></span>, <span class='object_link'><a href="FailoverEvents.html#on_connection_terminated-instance_method" title="OnStomp::Failover::FailoverEvents#on_connection_terminated (method)">#on_connection_terminated</a></span>, <span class='object_link'><a href="FailoverEvents.html#on_failover_connect_failure-instance_method" title="OnStomp::Failover::FailoverEvents#on_failover_connect_failure (method)">#on_failover_connect_failure</a></span>, <span class='object_link'><a href="FailoverEvents.html#on_failover_connected-instance_method" title="OnStomp::Failover::FailoverEvents#on_failover_connected (method)">#on_failover_connected</a></span>, <span class='object_link'><a href="FailoverEvents.html#on_failover_lost-instance_method" title="OnStomp::Failover::FailoverEvents#on_failover_lost (method)">#on_failover_lost</a></span>, <span class='object_link'><a href="FailoverEvents.html#trigger_failover_event-instance_method" title="OnStomp::Failover::FailoverEvents#trigger_failover_event (method)">#trigger_failover_event</a></span>, <span class='object_link'><a href="FailoverEvents.html#trigger_failover_retry-instance_method" title="OnStomp::Failover::FailoverEvents#trigger_failover_retry (method)">#trigger_failover_retry</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="FailoverEvents.html#after_failover_retry-instance_method" title="OnStomp::Failover::FailoverEvents#after_failover_retry (method)">#after_failover_retry</a></span>, <span class='object_link'><a href="FailoverEvents.html#before_failover_retry-instance_method" title="OnStomp::Failover::FailoverEvents#before_failover_retry (method)">#before_failover_retry</a></span>, <span class='object_link'><a href="FailoverEvents.html#bind_client_event-instance_method" title="OnStomp::Failover::FailoverEvents#bind_client_event (method)">#bind_client_event</a></span>, <span class='object_link'><a href="FailoverEvents.html#create_client_event_method-class_method" title="OnStomp::Failover::FailoverEvents.create_client_event_method (method)">create_client_event_method</a></span>, <span class='object_link'><a href="FailoverEvents.html#on_connection_closed-instance_method" title="OnStomp::Failover::FailoverEvents#on_connection_closed (method)">#on_connection_closed</a></span>, <span class='object_link'><a href="FailoverEvents.html#on_connection_died-instance_method" title="OnStomp::Failover::FailoverEvents#on_connection_died (method)">#on_connection_died</a></span>, <span class='object_link'><a href="FailoverEvents.html#on_connection_established-instance_method" title="OnStomp::Failover::FailoverEvents#on_connection_established (method)">#on_connection_established</a></span>, <span class='object_link'><a href="FailoverEvents.html#on_connection_terminated-instance_method" title="OnStomp::Failover::FailoverEvents#on_connection_terminated (method)">#on_connection_terminated</a></span>, <span class='object_link'><a href="FailoverEvents.html#on_failover_connect_failure-instance_method" title="OnStomp::Failover::FailoverEvents#on_failover_connect_failure (method)">#on_failover_connect_failure</a></span>, <span class='object_link'><a href="FailoverEvents.html#on_failover_connected-instance_method" title="OnStomp::Failover::FailoverEvents#on_failover_connected (method)">#on_failover_connected</a></span>, <span class='object_link'><a href="FailoverEvents.html#on_failover_lost-instance_method" title="OnStomp::Failover::FailoverEvents#on_failover_lost (method)">#on_failover_lost</a></span>, <span class='object_link'><a href="FailoverEvents.html#on_failover_retries_exceeded-instance_method" title="OnStomp::Failover::FailoverEvents#on_failover_retries_exceeded (method)">#on_failover_retries_exceeded</a></span>, <span class='object_link'><a href="FailoverEvents.html#trigger_failover_event-instance_method" title="OnStomp::Failover::FailoverEvents#trigger_failover_event (method)">#trigger_failover_event</a></span>, <span class='object_link'><a href="FailoverEvents.html#trigger_failover_retry-instance_method" title="OnStomp::Failover::FailoverEvents#trigger_failover_retry (method)">#trigger_failover_retry</a></span></p>
 
   
   
@@ -602,7 +602,15 @@ loop.</p>
 50
 51
 52
-53</pre>
+53
+54
+55
+56
+57
+58
+59
+60
+61</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/onstomp/failover/client.rb', line 38</span>
@@ -622,6 +630,14 @@ loop.</p>
   <span class='ivar'>@connection</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='ivar'>@frame_buffer</span> <span class='op'>=</span> <span class='id buffer'>buffer</span><span class='period'>.</span><span class='id new'>new</span> <span class='kw'>self</span>
   <span class='ivar'>@disconnecting</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='ivar'>@retry_thread</span> <span class='op'>=</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id new'>new</span> <span class='kw'>do</span>
+    <span class='kw'>until</span> <span class='ivar'>@disconnecting</span>
+      <span class='const'>Thread</span><span class='period'>.</span><span class='id stop'>stop</span>
+      <span class='ivar'>@client_mutex</span><span class='period'>.</span><span class='id synchronize'>synchronize</span> <span class='lbrace'>{</span>
+        <span class='id reconnect'>reconnect</span> <span class='kw'>unless</span> <span class='ivar'>@disconnecting</span>
+      <span class='rbrace'>}</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1166,20 +1182,20 @@ Defaults to <code>10</code></p>
       <pre class="lines">
 
 
-70
-71
-72
-73
-74
-75
-76</pre>
+78
+79
+80
+81
+82
+83
+84</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/client.rb', line 70</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/client.rb', line 78</span>
 
 <span class='kw'>def</span> <span class='id connect'>connect</span>
   <span class='ivar'>@disconnecting</span> <span class='op'>=</span> <span class='kw'>false</span>
-  <span class='kw'>unless</span> <span class='id reconnect'>reconnect</span>
+  <span class='kw'>unless</span> <span class='ivar'>@client_mutex</span><span class='period'>.</span><span class='id synchronize'>synchronize</span> <span class='lbrace'>{</span> <span class='id reconnect'>reconnect</span> <span class='rbrace'>}</span>
     <span class='id raise'>raise</span> <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>Failover</span><span class='op'>::</span><span class='const'>MaximumRetriesExceededError</span>
   <span class='kw'>end</span>
   <span class='kw'>self</span>
@@ -1225,12 +1241,12 @@ Defaults to <code>10</code></p>
       <pre class="lines">
 
 
-58
-59
-60</pre>
+66
+67
+68</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/client.rb', line 58</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/client.rb', line 66</span>
 
 <span class='kw'>def</span> <span class='id connected?'>connected?</span>
   <span class='id active_client'>active_client</span> <span class='op'>&amp;&amp;</span> <span class='id active_client'>active_client</span><span class='period'>.</span><span class='id connected?'>connected?</span>
@@ -1263,32 +1279,28 @@ Defaults to <code>10</code></p>
       <pre class="lines">
 
 
-80
-81
-82
-83
-84
-85
-86
-87
 88
 89
-90</pre>
+90
+91
+92
+93
+94
+95
+96</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/client.rb', line 80</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/client.rb', line 88</span>
 
 <span class='kw'>def</span> <span class='id disconnect'>disconnect</span> <span class='op'>*</span><span class='id args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id block'>block</span>
-  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id active_client'>active_client</span>
-  <span class='comment'># If we're not connected, let `reconnect` handle it.
-</span>  <span class='comment'>#@disconnecting = [args, block]
-</span>  <span class='comment'>#if connected?
-</span>    <span class='ivar'>@client_mutex</span><span class='period'>.</span><span class='id synchronize'>synchronize</span> <span class='kw'>do</span>
+  <span class='kw'>if</span> <span class='id active_client'>active_client</span>
+    <span class='const'>Thread</span><span class='period'>.</span><span class='id pass'>pass</span> <span class='kw'>until</span> <span class='id connected?'>connected?</span>
+    <span class='ivar'>@client_mutex</span><span class='period'>.</span><span class='id synchronize'>synchronize</span> <span class='kw'>do</span>
       <span class='ivar'>@disconnecting</span> <span class='op'>=</span> <span class='kw'>true</span>
       <span class='id active_client'>active_client</span><span class='period'>.</span><span class='id disconnect'>disconnect</span> <span class='op'>*</span><span class='id args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id block'>block</span>
     <span class='kw'>end</span>
-  <span class='comment'>#end
-</span><span class='kw'>end</span></pre>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -1329,12 +1341,12 @@ Defaults to <code>10</code></p>
       <pre class="lines">
 
 
-64
-65
-66</pre>
+72
+73
+74</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/client.rb', line 64</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/client.rb', line 72</span>
 
 <span class='kw'>def</span> <span class='id transmit'>transmit</span> <span class='id frame'>frame</span><span class='comma'>,</span> <span class='id cbs'>cbs</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='id active_client'>active_client</span> <span class='op'>&amp;&amp;</span> <span class='id active_client'>active_client</span><span class='period'>.</span><span class='id transmit'>transmit</span><span class='lparen'>(</span><span class='id frame'>frame</span><span class='comma'>,</span> <span class='id cbs'>cbs</span><span class='rparen'>)</span>
@@ -1349,7 +1361,7 @@ Defaults to <code>10</code></p>
 </div>
     
     <div id="footer">
-  Generated on Sat Apr  9 13:48:10 2011 by 
+  Generated on Wed Apr 20 20:20:59 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.7 (ruby-1.9.2).
 </div>

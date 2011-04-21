@@ -160,6 +160,29 @@ a default value.</p>
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#attr_configurable_int-instance_method" title="#attr_configurable_int (instance method)">- (Object) <strong>attr_configurable_int</strong>(*args, &amp;block) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Creates readable and writeable attributes that are automatically
+converted into integers.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#attr_configurable_single-instance_method" title="#attr_configurable_single (instance method)">- (Object) <strong>attr_configurable_single</strong>(*args, &amp;block) </a>
     
 
@@ -340,16 +363,56 @@ or Module objects.</p>
       <pre class="lines">
 
 
-80
-81
-82
-83</pre>
+87
+88
+89
+90</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/uri_configurable.rb', line 80</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/uri_configurable.rb', line 87</span>
 
 <span class='kw'>def</span> <span class='id attr_configurable_class'>attr_configurable_class</span> <span class='op'>*</span><span class='id args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id block'>block</span>
   <span class='id trans'>trans</span> <span class='op'>=</span> <span class='id attr_configurable_wrap'>attr_configurable_wrap</span> <span class='id lambda'>lambda</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id v'>v</span><span class='op'>|</span> <span class='const'>OnStomp</span><span class='period'>.</span><span class='id constantize'>constantize</span><span class='lparen'>(</span><span class='id v'>v</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='comma'>,</span> <span class='id block'>block</span>
+  <span class='id attr_configurable_single'>attr_configurable_single</span><span class='lparen'>(</span><span class='op'>*</span><span class='id args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id trans'>trans</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="attr_configurable_int-instance_method">
+  
+    - (<tt>Object</tt>) <strong>attr_configurable_int</strong>(*args, &amp;block) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>Creates readable and writeable attributes that are automatically
+converted into integers.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+75
+76
+77
+78</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/uri_configurable.rb', line 75</span>
+
+<span class='kw'>def</span> <span class='id attr_configurable_int'>attr_configurable_int</span> <span class='op'>*</span><span class='id args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id block'>block</span>
+  <span class='id trans'>trans</span> <span class='op'>=</span> <span class='id attr_configurable_wrap'>attr_configurable_wrap</span> <span class='id lambda'>lambda</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id v'>v</span><span class='op'>|</span> <span class='id v'>v</span><span class='period'>.</span><span class='id to_i'>to_i</span> <span class='rbrace'>}</span><span class='comma'>,</span> <span class='id block'>block</span>
   <span class='id attr_configurable_single'>attr_configurable_single</span><span class='lparen'>(</span><span class='op'>*</span><span class='id args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id trans'>trans</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -450,7 +513,7 @@ with <span class='object_link'><a href="#attr_configurable_single-instance_metho
 </div>
     
     <div id="footer">
-  Generated on Sat Apr  9 13:48:12 2011 by 
+  Generated on Wed Apr 20 20:21:00 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.7 (ruby-1.9.2).
 </div>

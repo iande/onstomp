@@ -43,6 +43,27 @@
     
     <div id="content"><div id='filecontents'><h1>Changes</h1>
 
+<h2>1.0.4</h2>
+
+<ul>
+<li>fixed major oversight when using ruby 1.8.7 / jruby with an SSL connection.
+it will use blocking read/write methods if nonblocking methods are unavailable</li>
+<li>added write and read block timeouts. if there is no write activity for a period
+of time (default of 120 seconds), the connection is assumed to be dead. read
+activity is handled similarly, but only when performing the CONNECT/CONNECTED
+exchange, after that we have no way of knowing if the broker just doesn't
+have any data for us (unless using a STOMP 1.1 connection with heartbeating)</li>
+<li>refactored common failover buffer code into lib/onstomp/failover/buffers/base</li>
+</ul>
+
+
+<h2>1.0.3</h2>
+
+<ul>
+<li>change how failover spawns new connections when failing over.</li>
+</ul>
+
+
 <h2>1.0.2</h2>
 
 <ul>
@@ -80,7 +101,7 @@ as it requests receipts for nearly all frames.</li>
 </div></div>
     
     <div id="footer">
-  Generated on Sat Apr  9 13:48:09 2011 by 
+  Generated on Wed Apr 20 20:20:58 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.7 (ruby-1.9.2).
 </div>

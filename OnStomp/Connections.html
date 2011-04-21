@@ -149,7 +149,7 @@ them.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#connect-class_method" title="connect (class method)">+ (OnStomp::Connections::Base) <strong>connect</strong>(client, u_head, c_head, con_cbs) </a>
+      <a href="#connect-class_method" title="connect (class method)">+ (OnStomp::Connections::Base) <strong>connect</strong>(client, u_head, c_head, con_cbs, r_time, w_time) </a>
     
 
     
@@ -228,7 +228,7 @@ that are supported.</p>
       <div class="method_details first">
   <p class="signature first" id="connect-class_method">
   
-    + (<tt><span class='object_link'><a href="Connections/Base.html" title="OnStomp::Connections::Base (class)">OnStomp::Connections::Base</a></span></tt>) <strong>connect</strong>(client, u_head, c_head, con_cbs) 
+    + (<tt><span class='object_link'><a href="Connections/Base.html" title="OnStomp::Connections::Base (class)">OnStomp::Connections::Base</a></span></tt>) <strong>connect</strong>(client, u_head, c_head, con_cbs, r_time, w_time) 
   
 
   
@@ -364,8 +364,8 @@ such an error.</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/onstomp/connections.rb', line 47</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id connect'>connect</span> <span class='id client'>client</span><span class='comma'>,</span> <span class='id u_head'>u_head</span><span class='comma'>,</span> <span class='id c_head'>c_head</span><span class='comma'>,</span> <span class='id con_cbs'>con_cbs</span>
-  <span class='id init_con'>init_con</span> <span class='op'>=</span> <span class='id create_connection'>create_connection</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>1.0</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id client'>client</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id connect'>connect</span> <span class='id client'>client</span><span class='comma'>,</span> <span class='id u_head'>u_head</span><span class='comma'>,</span> <span class='id c_head'>c_head</span><span class='comma'>,</span> <span class='id con_cbs'>con_cbs</span><span class='comma'>,</span> <span class='id r_time'>r_time</span><span class='comma'>,</span> <span class='id w_time'>w_time</span>
+  <span class='id init_con'>init_con</span> <span class='op'>=</span> <span class='id create_connection'>create_connection</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>1.0</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id client'>client</span><span class='comma'>,</span> <span class='id r_time'>r_time</span><span class='comma'>,</span> <span class='id w_time'>w_time</span><span class='rparen'>)</span>
   <span class='id ver'>ver</span><span class='comma'>,</span> <span class='id connected'>connected</span> <span class='op'>=</span> <span class='id init_con'>init_con</span><span class='period'>.</span><span class='id connect'>connect</span> <span class='id client'>client</span><span class='comma'>,</span> <span class='id u_head'>u_head</span><span class='comma'>,</span> <span class='id c_head'>c_head</span>
   <span class='kw'>begin</span>
     <span class='id negotiate_connection'>negotiate_connection</span><span class='lparen'>(</span><span class='id ver'>ver</span><span class='comma'>,</span> <span class='id init_con'>init_con</span><span class='comma'>,</span> <span class='id client'>client</span><span class='rparen'>)</span><span class='period'>.</span><span class='id tap'>tap</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id final_con'>final_con</span><span class='op'>|</span>
@@ -511,7 +511,7 @@ empty list is returned.</p>
 </div>
     
     <div id="footer">
-  Generated on Sat Apr  9 13:48:10 2011 by 
+  Generated on Wed Apr 20 20:20:58 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.7 (ruby-1.9.2).
 </div>

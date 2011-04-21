@@ -96,6 +96,16 @@
   <h2>Direct Known Subclasses</h2>
   <p class="children"><span class='object_link'><a href="Stomp_1_0.html" title="OnStomp::Connections::Stomp_1_0 (class)">Stomp_1_0</a></span>, <span class='object_link'><a href="Stomp_1_1.html" title="OnStomp::Connections::Stomp_1_1 (class)">Stomp_1_1</a></span></p>
 </div>
+<h2>Defined Under Namespace</h2>
+<p class="children">
+   
+    
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Base/BlockingRead.html" title="OnStomp::Connections::Base::BlockingRead (module)">BlockingRead</a></span>, <span class='object_link'><a href="Base/BlockingWrite.html" title="OnStomp::Connections::Base::BlockingWrite (module)">BlockingWrite</a></span>, <span class='object_link'><a href="Base/NonblockingRead.html" title="OnStomp::Connections::Base::NonblockingRead (module)">NonblockingRead</a></span>, <span class='object_link'><a href="Base/NonblockingWrite.html" title="OnStomp::Connections::Base::NonblockingWrite (module)">NonblockingWrite</a></span>
+    
+   
+    
+  
+</p>
 
   <h2>Constant Summary</h2>
   
@@ -223,6 +233,31 @@
       <li class="public ">
   <span class="summary_signature">
     
+      <a href="#read_timeout-instance_method" title="#read_timeout (instance method)">- (Object) <strong>read_timeout</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute read_timeout.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#socket-instance_method" title="#socket (instance method)">- (Object) <strong>socket</strong> </a>
     
 
@@ -265,6 +300,31 @@
 
   
     <span class="summary_desc"><div class='inline'><p>Returns the value of attribute version.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#write_timeout-instance_method" title="#write_timeout (instance method)">- (Object) <strong>write_timeout</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute write_timeout.</p>
 </div></span>
   
 </li>
@@ -374,6 +434,52 @@ the version detected along with the received CONNECTED frame.</p>
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#duration_since_received-instance_method" title="#duration_since_received (instance method)">- (Fixnum<sup>?</sup>) <strong>duration_since_received</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Number of milliseconds since data was last received from the broker or
+<code>nil</code> if no data has been received when the method is called.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#duration_since_transmitted-instance_method" title="#duration_since_transmitted (instance method)">- (Fixnum<sup>?</sup>) <strong>duration_since_transmitted</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Number of milliseconds since data was last transmitted to the broker or
+<code>nil</code> if no data has been transmitted when the method is called.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#flush_write_buffer-instance_method" title="#flush_write_buffer (instance method)">- (Object) <strong>flush_write_buffer</strong> </a>
     
 
@@ -445,7 +551,7 @@ buffer is empty.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#io_process_read-instance_method" title="#io_process_read (instance method)">- (Object) <strong>io_process_read</strong> </a>
+      <a href="#io_process_read-instance_method" title="#io_process_read (instance method)">- (Object) <strong>io_process_read</strong>(check_timeout = false) </a>
     
 
     
@@ -612,7 +718,7 @@ write buffer.</p>
   
   
   <h3 class="inherited">Methods included from <span class='object_link'><a href="../Interfaces/ConnectionEvents.html" title="OnStomp::Interfaces::ConnectionEvents (module)">Interfaces::ConnectionEvents</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="../Interfaces/ConnectionEvents.html#install_bindings_from_client-instance_method" title="OnStomp::Interfaces::ConnectionEvents#install_bindings_from_client (method)">#install_bindings_from_client</a></span>, <span class='object_link'><a href="../Interfaces/ConnectionEvents.html#on_closed-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_closed (method)">#on_closed</a></span>, <span class='object_link'><a href="../Interfaces/ConnectionEvents.html#on_died-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_died (method)">#on_died</a></span>, <span class='object_link'><a href="../Interfaces/ConnectionEvents.html#on_established-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_established (method)">#on_established</a></span>, <span class='object_link'><a href="../Interfaces/ConnectionEvents.html#on_terminated-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_terminated (method)">#on_terminated</a></span>, <span class='object_link'><a href="../Interfaces/ConnectionEvents.html#trigger_connection_event-instance_method" title="OnStomp::Interfaces::ConnectionEvents#trigger_connection_event (method)">#trigger_connection_event</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="../Interfaces/ConnectionEvents.html#install_bindings_from_client-instance_method" title="OnStomp::Interfaces::ConnectionEvents#install_bindings_from_client (method)">#install_bindings_from_client</a></span>, <span class='object_link'><a href="../Interfaces/ConnectionEvents.html#on_blocked-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_blocked (method)">#on_blocked</a></span>, <span class='object_link'><a href="../Interfaces/ConnectionEvents.html#on_closed-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_closed (method)">#on_closed</a></span>, <span class='object_link'><a href="../Interfaces/ConnectionEvents.html#on_died-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_died (method)">#on_died</a></span>, <span class='object_link'><a href="../Interfaces/ConnectionEvents.html#on_established-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_established (method)">#on_established</a></span>, <span class='object_link'><a href="../Interfaces/ConnectionEvents.html#on_terminated-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_terminated (method)">#on_terminated</a></span>, <span class='object_link'><a href="../Interfaces/ConnectionEvents.html#trigger_connection_event-instance_method" title="OnStomp::Interfaces::ConnectionEvents#trigger_connection_event (method)">#trigger_connection_event</a></span></p>
 
   
   
@@ -677,7 +783,6 @@ or an <code>OpenSSL::SSL::SSLSocket</code> and must support the methods <code>re
       <pre class="lines">
 
 
-21
 22
 23
 24
@@ -685,10 +790,14 @@ or an <code>OpenSSL::SSL::SSLSocket</code> and must support the methods <code>re
 26
 27
 28
-29</pre>
+29
+30
+31
+32
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id initialize'>initialize</span> <span class='id socket'>socket</span><span class='comma'>,</span> <span class='id client'>client</span>
   <span class='ivar'>@socket</span> <span class='op'>=</span> <span class='id socket'>socket</span>
@@ -698,6 +807,9 @@ or an <code>OpenSSL::SSL::SSLSocket</code> and must support the methods <code>re
   <span class='ivar'>@read_buffer</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='ivar'>@client</span> <span class='op'>=</span> <span class='id client'>client</span>
   <span class='ivar'>@connection_up</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='ivar'>@write_timeout</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@read_timeout</span>  <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='id setup_non_blocking_methods'>setup_non_blocking_methods</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -748,16 +860,16 @@ or an <code>OpenSSL::SSL::SSLSocket</code> and must support the methods <code>re
       <pre class="lines">
 
 
-88
-89
-90
-91
-92
 93
-94</pre>
+94
+95
+96
+97
+98
+99</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 88</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 93</span>
 
 <span class='kw'>def</span> <span class='id method_missing'>method_missing</span> <span class='id meth'>meth</span><span class='comma'>,</span> <span class='op'>*</span><span class='id args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id block'>block</span>
   <span class='kw'>if</span> <span class='id meth'>meth</span><span class='period'>.</span><span class='id to_s'>to_s</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(.*)_frame$</span><span class='regexp_end'>/</span></span>
@@ -897,6 +1009,46 @@ or an <code>OpenSSL::SSL::SSLSocket</code> and must support the methods <code>re
 </div>
     
       
+      <span id="read_timeout=-instance_method"></span>
+      <span id="read_timeout-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="read_timeout-instance_method">
+  
+    - (<tt>Object</tt>) <strong>read_timeout</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>Returns the value of attribute read_timeout</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+8
+9
+10</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 8</span>
+
+<span class='kw'>def</span> <span class='id read_timeout'>read_timeout</span>
+  <span class='ivar'>@read_timeout</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
       <span id=""></span>
       <span id="socket-instance_method"></span>
       <div class="method_details ">
@@ -976,6 +1128,46 @@ or an <code>OpenSSL::SSL::SSLSocket</code> and must support the methods <code>re
 </table>
 </div>
     
+      
+      <span id="write_timeout=-instance_method"></span>
+      <span id="write_timeout-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="write_timeout-instance_method">
+  
+    - (<tt>Object</tt>) <strong>write_timeout</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>Returns the value of attribute write_timeout</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+8
+9
+10</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 8</span>
+
+<span class='kw'>def</span> <span class='id write_timeout'>write_timeout</span>
+  <span class='ivar'>@write_timeout</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
 
 
@@ -1026,16 +1218,16 @@ for writing.</p>
       <pre class="lines">
 
 
-55
-56
-57
-58
 59
 60
-61</pre>
+61
+62
+63
+64
+65</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 59</span>
 
 <span class='kw'>def</span> <span class='id close'>close</span> <span class='id blocking'>blocking</span><span class='op'>=</span><span class='kw'>false</span>
   <span class='ivar'>@write_mutex</span><span class='period'>.</span><span class='id synchronize'>synchronize</span> <span class='lbrace'>{</span> <span class='ivar'>@closing</span> <span class='op'>=</span> <span class='kw'>true</span> <span class='rbrace'>}</span>
@@ -1101,13 +1293,13 @@ used by the client for the duration of the session.</p>
       <pre class="lines">
 
 
-38
-39
-40
-41</pre>
+42
+43
+44
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='id configure'>configure</span> <span class='id connected'>connected</span><span class='comma'>,</span> <span class='id con_cbs'>con_cbs</span>
   <span class='ivar'>@version</span> <span class='op'>=</span> <span class='id connected'>connected</span><span class='period'>.</span><span class='id header?'>header?</span><span class='lparen'>(</span><span class='symbol'>:version</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id connected'>connected</span><span class='lbracket'>[</span><span class='symbol'>:version</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>1.0</span><span class='tstring_end'>'</span></span>
@@ -1181,10 +1373,6 @@ list of headers will be merged into the CONNECT frame sent to the broker.</p>
       <pre class="lines">
 
 
-68
-69
-70
-71
 72
 73
 74
@@ -1196,10 +1384,15 @@ list of headers will be merged into the CONNECT frame sent to the broker.</p>
 80
 81
 82
-83</pre>
+83
+84
+85
+86
+87
+88</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 72</span>
 
 <span class='kw'>def</span> <span class='id connect'>connect</span> <span class='id client'>client</span><span class='comma'>,</span> <span class='op'>*</span><span class='id headers'>headers</span>
   <span class='id write_frame_nonblock'>write_frame_nonblock</span> <span class='id connect_frame'>connect_frame</span><span class='lparen'>(</span><span class='op'>*</span><span class='id headers'>headers</span><span class='rparen'>)</span>
@@ -1207,9 +1400,10 @@ list of headers will be merged into the CONNECT frame sent to the broker.</p>
   <span class='kw'>until</span> <span class='id client_con'>client_con</span>
     <span class='id io_process_write'>io_process_write</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id f'>f</span><span class='op'>|</span> <span class='id client_con'>client_con</span> <span class='op'>||=</span> <span class='id f'>f</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
+  <span class='ivar'>@last_received_at</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id now'>now</span>
   <span class='id broker_con'>broker_con</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='kw'>until</span> <span class='id broker_con'>broker_con</span>
-    <span class='id io_process_read'>io_process_read</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id f'>f</span><span class='op'>|</span> <span class='id broker_con'>broker_con</span> <span class='op'>||=</span> <span class='id f'>f</span> <span class='rbrace'>}</span>
+    <span class='id io_process_read'>io_process_read</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id f'>f</span><span class='op'>|</span> <span class='id broker_con'>broker_con</span> <span class='op'>||=</span> <span class='id f'>f</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
   <span class='id raise'>raise</span> <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>ConnectFailedError</span> <span class='kw'>if</span> <span class='id broker_con'>broker_con</span><span class='period'>.</span><span class='id command'>command</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>CONNECTED</span><span class='tstring_end'>'</span></span>
   <span class='id vers'>vers</span> <span class='op'>=</span> <span class='id broker_con'>broker_con</span><span class='period'>.</span><span class='id header?'>header?</span><span class='lparen'>(</span><span class='symbol'>:version</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id broker_con'>broker_con</span><span class='lbracket'>[</span><span class='symbol'>:version</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>1.0</span><span class='tstring_end'>'</span></span>
@@ -1257,15 +1451,117 @@ list of headers will be merged into the CONNECT frame sent to the broker.</p>
       <pre class="lines">
 
 
-45
-46
-47</pre>
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 45</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='id connected?'>connected?</span>
   <span class='op'>!</span><span class='id socket'>socket</span><span class='period'>.</span><span class='id closed?'>closed?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="duration_since_received-instance_method">
+  
+    - (<tt>Fixnum</tt><sup>?</sup>) <strong>duration_since_received</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>Number of milliseconds since data was last received from the broker or
+<code>nil</code> if no data has been received when the method is called.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Fixnum</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+111
+112
+113</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 111</span>
+
+<span class='kw'>def</span> <span class='id duration_since_received'>duration_since_received</span>
+  <span class='id last_received_at'>last_received_at</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='const'>Time</span><span class='period'>.</span><span class='id now'>now</span> <span class='op'>-</span> <span class='id last_received_at'>last_received_at</span><span class='rparen'>)</span><span class='op'>*</span><span class='int'>1000</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_i'>to_i</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="duration_since_transmitted-instance_method">
+  
+    - (<tt>Fixnum</tt><sup>?</sup>) <strong>duration_since_transmitted</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>Number of milliseconds since data was last transmitted to the broker or
+<code>nil</code> if no data has been transmitted when the method is called.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Fixnum</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+104
+105
+106</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 104</span>
+
+<span class='kw'>def</span> <span class='id duration_since_transmitted'>duration_since_transmitted</span>
+  <span class='id last_transmitted_at'>last_transmitted_at</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='const'>Time</span><span class='period'>.</span><span class='id now'>now</span> <span class='op'>-</span> <span class='id last_transmitted_at'>last_transmitted_at</span><span class='rparen'>)</span><span class='op'>*</span><span class='int'>1000</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_i'>to_i</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1295,12 +1591,12 @@ buffer is empty.</p>
       <pre class="lines">
 
 
-98
-99
-100</pre>
+117
+118
+119</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 98</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 117</span>
 
 <span class='kw'>def</span> <span class='id flush_write_buffer'>flush_write_buffer</span>
   <span class='id io_process_write'>io_process_write</span> <span class='kw'>until</span> <span class='ivar'>@write_buffer</span><span class='period'>.</span><span class='id empty?'>empty?</span>
@@ -1333,16 +1629,16 @@ buffer is empty.</p>
       <pre class="lines">
 
 
-104
-105
-106
-107
-108
-109
-110</pre>
+123
+124
+125
+126
+127
+128
+129</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 104</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 123</span>
 
 <span class='kw'>def</span> <span class='id io_process'>io_process</span> <span class='op'>&amp;</span><span class='id cb'>cb</span>
   <span class='id io_process_write'>io_process_write</span> <span class='op'>&amp;</span><span class='id cb'>cb</span>
@@ -1359,7 +1655,7 @@ buffer is empty.</p>
       <div class="method_details ">
   <p class="signature " id="io_process_read-instance_method">
   
-    - (<tt>Object</tt>) <strong>io_process_read</strong> 
+    - (<tt>Object</tt>) <strong>io_process_read</strong>(check_timeout = false) 
   
 
   
@@ -1381,39 +1677,43 @@ to the end of a read buffer, which is then sent to the connection's
       <pre class="lines">
 
 
-185
-186
-187
-188
-189
-190
-191
-192
-193
-194
-195
-196
-197
-198
-199
-200
-201
-202
-203
-204</pre>
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 185</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 207</span>
 
-<span class='kw'>def</span> <span class='id io_process_read'>io_process_read</span>
-  <span class='kw'>if</span> <span class='id connected?'>connected?</span> <span class='op'>&amp;&amp;</span> <span class='const'>IO</span><span class='period'>.</span><span class='id select'>select</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='id socket'>socket</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='float'>0.1</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id io_process_read'>io_process_read</span><span class='lparen'>(</span><span class='id check_timeout'>check_timeout</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id ready_for_read?'>ready_for_read?</span>
     <span class='kw'>begin</span>
-      <span class='id data'>data</span> <span class='op'>=</span> <span class='id socket'>socket</span><span class='period'>.</span><span class='id read_nonblock'>read_nonblock</span><span class='lparen'>(</span><span class='const'>MAX_BYTES_PER_READ</span><span class='rparen'>)</span>
-      <span class='ivar'>@read_buffer</span> <span class='op'>&lt;&lt;</span> <span class='id data'>data</span>
-      <span class='ivar'>@last_received_at</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id now'>now</span>
-      <span class='id serializer'>serializer</span><span class='period'>.</span><span class='id bytes_to_frame'>bytes_to_frame</span><span class='lparen'>(</span><span class='ivar'>@read_buffer</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id frame'>frame</span><span class='op'>|</span>
-        <span class='kw'>yield</span> <span class='id frame'>frame</span> <span class='kw'>if</span> <span class='id block_given?'>block_given?</span>
-        <span class='id client'>client</span><span class='period'>.</span><span class='id dispatch_received'>dispatch_received</span> <span class='id frame'>frame</span>
+      <span class='kw'>if</span> <span class='id data'>data</span> <span class='op'>=</span> <span class='id read_nonblock'>read_nonblock</span>
+        <span class='ivar'>@read_buffer</span> <span class='op'>&lt;&lt;</span> <span class='id data'>data</span>
+        <span class='ivar'>@last_received_at</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id now'>now</span>
+        <span class='id serializer'>serializer</span><span class='period'>.</span><span class='id bytes_to_frame'>bytes_to_frame</span><span class='lparen'>(</span><span class='ivar'>@read_buffer</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id frame'>frame</span><span class='op'>|</span>
+          <span class='kw'>yield</span> <span class='id frame'>frame</span> <span class='kw'>if</span> <span class='id block_given?'>block_given?</span>
+          <span class='id client'>client</span><span class='period'>.</span><span class='id dispatch_received'>dispatch_received</span> <span class='id frame'>frame</span>
+        <span class='kw'>end</span>
       <span class='kw'>end</span>
     <span class='kw'>rescue</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>EINTR</span><span class='comma'>,</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>EAGAIN</span><span class='comma'>,</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>EWOULDBLOCK</span>
       <span class='comment'># do not
@@ -1423,6 +1723,8 @@ to the end of a read buffer, which is then sent to the connection's
       <span class='id triggered_close'>triggered_close</span> <span class='gvar'>$!</span><span class='period'>.</span><span class='id message'>message</span><span class='comma'>,</span> <span class='symbol'>:terminated</span>
       <span class='id raise'>raise</span>
     <span class='kw'>end</span>
+  <span class='kw'>elsif</span> <span class='id check_timeout'>check_timeout</span> <span class='op'>&amp;&amp;</span> <span class='id read_timeout_exceeded?'>read_timeout_exceeded?</span>
+    <span class='id triggered_close'>triggered_close</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>read blocked</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:blocked</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1458,26 +1760,6 @@ this method is invoked.</p>
       <pre class="lines">
 
 
-148
-149
-150
-151
-152
-153
-154
-155
-156
-157
-158
-159
-160
-161
-162
-163
-164
-165
-166
-167
 168
 169
 170
@@ -1489,28 +1771,42 @@ this method is invoked.</p>
 176
 177
 178
-179</pre>
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 148</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 168</span>
 
 <span class='kw'>def</span> <span class='id io_process_write'>io_process_write</span>
-  <span class='kw'>if</span> <span class='ivar'>@write_buffer</span><span class='period'>.</span><span class='id length'>length</span> <span class='op'>&gt;</span> <span class='int'>0</span> <span class='op'>&amp;&amp;</span> <span class='const'>IO</span><span class='period'>.</span><span class='id select'>select</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='id socket'>socket</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='float'>0.1</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id ready_for_write?'>ready_for_write?</span>
     <span class='id to_shift'>to_shift</span> <span class='op'>=</span> <span class='ivar'>@write_buffer</span><span class='period'>.</span><span class='id length'>length</span> <span class='op'>/</span> <span class='int'>3</span>
     <span class='id written'>written</span> <span class='op'>=</span> <span class='int'>0</span>
     <span class='kw'>while</span> <span class='id written'>written</span> <span class='op'>&lt;</span> <span class='const'>MAX_BYTES_PER_WRITE</span>
       <span class='id data'>data</span><span class='comma'>,</span> <span class='id frame'>frame</span> <span class='op'>=</span> <span class='id shift_write_buffer'>shift_write_buffer</span>
       <span class='kw'>break</span> <span class='kw'>unless</span> <span class='id data'>data</span> <span class='op'>&amp;&amp;</span> <span class='id connected?'>connected?</span>
       <span class='kw'>begin</span>
-        <span class='id w'>w</span> <span class='op'>=</span> <span class='id socket'>socket</span><span class='period'>.</span><span class='id write_nonblock'>write_nonblock</span><span class='lparen'>(</span><span class='id data'>data</span><span class='rparen'>)</span>
-        <span class='id written'>written</span> <span class='op'>+=</span> <span class='id w'>w</span>
-        <span class='ivar'>@last_transmitted_at</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id now'>now</span>
-        <span class='kw'>if</span> <span class='id w'>w</span> <span class='op'>&lt;</span> <span class='id data'>data</span><span class='period'>.</span><span class='id length'>length</span>
-          <span class='id unshift_write_buffer'>unshift_write_buffer</span> <span class='id data'>data</span><span class='lbracket'>[</span><span class='id w'>w</span><span class='op'>..</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id frame'>frame</span>
-        <span class='kw'>else</span>
-          <span class='kw'>yield</span> <span class='id frame'>frame</span> <span class='kw'>if</span> <span class='id block_given?'>block_given?</span>
-          <span class='id client'>client</span><span class='period'>.</span><span class='id dispatch_transmitted'>dispatch_transmitted</span> <span class='id frame'>frame</span>
-        <span class='kw'>end</span>
+        <span class='id w'>w</span> <span class='op'>=</span> <span class='id write_nonblock'>write_nonblock</span> <span class='id data'>data</span>
       <span class='kw'>rescue</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>EINTR</span><span class='comma'>,</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>EAGAIN</span><span class='comma'>,</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>EWOULDBLOCK</span>
         <span class='comment'># writing will either block, or cannot otherwise be completed,
 </span>        <span class='comment'># put data back and try again some other day
@@ -1520,7 +1816,17 @@ this method is invoked.</p>
         <span class='id triggered_close'>triggered_close</span> <span class='gvar'>$!</span><span class='period'>.</span><span class='id message'>message</span><span class='comma'>,</span> <span class='symbol'>:terminated</span>
         <span class='id raise'>raise</span>
       <span class='kw'>end</span>
+      <span class='id written'>written</span> <span class='op'>+=</span> <span class='id w'>w</span>
+      <span class='ivar'>@last_write_activity</span> <span class='op'>=</span> <span class='ivar'>@last_transmitted_at</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id now'>now</span>
+      <span class='kw'>if</span> <span class='id w'>w</span> <span class='op'>&lt;</span> <span class='id data'>data</span><span class='period'>.</span><span class='id length'>length</span>
+        <span class='id unshift_write_buffer'>unshift_write_buffer</span> <span class='id data'>data</span><span class='lbracket'>[</span><span class='id w'>w</span><span class='op'>..</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id frame'>frame</span>
+      <span class='kw'>else</span>
+        <span class='kw'>yield</span> <span class='id frame'>frame</span> <span class='kw'>if</span> <span class='id block_given?'>block_given?</span>
+        <span class='id client'>client</span><span class='period'>.</span><span class='id dispatch_transmitted'>dispatch_transmitted</span> <span class='id frame'>frame</span>
+      <span class='kw'>end</span>
     <span class='kw'>end</span>
+  <span class='kw'>elsif</span> <span class='id write_timeout_exceeded?'>write_timeout_exceeded?</span>
+    <span class='id triggered_close'>triggered_close</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>write blocked</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:blocked</span>
   <span class='kw'>end</span>
   <span class='kw'>if</span> <span class='ivar'>@write_buffer</span><span class='period'>.</span><span class='id empty?'>empty?</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@closing</span>
     <span class='id triggered_close'>triggered_close</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>client disconnected</span><span class='tstring_end'>'</span></span>
@@ -1579,17 +1885,19 @@ this method is invoked.</p>
       <pre class="lines">
 
 
-123
-124
-125
-126
-127</pre>
+142
+143
+144
+145
+146
+147</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 123</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 142</span>
 
 <span class='kw'>def</span> <span class='id push_write_buffer'>push_write_buffer</span> <span class='id data'>data</span><span class='comma'>,</span> <span class='id frame'>frame</span>
   <span class='ivar'>@write_mutex</span><span class='period'>.</span><span class='id synchronize'>synchronize</span> <span class='lbrace'>{</span>
+    <span class='ivar'>@last_write_activity</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id now'>now</span> <span class='kw'>if</span> <span class='ivar'>@write_buffer</span><span class='period'>.</span><span class='id empty?'>empty?</span>
     <span class='ivar'>@write_buffer</span> <span class='op'>&lt;&lt;</span> <span class='lbracket'>[</span><span class='id data'>data</span><span class='comma'>,</span> <span class='id frame'>frame</span><span class='rbracket'>]</span> <span class='kw'>unless</span> <span class='ivar'>@closing</span>
   <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
@@ -1646,12 +1954,12 @@ this method is invoked.</p>
       <pre class="lines">
 
 
-131
-132
-133</pre>
+151
+152
+153</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 131</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 151</span>
 
 <span class='kw'>def</span> <span class='id shift_write_buffer'>shift_write_buffer</span>
   <span class='ivar'>@write_mutex</span><span class='period'>.</span><span class='id synchronize'>synchronize</span> <span class='lbrace'>{</span> <span class='ivar'>@write_buffer</span><span class='period'>.</span><span class='id shift'>shift</span> <span class='rbrace'>}</span>
@@ -1709,12 +2017,12 @@ this method is invoked.</p>
       <pre class="lines">
 
 
-137
-138
-139</pre>
+157
+158
+159</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 137</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 157</span>
 
 <span class='kw'>def</span> <span class='id unshift_write_buffer'>unshift_write_buffer</span> <span class='id data'>data</span><span class='comma'>,</span> <span class='id frame'>frame</span>
   <span class='ivar'>@write_mutex</span><span class='period'>.</span><span class='id synchronize'>synchronize</span> <span class='lbrace'>{</span> <span class='ivar'>@write_buffer</span><span class='period'>.</span><span class='id unshift'>unshift</span> <span class='lbracket'>[</span><span class='id data'>data</span><span class='comma'>,</span> <span class='id frame'>frame</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
@@ -1762,13 +2070,13 @@ write buffer</p>
       <pre class="lines">
 
 
-115
-116
-117
-118</pre>
+134
+135
+136
+137</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 115</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/connections/base.rb', line 134</span>
 
 <span class='kw'>def</span> <span class='id write_frame_nonblock'>write_frame_nonblock</span> <span class='id frame'>frame</span>
   <span class='id ser'>ser</span> <span class='op'>=</span> <span class='id serializer'>serializer</span><span class='period'>.</span><span class='id frame_to_bytes'>frame_to_bytes</span> <span class='id frame'>frame</span>
@@ -1784,7 +2092,7 @@ write buffer</p>
 </div>
     
     <div id="footer">
-  Generated on Sat Apr  9 13:48:10 2011 by 
+  Generated on Wed Apr 20 20:20:59 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.7 (ruby-1.9.2).
 </div>

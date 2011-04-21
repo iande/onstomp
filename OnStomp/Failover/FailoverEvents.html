@@ -359,6 +359,29 @@ client is lost.</p>
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#on_failover_retries_exceeded-instance_method" title="#on_failover_retries_exceeded (instance method)">- (Object) <strong>on_failover_retries_exceeded</strong> {|failover| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when the maximum retries has been
+exceeded.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#trigger_failover_event-instance_method" title="#trigger_failover_event (instance method)">- (Object) <strong>trigger_failover_event</strong>(ev, pref, *args) </a>
     
 
@@ -1090,6 +1113,72 @@ client is lost.</p>
 </div>
     
       <div class="method_details ">
+  <p class="signature " id="on_failover_retries_exceeded-instance_method">
+  
+    - (<tt>Object</tt>) <strong>on_failover_retries_exceeded</strong> {|failover| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>Binds a callback to be invoked when the maximum retries has been
+exceeded.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>failover</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>callback invoked when event is triggered</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Client.html" title="OnStomp::Failover::Client (class)">OnStomp::Failover::Client</a></span></tt>)</span>
+      
+      
+        <span class='name'>failover</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+90</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/failover_events.rb', line 90</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:failover_retries_exceeded</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <p class="signature " id="trigger_failover_event-instance_method">
   
     - (<tt>Object</tt>) <strong>trigger_failover_event</strong>(ev, pref, *args) 
@@ -1111,12 +1200,12 @@ client is lost.</p>
       <pre class="lines">
 
 
-93
-94
-95</pre>
+98
+99
+100</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/failover_events.rb', line 93</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/failover_events.rb', line 98</span>
 
 <span class='kw'>def</span> <span class='id trigger_failover_event'>trigger_failover_event</span> <span class='id ev'>ev</span><span class='comma'>,</span> <span class='id pref'>pref</span><span class='comma'>,</span> <span class='op'>*</span><span class='id args'>args</span>
   <span class='id trigger_event'>trigger_event</span> <span class='symbol'>:#{</span><span class='id pref'>pref</span><span class='rbrace'>}</span><span class='tstring_content'>_failover_</span><span class='embexpr_beg'>#{</span><span class='id ev'>ev</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='kw'>self</span><span class='comma'>,</span> <span class='op'>*</span><span class='id args'>args</span>
@@ -1148,12 +1237,12 @@ client is lost.</p>
       <pre class="lines">
 
 
-88
-89
-90</pre>
+93
+94
+95</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/failover_events.rb', line 88</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/failover_events.rb', line 93</span>
 
 <span class='kw'>def</span> <span class='id trigger_failover_retry'>trigger_failover_retry</span> <span class='id pref'>pref</span><span class='comma'>,</span> <span class='id attempt'>attempt</span>
   <span class='id trigger_failover_event'>trigger_failover_event</span> <span class='symbol'>:retry</span><span class='comma'>,</span> <span class='id pref'>pref</span><span class='comma'>,</span> <span class='id attempt'>attempt</span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id active_client'>active_client</span>
@@ -1168,7 +1257,7 @@ client is lost.</p>
 </div>
     
     <div id="footer">
-  Generated on Sat Apr  9 13:48:11 2011 by 
+  Generated on Wed Apr 20 20:21:00 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.7 (ruby-1.9.2).
 </div>
