@@ -25,14 +25,6 @@
     <tr>
       <td>{OnStomp::Interfaces::FrameMethods#ack ack}</td>
       <td>
-        <code>ack(message_id, headers=&lt;optional hash&gt;)</code>
-      </td>
-      <td style="background-color: #bfb;">true</td>
-      <td style="background-color: #fbb;">false</td>
-    </tr>
-    <tr>
-      <td>{OnStomp::Interfaces::FrameMethods#ack ack}</td>
-      <td>
         <code>ack(message_frame, headers=&lt;optional hash&gt;)</code>
       </td>
       <td style="background-color: #bfb;">true</td>
@@ -45,6 +37,14 @@
       </td>
       <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::FrameMethods#ack ack}</td>
+      <td>
+        <code>ack(message_id, headers=&lt;optional hash&gt;)</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #fbb;">false</td>
     </tr>
     <tr>
       <td>{OnStomp::Interfaces::ClientEvents#after_receiving after_receiving}</td>
