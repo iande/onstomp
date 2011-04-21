@@ -107,6 +107,27 @@ module OnStomp::Failover
         active_client.should_receive(:disconnect).with(:header1 => 'value 1')
         client.disconnect :header1 => 'value 1'
       end
+      it "should disconnect promptly if retrying exceeds maximum attempts" do
+        client.retry_attempts = 3
+        client.retry_delay = 0
+        active_client.stub(:connected? => false)
+        active_client.stub(:connect).and_return do
+          active_client.stub(:connected? => true)
+        end
+        client.connect
+        actual_disconnect = client.method(:disconnect)
+        client.stub(:disconnect).and_return do |*args|
+          active_client.stub(:connect => false)
+          active_client.stub(:connected? => false)
+          # Fire this off in a separate thread, as would be the real case
+          t = Thread.new do
+            connection.trigger_event :on_closed, active_client, connection
+          end
+          Thread.pass while t.alive?
+          actual_disconnect.call *args
+        end
+        client.disconnect :header1 => 'value 1'
+      end
     end
     
     describe ".transmit" do

@@ -46,6 +46,29 @@ in the hopes of increasing performance.
 The `stomp` gem is a good gem that works well, I just desired a different
 style API for working with message brokers.
 
+## Gotchas
+
+Both Ruby 1.8.7 and JRuby (as of 1.6.1) do not provide non-blocking read
+or write methods for OpenSSL connections. While a gem named
+[openssl-nonblock](https://github.com/tarcieri/openssl-nonblock) exists for
+Ruby < 1.9.2, I have not personally used it and given that it's a C extension,
+it may not be compatible with JRuby's openssl gem.  When an OnStomp connection
+is created, the socket (SSL or TCP) is checked to see whether or not the methods
+`write_nonblock` and `read_nonblock` have been defined. If not, OnStomp will
+fall back on `write` for writing and `readpartial` for reading. While both of
+these methods will block, the use of `IO::select` should help mitigate their
+effects. I initially missed this detail, so if you're using an older version
+of OnStomp (pre 1.0.4) with Ruby 1.8.7 or JRuby, you either want to upgrade
+your gem or avoid `stomp+ssl://` URIs like the plague.
+
+The final "gotcha" is more of an advanced warning.  When JRuby's support
+for the Ruby 1.9 API stabilizes (and `read_nonblock` and `write_nonblock` are
+available for OpenSSL connections), I will be dropping support for Ruby 1.8.x
+entirely. This is probably a ways off yet, but when the time comes, I'll
+post obvious warnings and increment the gem's major version. OnStomp 1.x
+will always be compatible with Ruby 1.8.7+, OnStomp 2.x will be Ruby 1.9.x
+only.
+
 ## Further Reading
 
 * A {file:extra_doc/UserNarrative.md User's Narrative}

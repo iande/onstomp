@@ -87,16 +87,17 @@ class OnStomp::Failover::Client
   # {OnStomp::Client#disconnect disconnect} on the {#active_client}
   def disconnect *args, &block
     if active_client
-      Thread.pass until connected?
+      Thread.pass until connected? || @failed
       @client_mutex.synchronize do
         @disconnecting = true
-        active_client.disconnect *args, &block
+        active_client.disconnect *args, &block if connected?
       end
     end
   end
   
   private
   def reconnect
+    @failed = false
     attempt = 1
     until connected? || retry_exceeded?(attempt)
       sleep_for_retry attempt
@@ -112,9 +113,9 @@ class OnStomp::Failover::Client
       trigger_failover_retry :after, attempt
       attempt += 1
     end
-    connected?.tap do |b|
-      b && trigger_failover_event(:connected, :on, active_client)
-    end # <--- Until here
+    @failed = !connected?
+    trigger_failover_event(:connected, :on, active_client) unless @failed
+    !@failed
   end
   
   def retry_exceeded? attempt
