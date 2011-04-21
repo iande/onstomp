@@ -25,18 +25,18 @@
     <tr>
       <td>{OnStomp::Interfaces::FrameMethods#ack ack}</td>
       <td>
-        <code>ack(message_frame, headers=&lt;optional hash&gt;)</code>
-      </td>
-      <td style="background-color: #bfb;">true</td>
-      <td style="background-color: #bfb;">true</td>
-    </tr>
-    <tr>
-      <td>{OnStomp::Interfaces::FrameMethods#ack ack}</td>
-      <td>
         <code>ack(message_id, headers=&lt;optional hash&gt;)</code>
       </td>
       <td style="background-color: #bfb;">true</td>
       <td style="background-color: #fbb;">false</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::FrameMethods#ack ack}</td>
+      <td>
+        <code>ack(message_frame, headers=&lt;optional hash&gt;)</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
     </tr>
     <tr>
       <td>{OnStomp::Interfaces::FrameMethods#ack ack}</td>
@@ -311,6 +311,14 @@
       <td style="background-color: #bfb;">true</td>
     </tr>
     <tr>
+      <td>{OnStomp::Interfaces::ConnectionEvents#on_blocked on_blocked}</td>
+      <td>
+        <code>create_event_methods :blocked, :on</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
       <td>{OnStomp::Interfaces::ClientEvents#on_broker_beat on_broker_beat}</td>
       <td>
         <code>create_event_methods :broker_beat, :before, :on</code>
@@ -473,7 +481,7 @@
     <tr>
       <td>{OnStomp::Interfaces::FrameMethods#unsubscribe unsubscribe}</td>
       <td>
-        <code>unsubscribe(id, headers=&lt;optional hash&gt;)</code>
+        <code>unsubscribe(subscribe_frame, headers=&lt;optional hash&gt;)</code>
       </td>
       <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
@@ -481,7 +489,7 @@
     <tr>
       <td>{OnStomp::Interfaces::FrameMethods#unsubscribe unsubscribe}</td>
       <td>
-        <code>unsubscribe(subscribe_frame, headers=&lt;optional hash&gt;)</code>
+        <code>unsubscribe(id, headers=&lt;optional hash&gt;)</code>
       </td>
       <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
