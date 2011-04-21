@@ -53,14 +53,14 @@ module OnStomp::Connections::Heartbeating
   end
 
   # Returns true if client-side heartbeating is disabled, or 
-  # {#duration_since_transmitted} has not exceeded {#heartbeat_client_limit}
+  # {OnStomp::Connections::Base#duration_since_transmitted} has not exceeded {#heartbeat_client_limit}
   # @return [true, false]
   def client_pulse?
     heartbeat_client_limit == 0 || duration_since_transmitted <= heartbeat_client_limit
   end
 
   # Returns true if broker-side heartbeating is disabled, or 
-  # {#duration_since_received} has not exceeded {#heartbeat_broker_limit}
+  # {OnStomp::Connections::Base#duration_since_received} has not exceeded {#heartbeat_broker_limit}
   # @return [true, false]
   def broker_pulse?
     heartbeat_broker_limit == 0 || duration_since_received <= heartbeat_broker_limit
