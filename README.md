@@ -72,7 +72,7 @@ only.
 ## Further Reading
 
 * A {file:extra_doc/UserNarrative.md User's Narrative}
-* A {file:extra_doc/DeveloperNarrative.md Developers's Narrative}
+* The {file:extra_doc/API.md OnStomp API Promise} (sort of)
 * A {file:extra_doc/CHANGELOG.md History of Changes}
 
 ## License
