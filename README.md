@@ -71,6 +71,9 @@ only.
 
 ## Further Reading
 
+* The [OnStomp YARD Documentation](http://mdvlrb.com/onstomp/)
+* The [OnStomp Github Wiki](https://github.com/meadvillerb/onstomp/wiki)
+* Some [Contrived Examples](https://github.com/meadvillerb/onstomp/tree/master/examples)
 * A {file:extra_doc/UserNarrative.md User's Narrative}
 * The {file:extra_doc/API.md OnStomp API Promise} (sort of)
 * A {file:extra_doc/CHANGELOG.md History of Changes}
