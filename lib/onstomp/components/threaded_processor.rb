@@ -30,7 +30,9 @@ class OnStomp::Components::ThreadedProcessor
         end
       rescue OnStomp::StopReceiver
       rescue Exception
-        raise
+        # FIXME: This is pretty hacky, too. The problem is one of race
+        # conditions and how we access the connection.
+        raise if @run_thread == Thread.current
       end
     end
     self
@@ -63,13 +65,16 @@ class OnStomp::Components::ThreadedProcessor
   #   and the {OnStomp::Client client} is still
   #   {OnStomp::Client#connected? connected} after the thread is joined.
   def stop
-    begin
-      @run_thread.raise OnStomp::StopReceiver if @run_thread.alive?
-      @run_thread.join
-    rescue IOError, SystemCallError
-      raise if @client.connected?
+    if @run_thread
+      begin
+        @run_thread.raise OnStomp::StopReceiver if @run_thread.alive?
+        @run_thread.join
+      rescue OnStomp::StopReceiver
+      rescue IOError, SystemCallError
+        raise if @client.connected?
+      end
+      @run_thread = nil
     end
-    @run_thread = nil
     self
   end
 end

@@ -220,6 +220,13 @@ class OnStomp::Connections::Base
       rescue EOFError
         triggered_close $!.message
       rescue Exception
+        # TODO: Fix this potential race condition the right way.
+        # This is the problematic area!  If the user (or failover library)
+        # try to reconnect the Client when the connection is closed, the
+        # exception won't be raised until the IO Processing thread has
+        # already been joined to the main thread.  Thus, the connection gets
+        # re-established, the "dying" thread re-enters here, and immediately
+        # raises the exception that terminated it.
         triggered_close $!.message, :terminated
         raise
       end

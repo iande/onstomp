@@ -1,5 +1,12 @@
 # Changes
 
+## 1.0.5
+* fixed a race condition that would occur if a user (or the failover extension)
+  tried to re-connect an OnStomp::Client instance within an `on_connection_closed`
+  (or similar) event handler. The fix is more of a band-aid at the moment,
+  and a proper fix will follow. Thanks to [alcy](https://github.com/alcy) for
+  helping me track this down.
+
 ## 1.0.4
 * fixed major oversight when using ruby 1.8.7 / jruby with an SSL connection.
   it will use blocking read/write methods if nonblocking methods are unavailable

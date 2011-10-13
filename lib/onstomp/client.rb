@@ -79,6 +79,9 @@ class OnStomp::Client
   # @param [{#to_sym => #to_s}] headers
   # @return [self]
   def connect headers={}
+    # FIXME: This is a quick fix to force the Threaded IO processor to
+    # complete its work before we establish a connection.
+    processor_inst.stop
     @connection = OnStomp::Connections.connect self, headers,
       { :'accept-version' => @versions.join(','), :host => @host,
         :'heart-beat' => @heartbeats.join(','), :login => @login,

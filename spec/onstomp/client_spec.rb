@@ -117,6 +117,7 @@ module OnStomp
           { :'accept-version' => '1.1', :host => 'my host',
             :'heart-beat' => '30,110', :login => 'my login',
             :passcode => 's3cr3t' }, pending_events, 30, 50).and_return(connection)
+        processor.should_receive(:stop)
         processor.should_receive(:start)
         client.stub(:pending_connection_events => pending_events)
         client.versions = '1.1'
