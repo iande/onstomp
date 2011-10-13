@@ -15,9 +15,33 @@
   </tfoot>
   <tbody>
     <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#:begin :begin}</td>
+      <td>
+        <code>:begin</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#abort abort}</td>
+      <td>
+        <code>abort</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
       <td>{OnStomp::Interfaces::FrameMethods#abort abort}</td>
       <td>
         <code>abort(tx_id, headers=&lt;optional hash&gt;)</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#ack ack}</td>
+      <td>
+        <code>ack</code>
       </td>
       <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
@@ -207,6 +231,30 @@
       <td style="background-color: #bfb;">true</td>
     </tr>
     <tr>
+      <td>{OnStomp::Interfaces::ConnectionEvents#blocked blocked}</td>
+      <td>
+        <code>blocked</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#broker_beat broker_beat}</td>
+      <td>
+        <code>broker_beat</code>
+      </td>
+      <td style="background-color: #fbb;">false</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#client_beat client_beat}</td>
+      <td>
+        <code>client_beat</code>
+      </td>
+      <td style="background-color: #fbb;">false</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
       <td>{OnStomp::Client#close! close!}</td>
       <td>
         <code>close!( )</code>
@@ -215,9 +263,33 @@
       <td style="background-color: #bfb;">true</td>
     </tr>
     <tr>
+      <td>{OnStomp::Interfaces::ConnectionEvents#closed closed}</td>
+      <td>
+        <code>closed</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#commit commit}</td>
+      <td>
+        <code>commit</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
       <td>{OnStomp::Interfaces::FrameMethods#commit commit}</td>
       <td>
         <code>commit(tx_id, headers=&lt;optional hash&gt;)</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#connect connect}</td>
+      <td>
+        <code>connect</code>
       </td>
       <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
@@ -234,6 +306,22 @@
       <td>{OnStomp::Client#connected? connected?}</td>
       <td>
         <code>connected?( )</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ConnectionEvents#died died}</td>
+      <td>
+        <code>died</code>
+      </td>
+      <td style="background-color: #fbb;">false</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#disconnect disconnect}</td>
+      <td>
+        <code>disconnect</code>
       </td>
       <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
@@ -263,6 +351,22 @@
       <td style="background-color: #bfb;">true</td>
     </tr>
     <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#error error}</td>
+      <td>
+        <code>error</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ConnectionEvents#established established}</td>
+      <td>
+        <code>established</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
       <td>{OnStomp::Client#initialize initialize}</td>
       <td>
         <code>initialize(uri, options=&lt;optional hash&gt;)</code>
@@ -271,9 +375,25 @@
       <td style="background-color: #bfb;">true</td>
     </tr>
     <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#message message}</td>
+      <td>
+        <code>message</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
       <td>{OnStomp::Interfaces::FrameMethods#nack nack}</td>
       <td>
-        <code>nack(message_id, subscription_id, heders=&lt;optional hash&gt;)</code>
+        <code>nack(message_frame, headers=&lt;optional hash&gt;)</code>
+      </td>
+      <td style="background-color: #fbb;">false</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#nack nack}</td>
+      <td>
+        <code>nack</code>
       </td>
       <td style="background-color: #fbb;">false</td>
       <td style="background-color: #bfb;">true</td>
@@ -281,7 +401,7 @@
     <tr>
       <td>{OnStomp::Interfaces::FrameMethods#nack nack}</td>
       <td>
-        <code>nack(message_frame, headers=&lt;optional hash&gt;)</code>
+        <code>nack(message_id, subscription_id, heders=&lt;optional hash&gt;)</code>
       </td>
       <td style="background-color: #fbb;">false</td>
       <td style="background-color: #bfb;">true</td>
@@ -463,6 +583,22 @@
       <td style="background-color: #bfb;">true</td>
     </tr>
     <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#receipt receipt}</td>
+      <td>
+        <code>receipt</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#receiving receiving}</td>
+      <td>
+        <code>receiving</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
       <td>{OnStomp::Interfaces::FrameMethods#send send}</td>
       <td>
         <code>send(dest, body, headers=&lt;optional hash&gt;, &cb)</code>
@@ -471,9 +607,41 @@
       <td style="background-color: #bfb;">true</td>
     </tr>
     <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#send send}</td>
+      <td>
+        <code>send</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#subscribe subscribe}</td>
+      <td>
+        <code>subscribe</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
       <td>{OnStomp::Interfaces::FrameMethods#subscribe subscribe}</td>
       <td>
         <code>subscribe(dest, headers=&lt;optional hash&gt;, &cb)</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ConnectionEvents#terminated terminated}</td>
+      <td>
+        <code>terminated</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#transmitting transmitting}</td>
+      <td>
+        <code>transmitting</code>
       </td>
       <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
@@ -490,6 +658,14 @@
       <td>{OnStomp::Interfaces::FrameMethods#unsubscribe unsubscribe}</td>
       <td>
         <code>unsubscribe(id, headers=&lt;optional hash&gt;)</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td>{OnStomp::Interfaces::ClientEvents#unsubscribe unsubscribe}</td>
+      <td>
+        <code>unsubscribe</code>
       </td>
       <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
