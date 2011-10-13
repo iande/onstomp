@@ -2,17 +2,27 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>File: API</title>
-<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
-<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: API
+  
+    &mdash; OnStomp Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
   relpath = '';
   if (relpath != '') relpath += '/';
 </script>
-<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
 
   </head>
   <body>
@@ -31,19 +41,22 @@
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Class List</a>
-  <a id="method_list_link" href="#">Method List</a>
-  <a id ="file_list_link" href="#">File List</a>
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
 </div>
-
       <div class="clear"></div>
     </div>
     
     <iframe id="search_frame"></iframe>
     
-    <div id="content"><div id='filecontents'><h1>OnStomp Generated Method APIs</h1>
+    <div id="content"><div id='filecontents'><h1 id="onstomp-generated-method-apis">OnStomp Generated Method APIs</h1>
 
-<h2>OnStomp 1 API (1.0.0+)</h2>
+<h2 id="onstomp-1-api-100">OnStomp 1 API (1.0.0+)</h2>
 
 <table style="width:75%; border-collapse:collapse;">
   <thead>
@@ -58,9 +71,33 @@
   </tfoot>
   <tbody>
     <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#%3Abegin-instance_method" title="OnStomp::Interfaces::ClientEvents#:begin (method)">:begin</a></span></td>
+      <td>
+        <code>:begin</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#abort-instance_method" title="OnStomp::Interfaces::ClientEvents#abort (method)">abort</a></span></td>
+      <td>
+        <code>abort</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
       <td><span class='object_link'><a href="OnStomp/Interfaces/FrameMethods.html#abort-instance_method" title="OnStomp::Interfaces::FrameMethods#abort (method)">abort</a></span></td>
       <td>
         <code>abort(tx_id, headers=&lt;optional hash&gt;)</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#ack-instance_method" title="OnStomp::Interfaces::ClientEvents#ack (method)">ack</a></span></td>
+      <td>
+        <code>ack</code>
       </td>
       <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
@@ -250,6 +287,30 @@
       <td style="background-color: #bfb;">true</td>
     </tr>
     <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ConnectionEvents.html#blocked-instance_method" title="OnStomp::Interfaces::ConnectionEvents#blocked (method)">blocked</a></span></td>
+      <td>
+        <code>blocked</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#broker_beat-instance_method" title="OnStomp::Interfaces::ClientEvents#broker_beat (method)">broker_beat</a></span></td>
+      <td>
+        <code>broker_beat</code>
+      </td>
+      <td style="background-color: #fbb;">false</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#client_beat-instance_method" title="OnStomp::Interfaces::ClientEvents#client_beat (method)">client_beat</a></span></td>
+      <td>
+        <code>client_beat</code>
+      </td>
+      <td style="background-color: #fbb;">false</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
       <td><span class='object_link'><a href="OnStomp/Client.html#close%21-instance_method" title="OnStomp::Client#close! (method)">close!</a></span></td>
       <td>
         <code>close!( )</code>
@@ -258,9 +319,33 @@
       <td style="background-color: #bfb;">true</td>
     </tr>
     <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ConnectionEvents.html#closed-instance_method" title="OnStomp::Interfaces::ConnectionEvents#closed (method)">closed</a></span></td>
+      <td>
+        <code>closed</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#commit-instance_method" title="OnStomp::Interfaces::ClientEvents#commit (method)">commit</a></span></td>
+      <td>
+        <code>commit</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
       <td><span class='object_link'><a href="OnStomp/Interfaces/FrameMethods.html#commit-instance_method" title="OnStomp::Interfaces::FrameMethods#commit (method)">commit</a></span></td>
       <td>
         <code>commit(tx_id, headers=&lt;optional hash&gt;)</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#connect-instance_method" title="OnStomp::Interfaces::ClientEvents#connect (method)">connect</a></span></td>
+      <td>
+        <code>connect</code>
       </td>
       <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
@@ -277,6 +362,22 @@
       <td><span class='object_link'><a href="OnStomp/Client.html#connected%3F-instance_method" title="OnStomp::Client#connected? (method)">connected?</a></span></td>
       <td>
         <code>connected?( )</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ConnectionEvents.html#died-instance_method" title="OnStomp::Interfaces::ConnectionEvents#died (method)">died</a></span></td>
+      <td>
+        <code>died</code>
+      </td>
+      <td style="background-color: #fbb;">false</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#disconnect-instance_method" title="OnStomp::Interfaces::ClientEvents#disconnect (method)">disconnect</a></span></td>
+      <td>
+        <code>disconnect</code>
       </td>
       <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
@@ -306,6 +407,22 @@
       <td style="background-color: #bfb;">true</td>
     </tr>
     <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#error-instance_method" title="OnStomp::Interfaces::ClientEvents#error (method)">error</a></span></td>
+      <td>
+        <code>error</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ConnectionEvents.html#established-instance_method" title="OnStomp::Interfaces::ConnectionEvents#established (method)">established</a></span></td>
+      <td>
+        <code>established</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
       <td><span class='object_link'><a href="OnStomp/Client.html#initialize-instance_method" title="OnStomp::Client#initialize (method)">initialize</a></span></td>
       <td>
         <code>initialize(uri, options=&lt;optional hash&gt;)</code>
@@ -314,9 +431,25 @@
       <td style="background-color: #bfb;">true</td>
     </tr>
     <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#message-instance_method" title="OnStomp::Interfaces::ClientEvents#message (method)">message</a></span></td>
+      <td>
+        <code>message</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
       <td><span class='object_link'><a href="OnStomp/Interfaces/FrameMethods.html#nack-instance_method" title="OnStomp::Interfaces::FrameMethods#nack (method)">nack</a></span></td>
       <td>
-        <code>nack(message_id, subscription_id, heders=&lt;optional hash&gt;)</code>
+        <code>nack(message_frame, headers=&lt;optional hash&gt;)</code>
+      </td>
+      <td style="background-color: #fbb;">false</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#nack-instance_method" title="OnStomp::Interfaces::ClientEvents#nack (method)">nack</a></span></td>
+      <td>
+        <code>nack</code>
       </td>
       <td style="background-color: #fbb;">false</td>
       <td style="background-color: #bfb;">true</td>
@@ -324,7 +457,7 @@
     <tr>
       <td><span class='object_link'><a href="OnStomp/Interfaces/FrameMethods.html#nack-instance_method" title="OnStomp::Interfaces::FrameMethods#nack (method)">nack</a></span></td>
       <td>
-        <code>nack(message_frame, headers=&lt;optional hash&gt;)</code>
+        <code>nack(message_id, subscription_id, heders=&lt;optional hash&gt;)</code>
       </td>
       <td style="background-color: #fbb;">false</td>
       <td style="background-color: #bfb;">true</td>
@@ -500,7 +633,23 @@
     <tr>
       <td><span class='object_link'><a href="OnStomp/Interfaces/FrameMethods.html#puts-instance_method" title="OnStomp::Interfaces::FrameMethods#puts (method)">puts</a></span></td>
       <td>
-        <code>send(dest, body, headers=&lt;optional hash&gt;, &cb)</code>
+        <code>send(dest, body, headers=&lt;optional hash&gt;, &amp;cb)</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#receipt-instance_method" title="OnStomp::Interfaces::ClientEvents#receipt (method)">receipt</a></span></td>
+      <td>
+        <code>receipt</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#receiving-instance_method" title="OnStomp::Interfaces::ClientEvents#receiving (method)">receiving</a></span></td>
+      <td>
+        <code>receiving</code>
       </td>
       <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
@@ -508,7 +657,23 @@
     <tr>
       <td><span class='object_link'><a href="OnStomp/Interfaces/FrameMethods.html#send-instance_method" title="OnStomp::Interfaces::FrameMethods#send (method)">send</a></span></td>
       <td>
-        <code>send(dest, body, headers=&lt;optional hash&gt;, &cb)</code>
+        <code>send(dest, body, headers=&lt;optional hash&gt;, &amp;cb)</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#send-instance_method" title="OnStomp::Interfaces::ClientEvents#send (method)">send</a></span></td>
+      <td>
+        <code>send</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#subscribe-instance_method" title="OnStomp::Interfaces::ClientEvents#subscribe (method)">subscribe</a></span></td>
+      <td>
+        <code>subscribe</code>
       </td>
       <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
@@ -516,7 +681,23 @@
     <tr>
       <td><span class='object_link'><a href="OnStomp/Interfaces/FrameMethods.html#subscribe-instance_method" title="OnStomp::Interfaces::FrameMethods#subscribe (method)">subscribe</a></span></td>
       <td>
-        <code>subscribe(dest, headers=&lt;optional hash&gt;, &cb)</code>
+        <code>subscribe(dest, headers=&lt;optional hash&gt;, &amp;cb)</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ConnectionEvents.html#terminated-instance_method" title="OnStomp::Interfaces::ConnectionEvents#terminated (method)">terminated</a></span></td>
+      <td>
+        <code>terminated</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#transmitting-instance_method" title="OnStomp::Interfaces::ClientEvents#transmitting (method)">transmitting</a></span></td>
+      <td>
+        <code>transmitting</code>
       </td>
       <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
@@ -537,17 +718,22 @@
       <td style="background-color: #bfb;">true</td>
       <td style="background-color: #bfb;">true</td>
     </tr>
+    <tr>
+      <td><span class='object_link'><a href="OnStomp/Interfaces/ClientEvents.html#unsubscribe-instance_method" title="OnStomp::Interfaces::ClientEvents#unsubscribe (method)">unsubscribe</a></span></td>
+      <td>
+        <code>unsubscribe</code>
+      </td>
+      <td style="background-color: #bfb;">true</td>
+      <td style="background-color: #bfb;">true</td>
+    </tr>
   </tbody>
 </table>
-
-
-
 </div></div>
     
     <div id="footer">
-  Generated on Thu Apr 21 15:50:10 2011 by 
+  Generated on Thu Oct 13 10:57:44 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.7 (ruby-1.9.2).
+  0.7.1 (ruby-1.9.2).
 </div>
 
   </body>

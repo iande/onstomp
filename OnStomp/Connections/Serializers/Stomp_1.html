@@ -3,16 +3,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Module: OnStomp::Connections::Serializers::Stomp_1</title>
-<link rel="stylesheet" href="../../../css/style.css" type="text/css" media="screen" charset="utf-8" />
-<link rel="stylesheet" href="../../../css/common.css" type="text/css" media="screen" charset="utf-8" />
+<title>
+  Module: OnStomp::Connections::Serializers::Stomp_1
+  
+    &mdash; OnStomp Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css" media="screen" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
   relpath = '../../..';
   if (relpath != '') relpath += '/';
 </script>
-<script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
 
   </head>
   <body>
@@ -33,11 +43,14 @@
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Class List</a>
-  <a id="method_list_link" href="#">Method List</a>
-  <a id ="file_list_link" href="#">File List</a>
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
 </div>
-
       <div class="clear"></div>
     </div>
     
@@ -80,6 +93,8 @@ common tasks of serializing a frame for STOMP 1.0 and STOMP 1.1.</p>
 <div class="tags">
   
 </div>
+
+
 
 
   
@@ -129,7 +144,7 @@ common tasks of serializing a frame for STOMP 1.0 and STOMP 1.1.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Called when a frame's body has been fully read from the buffer.</p>
+    <span class="summary_desc"><div class='inline'><p>Called when a frame&rsquo;s body has been fully read from the buffer.</p>
 </div></span>
   
 </li>
@@ -151,7 +166,7 @@ common tasks of serializing a frame for STOMP 1.0 and STOMP 1.1.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Called when a frame's command has been fully read from the buffer.</p>
+    <span class="summary_desc"><div class='inline'><p>Called when a frame&rsquo;s command has been fully read from the buffer.</p>
 </div></span>
   
 </li>
@@ -306,9 +321,9 @@ as a string in STOMP 1.0 and STOMP 1.1 protocols.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Adds the substring <code>data[0...idx]</code> to the parser's accumulator,
+    <span class="summary_desc"><div class='inline'><p>Adds the substring <code>data[0...idx]</code> to the parser&rsquo;s accumulator,
 unshifts the remaining data back onto the buffer, and calls <code>meth</code>
-with the parser's accumulated string.</p>
+with the parser&rsquo;s accumulated string.</p>
 </div></span>
   
 </li>
@@ -363,7 +378,7 @@ with the parser's accumulated string.</p>
 
 <p>Takes a buffer of strings and constructs all the
 <span class='object_link'><a href="../../Components/Frame.html" title="OnStomp::Components::Frame (class)">frames</a></span> it can from the data. The parser
-builds a "current frame" and updates it with attributes as they are
+builds a &ldquo;current frame&rdquo; and updates it with attributes as they are
 parsed from the buffer. It is only safe to invoke this method from a
 single thread as no synchronization is being performed. This will work
 fine with the <span class='object_link'><a href="../../Components/ThreadedProcessor.html" title="OnStomp::Components::ThreadedProcessor (class)">threaded</a></span> processor
@@ -381,10 +396,10 @@ will have to implement your own synchronization strategy.</p>
   
     <li>
       
-        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
-      
-      
         <span class='name'>buffer</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
       
       
       
@@ -436,9 +451,9 @@ will have to implement your own synchronization strategy.</p>
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>Called when a frame's body has been fully read from the buffer. This
-method will set the frame's <span class='object_link'><a href="../../Components/Frame.html#body-instance_method" title="OnStomp::Components::Frame#body (method)">body</a></span>
-attribute, call <code>prepare_parsed_frame</code> with the "current frame",
+    <p>Called when a frame&rsquo;s body has been fully read from the buffer. This
+method will set the frame&rsquo;s <span class='object_link'><a href="../../Components/Frame.html#body-instance_method" title="OnStomp::Components::Frame#body (method)">body</a></span>
+attribute, call <code>prepare_parsed_frame</code> with the &ldquo;current frame&rdquo;,
 and tell the parser to move on to the next state.</p>
 
 
@@ -450,10 +465,10 @@ and tell the parser to move on to the next state.</p>
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
         <span class='name'>body</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -495,8 +510,8 @@ and tell the parser to move on to the next state.</p>
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>Called when a frame's command has been fully read from the buffer. This
-method will create a new "current frame", set its
+    <p>Called when a frame&rsquo;s command has been fully read from the buffer. This
+method will create a new &ldquo;current frame&rdquo;, set its
 <span class='object_link'><a href="../../Components/Frame.html#command-instance_method" title="OnStomp::Components::Frame#command (method)">command</a></span> attribute, and tell the parser
 to move on to the next state.</p>
 
@@ -509,10 +524,10 @@ to move on to the next state.</p>
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
         <span class='name'>command</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -565,7 +580,7 @@ to move on to the next state.</p>
     <p>Called when a header line has been fully read from the buffer. This
 method will split the header line into a name/value pair,
 <span class='object_link'><a href="../../Components/FrameHeaders.html#append-instance_method" title="OnStomp::Components::FrameHeaders#append (method)">append</a></span> the
-header to the "current frame" and tell the parser to move on to the next
+header to the &ldquo;current frame&rdquo; and tell the parser to move on to the next
 state</p>
 
 
@@ -577,10 +592,10 @@ state</p>
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
         <span class='name'>headline</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -629,7 +644,7 @@ state</p>
 </p><div class="docstring">
   <div class="discussion">
     <p>Takes the result of <code>frame_to_string</code> and passes it along. Ruby 1.8.7
-treats strings as a collection of bytes, so we don't need to do any
+treats strings as a collection of bytes, so we don&rsquo;t need to do any
 further work.</p>
 
 
@@ -641,8 +656,8 @@ further work.</p>
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
       
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -749,10 +764,10 @@ as a string in STOMP 1.0 and STOMP 1.1 protocols.</p>
   
     <li>
       
-        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
-      
-      
         <span class='name'>buffer</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
       
       
       
@@ -825,10 +840,10 @@ as a string in STOMP 1.0 and STOMP 1.1 protocols.</p>
   
     <li>
       
-        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
-      
-      
         <span class='name'>buffer</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
       
       
       
@@ -889,10 +904,10 @@ as a string in STOMP 1.0 and STOMP 1.1 protocols.</p>
   
     <li>
       
-        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
-      
-      
         <span class='name'>buffer</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
       
       
       
@@ -942,9 +957,9 @@ as a string in STOMP 1.0 and STOMP 1.1 protocols.</p>
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>Adds the substring <code>data[0...idx]</code> to the parser's accumulator,
+    <p>Adds the substring <code>data[0...idx]</code> to the parser&rsquo;s accumulator,
 unshifts the remaining data back onto the buffer, and calls <code>meth</code>
-with the parser's accumulated string.</p>
+with the parser&rsquo;s accumulated string.</p>
 
 
   </div>
@@ -955,43 +970,43 @@ with the parser's accumulated string.</p>
   
     <li>
       
-        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
-      
-      
         <span class='name'>buffer</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
       
       
       
     </li>
   
     <li>
-      
-        <span class='type'>(<tt>String</tt>)</span>
-      
       
         <span class='name'>data</span>
       
       
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
       
     </li>
   
     <li>
-      
-        <span class='type'>(<tt>Fixnum</tt>)</span>
-      
       
         <span class='name'>idx</span>
       
       
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
       
     </li>
   
     <li>
       
-        <span class='type'>(<tt>Symbol</tt>)</span>
-      
-      
         <span class='name'>meth</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
       
       
       
@@ -1072,9 +1087,9 @@ with the parser's accumulated string.</p>
 </div>
     
     <div id="footer">
-  Generated on Thu Apr 21 15:50:13 2011 by 
+  Generated on Thu Oct 13 10:57:50 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.7 (ruby-1.9.2).
+  0.7.1 (ruby-1.9.2).
 </div>
 
   </body>

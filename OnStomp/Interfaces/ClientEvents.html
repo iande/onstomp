@@ -3,16 +3,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Module: OnStomp::Interfaces::ClientEvents</title>
-<link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
-<link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
+<title>
+  Module: OnStomp::Interfaces::ClientEvents
+  
+    &mdash; OnStomp Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
   relpath = '../..';
   if (relpath != '') relpath += '/';
 </script>
-<script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
 
   </head>
   <body>
@@ -33,11 +43,14 @@
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Class List</a>
-  <a id="method_list_link" href="#">Method List</a>
-  <a id ="file_list_link" href="#">File List</a>
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
 </div>
-
       <div class="clear"></div>
     </div>
     
@@ -76,11 +89,11 @@
   <div class="discussion">
     <p>Mixin for <span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">client</a></span> events
 There are a few special event methods that will be passed on
-to the client's connection, they are:
-* <code>on_connection_established</code> => <span class='object_link'><a href="ConnectionEvents.html#on_established-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_established (method)">OnStomp::Interfaces::ConnectionEvents#on_established</a></span>
-* <code>on_connection_died</code> => <span class='object_link'><a href="ConnectionEvents.html#on_died-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_died (method)">OnStomp::Interfaces::ConnectionEvents#on_died</a></span>
-* <code>on_connection_terminated</code> => <span class='object_link'><a href="ConnectionEvents.html#on_terminated-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_terminated (method)">OnStomp::Interfaces::ConnectionEvents#on_terminated</a></span>
-* <code>on_connection_closed</code> => <span class='object_link'><a href="ConnectionEvents.html#on_closed-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_closed (method)">OnStomp::Interfaces::ConnectionEvents#on_closed</a></span></p>
+to the client&rsquo;s connection, they are:
+* <code>on_connection_established</code> =&gt; <span class='object_link'><a href="ConnectionEvents.html#on_established-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_established (method)">OnStomp::Interfaces::ConnectionEvents#on_established</a></span>
+* <code>on_connection_died</code> =&gt; <span class='object_link'><a href="ConnectionEvents.html#on_died-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_died (method)">OnStomp::Interfaces::ConnectionEvents#on_died</a></span>
+* <code>on_connection_terminated</code> =&gt; <span class='object_link'><a href="ConnectionEvents.html#on_terminated-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_terminated (method)">OnStomp::Interfaces::ConnectionEvents#on_terminated</a></span>
+* <code>on_connection_closed</code> =&gt; <span class='object_link'><a href="ConnectionEvents.html#on_closed-instance_method" title="OnStomp::Interfaces::ConnectionEvents#on_closed (method)">OnStomp::Interfaces::ConnectionEvents#on_closed</a></span></p>
 
 
   </div>
@@ -94,6 +107,11 @@ to the client's connection, they are:
   
   
 
+
+  
+  
+  
+
   
     <h2>
       Client Frame Event Bindings
@@ -101,6 +119,72 @@ to the client's connection, they are:
     </h2>
 
     <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#%3Abegin-instance_method" title="#:begin (instance method)">- (Object) <strong>:begin</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a BEGIN frame is transmitted.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#abort-instance_method" title="#abort (instance method)">- (Object) <strong>abort</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when an ABORT frame is transmitted.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ack-instance_method" title="#ack (instance method)">- (Object) <strong>ack</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when an ACK frame is transmitted.</p>
+</div></span>
+  
+</li>
+
       
         <li class="public ">
   <span class="summary_signature">
@@ -325,6 +409,117 @@ to the client's connection, they are:
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#client_beat-instance_method" title="#client_beat (instance method)">- (Object) <strong>client_beat</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a client heartbeat is transmitted.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#commit-instance_method" title="#commit (instance method)">- (Object) <strong>commit</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a COMMIT frame is transmitted.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#connect-instance_method" title="#connect (instance method)">- (Object) <strong>connect</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Can&rsquo;t get <code>before</code> because the CONNECT frame isn&rsquo;t transmitted by
+the client.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#disconnect-instance_method" title="#disconnect (instance method)">- (Object) <strong>disconnect</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a DISCONNECT frame is transmitted.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#nack-instance_method" title="#nack (instance method)">- (Object) <strong>nack</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a NACK frame is transmitted.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#on_abort-instance_method" title="#on_abort (instance method)">- (Object) <strong>on_abort</strong> {|frame, client| ... }</a>
     
 
@@ -448,7 +643,7 @@ to the client's connection, they are:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Can't get <code>before</code> because the CONNECT frame isn't transmitted by
+    <span class="summary_desc"><div class='inline'><p>Can&rsquo;t get <code>before</code> because the CONNECT frame isn&rsquo;t transmitted by
 the client.</p>
 </div></span>
   
@@ -547,6 +742,72 @@ the client.</p>
   <span class="summary_signature">
     
       <a href="#on_unsubscribe-instance_method" title="#on_unsubscribe (instance method)">- (Object) <strong>on_unsubscribe</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when an UNSUBSCRIBE frame is transmitted.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#send-instance_method" title="#send (instance method)">- (Object) <strong>send</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a SEND frame is transmitted.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#subscribe-instance_method" title="#subscribe (instance method)">- (Object) <strong>subscribe</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a SUBSCRIBE frame is transmitted.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#unsubscribe-instance_method" title="#unsubscribe (instance method)">- (Object) <strong>unsubscribe</strong> {|frame, client| ... }</a>
     
 
     
@@ -665,6 +926,72 @@ the client.</p>
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#broker_beat-instance_method" title="#broker_beat (instance method)">- (Object) <strong>broker_beat</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a broker heartbeat is received.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#error-instance_method" title="#error (instance method)">- (Object) <strong>error</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when an ERROR frame is received.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#message-instance_method" title="#message (instance method)">- (Object) <strong>message</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a MESSAGE frame is received.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#on_broker_beat-instance_method" title="#on_broker_beat (instance method)">- (Object) <strong>on_broker_beat</strong> {|frame, client| ... }</a>
     
 
@@ -732,6 +1059,28 @@ the client.</p>
   <span class="summary_signature">
     
       <a href="#on_receipt-instance_method" title="#on_receipt (instance method)">- (Object) <strong>on_receipt</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a RECEIPT frame is received.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#receipt-instance_method" title="#receipt (instance method)">- (Object) <strong>receipt</strong> {|frame, client| ... }</a>
     
 
     
@@ -829,6 +1178,50 @@ the client.</p>
   <span class="summary_signature">
     
       <a href="#before_transmitting-instance_method" title="#before_transmitting (instance method)">- (Object) <strong>before_transmitting</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when any frame is transmitted.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#receiving-instance_method" title="#receiving (instance method)">- (Object) <strong>receiving</strong> {|frame, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when any frame is received.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#transmitting-instance_method" title="#transmitting (instance method)">- (Object) <strong>transmitting</strong> {|frame, client| ... }</a>
     
 
     
@@ -1015,7 +1408,235 @@ prefix.</p>
     
     
       <div class="method_details first">
-  <p class="signature first" id="after_receiving-instance_method">
+  <p class="signature first" id=":begin-instance_method">
+  
+    - (<tt>Object</tt>) <strong>:begin</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>Binds a callback to be invoked when a BEGIN frame is transmitted</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>callback invoked when event is triggered</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+39</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 39</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:begin</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="abort-instance_method">
+  
+    - (<tt>Object</tt>) <strong>abort</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>Binds a callback to be invoked when an ABORT frame is transmitted</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>callback invoked when event is triggered</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+45</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 45</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:abort</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="ack-instance_method">
+  
+    - (<tt>Object</tt>) <strong>ack</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>Binds a callback to be invoked when an ACK frame is transmitted</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>callback invoked when event is triggered</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+27</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 27</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:ack</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="after_receiving-instance_method">
   
     - (<tt>Object</tt>) <strong>after_receiving</strong> {|frame, client| ... }
   
@@ -1034,8 +1655,8 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -1051,10 +1672,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -1062,10 +1683,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -1110,8 +1731,8 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -1127,10 +1748,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -1138,10 +1759,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -1186,8 +1807,8 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -1203,10 +1824,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -1214,10 +1835,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -1262,8 +1883,8 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -1279,10 +1900,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -1290,10 +1911,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -1338,8 +1959,8 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -1355,10 +1976,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -1366,10 +1987,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -1414,8 +2035,8 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -1431,10 +2052,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -1442,10 +2063,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -1490,8 +2111,8 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -1507,10 +2128,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -1518,10 +2139,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -1566,8 +2187,8 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -1583,10 +2204,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -1594,10 +2215,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -1642,8 +2263,8 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -1659,10 +2280,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -1670,10 +2291,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -1718,8 +2339,8 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -1735,10 +2356,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -1746,10 +2367,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -1794,8 +2415,8 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -1811,10 +2432,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -1822,10 +2443,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -1870,8 +2491,8 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -1887,10 +2508,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -1898,10 +2519,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -1946,8 +2567,8 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -1963,10 +2584,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -1974,10 +2595,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -2022,8 +2643,8 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -2039,10 +2660,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -2050,10 +2671,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -2098,8 +2719,8 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -2115,10 +2736,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -2126,10 +2747,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -2174,8 +2795,8 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -2191,10 +2812,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -2202,10 +2823,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -2250,8 +2871,8 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -2267,10 +2888,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -2278,10 +2899,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -2326,8 +2947,8 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -2343,10 +2964,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -2354,10 +2975,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -2383,6 +3004,615 @@ prefix.</p>
 </div>
     
       <div class="method_details ">
+  <p class="signature " id="broker_beat-instance_method">
+  
+    - (<tt>Object</tt>) <strong>broker_beat</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>Binds a callback to be invoked when a broker heartbeat is received</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>callback invoked when event is triggered</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+108</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 108</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:broker_beat</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="client_beat-instance_method">
+  
+    - (<tt>Object</tt>) <strong>client_beat</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>Binds a callback to be invoked when a client heartbeat is transmitted</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>callback invoked when event is triggered</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+81</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 81</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:client_beat</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="commit-instance_method">
+  
+    - (<tt>Object</tt>) <strong>commit</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>Binds a callback to be invoked when a COMMIT frame is transmitted</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>callback invoked when event is triggered</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 51</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:commit</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="connect-instance_method">
+  
+    - (<tt>Object</tt>) <strong>connect</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>Can&rsquo;t get <code>before</code> because the CONNECT frame isn&rsquo;t transmitted by
+the client.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>callback invoked when event is triggered</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+21</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 21</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:connect</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="disconnect-instance_method">
+  
+    - (<tt>Object</tt>) <strong>disconnect</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>Binds a callback to be invoked when a DISCONNECT frame is transmitted</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>callback invoked when event is triggered</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+75</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 75</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:disconnect</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="error-instance_method">
+  
+    - (<tt>Object</tt>) <strong>error</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>Binds a callback to be invoked when an ERROR frame is received</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>callback invoked when event is triggered</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+90</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 90</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:error</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="message-instance_method">
+  
+    - (<tt>Object</tt>) <strong>message</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>Binds a callback to be invoked when a MESSAGE frame is received</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>callback invoked when event is triggered</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+96</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 96</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:message</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="nack-instance_method">
+  
+    - (<tt>Object</tt>) <strong>nack</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>Binds a callback to be invoked when a NACK frame is transmitted</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>callback invoked when event is triggered</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+33</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 33</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:nack</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <p class="signature " id="on_abort-instance_method">
   
     - (<tt>Object</tt>) <strong>on_abort</strong> {|frame, client| ... }
@@ -2402,8 +3632,8 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -2419,10 +3649,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -2430,10 +3660,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -2478,8 +3708,8 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -2495,10 +3725,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -2506,10 +3736,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -2554,8 +3784,8 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -2571,10 +3801,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -2582,10 +3812,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -2630,8 +3860,8 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -2647,10 +3877,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -2658,10 +3888,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -2706,8 +3936,8 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -2723,10 +3953,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -2734,10 +3964,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -2782,8 +4012,8 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -2799,10 +4029,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -2810,10 +4040,10 @@ prefix.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -2847,7 +4077,7 @@ prefix.</p>
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>Can't get <code>before</code> because the CONNECT frame isn't transmitted by
+    <p>Can&rsquo;t get <code>before</code> because the CONNECT frame isn&rsquo;t transmitted by
 the client.</p>
 
 
@@ -2859,8 +4089,8 @@ the client.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -2876,10 +4106,10 @@ the client.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -2887,10 +4117,10 @@ the client.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -2935,8 +4165,8 @@ the client.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -2952,10 +4182,10 @@ the client.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -2963,10 +4193,10 @@ the client.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -3011,8 +4241,8 @@ the client.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -3028,10 +4258,10 @@ the client.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -3039,10 +4269,10 @@ the client.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -3087,8 +4317,8 @@ the client.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -3104,10 +4334,10 @@ the client.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -3115,10 +4345,10 @@ the client.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -3163,8 +4393,8 @@ the client.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -3180,10 +4410,10 @@ the client.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -3191,10 +4421,10 @@ the client.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -3239,8 +4469,8 @@ the client.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -3256,10 +4486,10 @@ the client.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -3267,10 +4497,10 @@ the client.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -3315,8 +4545,8 @@ the client.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -3332,10 +4562,10 @@ the client.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -3343,10 +4573,10 @@ the client.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -3391,8 +4621,8 @@ the client.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -3408,10 +4638,10 @@ the client.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -3419,10 +4649,10 @@ the client.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -3467,8 +4697,8 @@ the client.</p>
   
     <li>
       
-        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
       
       
       
@@ -3484,10 +4714,10 @@ the client.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -3495,10 +4725,10 @@ the client.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -3545,8 +4775,8 @@ because the connection does not exist yet.</p>
   
     <li>
       
-        <span class='type'>(<tt>{Symbol =&gt; Array&lt;Proc&gt;}</tt>)</span>
       
+        <span class='type'>(<tt>{Symbol =&gt; Array&lt;Proc&gt;}</tt>)</span>
       
       
       
@@ -3576,6 +4806,386 @@ because the connection does not exist yet.</p>
 </div>
     
       <div class="method_details ">
+  <p class="signature " id="receipt-instance_method">
+  
+    - (<tt>Object</tt>) <strong>receipt</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>Binds a callback to be invoked when a RECEIPT frame is received</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>callback invoked when event is triggered</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+102</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 102</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:receipt</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="receiving-instance_method">
+  
+    - (<tt>Object</tt>) <strong>receiving</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>Binds a callback to be invoked when any frame is received</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>callback invoked when event is triggered</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+123</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 123</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:receiving</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:after</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="send-instance_method">
+  
+    - (<tt>Object</tt>) <strong>send</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>Binds a callback to be invoked when a SEND frame is transmitted</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>callback invoked when event is triggered</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+57</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 57</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:send</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="subscribe-instance_method">
+  
+    - (<tt>Object</tt>) <strong>subscribe</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>Binds a callback to be invoked when a SUBSCRIBE frame is transmitted</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>callback invoked when event is triggered</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+63</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 63</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:subscribe</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="transmitting-instance_method">
+  
+    - (<tt>Object</tt>) <strong>transmitting</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>Binds a callback to be invoked when any frame is transmitted</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>callback invoked when event is triggered</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+117</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 117</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:transmitting</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:after</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <p class="signature " id="trigger_after_receiving-instance_method">
   
     - (<tt>Object</tt>) <strong>trigger_after_receiving</strong>(f) 
@@ -3596,10 +5206,10 @@ because the connection does not exist yet.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>f</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -3651,10 +5261,10 @@ because the connection does not exist yet.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>f</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -3706,10 +5316,10 @@ because the connection does not exist yet.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>f</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -3761,10 +5371,10 @@ because the connection does not exist yet.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>f</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -3805,7 +5415,7 @@ because the connection does not exist yet.</p>
 </p><div class="docstring">
   <div class="discussion">
     <p>Triggers an event named by the supplied frame, prefixed with the supplied
-prefix. If the supplied frame is a 'heart-beat', origin will be used to
+prefix. If the supplied frame is a &lsquo;heart-beat&rsquo;, origin will be used to
 dispatch appropriate heart-beat event (client_beat or broker_beat)</p>
 
 
@@ -3817,10 +5427,10 @@ dispatch appropriate heart-beat event (client_beat or broker_beat)</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
-      
-      
         <span class='name'>f</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
       
       
       
@@ -3832,10 +5442,10 @@ dispatch appropriate heart-beat event (client_beat or broker_beat)</p>
   
     <li>
       
-        <span class='type'>(<tt>:on</tt>, <tt>:before</tt>, <tt>etc</tt>)</span>
-      
-      
         <span class='name'>pref</span>
+      
+      
+        <span class='type'>(<tt>:on</tt>, <tt>:before</tt>, <tt>etc</tt>)</span>
       
       
       
@@ -3847,10 +5457,10 @@ dispatch appropriate heart-beat event (client_beat or broker_beat)</p>
   
     <li>
       
-        <span class='type'>(<tt>:client</tt>, <tt>:broker</tt>)</span>
-      
-      
         <span class='name'>origin</span>
+      
+      
+        <span class='type'>(<tt>:client</tt>, <tt>:broker</tt>)</span>
       
       
       
@@ -3883,14 +5493,90 @@ dispatch appropriate heart-beat event (client_beat or broker_beat)</p>
 </table>
 </div>
     
+      <div class="method_details ">
+  <p class="signature " id="unsubscribe-instance_method">
+  
+    - (<tt>Object</tt>) <strong>unsubscribe</strong> {|frame, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>Binds a callback to be invoked when an UNSUBSCRIBE frame is transmitted</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>frame</tt>, <tt>client</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>callback invoked when event is triggered</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>frame</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Components/Frame.html" title="OnStomp::Components::Frame (class)">OnStomp::Components::Frame</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+69</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/interfaces/client_events.rb', line 69</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:unsubscribe</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
 
 </div>
     
     <div id="footer">
-  Generated on Thu Apr 21 15:50:12 2011 by 
+  Generated on Thu Oct 13 10:57:48 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.7 (ruby-1.9.2).
+  0.7.1 (ruby-1.9.2).
 </div>
 
   </body>

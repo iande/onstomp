@@ -2,17 +2,27 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>OnStomp Documentation</title>
-<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
-<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: README
+  
+    &mdash; OnStomp Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
   relpath = '';
   if (relpath != '') relpath += '/';
 </script>
-<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
 
   </head>
   <body>
@@ -31,26 +41,29 @@
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Class List</a>
-  <a id="method_list_link" href="#">Method List</a>
-  <a id ="file_list_link" href="#">File List</a>
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
 </div>
-
       <div class="clear"></div>
     </div>
     
     <iframe id="search_frame"></iframe>
     
-    <div id="content"><div id='filecontents'><h1>OnStomp</h1>
+    <div id="content"><div id='filecontents'><h1 id="onstomp">OnStomp</h1>
 
 <p>A client-side ruby gem for communicating with message brokers that support
 the STOMP 1.0 and 1.1 protocols. This gem was formerly known as <code>stomper</code>,
 but that name has been dropped because a
 <a href="http://code.google.com/p/stomper/">python stomp library</a> by the same name
-already existed. Also, I think "OnStomp" better expresses the event-driven
+already existed. Also, I think “OnStomp” better expresses the event-driven
 nature of this gem.</p>
 
-<h2>Installing</h2>
+<h2 id="installing">Installing</h2>
 
 <p>The OnStomp gem can be installed as a standard ruby gem:</p>
 
@@ -60,7 +73,7 @@ nature of this gem.</p>
 <p>Alternatively, you can clone the
 <a href="https://github.com/meadvillerb/onstomp">source</a> through github.</p>
 
-<h2>Example Usage</h2>
+<h2 id="example-usage">Example Usage</h2>
 
 <pre class="code"><span class='comment'># A simple message producer
 </span><span class='id client'>client</span> <span class='op'>=</span> <span class='const'>OnStomp</span><span class='period'>.</span><span class='id connect'>connect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>stomp://user:passw0rd@broker.example.org</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
@@ -80,7 +93,7 @@ nature of this gem.</p>
 </span><span class='kw'>end</span>
 </pre>
 
-<h2>Motivation</h2>
+<h2 id="motivation">Motivation</h2>
 
 <p>There is a STOMP client gem named <a href="http://gitorious.org/stomp">stomp</a>, so why
 create another gem?  OnStomp was designed around giving  users more control
@@ -91,66 +104,67 @@ in the hopes of increasing performance.</p>
 <p>The <code>stomp</code> gem is a good gem that works well, I just desired a different
 style API for working with message brokers.</p>
 
-<h2>Gotchas</h2>
+<h2 id="gotchas">Gotchas</h2>
 
 <p>Both Ruby 1.8.7 and JRuby (as of 1.6.1) do not provide non-blocking read
 or write methods for OpenSSL connections. While a gem named
 <a href="https://github.com/tarcieri/openssl-nonblock">openssl-nonblock</a> exists for
-Ruby &lt; 1.9.2, I have not personally used it and given that it's a C extension,
-it may not be compatible with JRuby's openssl gem.  When an OnStomp connection
+Ruby &lt; 1.9.2, I have not personally used it and given that it’s a C extension,
+it may not be compatible with JRuby’s openssl gem.  When an OnStomp connection
 is created, the socket (SSL or TCP) is checked to see whether or not the methods
 <code>write_nonblock</code> and <code>read_nonblock</code> have been defined. If not, OnStomp will
 fall back on <code>write</code> for writing and <code>readpartial</code> for reading. While both of
 these methods will block, the use of <code>IO::select</code> should help mitigate their
-effects. I initially missed this detail, so if you're using an older version
+effects. I initially missed this detail, so if you’re using an older version
 of OnStomp (pre 1.0.4) with Ruby 1.8.7 or JRuby, you either want to upgrade
 your gem or avoid <code>stomp+ssl://</code> URIs like the plague.</p>
 
-<p>The final "gotcha" is more of an advanced warning.  When JRuby's support
+<p>The final “gotcha” is more of an advanced warning.  When JRuby’s support
 for the Ruby 1.9 API stabilizes (and <code>read_nonblock</code> and <code>write_nonblock</code> are
 available for OpenSSL connections), I will be dropping support for Ruby 1.8.x
-entirely. This is probably a ways off yet, but when the time comes, I'll
-post obvious warnings and increment the gem's major version. OnStomp 1.x
+entirely. This is probably a ways off yet, but when the time comes, I’ll
+post obvious warnings and increment the gem’s major version. OnStomp 1.x
 will always be compatible with Ruby 1.8.7+, OnStomp 2.x will be Ruby 1.9.x
 only.</p>
 
-<h2>Further Reading</h2>
+<h2 id="further-reading">Further Reading</h2>
 
 <ul>
-<li>A <a href="file.UserNarrative.html" title="User's Narrative">User's Narrative</a></li>
-<li>The <a href="file.API.html" title="OnStomp API Promise">OnStomp API Promise</a> (sort of)</li>
-<li>A <a href="file.CHANGELOG.html" title="History of Changes">History of Changes</a></li>
+  <li>The <a href="http://mdvlrb.com/onstomp/">OnStomp YARD Documentation</a></li>
+  <li>The <a href="https://github.com/meadvillerb/onstomp/wiki">OnStomp Github Wiki</a></li>
+  <li>Some <a href="https://github.com/meadvillerb/onstomp/tree/master/examples">Contrived Examples</a></li>
+  <li>A <a href="file.UserNarrative.html" title="User’s Narrative">User’s Narrative</a></li>
+  <li>The <a href="file.API.html" title="OnStomp API Promise">OnStomp API Promise</a> (sort of)</li>
+  <li>A <a href="file.CHANGELOG.html" title="History of Changes">History of Changes</a></li>
 </ul>
 
-
-<h2>License</h2>
+<h2 id="license">License</h2>
 
 <p>OnStomp is covered by the Apache License 2.0.
 See the full <a href="file.LICENSE.html" title="LICENSE">LICENSE</a> for details.</p>
 
-<h2>Thanks</h2>
+<h2 id="thanks">Thanks</h2>
 
-<p>There are a few people/groups I'd like to thank for helping me with the
+<p>There are a few people/groups I’d like to thank for helping me with the
 creation of this gem.</p>
 
 <ul>
-<li>Lionel Cons for the good suggestions while I was implementing support for the
+  <li>Lionel Cons for the good suggestions while I was implementing support for the
 STOMP 1.1 spec. Check out his Perl client <a href="http://search.cpan.org/~lcons/Net-STOMP-Client-0.9.5/lib/Net/STOMP/Client.pm">Net::STOMP::Client</a></li>
-<li>Brian McCallister, Johan Sørensen, Guy M. Allard and Thiago Morello for
+  <li>Brian McCallister, Johan Sørensen, Guy M. Allard and Thiago Morello for
 their work on the <code>stomp</code> gem which introduced me to the STOMP protocol.</li>
-<li>Hiram Chino and everyone on the stomp-spec mailing list for keeping the
+  <li>Hiram Chino and everyone on the stomp-spec mailing list for keeping the
 STOMP 1.1 spec moving</li>
-<li>Aman Gupta and contributors to
+  <li>Aman Gupta and contributors to
 <a href="https://github.com/eventmachine/eventmachine">eventmachine</a> for the insights
 into working with non-blocking IO in Ruby</li>
 </ul>
-
 </div></div>
     
     <div id="footer">
-  Generated on Thu Apr 21 15:50:10 2011 by 
+  Generated on Thu Oct 13 10:57:44 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.7 (ruby-1.9.2).
+  0.7.1 (ruby-1.9.2).
 </div>
 
   </body>

@@ -3,16 +3,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Class: OnStomp::Components::ThreadedProcessor</title>
-<link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
-<link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
+<title>
+  Class: OnStomp::Components::ThreadedProcessor
+  
+    &mdash; OnStomp Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
   relpath = '../..';
   if (relpath != '') relpath += '/';
 </script>
-<script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
 
   </head>
   <body>
@@ -33,11 +43,14 @@
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Class List</a>
-  <a id="method_list_link" href="#">Method List</a>
-  <a id ="file_list_link" href="#">File List</a>
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
 </div>
-
       <div class="clear"></div>
     </div>
     
@@ -89,6 +102,8 @@
 <div class="tags">
   
 </div>
+
+
 
 
   
@@ -232,7 +247,7 @@ false.</p>
 
   
     <span class="summary_desc"><div class='inline'><p>Forcefully stops the processor and joins its IO thread to the
-callee's thread.</p>
+callee&rsquo;s thread.</p>
 </div></span>
   
 </li>
@@ -264,10 +279,10 @@ callee's thread.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -328,8 +343,8 @@ processor is no longer <span class='object_link'><a href="#running%3F-instance_m
   
     <li>
       
-        <span class='type'>(<tt>self</tt>)</span>
       
+        <span class='type'>(<tt>self</tt>)</span>
       
       
       
@@ -343,14 +358,14 @@ processor is no longer <span class='object_link'><a href="#running%3F-instance_m
       <pre class="lines">
 
 
-53
-54
 55
 56
-57</pre>
+57
+58
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/components/threaded_processor.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/components/threaded_processor.rb', line 55</span>
 
 <span class='kw'>def</span> <span class='id join'>join</span>
   <span class='const'>Thread</span><span class='period'>.</span><span class='id pass'>pass</span> <span class='kw'>while</span> <span class='id running?'>running?</span>
@@ -384,18 +399,18 @@ processor is no longer <span class='object_link'><a href="#running%3F-instance_m
       <pre class="lines">
 
 
-40
-41
 42
 43
 44
 45
 46
 47
-48</pre>
+48
+49
+50</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/components/threaded_processor.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/components/threaded_processor.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='id prepare_to_close'>prepare_to_close</span>
   <span class='kw'>if</span> <span class='id running?'>running?</span>
@@ -432,8 +447,8 @@ false.</p>
   
     <li>
       
-        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
       
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
       
       
       
@@ -484,8 +499,8 @@ false.</p>
   
     <li>
       
-        <span class='type'>(<tt>self</tt>)</span>
       
+        <span class='type'>(<tt>self</tt>)</span>
       
       
       
@@ -512,7 +527,9 @@ false.</p>
 34
 35
 36
-37</pre>
+37
+38
+39</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/onstomp/components/threaded_processor.rb', line 24</span>
@@ -526,7 +543,9 @@ false.</p>
       <span class='kw'>end</span>
     <span class='kw'>rescue</span> <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>StopReceiver</span>
     <span class='kw'>rescue</span> <span class='const'>Exception</span>
-      <span class='id raise'>raise</span>
+      <span class='comment'># FIXME: This is pretty hacky, too. The problem is one of race
+</span>      <span class='comment'># conditions and how we access the connection.
+</span>      <span class='id raise'>raise</span> <span class='kw'>if</span> <span class='ivar'>@run_thread</span> <span class='op'>==</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id current'>current</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
   <span class='kw'>self</span>
@@ -546,7 +565,7 @@ false.</p>
 </p><div class="docstring">
   <div class="discussion">
     <p>Forcefully stops the processor and joins its IO thread to the
-callee's thread.</p>
+callee&rsquo;s thread.</p>
 
 
   </div>
@@ -557,8 +576,8 @@ callee's thread.</p>
   
     <li>
       
-        <span class='type'>(<tt>self</tt>)</span>
       
+        <span class='type'>(<tt>self</tt>)</span>
       
       
       
@@ -570,8 +589,8 @@ callee's thread.</p>
   
     <li>
       
-        <span class='type'>(<tt>IOError</tt>, <tt>SystemCallError</tt>)</span>
       
+        <span class='type'>(<tt>IOError</tt>, <tt>SystemCallError</tt>)</span>
       
       
       
@@ -591,8 +610,6 @@ and the <span class='object_link'><a href="../Client.html" title="OnStomp::Clien
       <pre class="lines">
 
 
-65
-66
 67
 68
 69
@@ -600,19 +617,27 @@ and the <span class='object_link'><a href="../Client.html" title="OnStomp::Clien
 71
 72
 73
-74</pre>
+74
+75
+76
+77
+78
+79</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/onstomp/components/threaded_processor.rb', line 65</span>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/components/threaded_processor.rb', line 67</span>
 
 <span class='kw'>def</span> <span class='id stop'>stop</span>
-  <span class='kw'>begin</span>
-    <span class='ivar'>@run_thread</span><span class='period'>.</span><span class='id raise'>raise</span> <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>StopReceiver</span> <span class='kw'>if</span> <span class='ivar'>@run_thread</span><span class='period'>.</span><span class='id alive?'>alive?</span>
-    <span class='ivar'>@run_thread</span><span class='period'>.</span><span class='id join'>join</span>
-  <span class='kw'>rescue</span> <span class='const'>IOError</span><span class='comma'>,</span> <span class='const'>SystemCallError</span>
-    <span class='id raise'>raise</span> <span class='kw'>if</span> <span class='ivar'>@client</span><span class='period'>.</span><span class='id connected?'>connected?</span>
+  <span class='kw'>if</span> <span class='ivar'>@run_thread</span>
+    <span class='kw'>begin</span>
+      <span class='ivar'>@run_thread</span><span class='period'>.</span><span class='id raise'>raise</span> <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>StopReceiver</span> <span class='kw'>if</span> <span class='ivar'>@run_thread</span><span class='period'>.</span><span class='id alive?'>alive?</span>
+      <span class='ivar'>@run_thread</span><span class='period'>.</span><span class='id join'>join</span>
+    <span class='kw'>rescue</span> <span class='const'>OnStomp</span><span class='op'>::</span><span class='const'>StopReceiver</span>
+    <span class='kw'>rescue</span> <span class='const'>IOError</span><span class='comma'>,</span> <span class='const'>SystemCallError</span>
+      <span class='id raise'>raise</span> <span class='kw'>if</span> <span class='ivar'>@client</span><span class='period'>.</span><span class='id connected?'>connected?</span>
+    <span class='kw'>end</span>
+    <span class='ivar'>@run_thread</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='kw'>end</span>
-  <span class='ivar'>@run_thread</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='kw'>self</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -625,9 +650,9 @@ and the <span class='object_link'><a href="../Client.html" title="OnStomp::Clien
 </div>
     
     <div id="footer">
-  Generated on Thu Apr 21 15:50:13 2011 by 
+  Generated on Thu Oct 13 10:57:50 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.7 (ruby-1.9.2).
+  0.7.1 (ruby-1.9.2).
 </div>
 
   </body>

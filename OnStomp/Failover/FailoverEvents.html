@@ -3,16 +3,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Module: OnStomp::Failover::FailoverEvents</title>
-<link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
-<link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
+<title>
+  Module: OnStomp::Failover::FailoverEvents
+  
+    &mdash; OnStomp Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
   relpath = '../..';
   if (relpath != '') relpath += '/';
 </script>
-<script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
 
   </head>
   <body>
@@ -33,11 +43,14 @@
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Class List</a>
-  <a id="method_list_link" href="#">Method List</a>
-  <a id ="file_list_link" href="#">File List</a>
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
 </div>
-
       <div class="clear"></div>
     </div>
     
@@ -84,6 +97,11 @@
 </div>
 
   
+  
+  
+  
+
+
   
   
   
@@ -191,8 +209,125 @@ connect through a new <span class='object_link'><a href="../Client.html" title="
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Sets up a forwarded event binding, applying it to all clients in
+    <span class="summary_desc"><div class='inline'><p>Sets up a forwarded event binding, applying it to all clients in 
 <span class='object_link'><a href="Client.html#client_pool-instance_method" title="OnStomp::Failover::Client#client_pool (method)">Client#client_pool</a></span>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#failover_connect_failure-instance_method" title="#failover_connect_failure (instance method)">- (Object) <strong>failover_connect_failure</strong> {|failover, client, error_message| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a failover client fails to establish
+a connection through a <span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">client</a></span> while reconnecting.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#failover_connected-instance_method" title="#failover_connected (instance method)">- (Object) <strong>failover_connected</strong> {|failover, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a connection through a
+client is established.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#failover_lost-instance_method" title="#failover_lost (instance method)">- (Object) <strong>failover_lost</strong> {|failover, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>create_event_methods :failover_retries_exceeded, :on
+Binds a callback to be invoked when an established connection through a
+client is lost.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#failover_retries_exceeded-instance_method" title="#failover_retries_exceeded (instance method)">- (Object) <strong>failover_retries_exceeded</strong> {|failover| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when the maximum retries has been
+exceeded.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#failover_retry-instance_method" title="#failover_retry (instance method)">- (Object) <strong>failover_retry</strong> {|failover, attempt, client| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Binds a callback to be invoked when a failover client is attempting to
+connect through a new <span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">client</a></span> in its
+<span class='object_link'><a href="Client.html#pool-instance_method" title="OnStomp::Failover::Client#pool (method)">Client#pool</a></span>.</p>
 </div></span>
   
 </li>
@@ -507,8 +642,8 @@ connect through a new <span class='object_link'><a href="../Client.html" title="
   
     <li>
       
-        <span class='type'>(<tt>failover</tt>, <tt>attempt</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>failover</tt>, <tt>attempt</tt>, <tt>client</tt>)</span>
       
       
       
@@ -524,32 +659,32 @@ connect through a new <span class='object_link'><a href="../Client.html" title="
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="Client.html" title="OnStomp::Failover::Client (class)">OnStomp::Failover::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>failover</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Client.html" title="OnStomp::Failover::Client (class)">OnStomp::Failover::Client</a></span></tt>)</span>
       
       
       
     </li>
   
     <li>
-      
-        <span class='type'>(<tt>Fixnum</tt>)</span>
-      
       
         <span class='name'>attempt</span>
       
       
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
       
     </li>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -596,8 +731,8 @@ connect through a new <span class='object_link'><a href="../Client.html" title="
   
     <li>
       
-        <span class='type'>(<tt>failover</tt>, <tt>attempt</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>failover</tt>, <tt>attempt</tt>, <tt>client</tt>)</span>
       
       
       
@@ -613,32 +748,32 @@ connect through a new <span class='object_link'><a href="../Client.html" title="
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="Client.html" title="OnStomp::Failover::Client (class)">OnStomp::Failover::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>failover</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Client.html" title="OnStomp::Failover::Client (class)">OnStomp::Failover::Client</a></span></tt>)</span>
       
       
       
     </li>
   
     <li>
-      
-        <span class='type'>(<tt>Fixnum</tt>)</span>
-      
       
         <span class='name'>attempt</span>
       
       
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
       
     </li>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -672,7 +807,7 @@ connect through a new <span class='object_link'><a href="../Client.html" title="
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>Sets up a forwarded event binding, applying it to all clients in
+    <p>Sets up a forwarded event binding, applying it to all clients in 
 <span class='object_link'><a href="Client.html#client_pool-instance_method" title="OnStomp::Failover::Client#client_pool (method)">Client#client_pool</a></span>.</p>
 
 
@@ -714,6 +849,404 @@ connect through a new <span class='object_link'><a href="../Client.html" title="
 </div>
     
       <div class="method_details ">
+  <p class="signature " id="failover_connect_failure-instance_method">
+  
+    - (<tt>Object</tt>) <strong>failover_connect_failure</strong> {|failover, client, error_message| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>Binds a callback to be invoked when a failover client fails to establish
+a connection through a <span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">client</a></span> while reconnecting.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>failover</tt>, <tt>client</tt>, <tt>error_message</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>callback invoked when event is triggered</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>failover</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Client.html" title="OnStomp::Failover::Client (class)">OnStomp::Failover::Client</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>error_message</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+72</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/failover_events.rb', line 72</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:failover_connect_failure</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="failover_connected-instance_method">
+  
+    - (<tt>Object</tt>) <strong>failover_connected</strong> {|failover, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>Binds a callback to be invoked when a connection through a
+client is established.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>failover</tt>, <tt>client</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>callback invoked when event is triggered</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>failover</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Client.html" title="OnStomp::Failover::Client (class)">OnStomp::Failover::Client</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+85</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/failover_events.rb', line 85</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:failover_connected</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="failover_lost-instance_method">
+  
+    - (<tt>Object</tt>) <strong>failover_lost</strong> {|failover, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>create_event_methods :failover_retries_exceeded, :on
+Binds a callback to be invoked when an established connection through a
+client is lost.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>failover</tt>, <tt>client</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>callback invoked when event is triggered</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>failover</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Client.html" title="OnStomp::Failover::Client (class)">OnStomp::Failover::Client</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+79</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/failover_events.rb', line 79</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:failover_lost</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="failover_retries_exceeded-instance_method">
+  
+    - (<tt>Object</tt>) <strong>failover_retries_exceeded</strong> {|failover| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>Binds a callback to be invoked when the maximum retries has been
+exceeded.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>failover</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>callback invoked when event is triggered</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>failover</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Client.html" title="OnStomp::Failover::Client (class)">OnStomp::Failover::Client</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+90</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/failover_events.rb', line 90</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:failover_retries_exceeded</span><span class='comma'>,</span> <span class='symbol'>:on</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="failover_retry-instance_method">
+  
+    - (<tt>Object</tt>) <strong>failover_retry</strong> {|failover, attempt, client| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>Binds a callback to be invoked when a failover client is attempting to
+connect through a new <span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">client</a></span> in its
+<span class='object_link'><a href="Client.html#pool-instance_method" title="OnStomp::Failover::Client#pool (method)">Client#pool</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>failover</tt>, <tt>attempt</tt>, <tt>client</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>callback invoked when event is triggered</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>failover</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Client.html" title="OnStomp::Failover::Client (class)">OnStomp::Failover::Client</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>attempt</span>
+      
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+65</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/onstomp/failover/failover_events.rb', line 65</span>
+
+<span class='id create_event_methods'>create_event_methods</span> <span class='symbol'>:failover_retry</span><span class='comma'>,</span> <span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:after</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <p class="signature " id="on_connection_closed-instance_method">
   
     - (<tt>Object</tt>) <strong>on_connection_closed</strong>(&amp;block) 
@@ -723,7 +1256,7 @@ connect through a new <span class='object_link'><a href="../Client.html" title="
 </p><div class="docstring">
   <div class="discussion">
     <p>Binds a callback to Client#on_connection_closed. This has
-to be handled directly because :on_connection_closed isn't a true
+to be handled directly because :on_connection_closed isn&rsquo;t a true
 event.</p>
 
 
@@ -762,7 +1295,7 @@ event.</p>
 </p><div class="docstring">
   <div class="discussion">
     <p>Binds a callback to Client#on_connection_died. This has
-to be handled directly because :on_connection_died isn't a true
+to be handled directly because :on_connection_died isn&rsquo;t a true
 event.</p>
 
 
@@ -801,7 +1334,7 @@ event.</p>
 </p><div class="docstring">
   <div class="discussion">
     <p>Binds a callback to Client#on_connction_established. This has
-to be handled directly because :on_connection_established isn't a true
+to be handled directly because :on_connection_established isn&rsquo;t a true
 event.</p>
 
 
@@ -840,7 +1373,7 @@ event.</p>
 </p><div class="docstring">
   <div class="discussion">
     <p>Binds a callback to Client#on_connection_terminated. This has
-to be handled directly because :on_connection_terminated isn't a true
+to be handled directly because :on_connection_terminated isn&rsquo;t a true
 event.</p>
 
 
@@ -890,8 +1423,8 @@ a connection through a <span class='object_link'><a href="../Client.html" title=
   
     <li>
       
-        <span class='type'>(<tt>failover</tt>, <tt>client</tt>, <tt>error_message</tt>)</span>
       
+        <span class='type'>(<tt>failover</tt>, <tt>client</tt>, <tt>error_message</tt>)</span>
       
       
       
@@ -907,32 +1440,32 @@ a connection through a <span class='object_link'><a href="../Client.html" title=
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="Client.html" title="OnStomp::Failover::Client (class)">OnStomp::Failover::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>failover</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Client.html" title="OnStomp::Failover::Client (class)">OnStomp::Failover::Client</a></span></tt>)</span>
       
       
       
     </li>
   
     <li>
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
       
         <span class='name'>client</span>
       
       
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
+      
+      
       
     </li>
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
         <span class='name'>error_message</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -978,8 +1511,8 @@ client is established.</p>
   
     <li>
       
-        <span class='type'>(<tt>failover</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>failover</tt>, <tt>client</tt>)</span>
       
       
       
@@ -995,10 +1528,10 @@ client is established.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="Client.html" title="OnStomp::Failover::Client (class)">OnStomp::Failover::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>failover</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Client.html" title="OnStomp::Failover::Client (class)">OnStomp::Failover::Client</a></span></tt>)</span>
       
       
       
@@ -1006,10 +1539,10 @@ client is established.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -1056,8 +1589,8 @@ client is lost.</p>
   
     <li>
       
-        <span class='type'>(<tt>failover</tt>, <tt>client</tt>)</span>
       
+        <span class='type'>(<tt>failover</tt>, <tt>client</tt>)</span>
       
       
       
@@ -1073,10 +1606,10 @@ client is lost.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="Client.html" title="OnStomp::Failover::Client (class)">OnStomp::Failover::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>failover</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Client.html" title="OnStomp::Failover::Client (class)">OnStomp::Failover::Client</a></span></tt>)</span>
       
       
       
@@ -1084,10 +1617,10 @@ client is lost.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>client</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Client.html" title="OnStomp::Client (class)">OnStomp::Client</a></span></tt>)</span>
       
       
       
@@ -1133,8 +1666,8 @@ exceeded.</p>
   
     <li>
       
-        <span class='type'>(<tt>failover</tt>)</span>
       
+        <span class='type'>(<tt>failover</tt>)</span>
       
       
       
@@ -1150,10 +1683,10 @@ exceeded.</p>
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="Client.html" title="OnStomp::Failover::Client (class)">OnStomp::Failover::Client</a></span></tt>)</span>
-      
-      
         <span class='name'>failover</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Client.html" title="OnStomp::Failover::Client (class)">OnStomp::Failover::Client</a></span></tt>)</span>
       
       
       
@@ -1257,9 +1790,9 @@ exceeded.</p>
 </div>
     
     <div id="footer">
-  Generated on Thu Apr 21 15:50:12 2011 by 
+  Generated on Thu Oct 13 10:57:49 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.7 (ruby-1.9.2).
+  0.7.1 (ruby-1.9.2).
 </div>
 
   </body>
