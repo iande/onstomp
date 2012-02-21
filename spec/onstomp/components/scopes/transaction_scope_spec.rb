@@ -11,6 +11,10 @@ module OnStomp::Components::Scopes
     let(:scope) {
       TransactionScope.new 't-1234', client
     }
+
+    it "sets up the connection attribute" do
+      scope.connection.should == scope
+    end
     
     describe ".begin" do
       it "should use the scope's transaction id by default" do

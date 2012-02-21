@@ -9,7 +9,7 @@ class OnStomp::Components::Scopes::ReceiptScope
   def initialize callback, client
     @callback = callback
     @client = client
-    @connectio = client.connection
+    @connection = client.connection
   end
   
   # Wraps {OnStomp::Client#transmit}, applying the {#callback} as a receipt

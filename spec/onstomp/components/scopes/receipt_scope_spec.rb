@@ -15,6 +15,12 @@ module OnStomp::Components::Scopes
     
     let(:frame_method_interface) { scope }
     it_should_behave_like "frame method interfaces"
+
+    it "sets up the connection attribute" do
+      connection = stub('connection')
+      client.should_receive(:connection).and_return(connection)
+      scope.connection.should == connection
+    end
     
     describe ".transmit" do
       it "should add its receipt callback to frames transmitted without one" do
