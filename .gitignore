@@ -8,3 +8,7 @@ doc
 coverage
 turbulence
 Gemfile.lock
+*~
+*.swp
+tags
+

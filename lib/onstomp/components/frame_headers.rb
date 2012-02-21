@@ -46,7 +46,7 @@ class OnStomp::Components::FrameHeaders
   def set?(name)
     @values.key?(name.to_sym)
   end
-  
+
   # Returns true if a header value has been set for the supplied header, and
   # the value is neither `nil` nor an empty string.
   # @param [#to_sym] name the header name to test
