@@ -50,14 +50,17 @@ class OnStomp::Failover::Client
     @connection = nil
     @frame_buffer = buffer.new self
     @disconnecting = false
+    retry_ready = false
     @retry_thread = Thread.new do
       until @disconnecting
+        retry_ready = true
         Thread.stop
         @client_mutex.synchronize {
           reconnect unless @disconnecting
         }
       end
     end
+    Thread.pass until retry_ready && @retry_thread.status == 'sleep'
   end
   
   # Returns true if there is an {#active_client} and it is
