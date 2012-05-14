@@ -17,6 +17,17 @@ module OnStomp::Interfaces
         triggered.should == [3, 'test']
       end
     end
+
+    describe "callbacks with exceptions" do
+      it "does not allow exceptions to break the callback chain" do
+        triggered = [false, false]
+        eventable.bind_event(:an_event, lambda { |*_| raise "failed" })
+        eventable.bind_event(:an_event, lambda { |x,y| triggered[0] = y; raise "failed again" })
+        eventable.bind_event(:an_event, lambda { |x,y| triggered[1] = x })
+        eventable.trigger_event :an_event, 4, 10
+        triggered.should == [10, 4]
+      end
+    end
     
     describe ".event_callbacks" do
       it "should provide an empty array for an unbound event" do

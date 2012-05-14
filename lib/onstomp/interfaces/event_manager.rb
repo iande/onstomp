@@ -27,7 +27,13 @@ module OnStomp::Interfaces::EventManager
   # @param [Symbol] event_name event to trigger
   # @param [Object, Object, ...] args
   def trigger_event(event_name, *args)
-    event_callbacks[event_name].each { |cb| cb.call(*args) }
+    event_callbacks[event_name].each do |cb|
+      begin
+        cb.call(*args)
+      rescue Exception => ex
+        warn "[OnStomp/Event] triggering #{event_name} raised an error: #{ex}"
+      end
+    end
   end
   
   # Mixin to allow includers to define custom event methods
