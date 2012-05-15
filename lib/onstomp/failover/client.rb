@@ -60,7 +60,7 @@ class OnStomp::Failover::Client
         }
       end
     end
-    Thread.pass until retry_ready && @retry_thread.status == 'sleep'
+    Thread.pass until retry_ready && @retry_thread.stop?
   end
   
   # Returns true if there is an {#active_client} and it is
