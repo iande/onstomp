@@ -10,6 +10,59 @@ describe OnStomp::Client, "full stack test (stomp+ssl:)", :fullstack => true do
       body
     end
   end
+
+  describe "Failing on connect" do
+    let(:broker) {
+      TestBroker.new 10101
+    }
+    before :each do
+      broker.start
+    end
+    after :each do
+      broker.stop
+    end
+
+    it "raises an error when the TCP/IP connection is refused" do
+      broker.stop
+      client = OnStomp::Client.new('stomp://localhost:10101')
+      lambda do
+        client.connect
+      end.should raise_error
+    end
+
+    it "raises an error if the connection is closed while writing the CONNECT frame" do
+      broker.session_class = TestBroker::SessionCloseBeforeConnect
+      client = OnStomp::Client.new('stomp://localhost:10101')
+      lambda do
+        client.connect
+      end.should raise_error
+    end
+
+    it "raises an error if the connection is closed while waiting for the CONNECTED frame" do
+      broker.session_class = TestBroker::SessionCloseAfterConnect
+      client = OnStomp::Client.new('stomp://localhost:10101')
+      lambda do
+        client.connect
+      end.should raise_error
+    end
+
+    it "raises an error if the connection times out before receiving a CONNECTED frame" do
+      broker.session_class = TestBroker::SessionTimeoutAfterConnect
+      client = OnStomp::Client.new('stomp://localhost:10101')
+      client.read_timeout = 1
+      lambda do
+        client.connect
+      end.should raise_error(OnStomp::ConnectionTimeoutError)
+    end
+
+    it "raises an error if the broker does not respond with CONNECTED" do
+      broker.session_class = TestBroker::SessionBadFrameAfterConnect
+      client = OnStomp::Client.new('stomp://localhost:10101')
+      lambda do
+        client.connect
+      end.should raise_error(OnStomp::ConnectFailedError)
+    end
+  end
   
   describe "STOMP 1.0" do
     let(:broker) {

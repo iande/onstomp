@@ -19,6 +19,16 @@ module OnStomp::Connections
     let(:frame) {
       mock('frame')
     }
+
+    describe "timeouts" do
+      it "defaults write timeout to nil" do
+        connection.write_timeout.should be_nil
+      end
+
+      it "defaults read timeout to 120 seconds" do
+        connection.read_timeout.should == 120
+      end
+    end
     
     describe ".method_missing" do
       it "should raise an unsupported command error if the method ends in _frame" do
@@ -47,7 +57,8 @@ module OnStomp::Connections
       it "should be the difference between now and the last_transmitted_at in milliseconds" do
         Time.stub(:now => 10)
         connection.stub(:last_transmitted_at => 8.5)
-        connection.duration_since_transmitted.should == 1500
+        # Be careful, floating point will give you problems
+        connection.duration_since_transmitted.should == 1500.0
       end
     end
     
@@ -59,7 +70,7 @@ module OnStomp::Connections
       it "should be the difference between now and the last_received_at in milliseconds" do
         Time.stub(:now => 10)
         connection.stub(:last_received_at => 6)
-        connection.duration_since_received.should == 4000
+        connection.duration_since_received.should == 4000.0
       end
     end
     
@@ -280,7 +291,14 @@ module OnStomp::Connections
         io.should_receive(:read_nonblock).with(Base::MAX_BYTES_PER_READ).and_raise(Errno::EWOULDBLOCK)
         lambda { connection.io_process_read }.should_not raise_error
       end
-      it "should close the connection and not raise error if an EOFError is raised?" do
+      it "closes the connection and re-raises EOFError when connecting" do
+        connection.stub(:connected? => true)
+        IO.stub(:select => true)
+        io.should_receive(:read_nonblock).with(Base::MAX_BYTES_PER_READ).and_raise(EOFError)
+        io.should_receive(:close)
+        lambda { connection.io_process_read(true) }.should raise_error(EOFError)
+      end
+      it "closes the connection without re-raising EOFError when not connecting" do
         connection.stub(:connected? => true)
         IO.stub(:select => true)
         io.should_receive(:read_nonblock).with(Base::MAX_BYTES_PER_READ).and_raise(EOFError)
@@ -311,13 +329,17 @@ module OnStomp::Connections
         lambda { connection.io_process_read }.should raise_error(Exception)
         triggered.should be_true
       end
-      it "should trigger a blocked close if checking timeout and it is exceeded" do
+      it "triggers a blocked close and raises ConnectionTimeoutError when connecting" do
         triggered = false
         connection.on_blocked { triggered = true }
+        connection.read_timeout = 0.5
         IO.stub(:select => false)
-        connection.stub(:read_timeout_exceeded? => true, :connected? => true)
+        connection.stub(:connected? => true)
         io.should_receive(:close)
-        connection.io_process_read(true)
+        connection.__send__(:update_last_received)
+        lambda do
+          connection.io_process_read(true) while true
+        end.should raise_error(OnStomp::ConnectionTimeoutError)
         triggered.should be_true
       end
     end
@@ -354,17 +376,17 @@ module OnStomp::Connections
       end
       it "should not exceed the timeout if duration is less than timeout" do
         connection.read_timeout = 10
-        connection.stub(:duration_since_received => 9000)
+        connection.stub(:duration_since_received => 9000.0)
         connection.__send__(:read_timeout_exceeded?).should be_false
       end
       it "should not exceed the timeout if duration is equal to timeout" do
         connection.read_timeout = 10
-        connection.stub(:duration_since_received => 10000)
+        connection.stub(:duration_since_received => 10000.0)
         connection.__send__(:read_timeout_exceeded?).should be_false
       end
       it "should exceed the timeout if duration is greater than timeout" do
         connection.read_timeout = 10
-        connection.stub(:duration_since_received => 10001)
+        connection.stub(:duration_since_received => 10000.1)
         connection.__send__(:read_timeout_exceeded?).should be_true
       end
     end
@@ -413,9 +435,9 @@ module OnStomp::Connections
         Time.stub(:now => 69)
         connection.__send__(:write_timeout_exceeded?).should be_false
       end
-      it "should not exceed the timeout if the duratio is greater but there's no buffered data" do
+      it "should not exceed the timeout if the duration is greater but there's no buffered data" do
         connection.write_timeout = 1
-        connection.stub(:duration_since_transmitted => 5000)
+        connection.stub(:duration_since_transmitted => 5000.0)
         connection.__send__(:write_timeout_exceeded?).should be_false
       end
       it "should exceed the timeout if buffered and duration is greater than timeout" do
@@ -487,6 +509,30 @@ module OnStomp::Connections
         connection.io_process
         connection.io_process
         triggered.should == 1
+      end
+
+      it "re-raises an error raised while writing during connect" do
+        io.stub(:closed? => false)
+        connection.stub(:connect_frame => connect_frame)
+        connection.stub(:serializer => OnStomp::Connections::Serializers::Stomp_1_0.new)
+        connection.stub(:ready_for_write? => true)
+        connection.stub(:write_nonblock) { raise EOFError }
+        connection.stub(:io_process_read).with(true).and_yield(connected_frame)
+        lambda do
+          connection.connect(client)
+        end.should raise_error(EOFError)
+      end
+
+      it "re-raises an EOFError raised while reading during connect" do
+        io.stub(:closed? => false)
+        connection.stub(:connect_frame => connect_frame)
+        connection.stub(:serializer => OnStomp::Connections::Serializers::Stomp_1_0.new)
+        connection.stub(:ready_for_read? => true)
+        connection.stub(:read_nonblock) { raise EOFError }
+        connection.stub(:io_process_write).and_yield(connect_frame)
+        lambda do
+          connection.connect(client)
+        end.should raise_error(EOFError)
       end
     end
     

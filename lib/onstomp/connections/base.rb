@@ -5,7 +5,7 @@ class OnStomp::Connections::Base
   include OnStomp::Interfaces::ConnectionEvents
   attr_reader :version, :socket, :client
   attr_reader :last_transmitted_at, :last_received_at
-  attr_accessor :write_timeout, :read_timeout
+  attr_reader :write_timeout, :read_timeout
   
   # The approximate maximum number of bytes to write per call to
   # {#io_process_write}.
@@ -27,9 +27,35 @@ class OnStomp::Connections::Base
     @read_buffer = []
     @client = client
     @connection_up = false
-    @write_timeout = nil
-    @read_timeout  = nil
+    self.read_timeout = 120
+    self.write_timeout = nil
     setup_non_blocking_methods
+  end
+
+  # Sets the read timeout when connecting to the specified number of seconds.
+  # If set to nil, no read timeout checking will be performed.
+  # @param [Number] secs
+  def read_timeout= secs
+    if secs
+      @read_timeout = secs
+      @read_timeout_ms = secs * 1000
+    else
+      @read_timeout = @read_timeout_ms = nil
+    end
+  end
+
+  # Sets the maximum number of seconds to wait between IO writes before
+  # declaring the connection blocked. This timeout is ignored if there is no
+  # data waiting to be written. If set to `nil`, connection write timeout
+  # checking will be performed.
+  # @param [Number, nil] secs
+  def write_timeout= secs
+    if secs
+      @write_timeout = secs
+      @write_timeout_ms = secs * 1000
+    else
+      @write_timeout = @write_timeout_ms = nil
+    end
   end
   
   # Performs any necessary configuration of the connection from the CONNECTED
@@ -70,12 +96,14 @@ class OnStomp::Connections::Base
   # @param [OnStomp::Client] client
   # @param [Array<Hash>] headers
   def connect client, *headers
+    # I really don't care for this. A core part of the CONNECT/CONNECTED
+    # exchange can only be accomplished through subclasses.
     write_frame_nonblock connect_frame(*headers)
     client_con = nil
     until client_con
       io_process_write { |f| client_con ||= f }
     end
-    @last_received_at = Time.now
+    update_last_received
     broker_con = nil
     until broker_con
       io_process_read(true) { |f| broker_con ||= f }
@@ -102,14 +130,14 @@ class OnStomp::Connections::Base
   # `nil` if no data has been transmitted when the method is called.
   # @return [Fixnum, nil]
   def duration_since_transmitted
-    last_transmitted_at && ((Time.now - last_transmitted_at)*1000).to_i
+    last_transmitted_at && ((Time.now.to_f - last_transmitted_at) * 1000)
   end
   
   # Number of milliseconds since data was last received from the broker or
   # `nil` if no data has been received when the method is called.
   # @return [Fixnum, nil]
   def duration_since_received
-    last_received_at && ((Time.now - last_received_at)*1000).to_i
+    last_received_at && ((Time.now.to_f - last_received_at) * 1000)
   end
   
   # Flushes the write buffer by invoking {#io_process_write} until the
@@ -141,7 +169,7 @@ class OnStomp::Connections::Base
   # @param [OnStomp::Components::Frame]
   def push_write_buffer data, frame
     @write_mutex.synchronize {
-      @last_write_activity = Time.now if @write_buffer.empty?
+      update_last_write_activity if @write_buffer.empty?
       @write_buffer << [data, frame] unless @closing
     }
   end
@@ -184,7 +212,8 @@ class OnStomp::Connections::Base
           raise
         end
         written += w
-        @last_write_activity = @last_transmitted_at = Time.now
+        update_last_write_activity
+        update_last_transmitted
         if w < data.length
           unshift_write_buffer data[w..-1], frame
         else
@@ -204,12 +233,12 @@ class OnStomp::Connections::Base
   # and the socket is ready for reading.  The received data will be pushed
   # to the end of a read buffer, which is then sent to the connection's
   # {OnStomp::Connections::Serializers serializer} for processing.
-  def io_process_read(check_timeout=false)
+  def io_process_read(connecting=false)
     if ready_for_read?
       begin
         if data = read_nonblock
           @read_buffer << data
-          @last_received_at = Time.now
+          update_last_received
           serializer.bytes_to_frame(@read_buffer) do |frame|
             yield frame if block_given?
             client.dispatch_received frame
@@ -219,6 +248,7 @@ class OnStomp::Connections::Base
         # do not
       rescue EOFError
         triggered_close $!.message
+        raise if connecting
       rescue Exception
         # TODO: Fix this potential race condition the right way.
         # This is the problematic area!  If the user (or failover library)
@@ -230,14 +260,28 @@ class OnStomp::Connections::Base
         triggered_close $!.message, :terminated
         raise
       end
-    elsif check_timeout && read_timeout_exceeded?
+    end
+    if connecting && read_timeout_exceeded?
       triggered_close 'read blocked', :blocked
+      raise OnStomp::ConnectionTimeoutError
     end
   end
   
   private
+  def update_last_received
+    @last_received_at = Time.now.to_f
+  end
+
+  def update_last_write_activity
+    @last_write_activity = Time.now.to_f
+  end
+
+  def update_last_transmitted
+    @last_transmitted_at = Time.now.to_f
+  end
+
   def duration_since_write_activity
-    Time.now - @last_write_activity
+    (Time.now.to_f - @last_write_activity) * 1000
   end
   
   # Returns true if the connection has buffered data to write and the
@@ -270,8 +314,8 @@ class OnStomp::Connections::Base
   # data to write, and `duration_since_transmitted` is greater than
   # `write_timeout`
   def write_timeout_exceeded?
-    @write_timeout && @write_buffer.length > 0 &&
-      duration_since_write_activity > @write_timeout
+    @write_timeout_ms && @write_buffer.length > 0 &&
+      duration_since_write_activity > @write_timeout_ms
   end
   
   # Returns true if a `read_timeout` has been set and
@@ -279,16 +323,12 @@ class OnStomp::Connections::Base
   # This is only used when establishing the connection through the CONNECT/
   # CONNECTED handshake.  After that, it is up to heart-beating.
   def read_timeout_exceeded?
-    @read_timeout && duration_since_received > (@read_timeout*1000)
+    @read_timeout_ms && duration_since_received > @read_timeout_ms
   end
   
   def triggered_close msg, *evs
     @connection_up = false
     @closing = false
-    # unless socket.closed?
-    #   socket.to_io.shutdown(2) rescue nil
-    #   
-    # end
     socket.close rescue nil
     evs.each { |ev| trigger_connection_event ev, msg }
     trigger_connection_event :closed, msg

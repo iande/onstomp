@@ -74,6 +74,9 @@ module OnStomp
   # Raised when an attempt to connect to the broker results in an unexpected
   # exchange.
   class ConnectFailedError < FatalConnectionError; end
+
+  # Raised when the connection between client and broker times out.
+  class ConnectionTimeoutError < FatalConnectionError; end
   
   # Raised if the command issued is not supported by the protocol version
   # negotiated between the client and broker.

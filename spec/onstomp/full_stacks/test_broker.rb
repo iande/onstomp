@@ -243,6 +243,62 @@ class TestBroker
     end
   end
   
+  class SessionCloseBeforeConnect
+    def initialize server, sock
+      sock.close rescue nil
+    end
+  end
+
+  class SessionCloseAfterConnect < Session10
+    def initialize server, sock
+      @server = server
+      @socket = sock
+      init_events
+      init_connection
+      connect_frame = nil
+      @connection.io_process_read do |f|
+        connect_frame ||= f
+      end until connect_frame
+      @socket.close
+    end
+  end
+
+  class SessionTimeoutAfterConnect < Session10
+    def initialize server, sock
+      @server = server
+      @socket = sock
+      init_events
+      init_connection
+      connect_frame = nil
+      @connection.io_process_read do |f|
+        connect_frame ||= f
+      end until connect_frame
+      # Do not send a frame, do not close the connection, let it timeout
+    end
+  end
+
+  class SessionBadFrameAfterConnect < Session10
+    def initialize server, sock
+      @server = server
+      @socket = sock
+      init_events
+      init_connection
+      connect_frame = nil
+      @connection.io_process_read do |f|
+        connect_frame ||= f
+      end until connect_frame
+      reply_to_connect_with_crap
+    end
+
+    def reply_to_connect_with_crap
+      connected_frame = nil
+      transmit OnStomp::Components::Frame.new('CRAPPY_FRAME')
+      @connection.io_process_write do |f|
+        connected_frame ||= f
+      end until connected_frame
+    end
+  end
+
   class StompErrorOnConnectSession < Session10
   end
 end
