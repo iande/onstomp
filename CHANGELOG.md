@@ -1,5 +1,19 @@
 # Changes
 
+## 1.0.7
+* rescue any exceptions in event callbacks, uses Kernel#warn to notify the
+  user of the exception
+* force OnStomp::Failover::Client to wait until the re-connect thread is up
+  and running before initialize returns
+* force OnStomp::Connections::Base to raise exceptions that occur while trying
+  to read the initial CONNECTED frame from the broker. prior to this, the
+  call to Base#connect would hang indefinitely if the connection to the broker
+  was lost before the CONNECTED frame was received (or if the broker simply did
+  not respond with any frame at all.)
+
+## 1.0.6
+* fix a typo on the `connection` attribute in the ReceiptScope
+
 ## 1.0.5
 * fixed a race condition that would occur if a user (or the failover extension)
   tried to re-connect an OnStomp::Client instance within an `on_connection_closed`
