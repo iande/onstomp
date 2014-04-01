@@ -11,4 +11,5 @@ Gemfile.lock
 *.swp
 tags
 other
-
+.ruby-version
+.ruby-gemset

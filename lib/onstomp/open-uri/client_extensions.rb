@@ -39,7 +39,7 @@ module OnStomp::OpenURI::ClientExtensions
         yield openuri_message_queue.shift
       end
     else
-      OnStomp::ENUMERATOR_KLASS.new(self)
+      self.to_enum
     end
   end
 

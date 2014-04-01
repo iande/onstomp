@@ -33,10 +33,6 @@ require 'monitor'
 
 # Primary namespace for the `onstomp` gem
 module OnStomp
-  # Class to use for creating enumerator objects, which depends upon the
-  # version of Ruby being used.
-  ENUMERATOR_KLASS = (RUBY_VERSION >= '1.9') ? Enumerator : Enumerable::Enumerator
-  
   # A common base class for errors raised by the OnStomp gem
   # @abstract
   class OnStompError < StandardError; end

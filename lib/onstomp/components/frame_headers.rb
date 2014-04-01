@@ -172,7 +172,7 @@ class OnStomp::Components::FrameHeaders
       iterate_each &block
       self
     else
-      OnStomp::ENUMERATOR_KLASS.new(self)
+      self.to_enum
     end
   end
   

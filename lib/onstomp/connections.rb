@@ -98,9 +98,6 @@ module OnStomp::Connections
       o_meth = :"#{opt}="
       context.__send__(o_meth, val) if context.respond_to?(o_meth)
     end
-    DEFAULT_SSL_OPTIONS.keys.each do |k|
-      context.__send__(:"#{k}=", ssl_opts[k]) if ssl_opts.key?(k)
-    end
     tcp_sock = create_socket_tcp(client)
     socket = OpenSSL::SSL::SSLSocket.new(tcp_sock, context)
     socket.sync_close = true
