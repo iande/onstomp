@@ -7,7 +7,7 @@ module OnStomp::Connections
   DEFAULT_SSL_OPTIONS = {
     :verify_mode => OpenSSL::SSL::VERIFY_PEER |
       OpenSSL::SSL::VERIFY_FAIL_IF_NO_PEER_CERT,
-    :ca_file => nil
+    :ca_file => nil,
     :ca_path => nil,
     :cert => nil,
     :key => nil,
