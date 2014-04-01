@@ -7,7 +7,7 @@ module OnStomp::Connections
   DEFAULT_SSL_OPTIONS = {
     :verify_mode => OpenSSL::SSL::VERIFY_PEER |
       OpenSSL::SSL::VERIFY_FAIL_IF_NO_PEER_CERT,
-    :ca_file => nil,
+    :ca_file => nil
     :ca_path => nil,
     :cert => nil,
     :key => nil,
@@ -94,6 +94,10 @@ module OnStomp::Connections
     context = OpenSSL::SSL::SSLContext.new
     post_check = ssl_opts.delete(:post_connection_check)
     post_check_host = (post_check == true) ? host : post_check
+    ssl_opts.each do |opt,val|
+      o_meth = :"#{opt}="
+      context.__send__(o_meth, val) if context.respond_to?(o_meth)
+    end
     DEFAULT_SSL_OPTIONS.keys.each do |k|
       context.__send__(:"#{k}=", ssl_opts[k]) if ssl_opts.key?(k)
     end
