@@ -130,7 +130,7 @@ module OnStomp::Components
       end
       
       it "should yield an enumerator if called without a block" do
-        headers.each.should be_a_kind_of(OnStomp::ENUMERATOR_KLASS)
+        headers.each.should be_a_kind_of(Enumerable)
       end
       
       it "should yield header names and values as pairs of strings" do

@@ -61,7 +61,7 @@ module OnStomp::OpenURI
     
     describe ".each" do
       it "should return an enumerator if no block is given" do
-        client.each.should be_a_kind_of(OnStomp::ENUMERATOR_KLASS)
+        client.each.should be_a_kind_of(Enumerable)
       end
       it "should yield up elements of the message queue" do
         yielded = []
