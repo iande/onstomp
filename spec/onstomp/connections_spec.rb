@@ -43,7 +43,8 @@ module OnStomp
           :ca_path => '/path/to/ca_files/',
           :cert => '/path/to/client/cert.pem',
           :key => '/path/to/client/key.pem',
-          :verify_mode => 'super_duper_mode'
+          :verify_mode => 'super_duper_mode',
+          :ssl_version => 'SSLv3'
         }
       }
       let(:connected_frame) { mock('CONNECTED frame') }
