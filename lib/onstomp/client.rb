@@ -82,11 +82,12 @@ class OnStomp::Client
     # FIXME: This is a quick fix to force the Threaded IO processor to
     # complete its work before we establish a connection.
     processor_inst.stop
-    @connection = OnStomp::Connections.connect self, headers,
-      { :'accept-version' => @versions.join(','), :host => @host,
-        :'heart-beat' => @heartbeats.join(','), :login => @login,
-        :passcode => @passcode }, pending_connection_events,
-      read_timeout, write_timeout
+    c_head = { :'accept-version' => @versions.join(','), :host => @host,
+        :'heart-beat' => @heartbeats.join(',') }
+    c_head[:login] = @login if ! @login.nil? && ! @login.empty?
+    c_head[:passcode] = @passcode if ! @passcode.nil? && ! @passcode.empty?
+    @connection = OnStomp::Connections.connect self, headers, c_head,
+      pending_connection_events, read_timeout, write_timeout
     processor_inst.start
     self
   end
