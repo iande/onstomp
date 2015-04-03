@@ -3,6 +3,7 @@ require 'spec_helper'
 
 module OnStomp::Failover
   describe Client, :failover => true do
+    let(:client_options) { Hash.new }
     let(:active_client) {
       mock('active client').tap do |m|
         m.extend OnStomp::Interfaces::ClientEvents
@@ -26,7 +27,16 @@ module OnStomp::Failover
         c.hosts.should == ['stomp:///', real_client]
       end
     end
-    
+
+    # doesn't work, no idea why not but 2+ hours is my time limit
+    # describe "configuration" do
+    #
+    #   it "should pass client options to the client" do
+    #     Pools::Base.should_receive(:new).with(anything(), {})
+    #     client.connect
+    #    end
+    # end
+
     describe ".connected?" do
       it "should be connected if it has an active client that's connected" do
         active_client.stub(:connected? => true)
@@ -81,7 +91,7 @@ module OnStomp::Failover
         # Get the hooks installed on our mocks
         active_client.stub(:connection => connection)
         client.stub(:client_pool => client_pool)
-        client.__send__ :create_client_pool, []
+        client.__send__ :create_client_pool, [], {}
       end
       it "should do nothing special if there is no active client" do
         client.stub(:active_client => nil)
