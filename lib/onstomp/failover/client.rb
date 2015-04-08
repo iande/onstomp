@@ -45,7 +45,7 @@ class OnStomp::Failover::Client
     end
     @client_mutex = Mutex.new
     configure_configurable options
-    create_client_pool hosts
+    create_client_pool hosts, options
     @active_client = nil
     @connection = nil
     @frame_buffer = buffer.new self
@@ -129,8 +129,12 @@ class OnStomp::Failover::Client
     sleep(retry_delay) if retry_delay > 0 && attempt > 1
   end
     
-  def create_client_pool hosts
-    @client_pool = pool.new hosts
+  def create_client_pool hosts, options
+    client_options = options.dup
+    client_options.delete_if { |k,_|
+      self.class.config_attributes.keys.include?(k)
+    }
+    @client_pool = pool.new hosts, client_options
     on_connection_closed do |client, *_|
       if client == active_client
         unless @disconnecting

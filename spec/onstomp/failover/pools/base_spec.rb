@@ -12,10 +12,10 @@ module OnStomp::Failover::Pools
 
     describe ".initialize" do
       it "should create a new Client for each URI" do
-        OnStomp::Client.should_receive(:new).with('1').and_return('c 1')
-        OnStomp::Client.should_receive(:new).with('2').and_return('c 2')
-        OnStomp::Client.should_receive(:new).with('3').and_return('c 3')
-        new_pool = Base.new ['1', '2', '3']
+        OnStomp::Client.should_receive(:new).with('1', { option: true }).and_return('c 1')
+        OnStomp::Client.should_receive(:new).with('2', { option: true }).and_return('c 2')
+        OnStomp::Client.should_receive(:new).with('3', { option: true }).and_return('c 3')
+        new_pool = Base.new ['1', '2', '3'], { option: true }
         new_pool.clients.should =~ ['c 1', 'c 2', 'c 3']
       end
     end
