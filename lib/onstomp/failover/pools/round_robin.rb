@@ -3,7 +3,7 @@
 # A round-robin client pool. Clients are processed sequentially, and once
 # all clients have been processed, the pool cycles back to the beginning.
 class OnStomp::Failover::Pools::RoundRobin < OnStomp::Failover::Pools::Base
-  def initialize uris
+  def initialize uris, options = {}
     super
     @index = -1
   end
