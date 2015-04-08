@@ -130,7 +130,11 @@ class OnStomp::Failover::Client
   end
     
   def create_client_pool hosts, options
-    @client_pool = pool.new hosts, options
+    client_options = options.dup
+    client_options.delete_if { |k,_|
+      self.class.config_attributes.keys.include?(k)
+    }
+    @client_pool = pool.new hosts, client_options
     on_connection_closed do |client, *_|
       if client == active_client
         unless @disconnecting
