@@ -95,6 +95,26 @@ describe OnStomp::Client, "full stack test (stomp+ssl:)", :fullstack => true do
         broker.join
         blocked_up.should be_false
       end
+
+      it 'should include login/passcode headers that are not empty' do
+        client = OnStomp::Client.new('stomp://localhost:10101', login: 'user', passcode: 'secr3t')
+        client.connect
+        client.disconnect
+        broker.join
+        broker.frames_received.first.command.should == 'CONNECT'
+        broker.frames_received.first.headers['login'].should == 'user' 
+        broker.frames_received.first.headers['passcode'].should == 'secr3t'
+      end
+
+      it 'should not include login/passcode headers that are empty' do
+        client = OnStomp::Client.new('stomp://localhost:10101')
+        client.connect
+        client.disconnect
+        broker.join
+        broker.frames_received.first.command.should == 'CONNECT'
+        broker.frames_received.first.headers.set?('login').should == false 
+        broker.frames_received.first.headers.set?('passcode').should == false
+      end
       
       it "should block on write" do
         blocked_up = false

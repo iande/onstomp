@@ -54,7 +54,7 @@ module OnStomp::Connections::Stomp_1
   
   def create_frame command, layered_headers, body=nil
     headers = layered_headers.inject({}) do |final, h|
-      h = OnStomp.keys_to_sym(h).delete_if { |k,v| final.key?(k) && (v.nil? || v.empty?) }
+      h = OnStomp.keys_to_sym(h).delete_if { |k,v| v.nil? || v.empty? }
       final.merge!(h)
       final
     end
