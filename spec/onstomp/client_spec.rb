@@ -129,9 +129,28 @@ module OnStomp
         client.write_timeout = 50
         client.connect(headers)
         client.connection.should == connection
+        processor.should_receive(:prepare_to_close)
+        processor.should_receive(:join)
+        client.should_receive(:disconnect_without_flush).with(headers).and_return(frame)
+        client.disconnect_with_flush(headers)
+      end
+      it "should create a connection and start the processor without login and passcode" do
+        OnStomp::Connections.should_receive(:connect).with(client, headers,
+          { :'accept-version' => '1.1', :host => 'my host',
+            :'heart-beat' => '30,110' }, pending_events, 30, 50).and_return(connection)
+        processor.should_receive(:stop)
+        processor.should_receive(:start)
+        client.stub(:pending_connection_events => pending_events)
+        client.versions = '1.1'
+        client.host = 'my host'
+        client.heartbeats = [30,110]
+        client.read_timeout = 30
+        client.write_timeout = 50
+        client.connect(headers)
+        client.connection.should == connection
       end
     end
-    
+
     describe ".disconnect_with_flush" do
       before(:each) do
         client.stub(:processor => processor_class)
