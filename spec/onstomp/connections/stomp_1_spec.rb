@@ -17,6 +17,15 @@ module OnStomp::Connections
         ).should be_an_onstomp_frame('CONNECT', {:header1 => 'value 1',
           :header2 => 'value 22', :header3 => 'value 3'}, nil)
       end
+
+      it "should build a CNNECT frame with boolean value in header" do
+        connection_connect_frame = connection.connect_frame({:header1 => true, :header2 => false},
+                                                            {:header1 => '', :header2 => {}}
+        )
+        connection_connect_frame.should be_an_onstomp_frame('CONNECT',
+                                                            {:header1 => 'true', :header2 => 'false'},
+                                                            nil)
+      end
     end
     
     describe ".send_frame" do
