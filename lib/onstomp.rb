@@ -85,7 +85,9 @@ module OnStomp
 
   # Raised by ThreadedReceiver to stop the receiving thread.
   class StopReceiver < StandardError; end
-  
+
+  @mutex = Thread::Mutex.new
+
   class << self
     # Creates a new connection and immediately connects it to the broker.
     # @see #initialize
@@ -113,12 +115,12 @@ module OnStomp
         new_hash
       end
     end
-    
+
     # Generates the next serial number in a thread-safe manner. This method
     # merely initializes an instance variable to 0 if it has not been set,
     # then increments this value and returns its string representation.
     def next_serial(prefix=nil)
-      Thread.exclusive do
+      mutex.synchronize do
         @next_serial_sequence ||= 0
         @next_serial_sequence += 1
         @next_serial_sequence.to_s
@@ -141,6 +143,13 @@ module OnStomp
           const.const_missing(named)
       end
     end
+
+    private
+
+    def mutex
+      @mutex
+    end
+
   end
 end
 require 'onstomp/version'
