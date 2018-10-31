@@ -6,13 +6,13 @@ class OnStomp::Connections::Base
   attr_reader :version, :socket, :client
   attr_reader :last_transmitted_at, :last_received_at
   attr_reader :write_timeout, :read_timeout
-  
+
   # The approximate maximum number of bytes to write per call to
   # {#io_process_write}.
   MAX_BYTES_PER_WRITE = 1024 * 8
   # The maximum number of bytes to read per call to {#io_process_read}
   MAX_BYTES_PER_READ = 1024 * 4
-  
+
   # Creates a new connection using the given {#socket} object and
   # {OnStomp::Client client}. The {#socket} object will generally be a `TCPSocket`
   # or an `OpenSSL::SSL::SSLSocket` and must support the methods `read_nonblock`
@@ -57,7 +57,7 @@ class OnStomp::Connections::Base
       @write_timeout = @write_timeout_ms = nil
     end
   end
-  
+
   # Performs any necessary configuration of the connection from the CONNECTED
   # frame sent by the broker and a `Hash` of pending callbacks. This method
   # is called after the protocol negotiation has taken place between client
@@ -69,13 +69,13 @@ class OnStomp::Connections::Base
     @version = connected.header?(:version) ? connected[:version] : '1.0'
     install_bindings_from_client con_cbs
   end
-  
+
   # Returns true if the socket has not been closed, false otherwise.
   # @return [true,false]
   def connected?
     !socket.closed?
   end
-  
+
   # Closes the {#socket}. If `blocking` is true, the socket will be closed
   # immediately, otherwies the socket will remain open until {#io_process_write}
   # has finished writing all of its buffered data. Once this method has been
@@ -89,7 +89,7 @@ class OnStomp::Connections::Base
       socket.close
     end
   end
-  
+
   # Exchanges the CONNECT/CONNECTED frame handshake with the broker and returns
   # the version detected along with the received CONNECTED frame. The supplied
   # list of headers will be merged into the CONNECT frame sent to the broker.
@@ -114,7 +114,7 @@ class OnStomp::Connections::Base
     @connection_up = true
     [ vers, broker_con ]
   end
-  
+
   # Checks if the missing method ends with '_frame', and if so raises a
   # {OnStomp::UnsupportedCommandError} exception.
   # @raise [OnStomp::UnsupportedCommandError]
@@ -125,27 +125,27 @@ class OnStomp::Connections::Base
       super
     end
   end
-  
+
   # Number of milliseconds since data was last transmitted to the broker or
   # `nil` if no data has been transmitted when the method is called.
   # @return [Fixnum, nil]
   def duration_since_transmitted
     last_transmitted_at && ((Time.now.to_f - last_transmitted_at) * 1000)
   end
-  
+
   # Number of milliseconds since data was last received from the broker or
   # `nil` if no data has been received when the method is called.
   # @return [Fixnum, nil]
   def duration_since_received
     last_received_at && ((Time.now.to_f - last_received_at) * 1000)
   end
-  
+
   # Flushes the write buffer by invoking {#io_process_write} until the
   # buffer is empty.
   def flush_write_buffer
     io_process_write until @write_buffer.empty?
   end
-  
+
   # Makes a single call to {#io_process_write} and a single call to
   # {#io_process_read}
   def io_process &cb
@@ -155,7 +155,7 @@ class OnStomp::Connections::Base
       triggered_close 'connection timed out', :died
     end
   end
-  
+
   # Serializes the given frame and adds the data to the connections internal
   # write buffer
   # @param [OnStomp::Components::Frame] frame
@@ -163,7 +163,7 @@ class OnStomp::Connections::Base
     ser = serializer.frame_to_bytes frame
     push_write_buffer ser, frame
   end
-  
+
   # Adds data and frame pair to the end of the write buffer
   # @param [String] data
   # @param [OnStomp::Components::Frame]
@@ -185,7 +185,7 @@ class OnStomp::Connections::Base
   def unshift_write_buffer data, frame
     @write_mutex.synchronize { @write_buffer.unshift [data, frame] }
   end
-  
+
   # Writes serialized frame data to the socket if the write buffer is not
   # empty and socket is ready for writing. Once a complete frame has
   # been written, this method will call {OnStomp::Client#dispatch_transmitted}
@@ -228,7 +228,7 @@ class OnStomp::Connections::Base
       triggered_close 'client disconnected'
     end
   end
-  
+
   # Reads serialized frame data from the socket if we're connected and
   # and the socket is ready for reading.  The received data will be pushed
   # to the end of a read buffer, which is then sent to the connection's
@@ -266,7 +266,7 @@ class OnStomp::Connections::Base
       raise OnStomp::ConnectionTimeoutError
     end
   end
-  
+
   private
   def update_last_received
     @last_received_at = Time.now.to_f
@@ -283,7 +283,7 @@ class OnStomp::Connections::Base
   def duration_since_write_activity
     (Time.now.to_f - @last_write_activity) * 1000
   end
-  
+
   # Returns true if the connection has buffered data to write and the
   # socket is ready to be written to. If checking the socket's state raises
   # an exception, the connection will be closed (triggering an
@@ -296,7 +296,7 @@ class OnStomp::Connections::Base
       raise
     end
   end
-  
+
   # Returns true if the connection has buffered data to write and the
   # socket is ready to be written to. If checking the socket's state raises
   # an exception, the connection will be closed (triggering an
@@ -309,7 +309,7 @@ class OnStomp::Connections::Base
       raise
     end
   end
-  
+
   # Returns true if a `write_timeout` has been set, the connection has buffered
   # data to write, and `duration_since_transmitted` is greater than
   # `write_timeout`
@@ -317,7 +317,7 @@ class OnStomp::Connections::Base
     @write_timeout_ms && @write_buffer.length > 0 &&
       duration_since_write_activity > @write_timeout_ms
   end
-  
+
   # Returns true if a `read_timeout` has been set and
   # `duration_since_received` is greater than `read_timeout`
   # This is only used when establishing the connection through the CONNECT/
@@ -325,7 +325,7 @@ class OnStomp::Connections::Base
   def read_timeout_exceeded?
     @read_timeout_ms && duration_since_received > @read_timeout_ms
   end
-  
+
   def triggered_close msg, *evs
     @connection_up = false
     @closing = false
@@ -334,7 +334,7 @@ class OnStomp::Connections::Base
     trigger_connection_event :closed, msg
     @write_buffer.clear
   end
-  
+
   # OpenSSL sockets in Ruby 1.8.7 and JRuby (as of jruby-openssl 0.7.3)
   # do NOT support non-blocking IO natively. Such a hack, and such a huge
   # oversight on my part. We define some methods on this instance to use
@@ -352,14 +352,26 @@ class OnStomp::Connections::Base
   module NonblockingRead
     def read_nonblock
       socket.read_nonblock MAX_BYTES_PER_READ
+    rescue IO::WaitReadable
+      IO.select([socket])
+      retry
+    rescue IO::WaitWritable
+      IO.select(nil, [socket])
+      retry
     end
   end
   module NonblockingWrite
     def write_nonblock data
       socket.write_nonblock data
+    rescue IO::WaitReadable
+      IO.select([socket])
+      retry
+    rescue IO::WaitWritable
+      IO.select(nil, [socket])
+      retry
     end
   end
-  
+
   module BlockingRead
     def read_nonblock
       socket.readpartial MAX_BYTES_PER_READ
