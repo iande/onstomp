@@ -54,6 +54,19 @@ module OnStomp::Failover
           login: 'user_name'
         })
       end
+
+      it 'passes the ssl settings to both clients in the pool' do
+        c = Client.new('failover:(stomp:///,stomp+ssl:///)', {
+          buffer: 'OnStomp::Failover::DummyBuffer',
+          retry_attempts: 2,
+          ssl: { ca_file: 'ca.crt' },
+          login: 'user_name'
+        })
+
+        c.client_pool.clients.count.should == 2
+        c.client_pool.clients[0].ssl.should == { ca_file: 'ca.crt' }
+        c.client_pool.clients[1].ssl.should == { ca_file: 'ca.crt' }
+      end
     end
 
     describe ".connected?" do
@@ -70,7 +83,7 @@ module OnStomp::Failover
         client.connected?.should be_false
       end
     end
-    
+
     describe ".connect" do
       it "should call reconnect" do
         client.should_receive(:reconnect).and_return(true)
@@ -94,7 +107,7 @@ module OnStomp::Failover
         triggered.should be_true
       end
     end
-    
+
     describe ".disconnect" do
       let(:connection) {
         mock('connection').tap do |m|
@@ -132,7 +145,7 @@ module OnStomp::Failover
           Thread.pass while t.alive?
           actual_disconnect.call *args
         end
-        
+
         active_client.should_receive(:disconnect).with(:header1 => 'value 1')
         client.disconnect :header1 => 'value 1'
       end
@@ -158,7 +171,7 @@ module OnStomp::Failover
         client.disconnect :header1 => 'value 1'
       end
     end
-    
+
     describe ".transmit" do
       it "should transmit on the active client if there is one" do
         active_client.should_receive(:transmit).with('test', :coming => 'home')

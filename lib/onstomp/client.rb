@@ -9,7 +9,7 @@ class OnStomp::Client
   include OnStomp::Interfaces::ReceiptManager
   include OnStomp::Interfaces::SubscriptionManager
   include OnStomp::Components::Scopes
-  
+
   # The `URI` reference to the STOMP broker
   # @return [String]
   attr_reader :uri
@@ -19,51 +19,52 @@ class OnStomp::Client
   # Connection object specific to the established STOMP protocol version
   # @return [OnStomp::Connections::Base]
   attr_reader :connection
-  
+
   # The protocol versions to allow for this connection
   # @return [Array<String>]
   attr_configurable_protocols :versions
-  
+
   # The client-side heartbeat settings to allow for this connection
   # @return [Array<Fixnum>]
   attr_configurable_client_beats :heartbeats
-  
+
   # The host header value to send to the broker when connecting. This allows
   # the client to inform the server which host it wishes to connect with
   # when multiple brokers may share an IP address through virtual hosting.
   # @return [String]
   attr_configurable_str :host, :default => 'localhost', :uri_attr => :host
-  
+
   # The login header value to send to the broker when connecting.
   # @return [String]
   attr_configurable_str :login, :default => '', :uri_attr => :user
-  
+
   # The passcode header value to send to the broker when connecting.
   # @return [String]
   attr_configurable_str :passcode, :default => '', :uri_attr => :password
-  
+
   # The class to use when instantiating a new IO processor for the connection.
   # Defaults to {OnStomp::Components::ThreadedProcessor}
   # @return [Class]
   attr_configurable_processor :processor
-  
+
   # The number of seconds to wait before a write-blocked connection is
   # considered dead. Defaults to 120 seconds.
   # @return [Fixnum]
   attr_configurable_int :write_timeout, :default => 120
-  
+
   # The number of seconds to wait before a connection that is read-blocked
   # during the {OnStomp::Connections::Base#connect connect} phase is
   # considered dead. Defaults to 120 seconds.
   # @return [Fixnum]
   attr_configurable_int :read_timeout, :default => 120
-  
+
   # @api gem:1 STOMP:1.0,1.1
   # Creates a new client for the specified uri and optional hash of options.
   # @param [String,URI] uri
   # @param [{Symbol => Object}] options
   def initialize uri, options={}
     @uri = uri.is_a?(::URI) ? uri : ::URI.parse(uri)
+    options = options.dup
     @ssl = options.delete(:ssl)
     configure_configurable options
     configure_subscription_management
@@ -72,7 +73,7 @@ class OnStomp::Client
       close unless f[:receipt]
     end
   end
-  
+
   # @api gem:1 STOMP:1.0,1.1
   # Connects to the STOMP broker referenced by {#uri}. Includes optional
   # headers in the CONNECT frame, if specified.
@@ -91,7 +92,7 @@ class OnStomp::Client
     self
   end
   alias :open :connect
-  
+
   # @api gem:1 STOMP:1.0,1.1
   # Sends a DISCONNECT frame to the broker and blocks until the connection
   # has been closed. This method ensures that all frames not yet sent to
@@ -106,14 +107,14 @@ class OnStomp::Client
   end
   alias :disconnect_without_flush :disconnect
   alias :disconnect :disconnect_with_flush
-  
+
   # @api gem:1 STOMP:1.0,1.1
   # Returns true if a connection to the broker exists and itself is connected.
   # @return [true,false]
   def connected?
     connection && connection.connected?
   end
-  
+
   # @api gem:1 STOMP:1.0,1.1
   # Forces the connection between broker and client closed.
   # @note Use of this method may result in frames never being sent to the
@@ -125,9 +126,9 @@ class OnStomp::Client
     processor_inst.stop
     self
   end
-  
+
   # @group Methods you ought not use directly.
-  
+
   # Ultimately sends a {OnStomp::Components::Frame frame} to the STOMP broker.
   # This method should not be invoked directly. Use the frame methods provided
   # by the {OnStomp::Interfaces:FrameMethod} interface.
@@ -139,32 +140,32 @@ class OnStomp::Client
       connection && connection.write_frame_nonblock(frame)
     end
   end
-  
+
   # Called by {#connection} when a frame has been read from the socket
   # connection to the STOMP broker.
   def dispatch_received frame
     trigger_before_receiving frame
     trigger_after_receiving frame
   end
-  
+
   # Called by {#connection} when a frame has been written to the socket
   # connection to the STOMP broker.
   def dispatch_transmitted frame
     trigger_after_transmitting frame
   end
-  
+
   # @endgroup
-  
+
   private
   def register_callbacks f, cbs
     cbs[:subscribe] && add_subscription(f, cbs[:subscribe])
     cbs[:receipt] && add_receipt(f, cbs[:receipt])
   end
-  
+
   def processor_inst
     @processor_inst ||= processor.new(self)
   end
-  
+
   def close
     connection && connection.close
     clear_subscriptions
