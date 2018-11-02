@@ -38,7 +38,9 @@ module OnStomp
         client.read_timeout.should == 120
         client.processor.should == OnStomp::Components::ThreadedProcessor
       end
-      it "should be configurable by options" do
+
+      # TODO: upgrade to a more recent version of rspec
+      it 'is configurable by a hash of options and does not mutate the hash' do
         client_options[:versions] = ['1.1']
         client_options[:heartbeats] = [90, 110]
         client_options[:host] = 'my broker host'
@@ -57,7 +59,17 @@ module OnStomp
         client.write_timeout.should == 50
         client.read_timeout.should == 70
         client.ssl.should == { :cert_path => '/path/to/certs' }
+        client_options[:versions].should == ['1.1']
+        client_options[:heartbeats].should == [90, 110]
+        client_options[:host].should == 'my broker host'
+        client_options[:login].should == 'my login'
+        client_options[:passcode].should == 'sup3r s3cr3t'
+        client_options[:processor].should == processor_class
+        client_options[:write_timeout].should == 50
+        client_options[:read_timeout].should == 70
+        client_options[:ssl].should == { :cert_path => '/path/to/certs' }
       end
+
       it "should be configurable by query" do
         client_uri << '?versions=1.0'
         client_uri << '&heartbeats=80&heartbeats=210'

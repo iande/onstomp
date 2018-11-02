@@ -63,6 +63,7 @@ class OnStomp::Client
   # @param [String,URI] uri
   # @param [{Symbol => Object}] options
   def initialize uri, options={}
+    options = options.dup
     @uri = uri.is_a?(::URI) ? uri : ::URI.parse(uri)
     @ssl = options.delete(:ssl)
     configure_configurable options
