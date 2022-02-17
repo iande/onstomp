@@ -12,12 +12,12 @@ module OnStomp::Connections::Serializers
       let(:frame) {
         mock('frame')
       }
-      it "should call frame_to_string and encode the result to ASCII-8BIT" do
+      it "should call frame_to_string and encode the result to binary (ASCII-8BIT)" do
         serializer.stub(:frame_to_string).with(frame).and_return('SERIALIZED FRAME')
         ser = serializer.frame_to_bytes(frame)
         ser.should == 'SERIALIZED FRAME'
         if RUBY_VERSION >= '1.9'
-          ser.encoding.name.should == 'ASCII-8BIT'
+          ser.encoding.should == Encoding::BINARY
         end
       end
     end
